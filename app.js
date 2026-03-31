@@ -9,8 +9,8 @@ const SUPABASE_ANON_KEY =
 
 const QUERY =
   '/rest/v1/knowledge?source_type=in.(youtube,playbook)&chunk_index=eq.0' +
-  '&select=id,title,source_url,content,tags,metadata,created_at' +
-  '&order=created_at.desc&limit=200';
+  '&select=id,title,source_url,content,tags,metadata,created_at,upload_date' +
+  '&order=upload_date.desc&limit=700';
 
 // ===== STATE =====
 let allVideos = [];
@@ -236,7 +236,9 @@ function renderFeed() {
 function renderCard(v) {
   const channelName = extractChannelName(v);
   const channelIdx = channelColorMap[channelName] ?? 0;
-  const dateStr = formatDateShort(v.created_at);
+  // Use upload_date for display, fallback to created_at
+  const uploadDate = v.metadata && v.metadata.upload_date;
+  const dateStr = uploadDate ? formatDateShort(uploadDate) : formatDateShort(v.created_at);
   const tags = v.tags || [];
   const views = extractViews(v);
   const thumbnailUrl = extractThumbnail(v);
@@ -244,6 +246,7 @@ function renderCard(v) {
   // One-liner: use metadata.summary if available, else first sentence of content
   const oneLiner = extractOneLiner(v);
   const contentClean = extractSummary(v.content);
+  const formattedContent = formatExpandedContent(contentClean);
   const highlightedSummary =
     searchQuery ? highlightText(oneLiner, searchQuery) : escapeHtml(oneLiner);
   const highlightedTitle =
@@ -288,7 +291,7 @@ function renderCard(v) {
       </div>
     </div>
   </a>
-  ${hasExpanded ? `<div class="card-expanded" id="expanded-${escapeAttr(v.id)}" style="display:none"><div class="summary-text expanded">${searchQuery ? highlightText(contentClean, searchQuery) : escapeHtml(contentClean)}</div></div>` : ''}
+  ${hasExpanded ? `<div class="card-expanded" id="expanded-${escapeAttr(v.id)}" style="display:none">${searchQuery ? highlightText(formattedContent, searchQuery) : formattedContent}</div>` : ''}
   ${(tags.length > 0 || views) ? `
   <div class="card-footer">
     <div class="card-tags">${cardTagsHTML}</div>
@@ -390,7 +393,9 @@ function groupByDate(videos) {
   const groups = { Today: [], Yesterday: [], 'This Week': [], Older: [] };
 
   videos.forEach(v => {
-    const d = new Date(v.created_at);
+    // Use metadata.upload_date if available, fallback to created_at
+    const uploadDate = v.metadata && v.metadata.upload_date;
+    const d = uploadDate ? new Date(uploadDate) : new Date(v.created_at);
     if (d >= startOfToday) {
       groups['Today'].push(v);
     } else if (d >= startOfYesterday) {
@@ -486,6 +491,41 @@ function extractSummary(content) {
   // Strip markdown link syntax to plain text for the 3-line preview
   // Keep for expanded view - just return raw and let expanded show markdown-like
   return content;
+}
+
+function formatExpandedContent(content) {
+  if (!content) return '';
+  // Remove title line (starts with #)
+  let text = content.replace(/^#\s*.+$/gm, '').trim();
+  // Remove Source: line
+  text = text.replace(/^\*\*Source:\*\*.*$/gm, '').replace(/^Source:.*$/gm, '');
+  // Remove Views: line
+  text = text.replace(/^\*\*Views:\*\*.*$/gm, '').replace(/^Views:.*$/gm, '');
+  // Remove Description header
+  text = text.replace(/^##\s*Description\s*$/gm, '').replace(/^##\s*Transcript\s*$/gm, '');
+  // Clean up whitespace
+  text = text.replace(/\n{3,}/g, '\n\n').trim();
+  if (!text) return '';
+  // Convert paragraph-style content to bullet points
+  // Look for patterns like "Key insight: ..." or timestamps "[00:00]"
+  const lines = text.split('\n');
+  const bullets = [];
+  const seen = new Set();
+  for (let line of lines) {
+    line = line.trim();
+    if (!line || line.length < 10) continue;
+    // Deduplicate similar lines
+    const key = line.substring(0, 60).toLowerCase();
+    if (seen.has(key)) continue;
+    seen.add(key);
+    // Format: make it a clean bullet
+    if (!line.match(/^[\-\*•]/)) {
+      line = '• ' + line;
+    }
+    bullets.push(line);
+  }
+  // Join with clean spacing
+  return bullets.slice(0, 20).join('\n'); // Max 20 bullet points
 }
 
 function highlightText(text, query) {

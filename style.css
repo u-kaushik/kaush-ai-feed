@@ -277,7 +277,7 @@ body {
   background: var(--card);
   border: 1px solid var(--border);
   border-radius: var(--radius);
-  margin-bottom: 10px;
+  margin-bottom: 14px;
   transition: border-color var(--transition), background var(--transition);
   position: relative;
   overflow: hidden;
@@ -296,16 +296,16 @@ body {
 
 .card-body {
   display: flex;
-  gap: 14px;
-  padding: 14px 16px;
+  gap: 18px;
+  padding: 16px 18px;
   align-items: flex-start;
 }
 
 /* Thumbnail */
 .card-thumb {
-  width: 120px;
-  min-width: 120px;
-  height: 68px;
+  width: 180px;
+  min-width: 180px;
+  height: 101px;
   border-radius: var(--radius-sm);
   overflow: hidden;
   flex-shrink: 0;
@@ -408,9 +408,9 @@ body {
   align-items: center;
   justify-content: space-between;
   flex-wrap: wrap;
-  gap: 8px;
-  margin-top: 12px;
-  padding-top: 10px;
+  gap: 10px;
+  margin-top: 14px;
+  padding: 12px 18px;
   border-top: 1px solid var(--border);
 }
 
@@ -421,14 +421,16 @@ body {
 }
 
 .card-tag {
-  padding: 2px 8px;
+  padding: 4px 10px;
   border-radius: var(--radius-pill);
   font-size: 11px;
-  font-weight: 500;
+  font-weight: 600;
   cursor: pointer;
   border: 1px solid transparent;
   transition: all var(--transition);
   user-select: none;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
 }
 
 .card-tag:hover {
