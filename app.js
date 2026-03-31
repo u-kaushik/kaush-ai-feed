@@ -211,11 +211,15 @@ function renderFeed() {
 
   // Attach expand/collapse listeners
   feed.querySelectorAll('.expand-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
       const id = btn.dataset.id;
-      const summary = document.querySelector(`.summary-text[data-id="${id}"]`);
-      const expanded = summary.classList.toggle('expanded');
-      btn.textContent = expanded ? 'Show less' : 'Read more';
+      const expanded = document.getElementById(`expanded-${id}`);
+      if (!expanded) return;
+      const isVisible = expanded.style.display !== 'none';
+      expanded.style.display = isVisible ? 'none' : 'block';
+      btn.textContent = isVisible ? 'Read more' : 'Show less';
     });
   });
 
@@ -232,13 +236,16 @@ function renderFeed() {
 function renderCard(v) {
   const channelName = extractChannelName(v);
   const channelIdx = channelColorMap[channelName] ?? 0;
-  const avatarLetter = channelName ? channelName[0].toUpperCase() : '?';
   const dateStr = formatDateShort(v.created_at);
   const tags = v.tags || [];
   const views = extractViews(v);
+  const thumbnailUrl = extractThumbnail(v);
+
+  // One-liner: use metadata.summary if available, else first sentence of content
+  const oneLiner = extractOneLiner(v);
   const contentClean = extractSummary(v.content);
-  const highlighted =
-    searchQuery ? highlightText(contentClean, searchQuery) : escapeHtml(contentClean);
+  const highlightedSummary =
+    searchQuery ? highlightText(oneLiner, searchQuery) : escapeHtml(oneLiner);
   const highlightedTitle =
     searchQuery
       ? highlightText(v.title || 'Untitled', searchQuery)
@@ -260,26 +267,28 @@ function renderCard(v) {
     : '';
 
   const youtubeUrl = v.source_url || '#';
+  const hasExpanded = contentClean.length > 200;
 
   return `
 <div class="card">
-  <div class="card-header">
-    <div class="avatar av-${channelIdx}">${avatarLetter}</div>
-    <div class="card-meta">
-      <div class="card-channel">
-        <span>${escapeHtml(channelName)}</span>
-        <span class="card-channel-dot"></span>
-        <span class="card-date">${dateStr}</span>
+  <a href="${escapeAttr(youtubeUrl)}" target="_blank" rel="noopener noreferrer" class="card-link">
+    <div class="card-body">
+      <div class="card-thumb">
+        <img src="${escapeAttr(thumbnailUrl)}" alt="" loading="lazy" onerror="this.style.display='none'" />
       </div>
-      <div class="card-title">
-        <a href="${escapeAttr(youtubeUrl)}" target="_blank" rel="noopener noreferrer">${highlightedTitle}</a>
+      <div class="card-right">
+        <div class="card-topline">
+          <span class="card-channel">${escapeHtml(channelName)}</span>
+          <span class="card-channel-dot"></span>
+          <span class="card-date">${dateStr}</span>
+        </div>
+        <div class="card-title">${highlightedTitle}</div>
+        <div class="card-oneliner">${highlightedSummary}</div>
+        ${hasExpanded ? `<button class="expand-btn" data-id="${escapeAttr(v.id)}">Read more</button>` : ''}
       </div>
     </div>
-  </div>
-  <div class="card-summary">
-    <div class="summary-text" data-id="${escapeAttr(v.id)}">${highlighted}</div>
-    ${contentClean.length > 300 ? `<button class="expand-btn" data-id="${escapeAttr(v.id)}">Read more</button>` : ''}
-  </div>
+  </a>
+  ${hasExpanded ? `<div class="card-expanded" id="expanded-${escapeAttr(v.id)}" style="display:none"><div class="summary-text expanded">${searchQuery ? highlightText(contentClean, searchQuery) : escapeHtml(contentClean)}</div></div>` : ''}
   ${(tags.length > 0 || views) ? `
   <div class="card-footer">
     <div class="card-tags">${cardTagsHTML}</div>
@@ -295,17 +304,12 @@ function renderSkeletons() {
   for (let i = 0; i < 3; i++) {
     html += `
 <div class="skeleton-card">
-  <div class="skeleton-row">
-    <div class="skeleton-avatar"></div>
-    <div class="skeleton-lines">
-      <div class="skeleton-line w30"></div>
-      <div class="skeleton-line title"></div>
-    </div>
-  </div>
-  <div class="skeleton-lines" style="gap:6px">
-    <div class="skeleton-line w100"></div>
+  <div class="skeleton-thumb"></div>
+  <div class="skeleton-lines">
+    <div class="skeleton-line w30"></div>
+    <div class="skeleton-line title"></div>
+    <div class="skeleton-line oneline"></div>
     <div class="skeleton-line w80"></div>
-    <div class="skeleton-line w60"></div>
   </div>
 </div>`;
   }
@@ -314,15 +318,11 @@ function renderSkeletons() {
   for (let i = 0; i < 2; i++) {
     html += `
 <div class="skeleton-card">
-  <div class="skeleton-row">
-    <div class="skeleton-avatar"></div>
-    <div class="skeleton-lines">
-      <div class="skeleton-line w30"></div>
-      <div class="skeleton-line title"></div>
-    </div>
-  </div>
-  <div class="skeleton-lines" style="gap:6px">
-    <div class="skeleton-line w100"></div>
+  <div class="skeleton-thumb"></div>
+  <div class="skeleton-lines">
+    <div class="skeleton-line w30"></div>
+    <div class="skeleton-line title"></div>
+    <div class="skeleton-line oneline"></div>
     <div class="skeleton-line w60"></div>
   </div>
 </div>`;
@@ -432,6 +432,29 @@ function formatHandle(handle) {
 function extractViews(v) {
   if (!v.metadata) return null;
   return v.metadata.view_count || null;
+}
+
+function extractThumbnail(v) {
+  const videoId = extractVideoId(v.source_url);
+  if (videoId) return `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
+  return '';
+}
+
+function extractVideoId(url) {
+  if (!url) return null;
+  const m = url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/shorts\/)([a-zA-Z0-9_-]{11})/);
+  return m ? m[1] : null;
+}
+
+function extractOneLiner(v) {
+  // Prefer stored summary in metadata
+  if (v.metadata && v.metadata.summary) return v.metadata.summary;
+  // Fallback: first sentence or first 150 chars of content
+  const content = v.content || '';
+  const clean = content.replace(/^#+\s*/gm, '').replace(/\*\*(.*?)\*\*/g, '$1').replace(/\[([^\]]+)\]\([^)]+\)/g, '$1').trim();
+  const sentenceMatch = clean.match(/^([^.!?\n]+[.!?])/);
+  if (sentenceMatch && sentenceMatch[1].length > 20) return sentenceMatch[1].trim();
+  return clean.substring(0, 150).replace(/\n/g, ' ').trim();
 }
 
 function formatViews(n) {
