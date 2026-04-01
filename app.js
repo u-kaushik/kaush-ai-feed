@@ -145,6 +145,7 @@ function onSearch(e) {
   searchDebounceTimer = setTimeout(() => {
     searchQuery = val.trim().toLowerCase();
     renderFeed();
+    updateCount();
   }, 200);
 }
 
@@ -153,6 +154,7 @@ function clearSearch() {
   document.getElementById('search-clear').style.display = 'none';
   searchQuery = '';
   renderFeed();
+  updateCount();
 }
 
 // ===== TAG FILTER RENDER =====
@@ -160,7 +162,11 @@ function renderTagFilters() {
   // Count tag occurrences
   const tagCounts = {};
   allVideos.forEach(v => {
-    (v.tags || []).forEach(t => {
+    let tags = v.tags;
+    if (typeof tags === 'string') {
+      try { tags = JSON.parse(tags); } catch { tags = []; }
+    }
+    (tags || []).forEach(t => {
       tagCounts[t] = (tagCounts[t] || 0) + 1;
     });
   });
@@ -190,26 +196,32 @@ function renderTagFilters() {
 }
 
 function toggleTagFilter(tag) {
-  if (activeTagFilters.has(tag)) {
-    activeTagFilters.delete(tag);
-  } else {
+  // Single-select: clicking a new tag clears others
+  if (!activeTagFilters.has(tag)) {
+    activeTagFilters.clear();
     activeTagFilters.add(tag);
+  } else {
+    activeTagFilters.clear();
   }
   // Update pill active states
   document.querySelectorAll('.tag-pill').forEach(p => {
     p.classList.toggle('active', activeTagFilters.has(p.dataset.tag));
   });
   renderFeed();
+  updateCount();
 }
 
 // ===== FILTERED VIDEOS =====
 function getFilteredVideos() {
   return allVideos.filter(v => {
-    // Tag filter
+    // Tag filter - single select (OR logic)
     if (activeTagFilters.size > 0) {
-      const vTags = new Set(v.tags || []);
-      const match = [...activeTagFilters].every(t => vTags.has(t));
-      if (!match) return false;
+      let vTags = v.tags;
+      if (typeof vTags === 'string') {
+        try { vTags = JSON.parse(vTags); } catch { vTags = []; }
+      }
+      const hasMatch = [...activeTagFilters].some(t => (vTags || []).includes(t));
+      if (!hasMatch) return false;
     }
     // Search filter
     if (searchQuery) {
@@ -288,7 +300,12 @@ function renderCard(v) {
     uploadDate = meta.upload_date;
   }
   const dateStr = uploadDate ? formatDateShort(uploadDate) : formatDateShort(v.created_at);
-  const tags = v.tags || [];
+  // Handle tags as JSON string or array
+  let tags = v.tags;
+  if (typeof tags === 'string') {
+    try { tags = JSON.parse(tags); } catch { tags = []; }
+  }
+  tags = tags || [];
   const views = extractViews(v);
   const thumbnailUrl = extractThumbnail(v);
 
@@ -426,7 +443,12 @@ function renderError(msg) {
 function updateCount() {
   const el = document.getElementById('video-count');
   if (allVideos.length > 0) {
-    el.textContent = `${allVideos.length} videos`;
+    if (activeTagFilters.size > 0) {
+      const filtered = getFilteredVideos();
+      el.textContent = `${filtered.length} of ${allVideos.length} videos`;
+    } else {
+      el.textContent = `${allVideos.length} videos`;
+    }
   }
 }
 
