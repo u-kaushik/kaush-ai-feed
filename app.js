@@ -3,48 +3,49 @@
 // Pure vanilla JS, no build tools, no dependencies.
 // ============================================================
 
-// ===== THEME: Auto-switch between dark (winter) and light (summer) based on British time ===
-function setBritishTheme() {
+// ===== THEME: Auto-switch based on time of day (UK) ===
+function setTimeBasedTheme() {
   const now = new Date();
-  const year = now.getFullYear();
   
-  // Find last Sunday of March (BST starts)
+  // Get current hour in UK (GMT/BST)
+  // UK time offset: GMT (winter) = 0, BST (summer) = +1
+  const year = now.getFullYear();
   const march31 = new Date(year, 2, 31);
   const marchLastSunday = new Date(march31);
   marchLastSunday.setDate(march31.getDate() - march31.getDay());
+  const bstStart = new Date(marchLastSunday);
+  bstStart.setHours(1, 0, 0, 0);
   
-  // Find last Sunday of October (BST ends)
   const oct31 = new Date(year, 9, 31);
   const octLastSunday = new Date(oct31);
   octLastSunday.setDate(oct31.getDate() - oct31.getDay());
-  
-  // BST is last Sunday March 01:00 to last Sunday October 01:00
-  const bstStart = new Date(marchLastSunday);
-  bstStart.setHours(1, 0, 0, 0);
   const bstEnd = new Date(octLastSunday);
   bstEnd.setHours(1, 0, 0, 0);
   
   const isBST = now >= bstStart && now < bstEnd;
+  const ukOffset = isBST ? 1 : 0;
   
-  if (isBST) {
+  // Get hour in UK
+  const ukHour = (now.getUTCHours() + ukOffset) % 24;
+  
+  // Light mode: 6am to 6pm (daytime)
+  // Dark mode: 6pm to 6am (evening/night)
+  const isDaytime = ukHour >= 6 && ukHour < 18;
+  
+  if (isDaytime) {
     document.documentElement.classList.remove('dark');
-    console.log('Light mode (British Summer Time)');
   } else {
     document.documentElement.classList.add('dark');
-    console.log('Dark mode (British Winter Time)');
   }
 }
 
 // Run on load
-setBritishTheme();
+setTimeBasedTheme();
 
-// Also check at midnight
+// Check every minute for hour changes
 setInterval(() => {
-  const now = new Date();
-  if (now.getHours() === 0 && now.getMinutes() === 0) {
-    setBritishTheme();
-  }
-}, 60000); // Check every minute
+  setTimeBasedTheme();
+}, 60000);
 
 const SUPABASE_URL = 'https://thtcmxdcchxxbrsbkjar.supabase.co';
 const SUPABASE_ANON_KEY =
