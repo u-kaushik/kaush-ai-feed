@@ -394,10 +394,9 @@ function groupByDate(videos) {
   const startOfWeek = new Date(startOfToday);
   startOfWeek.setDate(startOfWeek.getDate() - 7);
 
-  const groups = { Today: [], Yesterday: [], 'This Week': [], Older: [] };
+  const groups = { Today: [], Yesterday: [], 'This Week': [] };
 
   videos.forEach(v => {
-    // Use metadata.upload_date if available, fallback to created_at
     const meta = v.metadata;
     let uploadDate = null;
     if (meta && typeof meta === 'object') {
@@ -410,9 +409,8 @@ function groupByDate(videos) {
       groups['Yesterday'].push(v);
     } else if (d >= startOfWeek) {
       groups['This Week'].push(v);
-    } else {
-      groups['Older'].push(v);
     }
+    // Skip older than a week
   });
 
   return groups;
@@ -491,7 +489,7 @@ function formatDateShort(iso) {
   if (diffHrs < 24) return `${Math.floor(diffHrs)}h ago`;
   if (diffDays < 2) return 'Yesterday';
   if (diffDays < 7) return `${Math.floor(diffDays)}d ago`;
-  return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+  return ''; // Don't show dates older than a week
 }
 
 function extractSummary(content) {
@@ -511,29 +509,29 @@ function formatExpandedContent(content) {
   text = text.replace(/^\*\*Views:\*\*.*$/gm, '').replace(/^Views:.*$/gm, '');
   // Remove Description header
   text = text.replace(/^##\s*Description\s*$/gm, '').replace(/^##\s*Transcript\s*$/gm, '');
+  // Remove timestamp brackets like [00:00]
+  text = text.replace(/\[\d{2}:\d{2}\]/g, '');
   // Clean up whitespace
   text = text.replace(/\n{3,}/g, '\n\n').trim();
   if (!text) return '';
-  // Convert paragraph-style content to bullet points
-  // Look for patterns like "Key insight: ..." or timestamps "[00:00]"
-  const lines = text.split('\n');
+  // Split into sentences and make bullet points
+  const sentences = text.split(/(?<=[.!?])\s+/);
   const bullets = [];
   const seen = new Set();
-  for (let line of lines) {
-    line = line.trim();
-    if (!line || line.length < 10) continue;
-    // Deduplicate similar lines
-    const key = line.substring(0, 60).toLowerCase();
+  for (let sentence of sentences) {
+    sentence = sentence.trim();
+    if (!sentence || sentence.length < 15) continue;
+    // Clean up the sentence
+    sentence = sentence.replace(/^[\-\*•\s]+/, '').replace(/\s+/g, ' ');
+    if (sentence.length < 15) continue;
+    // Deduplicate similar starts
+    const key = sentence.substring(0, 40).toLowerCase();
     if (seen.has(key)) continue;
     seen.add(key);
-    // Format: make it a clean bullet
-    if (!line.match(/^[\-\*•]/)) {
-      line = '• ' + line;
-    }
-    bullets.push(line);
+    bullets.push(sentence);
   }
-  // Join with clean spacing
-  return bullets.slice(0, 20).join('\n'); // Max 20 bullet points
+  // Join with line breaks
+  return bullets.slice(0, 15).map(s => `• ${s}`).join('\n');
 }
 
 function highlightText(text, query) {

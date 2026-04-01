@@ -373,10 +373,11 @@ body {
 }
 
 .card-expanded {
-  padding: 0 16px 14px;
+  padding: 0 16px 16px;
   font-size: 13px;
   color: var(--text-muted);
-  line-height: 1.65;
+  line-height: 1.7;
+  white-space: pre-line;
 }
 
 .card-expanded .summary-text {
