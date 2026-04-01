@@ -159,9 +159,23 @@ function clearSearch() {
 
 // ===== TAG FILTER RENDER =====
 function renderTagFilters() {
+  // Only count tags from videos we actually show (last 7 days)
+  const now = new Date();
+  const weekAgo = new Date(now - 7 * 86400000);
+  
+  const recentVideos = allVideos.filter(v => {
+    const meta = v.metadata;
+    let uploadDate = null;
+    if (meta && typeof meta === 'object') {
+      uploadDate = meta.upload_date;
+    }
+    const d = uploadDate ? new Date(uploadDate) : new Date(v.created_at);
+    return d >= weekAgo;
+  });
+
   // Count tag occurrences
   const tagCounts = {};
-  allVideos.forEach(v => {
+  recentVideos.forEach(v => {
     let tags = v.tags;
     if (typeof tags === 'string') {
       try { tags = JSON.parse(tags); } catch { tags = []; }
@@ -171,10 +185,10 @@ function renderTagFilters() {
     });
   });
 
-  // Filter out useless tags (too generic, only 1 video, or in exclusion list)
+  // Filter out useless tags
   const excludeTags = ['youtube-feed', 'ai', 'dev'];
   const filteredTags = Object.entries(tagCounts)
-    .filter(([tag, count]) => count > 1 && !excludeTags.includes(tag))
+    .filter(([tag, count]) => count > 0 && !excludeTags.includes(tag))
     .sort((a, b) => b[1] - a[1]);
 
   const container = document.getElementById('tag-filters');
