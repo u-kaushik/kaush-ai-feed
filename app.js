@@ -9,8 +9,8 @@ const SUPABASE_ANON_KEY =
 
 const QUERY =
   '/rest/v1/knowledge?source_type=in.(youtube,playbook)&chunk_index=eq.0' +
-  '&select=id,title,source_url,content,tags,metadata,created_at,upload_date' +
-  '&order=upload_date.desc&limit=700';
+  '&select=id,title,source_url,content,tags,metadata,created_at' +
+  '&order=created_at.desc&limit=700';
 
 // ===== STATE =====
 let allVideos = [];
@@ -236,8 +236,12 @@ function renderFeed() {
 function renderCard(v) {
   const channelName = extractChannelName(v);
   const channelIdx = channelColorMap[channelName] ?? 0;
-  // Use upload_date for display, fallback to created_at
-  const uploadDate = v.metadata && v.metadata.upload_date;
+  // Use metadata.upload_date if available, fallback to created_at
+  const meta = v.metadata;
+  let uploadDate = null;
+  if (meta && typeof meta === 'object') {
+    uploadDate = meta.upload_date;
+  }
   const dateStr = uploadDate ? formatDateShort(uploadDate) : formatDateShort(v.created_at);
   const tags = v.tags || [];
   const views = extractViews(v);
@@ -394,7 +398,11 @@ function groupByDate(videos) {
 
   videos.forEach(v => {
     // Use metadata.upload_date if available, fallback to created_at
-    const uploadDate = v.metadata && v.metadata.upload_date;
+    const meta = v.metadata;
+    let uploadDate = null;
+    if (meta && typeof meta === 'object') {
+      uploadDate = meta.upload_date;
+    }
     const d = uploadDate ? new Date(uploadDate) : new Date(v.created_at);
     if (d >= startOfToday) {
       groups['Today'].push(v);
