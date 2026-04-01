@@ -3,6 +3,49 @@
 // Pure vanilla JS, no build tools, no dependencies.
 // ============================================================
 
+// ===== THEME: Auto-switch between dark (winter) and light (summer) based on British time ===
+function setBritishTheme() {
+  const now = new Date();
+  const year = now.getFullYear();
+  
+  // Find last Sunday of March (BST starts)
+  const march31 = new Date(year, 2, 31);
+  const marchLastSunday = new Date(march31);
+  marchLastSunday.setDate(march31.getDate() - march31.getDay());
+  
+  // Find last Sunday of October (BST ends)
+  const oct31 = new Date(year, 9, 31);
+  const octLastSunday = new Date(oct31);
+  octLastSunday.setDate(oct31.getDate() - oct31.getDay());
+  
+  // BST is last Sunday March 01:00 to last Sunday October 01:00
+  const bstStart = new Date(marchLastSunday);
+  bstStart.setHours(1, 0, 0, 0);
+  const bstEnd = new Date(octLastSunday);
+  bstEnd.setHours(1, 0, 0, 0);
+  
+  const isBST = now >= bstStart && now < bstEnd;
+  
+  if (isBST) {
+    document.documentElement.classList.remove('dark');
+    console.log('Light mode (British Summer Time)');
+  } else {
+    document.documentElement.classList.add('dark');
+    console.log('Dark mode (British Winter Time)');
+  }
+}
+
+// Run on load
+setBritishTheme();
+
+// Also check at midnight
+setInterval(() => {
+  const now = new Date();
+  if (now.getHours() === 0 && now.getMinutes() === 0) {
+    setBritishTheme();
+  }
+}, 60000); // Check every minute
+
 const SUPABASE_URL = 'https://thtcmxdcchxxbrsbkjar.supabase.co';
 const SUPABASE_ANON_KEY =
   'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRodGNteGRjY2h4eGJyc2JramFyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzEzNDU5MzUsImV4cCI6MjA4NjkyMTkzNX0.jIu-OHW6__OgMLa7PTrxTxh3LCGxp4fG-pDj0UZPBxw';
