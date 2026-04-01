@@ -447,7 +447,19 @@ function updateCount() {
       const filtered = getFilteredVideos();
       el.textContent = `${filtered.length} of ${allVideos.length} videos`;
     } else {
-      el.textContent = `${allVideos.length} videos`;
+      // Only count videos from the last 7 days (the ones we actually show)
+      const now = new Date();
+      const weekAgo = new Date(now - 7 * 86400000);
+      const recent = allVideos.filter(v => {
+        const meta = v.metadata;
+        let uploadDate = null;
+        if (meta && typeof meta === 'object') {
+          uploadDate = meta.upload_date;
+        }
+        const d = uploadDate ? new Date(uploadDate) : new Date(v.created_at);
+        return d >= weekAgo;
+      });
+      el.textContent = `${recent.length} videos (last 7 days)`;
     }
   }
 }
@@ -526,7 +538,24 @@ function extractVideoId(url) {
 
 function extractOneLiner(v) {
   // Prefer stored summary in metadata
-  if (v.metadata && v.metadata.summary) return v.metadata.summary;
+  let summary = '';
+  if (v.metadata && typeof v.metadata === 'object') {
+    summary = v.metadata.summary || '';
+  }
+  if (summary) {
+    // Clean up: remove title prefix, "Transcript [00:00]", and "Source:" lines
+    summary = summary.replace(/^.*Transcript\s*\[\d{2}:\d{2}\]\s*/, '');
+    summary = summary.replace(/^Source:.*$/m, '');
+    summary = summary.replace(/^\*\*Source:\*\*.*$/m, '');
+    summary = summary.trim();
+    // Take first sentence
+    const sentenceMatch = summary.match(/^([^.!?\n]+[.!?])/);
+    if (sentenceMatch && sentenceMatch[1].length > 15) {
+      return sentenceMatch[1].trim();
+    }
+    // Or first 150 chars
+    return summary.substring(0, 150).replace(/\n/g, ' ').trim();
+  }
   // Fallback: first sentence or first 150 chars of content
   const content = v.content || '';
   const clean = content.replace(/^#+\s*/gm, '').replace(/\*\*(.*?)\*\*/g, '$1').replace(/\[([^\]]+)\]\([^)]+\)/g, '$1').trim();
