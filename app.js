@@ -620,10 +620,11 @@ function formatExpandedContent(content) {
   // Remove Description header
   text = text.replace(/^##\s*Description\s*$/gm, '').replace(/^##\s*Transcript\s*$/gm, '');
   // Remove timestamp brackets like [00:00]
-  text = text.replace(/\[\d{2}:\d{2}\]/g, '');
+  text = text.replace(/\[\d{2}:\d{2}\]\s*/g, '');
   // Clean up whitespace
   text = text.replace(/\n{3,}/g, '\n\n').trim();
   if (!text) return '';
+  
   // Split into sentences and make bullet points
   const sentences = text.split(/(?<=[.!?])\s+/);
   const bullets = [];
@@ -640,8 +641,9 @@ function formatExpandedContent(content) {
     seen.add(key);
     bullets.push(sentence);
   }
-  // Join with line breaks
-  return bullets.slice(0, 15).map(s => `• ${s}`).join('\n');
+  
+  // Build HTML with proper formatting
+  return bullets.slice(0, 15).map(s => `<div style="margin-bottom:6px;padding-left:16px;position:relative"><span style="position:absolute;left:0;color:var(--accent)">•</span>${escapeHtml(s)}</div>`).join('');
 }
 
 function highlightText(text, query) {
