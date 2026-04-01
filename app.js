@@ -186,7 +186,7 @@ function renderTagFilters() {
   });
 
   // Filter out useless tags
-  const excludeTags = ['youtube-feed', 'ai', 'dev', 'Coding'];
+  const excludeTags = ['youtube-feed', 'ai', 'dev', 'Coding', 'AI'];
   const filteredTags = Object.entries(tagCounts)
     .filter(([tag, count]) => count > 0 && !excludeTags.includes(tag))
     .sort((a, b) => b[1] - a[1]);
