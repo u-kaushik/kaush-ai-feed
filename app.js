@@ -307,14 +307,12 @@ function renderFeed() {
 function renderCard(v) {
   const channelName = extractChannelName(v);
   const channelIdx = channelColorMap[channelName] ?? 0;
-  // Use metadata.upload_date if available, fallback to created_at
   const meta = v.metadata;
   let uploadDate = null;
   if (meta && typeof meta === 'object') {
     uploadDate = meta.upload_date;
   }
   const dateStr = uploadDate ? formatDateShort(uploadDate) : formatDateShort(v.created_at);
-  // Handle tags as JSON string or array
   let tags = v.tags;
   if (typeof tags === 'string') {
     try { tags = JSON.parse(tags); } catch { tags = []; }
@@ -323,16 +321,12 @@ function renderCard(v) {
   const views = extractViews(v);
   const thumbnailUrl = extractThumbnail(v);
 
-  // One-liner: use metadata.summary if available, else first sentence of content
+  // Use metadata.summary as the one-liner (it contains the real first sentence/summary)
   const oneLiner = extractOneLiner(v);
   const contentClean = extractSummary(v.content);
   const formattedContent = formatExpandedContent(contentClean);
-  const highlightedSummary =
+  const highlightedOneLiner =
     searchQuery ? highlightText(oneLiner, searchQuery) : escapeHtml(oneLiner);
-  const highlightedTitle =
-    searchQuery
-      ? highlightText(v.title || 'Untitled', searchQuery)
-      : escapeHtml(v.title || 'Untitled');
 
   const cardTagsHTML = tags
     .map(tag => {
@@ -365,13 +359,13 @@ function renderCard(v) {
           <span class="card-channel-dot"></span>
           <span class="card-date">${dateStr}</span>
         </div>
-        <div class="card-title">${highlightedTitle}</div>
-        <div class="card-oneliner">${highlightedSummary}</div>
+        <div class="card-title">${escapeHtml(v.title || 'Untitled')}</div>
+        ${oneLiner ? `<div class="card-oneliner">${highlightedOneLiner}</div>` : ''}
         ${hasExpanded ? `<button class="expand-btn" data-id="${escapeAttr(v.id)}">Read more</button>` : ''}
       </div>
     </div>
   </a>
-  ${hasExpanded ? `<div class="card-expanded" id="expanded-${escapeAttr(v.id)}" style="display:none">${searchQuery ? highlightText(formattedContent, searchQuery) : formattedContent}</div>` : ''}
+  ${hasExpanded ? `<div class="card-expanded" id="expanded-${escapeAttr(v.id)}" style="display:none">${formattedContent}</div>` : ''}
   ${(tags.length > 0 || views) ? `
   <div class="card-footer">
     <div class="card-tags">${cardTagsHTML}</div>
