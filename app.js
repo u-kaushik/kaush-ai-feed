@@ -186,7 +186,7 @@ function renderTagFilters() {
   });
 
   // Filter out useless tags
-  const excludeTags = ['youtube-feed', 'ai', 'dev'];
+  const excludeTags = ['youtube-feed', 'ai', 'dev', 'Coding'];
   const filteredTags = Object.entries(tagCounts)
     .filter(([tag, count]) => count > 0 && !excludeTags.includes(tag))
     .sort((a, b) => b[1] - a[1]);
@@ -451,23 +451,23 @@ function renderError(msg) {
 function updateCount() {
   const el = document.getElementById('video-count');
   if (allVideos.length > 0) {
+    const now = new Date();
+    const weekAgo = new Date(now - 7 * 86400000);
+    const recent = allVideos.filter(v => {
+      const meta = v.metadata;
+      let uploadDate = null;
+      if (meta && typeof meta === 'object') {
+        uploadDate = meta.upload_date;
+      }
+      const d = uploadDate ? new Date(uploadDate) : new Date(v.created_at);
+      return d >= weekAgo;
+    });
+    
     if (activeTagFilters.size > 0) {
       const filtered = getFilteredVideos();
-      el.textContent = `${filtered.length} of ${allVideos.length} videos`;
+      el.textContent = `${filtered.length} videos`;
     } else {
-      // Only count videos from the last 7 days (the ones we actually show)
-      const now = new Date();
-      const weekAgo = new Date(now - 7 * 86400000);
-      const recent = allVideos.filter(v => {
-        const meta = v.metadata;
-        let uploadDate = null;
-        if (meta && typeof meta === 'object') {
-          uploadDate = meta.upload_date;
-        }
-        const d = uploadDate ? new Date(uploadDate) : new Date(v.created_at);
-        return d >= weekAgo;
-      });
-      el.textContent = `${recent.length} videos (last 7 days)`;
+      el.textContent = `${recent.length} videos`;
     }
   }
 }
