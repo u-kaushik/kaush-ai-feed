@@ -165,24 +165,25 @@ function renderTagFilters() {
     });
   });
 
-  // Sort by frequency
-  const sortedTags = Object.entries(tagCounts)
-    .sort((a, b) => b[1] - a[1])
-    .map(([tag]) => tag);
+  // Filter out useless tags (too generic, only 1 video, or in exclusion list)
+  const excludeTags = ['youtube-feed', 'ai', 'dev'];
+  const filteredTags = Object.entries(tagCounts)
+    .filter(([tag, count]) => count > 1 && !excludeTags.includes(tag))
+    .sort((a, b) => b[1] - a[1]);
 
   const container = document.getElementById('tag-filters');
   container.innerHTML = '';
 
-  if (sortedTags.length === 0) return;
+  if (filteredTags.length === 0) return;
 
-  sortedTags.forEach(tag => {
+  filteredTags.forEach(([tag, count]) => {
     const pill = document.createElement('button');
     pill.className =
       'tag-pill' + (activeTagFilters.has(tag) ? ' active' : '');
     pill.dataset.tag = tag;
     pill.innerHTML =
       escapeHtml(tag) +
-      ` <span class="pill-count">${tagCounts[tag]}</span>`;
+      ` <span class="pill-count">${count}</span>`;
     pill.addEventListener('click', () => toggleTagFilter(tag));
     container.appendChild(pill);
   });
