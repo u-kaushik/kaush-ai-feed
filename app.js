@@ -415,6 +415,7 @@ function renderCard(v) {
     searchQuery ? highlightText(oneLiner, searchQuery) : escapeHtml(oneLiner);
 
   const cardTagsHTML = tags
+    .filter(t => !['youtube-feed', 'ai', 'dev', 'Coding', 'AI'].includes(t))
     .map(tag => {
       const ci = tagColorMap[tag] ?? 0;
       const isActive = activeTagFilters.has(tag);

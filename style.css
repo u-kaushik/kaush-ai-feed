@@ -426,6 +426,7 @@ body {
   color: var(--accent);
   cursor: pointer;
   transition: color var(--transition);
+  text-align: left;
 }
 
 .card-channel-btn:hover {
