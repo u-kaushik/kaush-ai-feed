@@ -449,6 +449,13 @@ body {
   border-top: 1px solid var(--border);
 }
 
+.card-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 18px 12px;
+}
+
 .card-tags {
   display: flex;
   flex-wrap: wrap;

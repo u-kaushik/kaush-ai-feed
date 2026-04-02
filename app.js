@@ -345,7 +345,7 @@ function renderCard(v) {
   if (meta && typeof meta === 'object') {
     uploadDate = meta.upload_date;
   }
-  const dateStr = uploadDate ? formatDateShort(uploadDate) : formatDateShort(v.created_at);
+  const timestamp = uploadDate || v.created_at;
   let tags = v.tags;
   if (typeof tags === 'string') {
     try { tags = JSON.parse(tags); } catch { tags = []; }
@@ -381,23 +381,24 @@ function renderCard(v) {
 
   return `
 <div class="card">
-  <a href="${escapeAttr(youtubeUrl)}" target="_blank" rel="noopener noreferrer" class="card-link">
-    <div class="card-body">
+  <div class="card-body">
+    <a href="${escapeAttr(youtubeUrl)}" target="_blank" rel="noopener noreferrer" class="card-link">
       <div class="card-thumb">
         <img src="${escapeAttr(thumbnailUrl)}" alt="" loading="lazy" onerror="this.style.display='none'" />
       </div>
       <div class="card-right">
         <div class="card-topline">
-          <button class="card-channel-btn" data-channel="${escapeAttr(channelName)}" title="Filter by ${escapeHtml(channelName)}">${escapeHtml(channelName)}</button>
-          <span class="card-channel-dot"></span>
-          <span class="card-date" title="${formatDateTime(uploadDate || v.created_at)}">${dateStr}</span>
+          <span class="card-date">${formatDateTime(timestamp)}</span>
         </div>
         <div class="card-title">${escapeHtml(v.title || 'Untitled')}</div>
         ${oneLiner ? `<div class="card-oneliner">${highlightedOneLiner}</div>` : ''}
         ${hasExpanded ? `<button class="expand-btn" data-id="${escapeAttr(v.id)}">Read more</button>` : ''}
       </div>
+    </a>
+    <div class="card-meta">
+      <button class="card-channel-btn" data-channel="${escapeAttr(channelName)}" title="Filter by ${escapeHtml(channelName)}">${escapeHtml(channelName)}</button>
     </div>
-  </a>
+  </div>
   ${hasExpanded ? `<div class="card-expanded" id="expanded-${escapeAttr(v.id)}" style="display:none">${formattedContent}</div>` : ''}
   ${(tags.length > 0 || views) ? `
   <div class="card-footer">
