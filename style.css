@@ -410,6 +410,12 @@ body {
   text-decoration: underline;
 }
 
+.card-timestamp {
+  font-size: 10px;
+  color: var(--text-faint);
+  margin-top: 2px;
+}
+
 .card-date {
   font-size: 11px;
   color: var(--text-faint);

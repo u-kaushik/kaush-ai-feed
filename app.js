@@ -409,16 +409,14 @@ function renderCard(v) {
       </div>
       <div class="card-right">
         <div class="card-topline">
-          <span class="card-date">${formatDateTime(timestamp)}</span>
+          <button class="card-channel-btn" data-channel="${escapeAttr(channelName)}" title="Filter by ${escapeHtml(channelName)}">${escapeHtml(channelName)}</button>
         </div>
         <div class="card-title">${escapeHtml(v.title || 'Untitled')}</div>
+        <div class="card-timestamp">${formatDateTime(timestamp)}</div>
         ${oneLiner ? `<div class="card-oneliner">${highlightedOneLiner}</div>` : ''}
         ${hasExpanded ? `<button class="expand-btn" data-id="${escapeAttr(v.id)}">Read more</button>` : ''}
       </div>
     </a>
-    <div class="card-meta">
-      <button class="card-channel-btn" data-channel="${escapeAttr(channelName)}" title="Filter by ${escapeHtml(channelName)}">${escapeHtml(channelName)}</button>
-    </div>
   </div>
   ${hasExpanded ? `<div class="card-expanded" id="expanded-${escapeAttr(v.id)}" style="display:none">${formattedContent}</div>` : ''}
   ${(tags.length > 0 || views) ? `
