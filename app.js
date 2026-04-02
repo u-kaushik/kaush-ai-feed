@@ -78,17 +78,16 @@ setInterval(() => {
   }
 }, 60000);
 
+const FEED_URL = 'data/yt-feed.json';
 const SUPABASE_URL = 'https://thtcmxdcchxxbrsbkjar.supabase.co';
 const SUPABASE_ANON_KEY =
   'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRodGNteGRjY2h4eGJyc2JramFyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzEzNDU5MzUsImV4cCI6MjA4NjkyMTkzNX0.jIu-OHW6__OgMLa7PTrxTxh3LCGxp4fG-pDj0UZPBxw';
 
-const QUERY =
-  '/rest/v1/knowledge?source_type=in.(youtube,youtube-feed,playbook)&chunk_index=eq.0' +
-  '&select=id,title,source_url,content,tags,metadata,created_at' +
-  '&order=created_at.desc&limit=700';
+const FAVES_TABLE = '/rest/v1/favorites?source=eq.youtube-feed';
 
 // ===== STATE =====
 let allVideos = [];
+let favorites = new Set();
 let activeTagFilters = new Set();
 let activeChannelFilter = null;
 let searchQuery = '';
@@ -123,20 +122,30 @@ async function fetchVideos() {
   btn.classList.add('spinning');
 
   try {
-    const res = await fetch(SUPABASE_URL + QUERY, {
-      headers: {
-        apikey: SUPABASE_ANON_KEY,
-        Authorization: 'Bearer ' + SUPABASE_ANON_KEY,
-      },
-    });
-
-    if (!res.ok) {
-      const errText = await res.text();
-      throw new Error(`HTTP ${res.status}: ${errText}`);
+    // Fetch the JSON feed
+    const feedRes = await fetch(FEED_URL);
+    if (feedRes.ok) {
+      allVideos = await feedRes.json();
+    } else {
+      // Fallback: empty if no feed yet
+      allVideos = [];
     }
 
-    const data = await res.json();
-    allVideos = data || [];
+    // Fetch favorites from Supabase
+    try {
+      const favesRes = await fetch(SUPABASE_URL + FAVES_TABLE, {
+        headers: {
+          apikey: SUPABASE_ANON_KEY,
+          Authorization: 'Bearer ' + SUPABASE_ANON_KEY,
+        },
+      });
+      if (favesRes.ok) {
+        const favesData = await favesRes.json();
+        favorites = new Set((favesData || []).map(f => f.video_url));
+      }
+    } catch (e) {
+      console.warn('Could not fetch favorites:', e.message);
+    }
 
     buildTagColorMap();
     buildChannelColorMap();
@@ -278,6 +287,49 @@ function clearChannelFilter() {
   updateCount();
 }
 
+async function toggleFavorite(url, btnEl) {
+  const isFave = favorites.has(url);
+  
+  try {
+    if (isFave) {
+      // Remove from Supabase
+      await fetch(`${SUPABASE_URL}/rest/v1/favorites?video_url=eq.${encodeURIComponent(url)}`, {
+        method: 'DELETE',
+        headers: {
+          apikey: SUPABASE_ANON_KEY,
+          Authorization: 'Bearer ' + SUPABASE_ANON_KEY,
+        },
+      });
+      favorites.delete(url);
+    } else {
+      // Add to Supabase
+      await fetch(`${SUPABASE_URL}/rest/v1/favorites`, {
+        method: 'POST',
+        headers: {
+          apikey: SUPABASE_ANON_KEY,
+          Authorization: 'Bearer ' + SUPABASE_ANON_KEY,
+          'Content-Type': 'application/json',
+          'Prefer': 'return=minimal',
+        },
+        body: JSON.stringify({
+          video_url: url,
+          source: 'youtube-feed',
+          favorited_at: new Date().toISOString(),
+        }),
+      });
+      favorites.add(url);
+    }
+    
+    // Update button UI
+    btnEl.classList.toggle('active', !isFave);
+    const svg = btnEl.querySelector('svg');
+    svg.setAttribute('fill', isFave ? 'none' : 'currentColor');
+    btnEl.title = isFave ? 'Add to favorites' : 'Remove from favorites';
+  } catch (e) {
+    console.error('Failed to toggle favorite:', e.message);
+  }
+}
+
 function renderChannelFilterBar() {
   const bar = document.getElementById('channel-filter-bar');
   const nameEl = document.getElementById('active-channel-name');
@@ -387,6 +439,16 @@ function renderFeed() {
       toggleChannelFilter(channel);
     });
   });
+
+  // Attach favorite button listeners
+  feed.querySelectorAll('.fave-btn').forEach(el => {
+    el.addEventListener('click', async (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      const url = el.dataset.url;
+      await toggleFavorite(url, el);
+    });
+  });
 }
 
 // ===== CARD HTML =====
@@ -398,21 +460,9 @@ function renderCard(v) {
   if (meta && typeof meta === 'object') {
     uploadDate = meta.upload_date;
   }
-  const timestamp = uploadDate || v.created_at;
-  let tags = v.tags;
-  if (typeof tags === 'string') {
-    try { tags = JSON.parse(tags); } catch { tags = []; }
-  }
-  tags = tags || [];
-  const views = extractViews(v);
-  const thumbnailUrl = extractThumbnail(v);
-
-  // Use metadata.summary as the one-liner (it contains the real first sentence/summary)
-  const oneLiner = extractOneLiner(v);
-  const contentClean = extractSummary(v.content);
-  const formattedContent = formatExpandedContent(contentClean);
-  const highlightedOneLiner =
-    searchQuery ? highlightText(oneLiner, searchQuery) : escapeHtml(oneLiner);
+  const timestamp = v.published || v.created_at;
+  let tags = v.tags || [];
+  const thumbnailUrl = v.thumbnail || '';
 
   const cardTagsHTML = tags
     .filter(t => !['youtube-feed', 'ai', 'dev', 'Coding', 'AI'].includes(t))
@@ -423,20 +473,13 @@ function renderCard(v) {
     })
     .join('');
 
-  const viewsHTML = views
-    ? `<span class="card-views">
-        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
-        ${formatViews(views)}
-       </span>`
-    : '';
-
-  const youtubeUrl = v.source_url || '#';
-  const hasExpanded = contentClean.length > 200;
+  const youtubeUrl = v.url || v.source_url || '#';
+  const isFave = favorites.has(youtubeUrl);
 
   return `
 <div class="card">
-  <a href="${escapeAttr(youtubeUrl)}" target="_blank" rel="noopener noreferrer" class="card-link">
-    <div class="card-body">
+  <div class="card-body">
+    <a href="${escapeAttr(youtubeUrl)}" target="_blank" rel="noopener noreferrer" class="card-link">
       <div class="card-thumb">
         <img src="${escapeAttr(thumbnailUrl)}" alt="" loading="lazy" onerror="this.style.display='none'" />
       </div>
@@ -444,16 +487,17 @@ function renderCard(v) {
         <button class="card-channel-btn" data-channel="${escapeAttr(channelName)}" title="Filter by ${escapeHtml(channelName)}">${escapeHtml(channelName)}</button>
         <div class="card-title">${escapeHtml(v.title || 'Untitled')}</div>
         <div class="card-timestamp">${formatDateTime(timestamp)}</div>
-        ${oneLiner ? `<div class="card-oneliner">${highlightedOneLiner}</div>` : ''}
-        ${hasExpanded ? `<button class="expand-btn" data-id="${escapeAttr(v.id)}">Read more</button>` : ''}
       </div>
-    </div>
-  </a>
-  ${hasExpanded ? `<div class="card-expanded" id="expanded-${escapeAttr(v.id)}" style="display:none">${formattedContent}</div>` : ''}
-  ${(tags.length > 0 || views) ? `
+    </a>
+    <button class="fave-btn ${isFave ? 'active' : ''}" data-url="${escapeAttr(youtubeUrl)}" title="${isFave ? 'Remove from favorites' : 'Add to favorites'}">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="${isFave ? 'currentColor' : 'none'}" stroke="currentColor" stroke-width="2">
+        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+      </svg>
+    </button>
+  </div>
+  ${(tags.length > 0) ? `
   <div class="card-footer">
     <div class="card-tags">${cardTagsHTML}</div>
-    ${viewsHTML}
   </div>` : ''}
 </div>`;
 }
@@ -599,17 +643,16 @@ function getUploadDate(v) {
 }
 
 function extractChannelName(v) {
-  // Try metadata.channel_url first
+  // New format has channel directly
+  if (v.channel) return v.channel;
+  // Old format: try metadata.channel_url first
   const channelUrl = v.metadata && v.metadata.channel_url;
   if (channelUrl) {
-    // e.g. https://youtube.com/@stevencravotta → stevencravotta
     const match = channelUrl.match(/@([\w.-]+)/);
     if (match) return formatHandle(match[1]);
-    // fallback: last path segment
     const parts = channelUrl.replace(/\/$/, '').split('/');
     return formatHandle(parts[parts.length - 1]);
   }
-  // Fallback: extract from title
   const titleMatch = (v.title || '').match(/\|\s*(.+)$/);
   if (titleMatch) return titleMatch[1].trim();
   return 'Unknown Channel';

@@ -370,6 +370,29 @@ body {
   gap: 18px;
   padding: 16px 18px;
   align-items: flex-start;
+  position: relative;
+}
+
+.fave-btn {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: none;
+  border: none;
+  padding: 4px;
+  cursor: pointer;
+  color: var(--text-faint);
+  border-radius: var(--radius-sm);
+  transition: color var(--transition), transform var(--transition);
+}
+
+.fave-btn:hover {
+  color: #ef4444;
+  transform: scale(1.1);
+}
+
+.fave-btn.active {
+  color: #ef4444;
 }
 
 /* Thumbnail */
