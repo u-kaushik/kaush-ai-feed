@@ -736,18 +736,36 @@ mark {
   }
 
   .card-body {
-    padding: 12px;
+    padding: 0;
+    gap: 0;
+  }
+
+  .card-link {
+    flex-direction: column;
+    padding: 10px;
     gap: 10px;
   }
 
   .card-thumb {
-    width: 90px;
-    min-width: 90px;
-    height: 51px;
+    width: 100%;
+    min-width: unset;
+    height: 180px;
+  }
+
+  .card-right {
+    gap: 4px;
+  }
+
+  .card-channel-btn {
+    font-size: 11px;
   }
 
   .card-title {
-    font-size: 13px;
+    font-size: 14px;
+  }
+
+  .card-timestamp {
+    font-size: 11px;
   }
 
   .card-oneliner {
@@ -760,6 +778,22 @@ mark {
 
   .tag-filters {
     gap: 5px;
+  }
+}
+
+@media (max-width: 900px) {
+  .card-thumb {
+    width: 240px;
+    min-width: 240px;
+    height: 135px;
+  }
+
+  .card-title {
+    font-size: 15px;
+  }
+
+  .card-timestamp {
+    font-size: 11px;
   }
 }
 
