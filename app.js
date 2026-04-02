@@ -84,8 +84,6 @@ document.addEventListener('DOMContentLoaded', () => {
   });
   document.getElementById('clear-channel-filter').addEventListener('click', clearChannelFilter);
 });
-  });
-});
 
 // ===== FETCH =====
 async function fetchVideos() {
