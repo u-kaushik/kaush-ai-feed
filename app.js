@@ -75,11 +75,15 @@ document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('refresh-btn').addEventListener('click', () => {
     allVideos = [];
     activeTagFilters.clear();
+    activeChannelFilter = null;
     searchQuery = '';
     document.getElementById('search-input').value = '';
     document.getElementById('search-clear').style.display = 'none';
     renderSkeletons();
     fetchVideos();
+  });
+  document.getElementById('clear-channel-filter').addEventListener('click', clearChannelFilter);
+});
   });
 });
 
@@ -232,8 +236,27 @@ function toggleChannelFilter(channel) {
   } else {
     activeChannelFilter = channel;
   }
+  renderChannelFilterBar();
   renderFeed();
   updateCount();
+}
+
+function clearChannelFilter() {
+  activeChannelFilter = null;
+  renderChannelFilterBar();
+  renderFeed();
+  updateCount();
+}
+
+function renderChannelFilterBar() {
+  const bar = document.getElementById('channel-filter-bar');
+  const nameEl = document.getElementById('active-channel-name');
+  if (activeChannelFilter) {
+    nameEl.textContent = '@' + activeChannelFilter;
+    bar.style.display = 'flex';
+  } else {
+    bar.style.display = 'none';
+  }
 }
 
 // ===== FILTERED VIDEOS =====
@@ -499,8 +522,8 @@ function updateCount() {
       return d >= weekAgo;
     });
     
-    if (activeTagFilters.size > 0) {
-      const filtered = getFilteredVideos();
+    const filtered = getFilteredVideos();
+    if (activeTagFilters.size > 0 || activeChannelFilter) {
       el.textContent = `${filtered.length} videos`;
     } else {
       el.textContent = `${recent.length} videos`;

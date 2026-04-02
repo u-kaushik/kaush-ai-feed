@@ -227,6 +227,37 @@ body {
   min-height: 28px;
 }
 
+.channel-filter-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.channel-filter-label {
+  font-size: 11px;
+  color: var(--text-faint);
+}
+
+.channel-filter-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: var(--radius-pill);
+  font-size: 11px;
+  font-weight: 500;
+  cursor: pointer;
+  border: 1px solid var(--accent);
+  background: var(--accent-dim);
+  color: var(--accent);
+  transition: all var(--transition);
+}
+
+.channel-filter-btn:hover {
+  background: var(--accent-dim-hover);
+}
+
 .tag-pill {
   display: inline-flex;
   align-items: center;
