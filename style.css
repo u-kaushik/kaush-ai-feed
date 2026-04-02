@@ -397,9 +397,9 @@ body {
 
 /* Thumbnail */
 .card-thumb {
-  width: 240px;
-  min-width: 240px;
-  height: 135px;
+  width: 320px;
+  min-width: 320px;
+  height: 180px;
   border-radius: var(--radius-sm);
   overflow: hidden;
   flex-shrink: 0;
