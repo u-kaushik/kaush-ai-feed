@@ -124,13 +124,9 @@ async function fetchVideos() {
   try {
     // Fetch the JSON feed
     const feedRes = await fetch(FEED_URL);
-    console.log('Feed fetch:', feedRes.status, feedRes.ok);
     if (feedRes.ok) {
-      const data = await feedRes.json();
-      console.log('Got videos:', data.length);
-      allVideos = data;
+      allVideos = await feedRes.json();
     } else {
-      console.warn('Feed fetch failed, status:', feedRes.status);
       allVideos = [];
     }
 
@@ -211,12 +207,8 @@ function renderTagFilters() {
   const weekAgo = new Date(now - 7 * 86400000);
   
   const recentVideos = allVideos.filter(v => {
-    const meta = v.metadata;
-    let uploadDate = null;
-    if (meta && typeof meta === 'object') {
-      uploadDate = meta.upload_date;
-    }
-    const d = uploadDate ? new Date(uploadDate) : new Date(v.created_at);
+    const published = v.published;
+    const d = published ? new Date(published) : new Date();
     return d >= weekAgo;
   });
 
@@ -586,12 +578,7 @@ function updateCount() {
     const now = new Date();
     const weekAgo = new Date(now - 7 * 86400000);
     const recent = allVideos.filter(v => {
-      const meta = v.metadata;
-      let uploadDate = null;
-      if (meta && typeof meta === 'object') {
-        uploadDate = meta.upload_date;
-      }
-      const d = uploadDate ? new Date(uploadDate) : new Date(v.created_at);
+      const d = v.published ? new Date(v.published) : new Date();
       return d >= weekAgo;
     });
     
@@ -616,12 +603,7 @@ function groupByDate(videos) {
   const groups = { Today: [], Yesterday: [], 'This Week': [] };
 
   videos.forEach(v => {
-    const meta = v.metadata;
-    let uploadDate = null;
-    if (meta && typeof meta === 'object') {
-      uploadDate = meta.upload_date;
-    }
-    const d = uploadDate ? new Date(uploadDate) : new Date(v.created_at);
+    const d = v.published ? new Date(v.published) : new Date();
     if (d >= startOfToday) {
       groups['Today'].push(v);
     } else if (d >= startOfYesterday) {
@@ -629,7 +611,6 @@ function groupByDate(videos) {
     } else if (d >= startOfWeek) {
       groups['This Week'].push(v);
     }
-    // Skip older than a week
   });
 
   return groups;
