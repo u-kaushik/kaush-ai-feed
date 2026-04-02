@@ -124,10 +124,13 @@ async function fetchVideos() {
   try {
     // Fetch the JSON feed
     const feedRes = await fetch(FEED_URL);
+    console.log('Feed fetch:', feedRes.status, feedRes.ok);
     if (feedRes.ok) {
-      allVideos = await feedRes.json();
+      const data = await feedRes.json();
+      console.log('Got videos:', data.length);
+      allVideos = data;
     } else {
-      // Fallback: empty if no feed yet
+      console.warn('Feed fetch failed, status:', feedRes.status);
       allVideos = [];
     }
 
@@ -360,8 +363,7 @@ function getFilteredVideos() {
     }
     // Search filter
     if (searchQuery) {
-      const haystack =
-        (v.title || '').toLowerCase() + ' ' + (v.content || '').toLowerCase();
+      const haystack = (v.title || '').toLowerCase();
       if (!haystack.includes(searchQuery)) return false;
     }
     return true;
