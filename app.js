@@ -402,17 +402,13 @@ function renderFeed() {
 
   feed.innerHTML = html;
 
-  // Attach expand/collapse listeners
+  // Attach expand listeners - open YouTube for details
   feed.querySelectorAll('.expand-btn').forEach(btn => {
     btn.addEventListener('click', (e) => {
       e.preventDefault();
       e.stopPropagation();
-      const id = btn.dataset.id;
-      const expanded = document.getElementById(`expanded-${id}`);
-      if (!expanded) return;
-      const isVisible = expanded.style.display !== 'none';
-      expanded.style.display = isVisible ? 'none' : 'block';
-      btn.textContent = isVisible ? 'Read more' : 'Show less';
+      const url = btn.dataset.url;
+      window.open(url, '_blank');
     });
   });
 
@@ -489,6 +485,7 @@ function renderCard(v) {
       </svg>
     </button>
   </div>
+  <button class="expand-btn" data-url="${escapeAttr(youtubeUrl)}">Read more</button>
   ${(tags.length > 0) ? `
   <div class="card-footer">
     <div class="card-tags">${cardTagsHTML}</div>
