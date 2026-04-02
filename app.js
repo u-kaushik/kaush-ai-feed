@@ -434,22 +434,20 @@ function renderCard(v) {
 
   return `
 <div class="card">
-  <div class="card-body">
-    <a href="${escapeAttr(youtubeUrl)}" target="_blank" rel="noopener noreferrer" class="card-link">
+  <a href="${escapeAttr(youtubeUrl)}" target="_blank" rel="noopener noreferrer" class="card-link">
+    <div class="card-body">
       <div class="card-thumb">
         <img src="${escapeAttr(thumbnailUrl)}" alt="" loading="lazy" onerror="this.style.display='none'" />
       </div>
       <div class="card-right">
-        <div class="card-topline">
-          <button class="card-channel-btn" data-channel="${escapeAttr(channelName)}" title="Filter by ${escapeHtml(channelName)}">${escapeHtml(channelName)}</button>
-        </div>
+        <button class="card-channel-btn" data-channel="${escapeAttr(channelName)}" title="Filter by ${escapeHtml(channelName)}">${escapeHtml(channelName)}</button>
         <div class="card-title">${escapeHtml(v.title || 'Untitled')}</div>
         <div class="card-timestamp">${formatDateTime(timestamp)}</div>
         ${oneLiner ? `<div class="card-oneliner">${highlightedOneLiner}</div>` : ''}
         ${hasExpanded ? `<button class="expand-btn" data-id="${escapeAttr(v.id)}">Read more</button>` : ''}
       </div>
-    </a>
-  </div>
+    </div>
+  </a>
   ${hasExpanded ? `<div class="card-expanded" id="expanded-${escapeAttr(v.id)}" style="display:none">${formattedContent}</div>` : ''}
   ${(tags.length > 0 || views) ? `
   <div class="card-footer">

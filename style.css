@@ -437,6 +437,7 @@ body {
   font-size: 10px;
   color: var(--text-faint);
   margin-top: 2px;
+  margin-bottom: 4px;
 }
 
 .card-date {
