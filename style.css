@@ -360,9 +360,10 @@ body {
 }
 
 .card-link {
-  display: block;
+  display: flex;
   color: inherit;
   text-decoration: none;
+  flex: 1;
 }
 
 .card-body {
