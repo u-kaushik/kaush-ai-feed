@@ -52,7 +52,7 @@ const SUPABASE_ANON_KEY =
   'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRodGNteGRjY2h4eGJyc2JramFyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzEzNDU5MzUsImV4cCI6MjA4NjkyMTkzNX0.jIu-OHW6__OgMLa7PTrxTxh3LCGxp4fG-pDj0UZPBxw';
 
 const QUERY =
-  '/rest/v1/knowledge?source_type=in.(youtube,playbook)&chunk_index=eq.0' +
+  '/rest/v1/knowledge?source_type=in.(youtube,youtube-feed,playbook)&chunk_index=eq.0' +
   '&select=id,title,source_url,content,tags,metadata,created_at' +
   '&order=created_at.desc&limit=700';
 
@@ -357,7 +357,7 @@ function renderCard(v) {
         <div class="card-topline">
           <span class="card-channel">${escapeHtml(channelName)}</span>
           <span class="card-channel-dot"></span>
-          <span class="card-date">${dateStr}</span>
+          <span class="card-date" title="${formatDateTime(uploadDate || v.created_at)}">${dateStr}</span>
         </div>
         <div class="card-title">${escapeHtml(v.title || 'Untitled')}</div>
         ${oneLiner ? `<div class="card-oneliner">${highlightedOneLiner}</div>` : ''}
@@ -594,6 +594,14 @@ function formatDateShort(iso) {
   if (diffDays < 2) return 'Yesterday';
   if (diffDays < 7) return `${Math.floor(diffDays)}d ago`;
   return ''; // Don't show dates older than a week
+}
+
+function formatDateTime(iso) {
+  if (!iso) return '';
+  const d = new Date(iso);
+  const day = d.toLocaleDateString('en-GB', { day: 'numeric', month: 'short });
+  const time = d.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' });
+  return `${day} at ${time}`;
 }
 
 function extractSummary(content) {
