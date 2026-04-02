@@ -59,6 +59,7 @@ const QUERY =
 // ===== STATE =====
 let allVideos = [];
 let activeTagFilters = new Set();
+let activeChannelFilter = null;
 let searchQuery = '';
 let tagColorMap = {}; // tag → color index (0-7)
 let channelColorMap = {}; // channel name → color index
@@ -225,9 +226,24 @@ function toggleTagFilter(tag) {
   updateCount();
 }
 
+function toggleChannelFilter(channel) {
+  if (activeChannelFilter === channel) {
+    activeChannelFilter = null;
+  } else {
+    activeChannelFilter = channel;
+  }
+  renderFeed();
+  updateCount();
+}
+
 // ===== FILTERED VIDEOS =====
 function getFilteredVideos() {
   return allVideos.filter(v => {
+    // Channel filter
+    if (activeChannelFilter) {
+      const channelName = extractChannelName(v);
+      if (channelName !== activeChannelFilter) return false;
+    }
     // Tag filter - single select (OR logic)
     if (activeTagFilters.size > 0) {
       let vTags = v.tags;
@@ -262,8 +278,15 @@ function renderFeed() {
     return;
   }
 
+  // Sort by upload date (newest first)
+  const sorted = [...filtered].sort((a, b) => {
+    const aDate = getUploadDate(a);
+    const bDate = getUploadDate(b);
+    return new Date(bDate) - new Date(aDate);
+  });
+
   // Group by date bucket
-  const groups = groupByDate(filtered);
+  const groups = groupByDate(sorted);
   const order = ['Today', 'Yesterday', 'This Week', 'Older'];
 
   let html = '';
@@ -299,6 +322,16 @@ function renderFeed() {
     el.addEventListener('click', () => {
       const tag = el.dataset.tag;
       toggleTagFilter(tag);
+    });
+  });
+
+  // Attach channel filter listeners
+  feed.querySelectorAll('.card-channel-btn').forEach(el => {
+    el.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      const channel = el.dataset.channel;
+      toggleChannelFilter(channel);
     });
   });
 }
@@ -355,7 +388,7 @@ function renderCard(v) {
       </div>
       <div class="card-right">
         <div class="card-topline">
-          <span class="card-channel">${escapeHtml(channelName)}</span>
+          <button class="card-channel-btn" data-channel="${escapeAttr(channelName)}" title="Filter by ${escapeHtml(channelName)}">${escapeHtml(channelName)}</button>
           <span class="card-channel-dot"></span>
           <span class="card-date" title="${formatDateTime(uploadDate || v.created_at)}">${dateStr}</span>
         </div>
@@ -420,6 +453,7 @@ function emptyStateHTML() {
 
 function noResultsHTML() {
   const filterDesc = [];
+  if (activeChannelFilter) filterDesc.push(`@${activeChannelFilter}`);
   if (searchQuery) filterDesc.push(`"${escapeHtml(searchQuery)}"`);
   if (activeTagFilters.size > 0)
     filterDesc.push([...activeTagFilters].map(t => `#${t}`).join(', '));
@@ -434,6 +468,7 @@ function noResultsHTML() {
 
 function clearAllFilters() {
   activeTagFilters.clear();
+  activeChannelFilter = null;
   searchQuery = '';
   document.getElementById('search-input').value = '';
   document.getElementById('search-clear').style.display = 'none';
@@ -504,6 +539,14 @@ function groupByDate(videos) {
 }
 
 // ===== HELPERS =====
+function getUploadDate(v) {
+  const meta = v.metadata;
+  if (meta && typeof meta === 'object' && meta.upload_date) {
+    return meta.upload_date;
+  }
+  return v.created_at;
+}
+
 function extractChannelName(v) {
   // Try metadata.channel_url first
   const channelUrl = v.metadata && v.metadata.channel_url;
