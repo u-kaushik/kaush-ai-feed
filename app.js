@@ -3,8 +3,11 @@
 // Pure vanilla JS, no build tools, no dependencies.
 // ============================================================
 
-// ===== THEME: Auto-switch based on time of day (UK) ===
+let manualTheme = null;
+
 function setTimeBasedTheme() {
+  if (manualTheme !== null) return;
+  
   const now = new Date();
   
   // Get current hour in UK (GMT/BST)
@@ -39,12 +42,40 @@ function setTimeBasedTheme() {
   }
 }
 
-// Run on load
-setTimeBasedTheme();
+function toggleTheme() {
+  const isDark = document.documentElement.classList.contains('dark');
+  if (isDark) {
+    document.documentElement.classList.remove('dark');
+    manualTheme = 'light';
+  } else {
+    document.documentElement.classList.add('dark');
+    manualTheme = 'dark';
+  }
+  localStorage.setItem('theme', manualTheme);
+}
 
-// Check every minute for hour changes
+function initTheme() {
+  const saved = localStorage.getItem('theme');
+  if (saved) {
+    manualTheme = saved;
+    if (saved === 'dark') {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+  } else {
+    setTimeBasedTheme();
+  }
+}
+
+// Run on load
+initTheme();
+
+// Check every minute for hour changes (only if no manual override)
 setInterval(() => {
-  setTimeBasedTheme();
+  if (manualTheme === null) {
+    setTimeBasedTheme();
+  }
 }, 60000);
 
 const SUPABASE_URL = 'https://thtcmxdcchxxbrsbkjar.supabase.co';
@@ -83,6 +114,7 @@ document.addEventListener('DOMContentLoaded', () => {
     fetchVideos();
   });
   document.getElementById('clear-channel-filter').addEventListener('click', clearChannelFilter);
+  document.getElementById('theme-toggle').addEventListener('click', toggleTheme);
 });
 
 // ===== FETCH =====

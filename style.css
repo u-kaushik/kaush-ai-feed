@@ -152,6 +152,29 @@ body {
   border-color: var(--border-light);
 }
 
+.theme-toggle {
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--text-muted);
+  cursor: pointer;
+  padding: 5px 7px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color var(--transition), border-color var(--transition);
+}
+
+.theme-toggle:hover {
+  color: var(--text);
+  border-color: var(--border-light);
+}
+
+.theme-toggle .sun-icon { display: none; }
+.theme-toggle .moon-icon { display: block; }
+:root.dark .theme-toggle .sun-icon { display: block; }
+:root.dark .theme-toggle .moon-icon { display: none; }
+
 .refresh-btn.spinning svg {
   animation: spin 0.7s linear infinite;
 }
