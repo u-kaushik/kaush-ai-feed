@@ -672,6 +672,14 @@ function renderFeed() {
       await toggleFavorite(url, el);
     });
   });
+
+  // Attach lightbox listeners to card links
+  feed.querySelectorAll('.card-link').forEach(el => {
+    el.addEventListener('click', (e) => {
+      e.preventDefault();
+      openLightbox(el.dataset.url, el.dataset.title);
+    });
+  });
 }
 
 // ===== CARD HTML =====
@@ -702,7 +710,7 @@ function renderCard(v) {
   return `
 <div class="card">
   <div class="card-body">
-    <a href="${escapeAttr(youtubeUrl)}" target="_blank" rel="noopener noreferrer" class="card-link">
+    <div class="card-link" data-url="${escapeAttr(youtubeUrl)}" data-title="${escapeAttr(v.title || '')}">
       <div class="card-thumb">
         <img src="${escapeAttr(thumbnailUrl)}" alt="" loading="lazy" onerror="this.style.display='none'" />
       </div>
@@ -711,7 +719,7 @@ function renderCard(v) {
         <div class="card-title">${escapeHtml(v.title || 'Untitled')}</div>
         <div class="card-timestamp">${formatDateTime(timestamp)}</div>
       </div>
-    </a>
+    </div>
     <button class="fave-btn ${isFave ? 'active' : ''}" data-url="${escapeAttr(youtubeUrl)}" title="${isFave ? 'Remove from favorites' : 'Add to favorites'}">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="${isFave ? 'currentColor' : 'none'}" stroke="currentColor" stroke-width="2">
         <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
@@ -1022,3 +1030,31 @@ function escapeAttr(str) {
   if (!str) return '';
   return String(str).replace(/"/g, '&quot;');
 }
+
+// ===== LIGHTBOX =====
+function openLightbox(videoUrl, title) {
+  const videoId = extractVideoId(videoUrl);
+  if (!videoId) return;
+  
+  const embedUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
+  document.getElementById('lightbox-iframe').src = embedUrl;
+  document.getElementById('lightbox-title').textContent = title;
+  document.getElementById('lightbox').classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeLightbox() {
+  document.getElementById('lightbox-iframe').src = '';
+  document.getElementById('lightbox').classList.remove('active');
+  document.body.style.overflow = '';
+}
+
+// Close on background click
+document.getElementById('lightbox').addEventListener('click', (e) => {
+  if (e.target.id === 'lightbox') closeLightbox();
+});
+
+// Close on escape key
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') closeLightbox();
+});
