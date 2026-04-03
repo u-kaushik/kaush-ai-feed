@@ -557,11 +557,9 @@ function renderFeed() {
       } else {
         card.classList.add('expanded');
         btn.textContent = 'Summarizing...';
-        console.log('Read more clicked for:', videoUrl);
         
         // Check if we already have a summary
         let summary = videoSummaries[videoUrl];
-        console.log('Cached summary?', !!summary);
         if (!summary) {
           // Try knowledge base first
           try {
@@ -583,28 +581,24 @@ function renderFeed() {
         
         // If no KB summary, call AI summarizer
         if (!summary) {
-          console.log('Calling AI summarizer for:', videoUrl);
           try {
             const aiRes = await fetch('/.netlify/functions/summarize-video', {
               method: 'POST',
               headers: { 'Content-Type': 'application/json' },
               body: JSON.stringify({ url: videoUrl, title: videoTitle, channel: videoChannel })
             });
-            console.log('AI response status:', aiRes.status);
-            console.log('AI response headers:', [...aiRes.headers.entries()]);
             
             let aiData;
             const contentType = aiRes.headers.get('content-type');
             if (contentType && contentType.includes('application/json')) {
               aiData = await aiRes.json();
-              console.log('AI response data:', aiData);
             } else {
               const text = await aiRes.text();
-              console.log('AI response text:', text);
-              aiData = { error: 'Non-JSON response: ' + text.substring(0, 200) };
+              console.log('AI response non-JSON:', text.substring(0, 200));
+              aiData = {};
             }
             
-            if (aiData.summary) {
+            if (aiData && aiData.summary) {
                 summary = aiData.summary.split('\n').map(line => {
                   // Clean up bullet points
                   const clean = line.replace(/^[-•*]\s*/, '').trim();
@@ -620,8 +614,6 @@ function renderFeed() {
             console.warn('AI summary failed:', err.message);
           }
         }
-        
-        console.log('Final summary:', summary ? 'found' : 'not found');
         
         if (summary) {
           expandedContent.innerHTML = summary;
