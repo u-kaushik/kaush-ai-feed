@@ -86,9 +86,6 @@ const SUPABASE_ANON_KEY =
 const FAVES_TABLE = '/rest/v1/favorites?source=eq.youtube-feed';
 const KNOWLEDGE_TABLE = '/rest/v1/knowledge';
 
-// Netlify function for AI summarization
-const SUMMARIZE_FUNCTION = '/.netlify/functions/summarize-video';
-
 // ===== STATE =====
 let allVideos = [];
 let favorites = new Set();
@@ -541,14 +538,17 @@ function renderFeed() {
 
   feed.innerHTML = html;
 
-  // Attach expand listeners - toggle expanded card content
+  // Attach expand listeners - toggle expanded card content, fetch AI summary if needed
   feed.querySelectorAll('.expand-btn').forEach(btn => {
-    btn.addEventListener('click', (e) => {
+    btn.addEventListener('click', async (e) => {
       e.preventDefault();
       e.stopPropagation();
       const card = btn.closest('.card');
       const expandedContent = card.querySelector('.card-expanded');
       const isExpanded = card.classList.contains('expanded');
+      const videoUrl = btn.dataset.url;
+      const videoTitle = card.querySelector('.card-title').textContent;
+      const videoChannel = card.querySelector('.card-channel-btn').textContent;
       
       if (isExpanded) {
         card.classList.remove('expanded');
@@ -556,7 +556,63 @@ function renderFeed() {
         expandedContent.style.display = 'none';
       } else {
         card.classList.add('expanded');
-        btn.textContent = 'Show less';
+        btn.textContent = 'Summarizing...';
+        
+        // Check if we already have a summary
+        let summary = videoSummaries[videoUrl];
+        if (!summary) {
+          // Try knowledge base first
+          try {
+            const kbUrl = new URL(`${SUPABASE_URL}${KNOWLEDGE_TABLE}&source_url=eq.${encodeURIComponent(videoUrl)}&select=content`);
+            const kbRes = await fetch(kbUrl.toString(), {
+              headers: { apikey: SUPABASE_ANON_KEY, Authorization: `Bearer ${SUPABASE_ANON_KEY}` }
+            });
+            if (kbRes.ok) {
+              const kbData = await kbRes.json();
+              if (kbData && kbData.length > 0 && kbData[0].content) {
+                summary = formatExpandedContent(kbData[0].content);
+                videoSummaries[videoUrl] = summary;
+              }
+            }
+          } catch (err) {
+            console.warn('KB lookup failed:', err.message);
+          }
+        }
+        
+        // If no KB summary, call AI summarizer
+        if (!summary) {
+          try {
+            const aiRes = await fetch('/.netlify/functions/summarize-video', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ url: videoUrl, title: videoTitle, channel: videoChannel })
+            });
+            if (aiRes.ok) {
+              const aiData = await aiRes.json();
+              if (aiData.summary) {
+                summary = aiData.summary.split('\n').map(line => {
+                  // Clean up bullet points
+                  const clean = line.replace(/^[-•*]\s*/, '').trim();
+                  if (clean.length > 10) {
+                    return `<div style="margin-bottom:6px;padding-left:16px;position:relative"><span style="position:absolute;left:0;color:var(--accent)">•</span>${escapeHtml(clean)}</div>`;
+                  }
+                  return '';
+                }).join('');
+                videoSummaries[videoUrl] = summary;
+              }
+            }
+          } catch (err) {
+            console.warn('AI summary failed:', err.message);
+          }
+        }
+        
+        if (summary) {
+          expandedContent.innerHTML = summary;
+          btn.textContent = 'Show less';
+        } else {
+          expandedContent.innerHTML = `<div style="padding:12px 16px;color:var(--text-faint);font-size:12px;line-height:1.6">No summary available. Favorite this video to save it.</div>`;
+          btn.textContent = 'Show less';
+        }
         expandedContent.style.display = 'block';
       }
     });
@@ -616,9 +672,6 @@ function renderCard(v) {
   const youtubeUrl = v.url || v.source_url || '#';
   const isFave = favorites.has(youtubeUrl);
 
-  const videoContent = videoSummaries[youtubeUrl] || v.content || v.summary || v.description || '';
-  const expandedContent = formatExpandedContent(videoContent);
-
   return `
 <div class="card">
   <div class="card-body">
@@ -638,15 +691,10 @@ function renderCard(v) {
       </svg>
     </button>
   </div>
-  <button class="expand-btn">Read more</button>
-  ${expandedContent ? `
-  <div class="card-expanded" style="display:none">${expandedContent}</div>` : `
+  <button class="expand-btn" data-url="${escapeAttr(youtubeUrl)}">Read more</button>
   <div class="card-expanded" style="display:none">
-    <div style="padding:12px 16px;color:var(--text-faint);font-size:12px;line-height:1.6">
-      No description available for this video.<br/>
-      <span style="color:var(--text-muted)">Tip: Favorite videos to save them, and they can be automatically summarized when ingested.</span>
-    </div>
-  </div>`}
+    <div style="padding:12px 16px;color:var(--text-faint);font-size:12px;line-height:1.6">Loading summary...</div>
+  </div>
   ${(tags.length > 0) ? `
   <div class="card-footer">
     <div class="card-tags">${cardTagsHTML}</div>
