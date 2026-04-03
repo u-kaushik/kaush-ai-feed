@@ -86,9 +86,29 @@ const SUPABASE_ANON_KEY =
 const FAVES_TABLE = '/rest/v1/favorites?source=eq.youtube-feed';
 const KNOWLEDGE_TABLE = '/rest/v1/knowledge';
 
+// Client-side function to try fetching video description
+async function fetchVideoDescriptionFromClient(videoUrl) {
+  // Extract video ID
+  const match = videoUrl.match(/(?:v=|/)([a-zA-Z0-9_-]{11})(?:&|$|\/)/);
+  if (!match) return null;
+  const videoId = match[1];
+  
+  // Try fetching via oEmbed (gives limited info but sometimes includes description)
+  try {
+    const res = await fetch(`https://noembed.com/embed?url=https://www.youtube.com/watch?v=${videoId}`);
+    if (res.ok) {
+      const data = await res.json();
+      return data.description || '';
+    }
+  } catch (e) {}
+  
+  return null;
+}
+
 // AI Summary function - calls Netlify function (Groq API key in env vars)
 // Uses localStorage for persistence
-async function fetchSummary(videoUrl, videoTitle, videoChannel, description) {
+// Tries to fetch video description on-demand if not in feed
+async function fetchSummary(videoUrl, videoTitle, videoChannel, existingDescription) {
   // Check localStorage first
   const cached = localStorage.getItem('summary_' + videoUrl);
   if (cached) {
@@ -96,6 +116,12 @@ async function fetchSummary(videoUrl, videoTitle, videoChannel, description) {
       const parsed = JSON.parse(cached);
       if (parsed.summary) return parsed.summary;
     } catch {}
+  }
+  
+  // Try to get description if not already available
+  let description = existingDescription;
+  if (!description || description.length < 50) {
+    description = await fetchVideoDescriptionFromClient(videoUrl);
   }
   
   try {
