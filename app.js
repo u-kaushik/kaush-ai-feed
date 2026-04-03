@@ -86,46 +86,21 @@ const SUPABASE_ANON_KEY =
 const FAVES_TABLE = '/rest/v1/favorites?source=eq.youtube-feed';
 const KNOWLEDGE_TABLE = '/rest/v1/knowledge';
 
-// OpenRouter API for client-side AI summarization (free tier)
-const OPENROUTER_API_KEY = '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';
-const OPENROUTER_API_URL = 'https://openrouter.ai/api/v1/chat/completions';
-
-// AI Summary function
+// AI Summary function - calls Netlify function (Groq API key in env vars)
 async function fetchSummary(videoUrl, videoTitle, videoChannel) {
-  const prompt = `You are a helpful assistant that summarizes YouTube videos.
-Given the video title and channel, provide a brief summary in 5-7 bullet points.
-Keep each bullet concise and informative.
-
-Video: ${videoTitle}
-Channel: ${videoChannel || 'Unknown'}
-URL: ${videoUrl}
-
-Format as bullet points, one per line.`;
-
   try {
-    const res = await fetch(OPENROUTER_API_URL, {
+    const res = await fetch('/.netlify/functions/summarize', {
       method: 'POST',
-      headers: {
-        'Authorization': `Bearer ${OPENROUTER_API_KEY}`,
-        'Content-Type': 'application/json',
-        'HTTP-Referer': 'https://aiytnews.netlify.app',
-        'X-Title': 'AIYT News Feed',
-      },
-      body: JSON.stringify({
-        model: 'meta-llama/llama-3.1-8b-instruct',
-        messages: [{ role: 'user', content: prompt }],
-        max_tokens: 300,
-        temperature: 0.7,
-      })
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ videoUrl, videoTitle, videoChannel })
     });
     
     if (!res.ok) return null;
     
     const data = await res.json();
-    const content = data.choices?.[0]?.message?.content;
+    const content = data.summary;
     if (!content) return null;
     
-    // Format as HTML bullet points
     return content.split('\n')
       .map(line => line.replace(/^[-•*]\s*/, '').trim())
       .filter(line => line.length > 10)
