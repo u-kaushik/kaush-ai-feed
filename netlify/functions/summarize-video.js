@@ -12,8 +12,19 @@ const OPENROUTER_API_KEY = 'sk-or-v1-9810f14d1fed8541559bf6ac4b95224de7fceb1e045
 const OPENROUTER_API_URL = 'https://openrouter.ai/api/v1/chat/completions';
 
 exports.handler = async function (event) {
+  // Add CORS headers
+  const headers = {
+    'Content-Type': 'application/json',
+    'Access-Control-Allow-Origin': '*',
+    'Access-Control-Allow-Headers': 'Content-Type',
+  };
+
+  if (event.httpMethod === 'OPTIONS') {
+    return { statusCode: 200, headers, body: '' };
+  }
+
   if (event.httpMethod !== 'POST') {
-    return { statusCode: 405, body: 'Method not allowed' };
+    return { statusCode: 405, headers, body: 'Method not allowed' };
   }
 
   let body;
@@ -25,7 +36,7 @@ exports.handler = async function (event) {
 
   const { url, title, channel } = body;
   if (!url || !title) {
-    return { statusCode: 400, body: 'Missing url or title' };
+    return { statusCode: 400, headers, body: 'Missing url or title' };
   }
 
   const prompt = `You are a helpful assistant that summarizes YouTube videos.
@@ -63,7 +74,7 @@ Format as bullet points, one per line, starting with a dash or bullet character.
       return {
         statusCode: response.status,
         body: JSON.stringify({ error: 'LLM API failed', details: errorText }),
-        headers: { 'Content-Type': 'application/json' },
+        headers,
       };
     }
 
@@ -73,13 +84,13 @@ Format as bullet points, one per line, starting with a dash or bullet character.
     return {
       statusCode: 200,
       body: JSON.stringify({ summary }),
-      headers: { 'Content-Type': 'application/json' },
+      headers,
     };
   } catch (err) {
     return {
       statusCode: 500,
       body: JSON.stringify({ error: err.message }),
-      headers: { 'Content-Type': 'application/json' },
+      headers,
     };
   }
 };

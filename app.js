@@ -591,10 +591,20 @@ function renderFeed() {
               body: JSON.stringify({ url: videoUrl, title: videoTitle, channel: videoChannel })
             });
             console.log('AI response status:', aiRes.status);
-            if (aiRes.ok) {
-              const aiData = await aiRes.json();
+            console.log('AI response headers:', [...aiRes.headers.entries()]);
+            
+            let aiData;
+            const contentType = aiRes.headers.get('content-type');
+            if (contentType && contentType.includes('application/json')) {
+              aiData = await aiRes.json();
               console.log('AI response data:', aiData);
-              if (aiData.summary) {
+            } else {
+              const text = await aiRes.text();
+              console.log('AI response text:', text);
+              aiData = { error: 'Non-JSON response: ' + text.substring(0, 200) };
+            }
+            
+            if (aiData.summary) {
                 summary = aiData.summary.split('\n').map(line => {
                   // Clean up bullet points
                   const clean = line.replace(/^[-•*]\s*/, '').trim();
