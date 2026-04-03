@@ -84,6 +84,7 @@ const SUPABASE_ANON_KEY =
   'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRodGNteGRjY2h4eGJyc2JramFyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzEzNDU5MzUsImV4cCI6MjA4NjkyMTkzNX0.jIu-OHW6__OgMLa7PTrxTxh3LCGxp4fG-pDj0UZPBxw';
 
 const FAVES_TABLE = '/rest/v1/favorites?source=eq.youtube-feed';
+const KNOWLEDGE_TABLE = '/rest/v1/knowledge';
 
 // ===== STATE =====
 let allVideos = [];
@@ -91,9 +92,10 @@ let favorites = new Set();
 let activeTagFilters = new Set();
 let activeChannelFilter = null;
 let searchQuery = '';
-let tagColorMap = {}; // tag → color index (0-7)
-let channelColorMap = {}; // channel name → color index
+let tagColorMap = {};
+let channelColorMap = {};
 let searchDebounceTimer = null;
+let videoSummaries = {}; // url -> summary content
 
 // ===== INIT =====
 document.addEventListener('DOMContentLoaded', () => {
@@ -144,6 +146,26 @@ async function fetchVideos() {
       }
     } catch (e) {
       console.warn('Could not fetch favorites:', e.message);
+    }
+
+    // Fetch summaries from knowledge base
+    try {
+      const knowledgeRes = await fetch(SUPABASE_URL + KNOWLEDGE_TABLE + '&select=source_url,content', {
+        headers: {
+          apikey: SUPABASE_ANON_KEY,
+          Authorization: 'Bearer ' + SUPABASE_ANON_KEY,
+        },
+      });
+      if (knowledgeRes.ok) {
+        const knowledgeData = await knowledgeRes.json();
+        (knowledgeData || []).forEach(item => {
+          if (item.source_url && item.content) {
+            videoSummaries[item.source_url] = item.content;
+          }
+        });
+      }
+    } catch (e) {
+      console.warn('Could not fetch summaries:', e.message);
     }
 
     buildTagColorMap();
@@ -284,7 +306,7 @@ function clearChannelFilter() {
 
 async function toggleFavorite(url, btnEl) {
   const isFave = favorites.has(url);
-  
+
   try {
     if (isFave) {
       // Remove from Supabase
@@ -297,7 +319,7 @@ async function toggleFavorite(url, btnEl) {
       });
       favorites.delete(url);
     } else {
-      // Add to Supabase
+      // Add to Supabase favorites
       await fetch(`${SUPABASE_URL}/rest/v1/favorites`, {
         method: 'POST',
         headers: {
@@ -313,8 +335,25 @@ async function toggleFavorite(url, btnEl) {
         }),
       });
       favorites.add(url);
+
+      // Ingest into knowledge base (fire and forget — don't block UI)
+      const video = allVideos.find(v => (v.url || v.source_url) === url);
+      if (video) {
+        fetch('/.netlify/functions/ingest-favorite', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            url,
+            title: video.title,
+            channel: video.channel,
+            tags: video.tags || [],
+            thumbnail: video.thumbnail,
+            published: video.published,
+          }),
+        }).catch(e => console.warn('Knowledge ingestion failed:', e.message));
+      }
     }
-    
+
     // Update button UI
     btnEl.classList.toggle('active', !isFave);
     const svg = btnEl.querySelector('svg');
@@ -402,13 +441,24 @@ function renderFeed() {
 
   feed.innerHTML = html;
 
-  // Attach expand listeners - open YouTube for details
+  // Attach expand listeners - toggle expanded card content
   feed.querySelectorAll('.expand-btn').forEach(btn => {
     btn.addEventListener('click', (e) => {
       e.preventDefault();
       e.stopPropagation();
-      const url = btn.dataset.url;
-      window.open(url, '_blank');
+      const card = btn.closest('.card');
+      const expandedContent = card.querySelector('.card-expanded');
+      const isExpanded = card.classList.contains('expanded');
+      
+      if (isExpanded) {
+        card.classList.remove('expanded');
+        btn.textContent = 'Read more';
+        expandedContent.style.display = 'none';
+      } else {
+        card.classList.add('expanded');
+        btn.textContent = 'Show less';
+        expandedContent.style.display = 'block';
+      }
     });
   });
 
@@ -466,6 +516,9 @@ function renderCard(v) {
   const youtubeUrl = v.url || v.source_url || '#';
   const isFave = favorites.has(youtubeUrl);
 
+  const videoContent = videoSummaries[youtubeUrl] || v.content || v.summary || v.description || '';
+  const expandedContent = formatExpandedContent(videoContent);
+
   return `
 <div class="card">
   <div class="card-body">
@@ -485,7 +538,8 @@ function renderCard(v) {
       </svg>
     </button>
   </div>
-  <button class="expand-btn" data-url="${escapeAttr(youtubeUrl)}">Read more</button>
+  <button class="expand-btn">Read more</button>
+  <div class="card-expanded" style="display:none">${expandedContent || '<div style="padding:0 16px 12px;color:var(--text-faint);font-size:12px">No summary available. <a href="' + escapeAttr(youtubeUrl) + '" target="_blank" style="color:var(--accent)">Watch on YouTube →</a></div>'}</div>
   ${(tags.length > 0) ? `
   <div class="card-footer">
     <div class="card-tags">${cardTagsHTML}</div>
