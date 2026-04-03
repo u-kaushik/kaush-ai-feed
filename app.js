@@ -86,6 +86,10 @@ const SUPABASE_ANON_KEY =
 const FAVES_TABLE = '/rest/v1/favorites?source=eq.youtube-feed';
 const KNOWLEDGE_TABLE = '/rest/v1/knowledge';
 
+// OpenRouter API for fallback client-side calls (free tier)
+const OPENROUTER_API_KEY = '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';
+const OPENROUTER_API_URL = 'https://openrouter.ai/api/v1/chat/completions';
+
 // ===== STATE =====
 let allVideos = [];
 let favorites = new Set();
@@ -579,13 +583,34 @@ function renderFeed() {
           }
         }
         
-        // If no KB summary, call AI summarizer
+        // If no KB summary, call AI summarizer directly (client-side)
         if (!summary) {
           try {
-            const aiRes = await fetch('/.netlify/functions/summarize-video', {
+            const prompt = `You are a helpful assistant that summarizes YouTube videos.
+Given the video title and channel, provide a brief summary in 5-7 bullet points.
+Each bullet should capture a key point or insight from the video.
+Keep each bullet concise (under 20 words).
+
+Video: ${videoTitle}
+Channel: ${videoChannel || 'Unknown'}
+URL: ${videoUrl}
+
+Format as bullet points, one per line, starting with a dash or bullet character.`;
+
+            const aiRes = await fetch(OPENROUTER_API_URL, {
               method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify({ url: videoUrl, title: videoTitle, channel: videoChannel })
+              headers: {
+                'Authorization': `Bearer ${OPENROUTER_API_KEY}`,
+                'Content-Type': 'application/json',
+                'HTTP-Referer': 'https://aiytnews.netlify.app',
+                'X-Title': 'AIYT News Feed',
+              },
+              body: JSON.stringify({
+                model: 'meta-llama/llama-3.1-8b-instruct',
+                messages: [{ role: 'user', content: prompt }],
+                max_tokens: 300,
+                temperature: 0.7,
+              })
             });
             
             let aiData;
@@ -598,17 +623,17 @@ function renderFeed() {
               aiData = {};
             }
             
-            if (aiData && aiData.summary) {
-                summary = aiData.summary.split('\n').map(line => {
-                  // Clean up bullet points
-                  const clean = line.replace(/^[-•*]\s*/, '').trim();
-                  if (clean.length > 10) {
-                    return `<div style="margin-bottom:6px;padding-left:16px;position:relative"><span style="position:absolute;left:0;color:var(--accent)">•</span>${escapeHtml(clean)}</div>`;
-                  }
-                  return '';
-                }).join('');
-                videoSummaries[videoUrl] = summary;
-              }
+            if (aiData && aiData.choices && aiData.choices[0] && aiData.choices[0].message && aiData.choices[0].message.content) {
+              const rawSummary = aiData.choices[0].message.content;
+              summary = rawSummary.split('\n').map(line => {
+                // Clean up bullet points
+                const clean = line.replace(/^[-•*]\s*/, '').trim();
+                if (clean.length > 10) {
+                  return `<div style="margin-bottom:6px;padding-left:16px;position:relative"><span style="position:absolute;left:0;color:var(--accent)">•</span>${escapeHtml(clean)}</div>`;
+                }
+                return '';
+              }).join('');
+              videoSummaries[videoUrl] = summary;
             }
           } catch (err) {
             console.warn('AI summary failed:', err.message);
