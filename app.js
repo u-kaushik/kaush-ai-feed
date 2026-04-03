@@ -557,9 +557,11 @@ function renderFeed() {
       } else {
         card.classList.add('expanded');
         btn.textContent = 'Summarizing...';
+        console.log('Read more clicked for:', videoUrl);
         
         // Check if we already have a summary
         let summary = videoSummaries[videoUrl];
+        console.log('Cached summary?', !!summary);
         if (!summary) {
           // Try knowledge base first
           try {
@@ -581,14 +583,17 @@ function renderFeed() {
         
         // If no KB summary, call AI summarizer
         if (!summary) {
+          console.log('Calling AI summarizer for:', videoUrl);
           try {
             const aiRes = await fetch('/.netlify/functions/summarize-video', {
               method: 'POST',
               headers: { 'Content-Type': 'application/json' },
               body: JSON.stringify({ url: videoUrl, title: videoTitle, channel: videoChannel })
             });
+            console.log('AI response status:', aiRes.status);
             if (aiRes.ok) {
               const aiData = await aiRes.json();
+              console.log('AI response data:', aiData);
               if (aiData.summary) {
                 summary = aiData.summary.split('\n').map(line => {
                   // Clean up bullet points
@@ -605,6 +610,8 @@ function renderFeed() {
             console.warn('AI summary failed:', err.message);
           }
         }
+        
+        console.log('Final summary:', summary ? 'found' : 'not found');
         
         if (summary) {
           expandedContent.innerHTML = summary;
