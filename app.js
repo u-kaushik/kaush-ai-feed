@@ -137,17 +137,46 @@ async function fetchSummary(videoUrl, videoTitle, videoChannel, existingDescript
     if (!content) return null;
     
     // Persist to localStorage
-    localStorage.setItem('summary_' + videoUrl, JSON.stringify({ summary: content, timestamp: Date.now() }));
+    localStorage.setItem('summary_' + videoUrl, JSON.stringify({ summary: content, timestamp: Date.now(), source: data.source }));
     
-    return content.split('\n')
-      .map(line => line.replace(/^[-•*]\s*/, '').trim())
-      .filter(line => line.length > 10)
-      .map(line => `<div style="margin-bottom:6px;padding-left:16px;position:relative"><span style="position:absolute;left:0;color:var(--accent)">•</span>${escapeHtml(line)}</div>`)
-      .join('');
+    // Format the content based on source type
+    if (data.source === 'description') {
+      return formatDescriptionSummary(content);
+    } else {
+      return formatInferredSummary(content);
+    }
   } catch (err) {
     console.warn('AI summary failed:', err.message);
     return null;
   }
+}
+
+// Format a real description into bullet points
+function formatDescriptionSummary(content) {
+  // Split into paragraphs or lines
+  const parts = content.split(/\n+/).map(l => l.trim()).filter(l => l.length > 10);
+  
+  if (parts.length <= 1 && content.length > 100) {
+    // Single paragraph - split into sentences
+    const sentences = content.split(/(?<=[.!?])\s+/).filter(s => s.length > 15);
+    if (sentences.length > 1) {
+      return sentences.map(s => `<div style="margin-bottom:6px;padding-left:16px;position:relative"><span style="position:absolute;left:0;color:var(--accent)">•</span>${escapeHtml(s)}</div>`).join('');
+    }
+    // Just show the paragraph
+    return `<div style="padding:4px 0;color:var(--text);font-size:13px;line-height:1.6">${escapeHtml(content)}</div><div style="margin-top:8px;font-size:11px;color:var(--text-faint)">📝 From video description</div>`;
+  }
+  
+  // Multiple parts - show as bullets
+  return parts.map(p => `<div style="margin-bottom:6px;padding-left:16px;position:relative"><span style="position:absolute;left:0;color:var(--accent)">•</span>${escapeHtml(p)}</div>`).join('') + `<div style="margin-top:8px;font-size:11px;color:var(--text-faint)">📝 From video description</div>`;
+}
+
+// Format an inferred summary (honest about being title-based)
+function formatInferredSummary(content) {
+  const lines = content.split('\n').map(l => l.trim()).filter(l => l.length > 10);
+  return lines.map(l => {
+    const clean = l.replace(/^[-•*]\s*/, '').trim();
+    return `<div style="margin-bottom:6px;padding-left:16px;position:relative"><span style="position:absolute;left:0;color:var(--text-faint)">•</span>${escapeHtml(clean)}</div>`;
+  }).join('');
 }
 
 // ===== STATE =====

@@ -6,26 +6,21 @@ const YOUTUBE_API_KEY = process.env.YOUTUBE_API_KEY;
 const GROQ_API_URL = 'https://api.groq.com/openai/v1/chat/completions';
 const YOUTUBE_API_URL = 'https://www.googleapis.com/youtube/v3/videos';
 
-// Helper to extract video ID from various YouTube URL formats
 function extractVideoId(url) {
   if (!url) return null;
   const m = url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/shorts\/)([a-zA-Z0-9_-]{11})/);
   return m ? m[1] : null;
 }
 
-// Fetch video details from YouTube Data API
 async function fetchYouTubeVideoDetails(videoId) {
   if (!videoId || !YOUTUBE_API_KEY) return null;
-  
   try {
     const url = `${YOUTUBE_API_URL}?part=snippet&id=${videoId}&key=${YOUTUBE_API_KEY}`;
     const res = await fetch(url);
     if (!res.ok) return null;
-    
     const data = await res.json();
     const snippet = data.items?.[0]?.snippet;
     if (!snippet) return null;
-    
     return {
       title: snippet.title,
       description: snippet.description,
@@ -35,6 +30,83 @@ async function fetchYouTubeVideoDetails(videoId) {
     console.warn('YouTube API error:', e.message);
     return null;
   }
+}
+
+// Clean description: remove links, timestamps, promotional fluff
+function cleanDescription(description) {
+  if (!description) return '';
+  
+  let text = description;
+  
+  // Remove URLs (http/https/bit.ly/etc)
+  text = text.replace(/https?:\/\/\S+/g, '');
+  text = text.replace(/bit\.ly\/\S+/g, '');
+  
+  // Remove timestamp lines (00:00 Intro, 05:32 - Title)
+  text = text.replace(/^\d{1,2}:\d{2}\s*.+$/gm, '');
+  text = text.replace(/^\d{1,2}:\d{2}\s*[-–—]\s*.+$/gm, '');
+  
+  // Remove common promotional lines
+  text = text.replace(/^(subscribe|follow|like|comment|share).+$/gim, '');
+  text = text.replace(/^(join|check out|visit|click).*(link|description|below).+$/gim, '');
+  text = text.replace(/^(discord|twitter|instagram|tiktok|linkedin|facebook|telegram).+$/gim, '');
+  
+  // Remove emoji-only lines
+  text = text.replace(/^[\s\p{Emoji}]+$/gmu, '');
+  
+  // Remove lines that are just section headers like "*** CORE Software ***"
+  text = text.replace(/^\*{3}.+\*{3}$/gm, '');
+  
+  // Clean up whitespace
+  text = text.replace(/\n{3,}/g, '\n\n');
+  text = text.trim();
+  
+  return text;
+}
+
+// Extract key points from cleaned description
+function extractKeyPoints(description, title) {
+  if (!description) return null;
+  
+  // Split into meaningful chunks
+  const paragraphs = description.split(/\n\n+/).filter(p => p.trim().length > 20);
+  
+  if (paragraphs.length === 0) return null;
+  
+  // If there's a single paragraph with actual content, use it directly
+  if (paragraphs.length === 1) {
+    const text = paragraphs[0].trim();
+    if (text.length > 30) {
+      return {
+        type: 'description',
+        content: text,
+      };
+    }
+    return null;
+  }
+  
+  // Multiple paragraphs - extract meaningful ones
+  const points = [];
+  const seen = new Set();
+  
+  for (const para of paragraphs) {
+    const clean = para.trim();
+    if (clean.length < 20) continue;
+    if (clean.length > 500) continue; // Skip massive blocks
+    
+    const key = clean.substring(0, 50).toLowerCase();
+    if (seen.has(key)) continue;
+    seen.add(key);
+    
+    points.push(clean);
+  }
+  
+  if (points.length === 0) return null;
+  
+  return {
+    type: 'bullets',
+    content: points,
+  };
 }
 
 exports.handler = async function(event) {
@@ -70,54 +142,62 @@ exports.handler = async function(event) {
 
   const { description: existingDescription } = body;
   
-  // Try to fetch video description from YouTube API if we have a URL
+  // Try to fetch video description from YouTube API
   let description = existingDescription;
-  let descriptionSource = 'client description';
   
-  // Check if description is missing/empty, then try YouTube API
   if (!description || description.length < 50) {
     if (videoUrl) {
       const videoId = extractVideoId(videoUrl);
       if (videoId) {
-        console.log('Fetching from YouTube API for:', videoId);
         const ytDetails = await fetchYouTubeVideoDetails(videoId);
         if (ytDetails && ytDetails.description && ytDetails.description.length > 50) {
           description = ytDetails.description;
-          descriptionSource = 'YouTube API';
-          console.log('Got description from YouTube API, length:', description.length);
-        } else {
-          console.log('YouTube API returned no description, ytDetails:', ytDetails);
         }
       }
     }
   }
   
-  // Build prompt using description if available, otherwise title
-  let prompt;
-  if (description && description.length > 50) {
-    console.log('Using description for summary, source:', descriptionSource);
-    prompt = `You are a helpful assistant that summarizes YouTube videos.
-Given the video description below, extract the key points and create a brief summary in 5-7 bullet points.
-Remove any promotional links, timestamps, or irrelevant content. Keep each bullet concise and informative.
-
-Video Title: ${videoTitle}
-Channel: ${videoChannel || 'Unknown'}
-Video Description:
-${description}
-
-Format as bullet points, one per line. At the end, add a note: "[Summary from ${descriptionSource}]"`;
-  } else {
-    console.log('No description available, falling back to title-based summary. Description length:', description?.length || 0);
-    prompt = `You are a helpful assistant that summarizes YouTube videos.
-Based on the video title and channel name, provide a brief summary in 5-7 bullet points.
-Keep each bullet concise and informative.
-
-Video Title: ${videoTitle}
-Channel: ${videoChannel || 'Unknown'}
-Video URL: ${videoUrl || ''}
-
-Format as bullet points, one per line. At the end, add a note: "[Summary based on video title]"`;
+  // Clean the description
+  const cleaned = cleanDescription(description);
+  
+  // Try to extract key points from the cleaned description
+  const keyPoints = extractKeyPoints(cleaned, videoTitle);
+  
+  if (keyPoints) {
+    if (keyPoints.type === 'description') {
+      return {
+        statusCode: 200,
+        headers,
+        body: JSON.stringify({
+          summary: keyPoints.content,
+          source: 'description',
+        }),
+      };
+    } else if (keyPoints.type === 'bullets') {
+      return {
+        statusCode: 200,
+        headers,
+        body: JSON.stringify({
+          summary: keyPoints.content.join('\n\n'),
+          source: 'description',
+        }),
+      };
+    }
   }
+  
+  // If no meaningful content in description, use AI to summarize from title
+  // But be honest about it
+  const prompt = `You are a helpful assistant. Given only a YouTube video title and channel name, provide 2-3 bullet points about what this video likely covers. Be honest that this is an inference from the title, not from the actual video content.
+
+Video Title: ${videoTitle}
+Channel: ${videoChannel || 'Unknown'}
+
+Format:
+- [First likely topic]
+- [Second likely topic]
+- [Third likely topic]
+
+End with: "(Inferred from title only — no description available)"`;
 
   try {
     const res = await fetch(GROQ_API_URL, {
@@ -129,8 +209,8 @@ Format as bullet points, one per line. At the end, add a note: "[Summary based o
       body: JSON.stringify({
         model: 'llama-3.1-8b-instant',
         messages: [{ role: 'user', content: prompt }],
-        max_tokens: 300,
-        temperature: 0.7
+        max_tokens: 200,
+        temperature: 0.5
       })
     });
 
@@ -145,7 +225,7 @@ Format as bullet points, one per line. At the end, add a note: "[Summary based o
     return {
       statusCode: 200,
       headers,
-      body: JSON.stringify({ summary: content || '' })
+      body: JSON.stringify({ summary: content || '', source: 'title-inference' })
     };
   } catch (err) {
     return { statusCode: 500, headers, body: JSON.stringify({ error: err.message }) };
