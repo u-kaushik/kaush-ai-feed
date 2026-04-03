@@ -219,9 +219,9 @@ async function prefetchYouTubeDescriptions() {
   const videoIdToUrl = {};
   allVideos.forEach(v => {
     const url = v.url || v.source_url || '';
-    const match = url.match(/(?:v=|/)([a-zA-Z0-9_-]{11})(?:&|$|\/)/);
-    if (match) {
-      videoIdToUrl[match[1]] = url;
+    const videoId = extractVideoId(url);
+    if (videoId) {
+      videoIdToUrl[videoId] = url;
     }
   });
 
