@@ -187,30 +187,12 @@ async function fetchVideos() {
   }
 }
 
-// Fetch YouTube descriptions via Invidious (free, no API key)
+// Fetch YouTube descriptions - currently unavailable via free public APIs
+// YouTube blocks most free methods (Invidious, Piped, scraping)
+// Fallback: Videos can be favorited and will be summarized via knowledge base ingestion
 async function fetchYouTubeDescription(videoId) {
-  try {
-    // Use a public Invidious instance - they're free and don't require API keys
-    const instances = [
-      'https://invidious.fdn.fr',
-      'https://invidious.snopyta.org',
-      'https://yewtu.be'
-    ];
-    
-    for (const instance of instances) {
-      try {
-        const res = await fetch(`${instance}/api/v1/videos/${videoId}`);
-        if (res.ok) {
-          const data = await res.json();
-          return data.description || data.descriptionHtml || '';
-        }
-      } catch (e) {
-        console.warn('Invidious instance failed:', instance, e.message);
-      }
-    }
-  } catch (e) {
-    console.warn('Failed to fetch YouTube description:', e.message);
-  }
+  // Free public APIs are being rate-limited/blocked by YouTube
+  // As a workaround, favorited videos get automatically summarized when ingested
   return null;
 }
 
@@ -654,7 +636,14 @@ function renderCard(v) {
     </button>
   </div>
   <button class="expand-btn">Read more</button>
-  <div class="card-expanded" style="display:none">${expandedContent || '<div style="padding:0 16px 12px;color:var(--text-faint);font-size:12px">No summary available. <a href="' + escapeAttr(youtubeUrl) + '" target="_blank" style="color:var(--accent)">Watch on YouTube →</a></div>'}</div>
+  ${expandedContent ? `
+  <div class="card-expanded" style="display:none">${expandedContent}</div>` : `
+  <div class="card-expanded" style="display:none">
+    <div style="padding:12px 16px;color:var(--text-faint);font-size:12px;line-height:1.6">
+      No description available for this video.<br/>
+      <span style="color:var(--text-muted)">Tip: Favorite videos to save them, and they can be automatically summarized when ingested.</span>
+    </div>
+  </div>`}
   ${(tags.length > 0) ? `
   <div class="card-footer">
     <div class="card-tags">${cardTagsHTML}</div>
