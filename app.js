@@ -618,9 +618,11 @@ function renderFeed() {
           } else {
             expandedContent.innerHTML = '<div style="padding:12px 16px;color:var(--text-faint);font-size:12px">No summary available.</div>';
           }
+          expandedContent.style.display = 'block';
           btn.textContent = 'Show less';
         }).catch(err => {
           expandedContent.innerHTML = '<div style="padding:12px 16px;color:var(--text-faint);font-size:12px">Could not load summary.</div>';
+          expandedContent.style.display = 'block';
           btn.textContent = 'Show less';
         });
       }
