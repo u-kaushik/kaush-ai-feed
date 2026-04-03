@@ -11,5 +11,5 @@ dist/
 # OS
 .DS_Store
 
-# Keep data folder for feed JSON
-# data/
+# Claude
+.claude/
