@@ -88,10 +88,9 @@ const KNOWLEDGE_TABLE = '/rest/v1/knowledge';
 
 // Client-side function to try fetching video description
 async function fetchVideoDescriptionFromClient(videoUrl) {
-  // Extract video ID
-  const match = videoUrl.match(/(?:v=|/)([a-zA-Z0-9_-]{11})(?:&|$|\/)/);
-  if (!match) return null;
-  const videoId = match[1];
+  // Extract video ID using existing function
+  const videoId = extractVideoId(videoUrl);
+  if (!videoId) return null;
   
   // Try fetching via oEmbed (gives limited info but sometimes includes description)
   try {
