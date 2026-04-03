@@ -108,8 +108,9 @@ async function fetchVideoDescriptionFromClient(videoUrl) {
 // Uses localStorage for persistence
 // Tries to fetch video description on-demand if not in feed
 async function fetchSummary(videoUrl, videoTitle, videoChannel, existingDescription) {
-  // Check localStorage first
-  const cached = localStorage.getItem('summary_' + videoUrl);
+  // Check localStorage first - use versioned key to bust old caches
+  const cacheKey = 'summary_v2_' + videoUrl;
+  const cached = localStorage.getItem(cacheKey);
   if (cached) {
     try {
       const parsed = JSON.parse(cached);
@@ -137,7 +138,7 @@ async function fetchSummary(videoUrl, videoTitle, videoChannel, existingDescript
     if (!content) return null;
     
     // Persist to localStorage
-    localStorage.setItem('summary_' + videoUrl, JSON.stringify({ summary: content, timestamp: Date.now(), source: data.source }));
+    localStorage.setItem(cacheKey, JSON.stringify({ summary: content, timestamp: Date.now(), source: data.source }));
     
     // Format the content based on source type
     if (data.source === 'description') {
