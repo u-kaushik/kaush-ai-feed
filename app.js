@@ -168,6 +168,9 @@ async function fetchVideos() {
       console.warn('Could not fetch summaries:', e.message);
     }
 
+    // Pre-fetch YouTube descriptions for videos without knowledge base summaries
+    await prefetchYouTubeDescriptions();
+
     buildTagColorMap();
     buildChannelColorMap();
     renderTagFilters();
@@ -179,6 +182,115 @@ async function fetchVideos() {
   } finally {
     btn.classList.remove('spinning');
   }
+}
+
+// Fetch YouTube descriptions via Invidious (free, no API key)
+async function fetchYouTubeDescription(videoId) {
+  try {
+    // Use a public Invidious instance - they're free and don't require API keys
+    const instances = [
+      'https://invidious.fdn.fr',
+      'https://invidious.snopyta.org',
+      'https://yewtu.be'
+    ];
+    
+    for (const instance of instances) {
+      try {
+        const res = await fetch(`${instance}/api/v1/videos/${videoId}`);
+        if (res.ok) {
+          const data = await res.json();
+          return data.description || data.descriptionHtml || '';
+        }
+      } catch (e) {
+        console.warn('Invidious instance failed:', instance, e.message);
+      }
+    }
+  } catch (e) {
+    console.warn('Failed to fetch YouTube description:', e.message);
+  }
+  return null;
+}
+
+async function prefetchYouTubeDescriptions() {
+  // Build a map of videoId -> url
+  const videoIdToUrl = {};
+  allVideos.forEach(v => {
+    const url = v.url || v.source_url || '';
+    const match = url.match(/(?:v=|/)([a-zA-Z0-9_-]{11})(?:&|$|\/)/);
+    if (match) {
+      videoIdToUrl[match[1]] = url;
+    }
+  });
+
+  const videoIds = Object.keys(videoIdToUrl);
+
+  // Fetch descriptions in batches
+  const batchSize = 3;
+  for (let i = 0; i < videoIds.length; i += batchSize) {
+    const batch = videoIds.slice(i, i + batchSize);
+    await Promise.all(batch.map(async (videoId) => {
+      const url = videoIdToUrl[videoId];
+      // Skip if already has summary from knowledge base
+      if (videoSummaries[url]) return;
+      
+      const desc = await fetchYouTubeDescription(videoId);
+      if (desc) {
+        videoSummaries[url] = parseYouTubeDescription(desc);
+      }
+    }));
+    // Small delay between batches to be nice to free instances
+    if (i + batchSize < videoIds.length) {
+      await new Promise(r => setTimeout(r, 300));
+    }
+  }
+}
+
+// Parse YouTube description into bullet points
+function parseYouTubeDescription(description) {
+  if (!description) return '';
+  
+  // Convert HTML to plain text
+  let text = description
+    .replace(/<br\s*\/?>/gi, '\n')
+    .replace(/<[^>]+>/g, '')
+    .replace(/&nbsp;/g, ' ')
+    .replace(/&amp;/g, '&')
+    .replace(/&lt;/g, '<')
+    .replace(/&gt;/g, '>')
+    .replace(/&quot;/g, '"')
+    .replace(/\n{3,}/g, '\n\n')
+    .trim();
+  
+  const lines = text.split(/\n/).filter(l => l.trim().length > 10);
+  
+  const bullets = [];
+  const seen = new Set();
+  
+  for (const line of lines) {
+    // Skip very short lines, URLs, or repeated content
+    if (line.length < 15) continue;
+    if (line.toLowerCase().includes('http') || line.toLowerCase().includes('www.')) continue;
+    if (line.toLowerCase().includes('subscribe') || line.toLowerCase().includes('like') || line.toLowerCase().includes('comment')) continue;
+    if (line.toLowerCase().includes('discord') || line.toLowerCase().includes('twitter')) continue;
+    
+    // Clean up
+    let clean = line.replace(/^\d{1,2}:\d{2}\s*/, '').trim(); // Remove timestamps
+    if (clean.length < 15) continue;
+    
+    // Dedupe
+    const key = clean.substring(0, 30).toLowerCase();
+    if (seen.has(key)) continue;
+    seen.add(key);
+    
+    bullets.push(clean);
+  }
+  
+  if (bullets.length === 0 && lines.length > 0) {
+    // Fallback: use first few substantial lines
+    return lines.slice(0, 5).join('\n');
+  }
+  
+  return bullets.slice(0, 10).join('\n');
 }
 
 // ===== COLOR MAPS =====
