@@ -72,18 +72,21 @@ exports.handler = async function(event) {
   
   // Try to fetch video description from YouTube API if we have a URL
   let description = existingDescription;
-  let descriptionSource = 'provided description';
+  let descriptionSource = 'client description';
   
-  if ((!description || description.length < 50) && videoUrl) {
-    const videoId = extractVideoId(videoUrl);
-    if (videoId) {
-      const ytDetails = await fetchYouTubeVideoDetails(videoId);
-      if (ytDetails && ytDetails.description && ytDetails.description.length > 50) {
-        description = ytDetails.description;
-        descriptionSource = 'YouTube API';
-        // Use the actual channel name from YouTube if available
-        if (ytDetails.channelTitle && !videoChannel) {
-          // Don't overwrite videoChannel from client if provided
+  // Check if description is missing/empty, then try YouTube API
+  if (!description || description.length < 50) {
+    if (videoUrl) {
+      const videoId = extractVideoId(videoUrl);
+      if (videoId) {
+        console.log('Fetching from YouTube API for:', videoId);
+        const ytDetails = await fetchYouTubeVideoDetails(videoId);
+        if (ytDetails && ytDetails.description && ytDetails.description.length > 50) {
+          description = ytDetails.description;
+          descriptionSource = 'YouTube API';
+          console.log('Got description from YouTube API, length:', description.length);
+        } else {
+          console.log('YouTube API returned no description, ytDetails:', ytDetails);
         }
       }
     }
@@ -92,6 +95,7 @@ exports.handler = async function(event) {
   // Build prompt using description if available, otherwise title
   let prompt;
   if (description && description.length > 50) {
+    console.log('Using description for summary, source:', descriptionSource);
     prompt = `You are a helpful assistant that summarizes YouTube videos.
 Given the video description below, extract the key points and create a brief summary in 5-7 bullet points.
 Remove any promotional links, timestamps, or irrelevant content. Keep each bullet concise and informative.
@@ -103,6 +107,7 @@ ${description}
 
 Format as bullet points, one per line. At the end, add a note: "[Summary from ${descriptionSource}]"`;
   } else {
+    console.log('No description available, falling back to title-based summary. Description length:', description?.length || 0);
     prompt = `You are a helpful assistant that summarizes YouTube videos.
 Based on the video title and channel name, provide a brief summary in 5-7 bullet points.
 Keep each bullet concise and informative.
