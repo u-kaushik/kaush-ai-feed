@@ -90,6 +90,53 @@ const KNOWLEDGE_TABLE = '/rest/v1/knowledge';
 const OPENROUTER_API_KEY = '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';
 const OPENROUTER_API_URL = 'https://openrouter.ai/api/v1/chat/completions';
 
+// AI Summary function
+async function fetchSummary(videoUrl, videoTitle, videoChannel) {
+  const prompt = `You are a helpful assistant that summarizes YouTube videos.
+Given the video title and channel, provide a brief summary in 5-7 bullet points.
+Keep each bullet concise and informative.
+
+Video: ${videoTitle}
+Channel: ${videoChannel || 'Unknown'}
+URL: ${videoUrl}
+
+Format as bullet points, one per line.`;
+
+  try {
+    const res = await fetch(OPENROUTER_API_URL, {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${OPENROUTER_API_KEY}`,
+        'Content-Type': 'application/json',
+        'HTTP-Referer': 'https://aiytnews.netlify.app',
+        'X-Title': 'AIYT News Feed',
+      },
+      body: JSON.stringify({
+        model: 'meta-llama/llama-3.1-8b-instruct',
+        messages: [{ role: 'user', content: prompt }],
+        max_tokens: 300,
+        temperature: 0.7,
+      })
+    });
+    
+    if (!res.ok) return null;
+    
+    const data = await res.json();
+    const content = data.choices?.[0]?.message?.content;
+    if (!content) return null;
+    
+    // Format as HTML bullet points
+    return content.split('\n')
+      .map(line => line.replace(/^[-•*]\s*/, '').trim())
+      .filter(line => line.length > 10)
+      .map(line => `<div style="margin-bottom:6px;padding-left:16px;position:relative"><span style="position:absolute;left:0;color:var(--accent)">•</span>${escapeHtml(line)}</div>`)
+      .join('');
+  } catch (err) {
+    console.warn('AI summary failed:', err.message);
+    return null;
+  }
+}
+
 // ===== STATE =====
 let allVideos = [];
 let favorites = new Set();
@@ -542,17 +589,14 @@ function renderFeed() {
 
   feed.innerHTML = html;
 
-  // Attach expand listeners - toggle expanded card content, fetch AI summary if needed
+  // Attach expand listeners - toggle expanded card content
   feed.querySelectorAll('.expand-btn').forEach(btn => {
-    btn.addEventListener('click', async (e) => {
+    btn.addEventListener('click', (e) => {
       e.preventDefault();
       e.stopPropagation();
       const card = btn.closest('.card');
       const expandedContent = card.querySelector('.card-expanded');
       const isExpanded = card.classList.contains('expanded');
-      const videoUrl = btn.dataset.url;
-      const videoTitle = card.querySelector('.card-title').textContent;
-      const videoChannel = card.querySelector('.card-channel-btn').textContent;
       
       if (isExpanded) {
         card.classList.remove('expanded');
@@ -560,96 +604,25 @@ function renderFeed() {
         expandedContent.style.display = 'none';
       } else {
         card.classList.add('expanded');
-        btn.textContent = 'Summarizing...';
+        btn.textContent = 'Loading...';
         
-        // Check if we already have a summary
-        let summary = videoSummaries[videoUrl];
-        if (!summary) {
-          // Try knowledge base first
-          try {
-            const kbUrl = new URL(`${SUPABASE_URL}${KNOWLEDGE_TABLE}&source_url=eq.${encodeURIComponent(videoUrl)}&select=content`);
-            const kbRes = await fetch(kbUrl.toString(), {
-              headers: { apikey: SUPABASE_ANON_KEY, Authorization: `Bearer ${SUPABASE_ANON_KEY}` }
-            });
-            if (kbRes.ok) {
-              const kbData = await kbRes.json();
-              if (kbData && kbData.length > 0 && kbData[0].content) {
-                summary = formatExpandedContent(kbData[0].content);
-                videoSummaries[videoUrl] = summary;
-              }
-            }
-          } catch (err) {
-            console.warn('KB lookup failed:', err.message);
+        // Get video info for AI summarization
+        const videoUrl = btn.dataset.url;
+        const videoTitle = card.querySelector('.card-title').textContent;
+        const videoChannel = card.querySelector('.card-channel-btn').textContent;
+        
+        // Call OpenRouter for summary
+        fetchSummary(videoUrl, videoTitle, videoChannel).then(summary => {
+          if (summary) {
+            expandedContent.innerHTML = summary;
+          } else {
+            expandedContent.innerHTML = '<div style="padding:12px 16px;color:var(--text-faint);font-size:12px">No summary available.</div>';
           }
-        }
-        
-        // If no KB summary, call AI summarizer directly (client-side)
-        if (!summary) {
-          const prompt = `You are a helpful assistant that summarizes YouTube videos.
-Given the video title and channel, provide a brief summary in 5-7 bullet points.
-Each bullet should capture a key point or insight from the video.
-Keep each bullet concise (under 20 words).
-
-Video: ${videoTitle}
-Channel: ${videoChannel || 'Unknown'}
-URL: ${videoUrl}
-
-Format as bullet points, one per line, starting with a dash or bullet character.`;
-
-          try {
-            const aiRes = await fetch(OPENROUTER_API_URL, {
-              method: 'POST',
-              headers: {
-                'Authorization': `Bearer ${OPENROUTER_API_KEY}`,
-                'Content-Type': 'application/json',
-                'HTTP-Referer': 'https://aiytnews.netlify.app',
-                'X-Title': 'AIYT News Feed',
-              },
-              body: JSON.stringify({
-                model: 'meta-llama/llama-3.1-8b-instruct',
-                messages: [{ role: 'user', content: prompt }],
-                max_tokens: 300,
-                temperature: 0.7,
-              })
-            });
-            
-            let aiData;
-            const contentType = aiRes.headers.get('content-type');
-            if (contentType && contentType.includes('application/json')) {
-              aiData = await aiRes.json();
-            } else {
-              const text = await aiRes.text();
-              aiData = {};
-            }
-            
-            if (aiData && aiData.choices && aiData.choices[0] && aiData.choices[0].message && aiData.choices[0].message.content) {
-              const rawSummary = aiData.choices[0].message.content;
-              summary = rawSummary.split('\n').map(line => {
-                  // Clean up bullet points
-                  const clean = line.replace(/^[-•*]\s*/, '').trim();
-                  if (clean.length > 10) {
-                    return `<div style="margin-bottom:6px;padding-left:16px;position:relative"><span style="position:absolute;left:0;color:var(--accent)">•</span>${escapeHtml(clean)}</div>`;
-                  }
-                  return '';
-                }).join('');
-                videoSummaries[videoUrl] = summary;
-              }
-            }
-          } catch (err) {
-            console.warn('AI summary failed:', err.message);
-          }
-        }
-        
-        console.log('Final summary:', summary ? 'found' : 'not found');
-        
-        if (summary) {
-          expandedContent.innerHTML = summary;
           btn.textContent = 'Show less';
-        } else {
-          expandedContent.innerHTML = `<div style="padding:12px 16px;color:var(--text-faint);font-size:12px;line-height:1.6">No summary available. Favorite this video to save it.</div>`;
+        }).catch(err => {
+          expandedContent.innerHTML = '<div style="padding:12px 16px;color:var(--text-faint);font-size:12px">Could not load summary.</div>';
           btn.textContent = 'Show less';
-        }
-        expandedContent.style.display = 'block';
+        });
       }
     });
   });
