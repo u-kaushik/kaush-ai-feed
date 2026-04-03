@@ -35,15 +35,18 @@ exports.handler = async function(event) {
     return { statusCode: 400, headers, body: 'Missing videoTitle' };
   }
 
+  // Build prompt - currently summarising from title and channel only
+  // (Full transcript access is restricted by YouTube)
   const prompt = `You are a helpful assistant that summarizes YouTube videos.
-Given the video title and channel, provide a brief summary in 5-7 bullet points.
-Keep each bullet concise and informative.
+Based on the video title and channel name, provide a brief summary in 5-7 bullet points.
+Use your knowledge of the channel's typical content style to make the summary more relevant.
+Keep each bullet concise and informative. Focus on what the video is likely about based on the title.
 
-Video: ${videoTitle}
+Video Title: ${videoTitle}
 Channel: ${videoChannel || 'Unknown'}
-URL: ${videoUrl || ''}
+Video URL: ${videoUrl || ''}
 
-Format as bullet points, one per line.`;
+Format as bullet points, one per line. At the end, add a note: "[Summary based on video title and channel]"`;
 
   try {
     const res = await fetch(GROQ_API_URL, {

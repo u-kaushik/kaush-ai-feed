@@ -87,7 +87,17 @@ const FAVES_TABLE = '/rest/v1/favorites?source=eq.youtube-feed';
 const KNOWLEDGE_TABLE = '/rest/v1/knowledge';
 
 // AI Summary function - calls Netlify function (Groq API key in env vars)
+// Uses localStorage for persistence
 async function fetchSummary(videoUrl, videoTitle, videoChannel) {
+  // Check localStorage first
+  const cached = localStorage.getItem('summary_' + videoUrl);
+  if (cached) {
+    try {
+      const parsed = JSON.parse(cached);
+      if (parsed.summary) return parsed.summary;
+    } catch {}
+  }
+  
   try {
     const res = await fetch('/.netlify/functions/summarize', {
       method: 'POST',
@@ -100,6 +110,9 @@ async function fetchSummary(videoUrl, videoTitle, videoChannel) {
     const data = await res.json();
     const content = data.summary;
     if (!content) return null;
+    
+    // Persist to localStorage
+    localStorage.setItem('summary_' + videoUrl, JSON.stringify({ summary: content, timestamp: Date.now() }));
     
     return content.split('\n')
       .map(line => line.replace(/^[-•*]\s*/, '').trim())
