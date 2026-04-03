@@ -88,7 +88,7 @@ const KNOWLEDGE_TABLE = '/rest/v1/knowledge';
 
 // AI Summary function - calls Netlify function (Groq API key in env vars)
 // Uses localStorage for persistence
-async function fetchSummary(videoUrl, videoTitle, videoChannel) {
+async function fetchSummary(videoUrl, videoTitle, videoChannel, description) {
   // Check localStorage first
   const cached = localStorage.getItem('summary_' + videoUrl);
   if (cached) {
@@ -102,7 +102,7 @@ async function fetchSummary(videoUrl, videoTitle, videoChannel) {
     const res = await fetch('/.netlify/functions/summarize', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ videoUrl, videoTitle, videoChannel })
+      body: JSON.stringify({ videoUrl, videoTitle, videoChannel, description })
     });
     
     if (!res.ok) return null;
@@ -598,9 +598,12 @@ function renderFeed() {
         const videoUrl = btn.dataset.url;
         const videoTitle = card.querySelector('.card-title').textContent;
         const videoChannel = card.querySelector('.card-channel-btn').textContent;
+        // Get video description from allVideos
+        const videoData = allVideos.find(v => v.url === videoUrl);
+        const videoDescription = videoData?.description || '';
         
-        // Call OpenRouter for summary
-        fetchSummary(videoUrl, videoTitle, videoChannel).then(summary => {
+        // Call Groq for summary
+        fetchSummary(videoUrl, videoTitle, videoChannel, videoDescription).then(summary => {
           if (summary) {
             expandedContent.innerHTML = summary;
           } else {
