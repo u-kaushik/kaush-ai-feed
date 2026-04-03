@@ -1,8 +1,41 @@
-// Netlify function for AI summarization using Groq
-// The API key is stored securely in Netlify env vars, not in client code
+// Netlify function for AI summarization using Groq + YouTube Data API
+// API keys MUST be set as Netlify environment variables - never hardcoded
 
 const GROQ_API_KEY = process.env.GROQ_API_KEY;
+const YOUTUBE_API_KEY = process.env.YOUTUBE_API_KEY;
 const GROQ_API_URL = 'https://api.groq.com/openai/v1/chat/completions';
+const YOUTUBE_API_URL = 'https://www.googleapis.com/youtube/v3/videos';
+
+// Helper to extract video ID from various YouTube URL formats
+function extractVideoId(url) {
+  if (!url) return null;
+  const m = url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/shorts\/)([a-zA-Z0-9_-]{11})/);
+  return m ? m[1] : null;
+}
+
+// Fetch video details from YouTube Data API
+async function fetchYouTubeVideoDetails(videoId) {
+  if (!videoId || !YOUTUBE_API_KEY) return null;
+  
+  try {
+    const url = `${YOUTUBE_API_URL}?part=snippet&id=${videoId}&key=${YOUTUBE_API_KEY}`;
+    const res = await fetch(url);
+    if (!res.ok) return null;
+    
+    const data = await res.json();
+    const snippet = data.items?.[0]?.snippet;
+    if (!snippet) return null;
+    
+    return {
+      title: snippet.title,
+      description: snippet.description,
+      channelTitle: snippet.channelTitle,
+    };
+  } catch (e) {
+    console.warn('YouTube API error:', e.message);
+    return null;
+  }
+}
 
 exports.handler = async function(event) {
   const headers = {
@@ -35,7 +68,26 @@ exports.handler = async function(event) {
     return { statusCode: 400, headers, body: 'Missing videoTitle' };
   }
 
-  const { description } = body;
+  const { description: existingDescription } = body;
+  
+  // Try to fetch video description from YouTube API if we have a URL
+  let description = existingDescription;
+  let descriptionSource = 'provided description';
+  
+  if ((!description || description.length < 50) && videoUrl) {
+    const videoId = extractVideoId(videoUrl);
+    if (videoId) {
+      const ytDetails = await fetchYouTubeVideoDetails(videoId);
+      if (ytDetails && ytDetails.description && ytDetails.description.length > 50) {
+        description = ytDetails.description;
+        descriptionSource = 'YouTube API';
+        // Use the actual channel name from YouTube if available
+        if (ytDetails.channelTitle && !videoChannel) {
+          // Don't overwrite videoChannel from client if provided
+        }
+      }
+    }
+  }
   
   // Build prompt using description if available, otherwise title
   let prompt;
@@ -49,7 +101,7 @@ Channel: ${videoChannel || 'Unknown'}
 Video Description:
 ${description}
 
-Format as bullet points, one per line. At the end, add a note: "[Summary from video description]"`;
+Format as bullet points, one per line. At the end, add a note: "[Summary from ${descriptionSource}]"`;
   } else {
     prompt = `You are a helpful assistant that summarizes YouTube videos.
 Based on the video title and channel name, provide a brief summary in 5-7 bullet points.
