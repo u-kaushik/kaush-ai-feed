@@ -3,3 +3,6 @@
 
 [functions]
   directory = "netlify/functions"
+
+# Force function bundling
+[node_version = "20"]
