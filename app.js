@@ -86,6 +86,9 @@ const SUPABASE_ANON_KEY =
 const FAVES_TABLE = '/rest/v1/favorites?source=eq.youtube-feed';
 const KNOWLEDGE_TABLE = '/rest/v1/knowledge';
 
+// Netlify function for AI summarization
+const SUMMARIZE_FUNCTION = '/.netlify/functions/summarize-video';
+
 // ===== STATE =====
 let allVideos = [];
 let favorites = new Set();
