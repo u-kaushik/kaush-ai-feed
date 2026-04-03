@@ -466,15 +466,21 @@ function renderCard(v) {
   const youtubeUrl = v.url || v.source_url || '#';
   const isFave = favorites.has(youtubeUrl);
 
+  const isShort = youtubeUrl.includes('/shorts/');
+
   return `
 <div class="card">
+  <div class="card-header-row">
+    <button class="card-channel-btn" data-channel="${escapeAttr(channelName)}" title="Filter by ${escapeHtml(channelName)}">${escapeHtml(channelName)}</button>
+    ${v.channelUrl ? `<a href="${escapeAttr(v.channelUrl)}" target="_blank" rel="noopener noreferrer" class="card-channel-link" title="Open channel on YouTube">↗</a>` : ''}
+  </div>
   <div class="card-body">
     <a href="${escapeAttr(youtubeUrl)}" target="_blank" rel="noopener noreferrer" class="card-link">
       <div class="card-thumb">
         <img src="${escapeAttr(thumbnailUrl)}" alt="" loading="lazy" onerror="this.style.display='none'" />
+        ${isShort ? '<span class="short-badge">SHORT</span>' : ''}
       </div>
       <div class="card-right">
-        <button class="card-channel-btn" data-channel="${escapeAttr(channelName)}" title="Filter by ${escapeHtml(channelName)}">${escapeHtml(channelName)}</button>
         <div class="card-title">${escapeHtml(v.title || 'Untitled')}</div>
         <div class="card-timestamp">${formatDateTime(timestamp)}</div>
       </div>

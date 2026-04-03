@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Superwall Intelligence — OpenClaw</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect fill='%233b82f6' width='100' height='100' rx='20'/%3E%3Cpolygon fill='white' points='35,25 35,75 75,50'/%3E%3C/svg%3E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../style.css" />
+  <style>
+    /* ===== SYNTHESIS PAGE OVERRIDES ===== */
+    .synth-header {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 32px 20px 20px;
+    }
+
+    .synth-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--text-faint);
+      text-decoration: none;
+      font-size: 13px;
+      margin-bottom: 20px;
+      transition: color var(--transition);
+    }
+
+    .synth-back:hover {
+      color: var(--accent);
+    }
+
+    .synth-title {
+      font-size: 26px;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      color: var(--text);
+      margin-bottom: 6px;
+    }
+
+    .synth-desc {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    .synth-meta {
+      font-size: 12px;
+      color: var(--text-faint);
+      margin-top: 8px;
+    }
+
+    /* ===== MAIN CONTENT ===== */
+    .synth-main {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 0 20px 80px;
+    }
+
+    /* ===== SECTION ===== */
+    .synth-section {
+      margin-bottom: 48px;
+    }
+
+    .synth-section-header {
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+      margin-bottom: 16px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .synth-section-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text);
+      letter-spacing: -0.2px;
+    }
+
+    .synth-section-count {
+      font-size: 12px;
+      color: var(--text-faint);
+      font-weight: 400;
+    }
+
+    .synth-section-desc {
+      font-size: 12px;
+      color: var(--text-faint);
+      margin-left: auto;
+    }
+
+    /* ===== EPISODE CARD ===== */
+    .ep-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      margin-bottom: 10px;
+      overflow: hidden;
+    }
+
+    .ep-card-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 14px 16px 10px;
+      cursor: pointer;
+    }
+
+    .ep-card-header:hover .ep-title {
+      color: var(--accent);
+    }
+
+    .ep-left {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .ep-title {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text);
+      line-height: 1.35;
+      transition: color var(--transition);
+      margin-bottom: 4px;
+    }
+
+    .ep-meta {
+      font-size: 12px;
+      color: var(--text-faint);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .ep-views {
+      display: inline-flex;
+      align-items: center;
+      gap: 3px;
+    }
+
+    .ep-toggle {
+      font-size: 16px;
+      color: var(--text-faint);
+      flex-shrink: 0;
+      margin-top: 2px;
+      transition: transform var(--transition);
+      user-select: none;
+    }
+
+    .ep-card.open .ep-toggle {
+      transform: rotate(180deg);
+    }
+
+    /* ===== EPISODE BODY (collapsed by default) ===== */
+    .ep-body {
+      display: none;
+      padding: 0 16px 16px;
+      border-top: 1px solid var(--border);
+    }
+
+    .ep-card.open .ep-body {
+      display: block;
+    }
+
+    /* Summary */
+    .ep-summary {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.65;
+      margin: 12px 0 0;
+    }
+
+    /* Takeaways */
+    .ep-takeaways {
+      margin-top: 14px;
+    }
+
+    .ep-takeaways-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      color: var(--text-faint);
+      margin-bottom: 8px;
+    }
+
+    .ep-takeaway {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.5;
+      padding: 6px 10px;
+      border-left: 2px solid var(--accent);
+      margin-bottom: 6px;
+      background: var(--accent-dim);
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    }
+
+    /* Chapters */
+    .ep-chapters {
+      margin-top: 14px;
+    }
+
+    .ep-chapters-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      color: var(--text-faint);
+      margin-bottom: 8px;
+    }
+
+    .ep-chapter-list {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .ep-chapter {
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+      font-size: 12px;
+      color: var(--text-muted);
+      line-height: 1.45;
+    }
+
+    .ep-chapter-time {
+      color: var(--text-faint);
+      font-size: 11px;
+      min-width: 36px;
+      flex-shrink: 0;
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* Watch link */
+    .ep-watch-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      margin-top: 14px;
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--accent);
+      text-decoration: none;
+      transition: color var(--transition);
+    }
+
+    .ep-watch-link:hover {
+      color: var(--accent-hover);
+      text-decoration: underline;
+    }
+
+    /* ===== SHORTS SECTION ===== */
+    .shorts-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 10px;
+    }
+
+    .short-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      transition: border-color var(--transition);
+    }
+
+    .short-card:hover {
+      border-color: var(--accent);
+    }
+
+    .short-thumb {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16/9;
+      background: var(--border);
+      overflow: hidden;
+    }
+
+    .short-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .short-card-body {
+      padding: 10px 12px 12px;
+    }
+
+    .short-title {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text);
+      line-height: 1.4;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      margin-bottom: 6px;
+      text-decoration: none;
+    }
+
+    .short-title:hover {
+      color: var(--accent);
+    }
+
+    .short-meta {
+      font-size: 11px;
+      color: var(--text-faint);
+    }
+
+    /* ===== LOADING / ERROR ===== */
+    .synth-loading {
+      padding: 60px 20px;
+      text-align: center;
+      color: var(--text-faint);
+      font-size: 14px;
+    }
+
+    .synth-error {
+      background: rgba(239, 68, 68, 0.1);
+      border: 1px solid rgba(239, 68, 68, 0.25);
+      border-radius: var(--radius);
+      padding: 14px 18px;
+      color: #fca5a5;
+      font-size: 13px;
+    }
+
+    @media (max-width: 600px) {
+      .synth-header,
+      .synth-main {
+        padding-left: 14px;
+        padding-right: 14px;
+      }
+
+      .synth-title {
+        font-size: 20px;
+      }
+
+      .shorts-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .synth-section-desc {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="synth-header">
+    <a href="../index.html" class="synth-back">← Back to feed</a>
+    <div class="synth-title">Superwall Intelligence</div>
+    <div class="synth-desc">Synthesized insights from the Superwall Podcast — consumer app founders on growth, monetization, and distribution.</div>
+    <div id="synth-meta" class="synth-meta"></div>
+  </div>
+
+  <div class="synth-main">
+    <div id="synth-content">
+      <div class="synth-loading">Loading episodes…</div>
+    </div>
+  </div>
+
+  <script>
+    // ============================================================
+    // Superwall Synthesis — synthesis/superwall.html
+    // Fetches from Supabase knowledge table + yt-feed.json
+    // ============================================================
+
+    const SUPABASE_URL = 'https://thtcmxdcchxxbrsbkjar.supabase.co';
+    const SUPABASE_ANON_KEY =
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRodGNteGRjY2h4eGJyc2JramFyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzEzNDU5MzUsImV4cCI6MjA4NjkyMTkzNX0.jIu-OHW6__OgMLa7PTrxTxh3LCGxp4fG-pDj0UZPBxw';
+
+    const THEMES = [
+      {
+        id: 'case-studies',
+        label: 'Case Studies',
+        desc: 'Real founders, real numbers',
+        test: t => /\$\s*\d|\d+k\/mo|\d+k\s*\/\s*month|exit|\#1 app|million|yr old|year old|speedran|nothing\b|days\b.*\bapp/i.test(t),
+      },
+      {
+        id: 'distribution',
+        label: 'Growth & Distribution',
+        desc: 'Viral loops, UGC, TikTok, influencer strategies',
+        test: t => /viral|ugc|tiktok|content strategy|influencer|creator|distribution|organic|scale|marketing|social|instagram|downloads/i.test(t),
+      },
+      {
+        id: 'monetization',
+        label: 'Monetization & Paywalls',
+        desc: 'Converting users, paywall design, LTV',
+        test: t => /paywall|monetiz|ltv|lifetime value|convert|subscri|revenue|pricing|upsell/i.test(t),
+      },
+      {
+        id: 'tools-strategy',
+        label: 'Tools & Strategy',
+        desc: 'Playbooks, frameworks, and operator knowledge',
+        test: () => true, // fallback
+      },
+    ];
+
+    function classifyTheme(title) {
+      for (const theme of THEMES) {
+        if (theme.test(title)) return theme.id;
+      }
+      return 'tools-strategy';
+    }
+
+    // ===== CONTENT PARSING =====
+    function parseContent(content) {
+      const takeaways = [];
+      const chapters = [];
+      let summary = '';
+
+      if (!content) return { takeaways, chapters, summary };
+
+      // Extract Hot Take Takeaways — quoted strings after the header
+      const takeawaySection = content.match(/Hot Take Takeaways:([\s\S]*?)(?=\nSummary:|\nTimestamps:|\n\n##|\n\n\[|$)/i);
+      if (takeawaySection) {
+        const quotes = takeawaySection[1].match(/"([^"]{10,})"/g);
+        if (quotes) takeaways.push(...quotes.slice(0, 4).map(q => q.slice(1, -1)));
+      }
+
+      // Extract Summary paragraph
+      const summaryMatch = content.match(/\bSummary:\s*([\s\S]*?)(?=\n\nTimestamps:|\n\n##|\n\nHot|\n\n\[|$)/i);
+      if (summaryMatch) {
+        summary = summaryMatch[1].trim().replace(/\n+/g, ' ').slice(0, 280);
+      }
+
+      // Extract Timestamps / chapters
+      const tsMatch = content.match(/Timestamps:\s*\n([\s\S]+?)(?=\n\n##|\n\nSource|\n\nSummary|$)/i);
+      if (tsMatch) {
+        const lines = tsMatch[1].split('\n');
+        for (const line of lines) {
+          const m = line.match(/^\s*(\d{1,2}:\d{2}(?::\d{2})?)\s*[–\-—]\s*(.+)/);
+          if (m) {
+            const chapterTitle = m[2].trim();
+            if (chapterTitle.toLowerCase() !== 'intro') {
+              chapters.push({ time: m[1], title: chapterTitle });
+            }
+          }
+        }
+      }
+
+      return { takeaways, chapters: chapters.slice(0, 12), summary };
+    }
+
+    // ===== VIEW COUNT =====
+    function extractViews(content) {
+      if (!content) return '';
+      const m = content.match(/\*\*Views:\*\*\s*([\d,]+\s*views)/i);
+      return m ? m[1] : '';
+    }
+
+    // ===== RENDER =====
+    function formatShortDate(iso) {
+      if (!iso) return '';
+      const d = new Date(iso);
+      return d.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
+    }
+
+    function escapeHtml(str) {
+      if (!str) return '';
+      return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;');
+    }
+
+    function escapeAttr(str) {
+      if (!str) return '';
+      return String(str).replace(/"/g, '&quot;');
+    }
+
+    function renderEpisodeCard(ep) {
+      const { takeaways, chapters, summary } = parseContent(ep.content);
+      const views = extractViews(ep.content);
+      const hasBody = summary || takeaways.length > 0 || chapters.length > 0;
+
+      const takeawaysHtml = takeaways.length > 0
+        ? `<div class="ep-takeaways">
+            <div class="ep-takeaways-label">Hot takes</div>
+            ${takeaways.map(t => `<div class="ep-takeaway">${escapeHtml(t)}</div>`).join('')}
+          </div>`
+        : '';
+
+      const chaptersHtml = chapters.length > 0
+        ? `<div class="ep-chapters">
+            <div class="ep-chapters-label">Chapters</div>
+            <div class="ep-chapter-list">
+              ${chapters.map(c => `
+                <div class="ep-chapter">
+                  <span class="ep-chapter-time">${escapeHtml(c.time)}</span>
+                  <span>${escapeHtml(c.title)}</span>
+                </div>`).join('')}
+            </div>
+          </div>`
+        : '';
+
+      const summaryHtml = summary
+        ? `<div class="ep-summary">${escapeHtml(summary)}</div>`
+        : '';
+
+      return `
+<div class="ep-card${hasBody ? '' : ' no-body'}" data-id="${escapeAttr(ep.id)}">
+  <div class="ep-card-header" ${hasBody ? 'onclick="toggleEp(this)"' : ''}>
+    <div class="ep-left">
+      <div class="ep-title">${escapeHtml(ep.title)}</div>
+      <div class="ep-meta">
+        ${views ? `<span class="ep-views">${escapeHtml(views)}</span>` : ''}
+      </div>
+    </div>
+    ${hasBody ? '<span class="ep-toggle">⌄</span>' : ''}
+  </div>
+  ${hasBody ? `
+  <div class="ep-body">
+    ${summaryHtml}
+    ${takeawaysHtml}
+    ${chaptersHtml}
+    <a href="${escapeAttr(ep.source_url)}" target="_blank" rel="noopener noreferrer" class="ep-watch-link">
+      Watch on YouTube →
+    </a>
+  </div>` : `<div style="padding:0 16px 12px"><a href="${escapeAttr(ep.source_url)}" target="_blank" rel="noopener noreferrer" class="ep-watch-link">Watch on YouTube →</a></div>`}
+</div>`;
+    }
+
+    function renderShortCard(v) {
+      const thumb = `https://img.youtube.com/vi/${escapeAttr(v.id)}/hqdefault.jpg`;
+      const date = formatShortDate(v.published);
+      return `
+<div class="short-card">
+  <div class="short-thumb">
+    <img src="${escapeAttr(thumb)}" alt="" loading="lazy" onerror="this.style.display='none'" />
+  </div>
+  <div class="short-card-body">
+    <a href="${escapeAttr(v.url)}" target="_blank" rel="noopener noreferrer" class="short-title">${escapeHtml(v.title)}</a>
+    <div class="short-meta">${escapeHtml(date)}</div>
+  </div>
+</div>`;
+    }
+
+    function renderThemeSection(theme, episodes) {
+      if (episodes.length === 0) return '';
+      return `
+<div class="synth-section">
+  <div class="synth-section-header">
+    <span class="synth-section-title">${escapeHtml(theme.label)}</span>
+    <span class="synth-section-count">${episodes.length}</span>
+    <span class="synth-section-desc">${escapeHtml(theme.desc)}</span>
+  </div>
+  ${episodes.map(ep => renderEpisodeCard(ep)).join('')}
+</div>`;
+    }
+
+    function renderPage(episodes, shorts) {
+      // Group episodes by theme
+      const grouped = {};
+      THEMES.forEach(t => { grouped[t.id] = []; });
+      episodes.forEach(ep => {
+        const themeId = classifyTheme(ep.title);
+        grouped[themeId].push(ep);
+      });
+
+      // Build HTML
+      let html = '';
+
+      THEMES.forEach(theme => {
+        html += renderThemeSection(theme, grouped[theme.id]);
+      });
+
+      // Shorts section
+      if (shorts.length > 0) {
+        html += `
+<div class="synth-section">
+  <div class="synth-section-header">
+    <span class="synth-section-title">Shorts</span>
+    <span class="synth-section-count">${shorts.length}</span>
+    <span class="synth-section-desc">Quick-hit insights</span>
+  </div>
+  <div class="shorts-grid">
+    ${shorts.map(v => renderShortCard(v)).join('')}
+  </div>
+</div>`;
+      }
+
+      document.getElementById('synth-content').innerHTML = html;
+      document.getElementById('synth-meta').textContent =
+        `${episodes.length} episodes · ${shorts.length} shorts`;
+    }
+
+    // ===== TOGGLE EXPAND =====
+    function toggleEp(headerEl) {
+      const card = headerEl.closest('.ep-card');
+      card.classList.toggle('open');
+    }
+
+    // ===== FETCH =====
+    async function init() {
+      try {
+        // Fetch long-form Superwall episodes from Supabase
+        const params = new URLSearchParams({
+          select: 'id,title,source_url,content',
+          'tags': 'cs.{"Paywalls"}',
+          order: 'title.asc',
+          limit: '200',
+        });
+
+        const [kbRes, feedRes] = await Promise.all([
+          fetch(`${SUPABASE_URL}/rest/v1/knowledge?${params}`, {
+            headers: {
+              apikey: SUPABASE_ANON_KEY,
+              Authorization: 'Bearer ' + SUPABASE_ANON_KEY,
+            },
+          }),
+          fetch('../data/yt-feed.json'),
+        ]);
+
+        const episodes = kbRes.ok ? await kbRes.json() : [];
+        const feed = feedRes.ok ? await feedRes.json() : [];
+
+        // Filter Superwall shorts from yt-feed
+        const shorts = feed.filter(v =>
+          v.channel === 'SuperwallHQ' && v.url && v.url.includes('/shorts/')
+        );
+
+        renderPage(episodes, shorts);
+      } catch (err) {
+        document.getElementById('synth-content').innerHTML =
+          `<div class="synth-error">Failed to load content: ${escapeHtml(err.message)}</div>`;
+      }
+    }
+
+    // Apply theme on load (reuse logic from parent)
+    (function() {
+      const saved = localStorage.getItem('theme');
+      if (saved === 'dark') document.documentElement.classList.add('dark');
+      else if (saved === 'light') document.documentElement.classList.remove('dark');
+      else {
+        const h = new Date().getUTCHours();
+        if (h < 6 || h >= 18) document.documentElement.classList.add('dark');
+      }
+    })();
+
+    document.addEventListener('DOMContentLoaded', init);
+  </script>
+</body>
+</html>
