@@ -44,6 +44,11 @@ exports.handler = async function(event) {
     'Access-Control-Allow-Headers': 'Content-Type',
   };
 
+  // Debug: log env var status
+  console.log('GROQ_API_KEY present:', !!GROQ_API_KEY);
+  console.log('YOUTUBE_API_KEY present:', !!YOUTUBE_API_KEY);
+  console.log('YOUTUBE_API_KEY value:', YOUTUBE_API_KEY ? YOUTUBE_API_KEY.substring(0, 10) + '...' : 'undefined');
+
   if (event.httpMethod === 'OPTIONS') {
     return { statusCode: 200, headers, body: '' };
   }
