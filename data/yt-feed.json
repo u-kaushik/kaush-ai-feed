@@ -1,5 +1,35 @@
 [
   {
+    "id": "3ELKdRZ62ok",
+    "title": "The Claude Code Trick Nobody Uses Enough",
+    "url": "https://www.youtube.com/shorts/3ELKdRZ62ok",
+    "channel": "Chase-H-AI",
+    "channelUrl": "https://www.youtube.com/@Chase-H-AI",
+    "published": "2026-04-03T16:30:03+00:00",
+    "thumbnail": "https://img.youtube.com/vi/3ELKdRZ62ok/hqdefault.jpg",
+    "tags": [
+      "AI",
+      "Dev",
+      "Coding"
+    ],
+    "description": ""
+  },
+  {
+    "id": "isjOj4QSaO8",
+    "title": "5 INSANE Claude Cowork Use Cases... steal them",
+    "url": "https://www.youtube.com/watch?v=isjOj4QSaO8",
+    "channel": "Itssssss_Jack",
+    "channelUrl": "https://www.youtube.com/@Itssssss_Jack",
+    "published": "2026-04-03T16:13:18+00:00",
+    "thumbnail": "https://img.youtube.com/vi/isjOj4QSaO8/hqdefault.jpg",
+    "tags": [
+      "AI",
+      "Dev",
+      "Coding"
+    ],
+    "description": ""
+  },
+  {
     "id": "g-EJH1xZESM",
     "title": "15% Click-Through Rate: Is It A Good Benchmark? #shorts",
     "url": "https://www.youtube.com/shorts/g-EJH1xZESM",
@@ -12,6 +42,36 @@
       "Paywalls",
       "SaaS",
       "Growth"
+    ],
+    "description": ""
+  },
+  {
+    "id": "5-MAMz26uaM",
+    "title": "The RAG Problem (And How RAG-Anything Solves It)",
+    "url": "https://www.youtube.com/shorts/5-MAMz26uaM",
+    "channel": "Chase-H-AI",
+    "channelUrl": "https://www.youtube.com/@Chase-H-AI",
+    "published": "2026-04-03T12:30:10+00:00",
+    "thumbnail": "https://img.youtube.com/vi/5-MAMz26uaM/hqdefault.jpg",
+    "tags": [
+      "AI",
+      "Dev",
+      "Coding"
+    ],
+    "description": ""
+  },
+  {
+    "id": "E_IGC854cWc",
+    "title": "Google Gemma 4: Free Model That Beats DeepSeek, Qwen, and LLaMA",
+    "url": "https://www.youtube.com/watch?v=E_IGC854cWc",
+    "channel": "AIStackStudio-f2x",
+    "channelUrl": "https://www.youtube.com/@AIStackStudio-f2x",
+    "published": "2026-04-03T11:19:59+00:00",
+    "thumbnail": "https://img.youtube.com/vi/E_IGC854cWc/hqdefault.jpg",
+    "tags": [
+      "AI",
+      "Dev",
+      "Coding"
     ],
     "description": ""
   },
@@ -47,6 +107,21 @@
     "description": ""
   },
   {
+    "id": "rJCgvnXgOiU",
+    "title": "Claude Code + RAG-Anything = LIMITLESS",
+    "url": "https://www.youtube.com/watch?v=rJCgvnXgOiU",
+    "channel": "Chase-H-AI",
+    "channelUrl": "https://www.youtube.com/@Chase-H-AI",
+    "published": "2026-04-03T01:16:49+00:00",
+    "thumbnail": "https://img.youtube.com/vi/rJCgvnXgOiU/hqdefault.jpg",
+    "tags": [
+      "AI",
+      "Dev",
+      "Coding"
+    ],
+    "description": ""
+  },
+  {
     "id": "G4jDJuSqNN8",
     "title": "TikTok Viral App Promotion: Find Winning Videos FAST! #shorts",
     "url": "https://www.youtube.com/shorts/G4jDJuSqNN8",
@@ -78,6 +153,21 @@
     "description": ""
   },
   {
+    "id": "yLAk3i5ZhZE",
+    "title": "April 2026 AI Tier List (OpenClaw Still Sucks)",
+    "url": "https://www.youtube.com/shorts/yLAk3i5ZhZE",
+    "channel": "Chase-H-AI",
+    "channelUrl": "https://www.youtube.com/@Chase-H-AI",
+    "published": "2026-04-02T12:31:20+00:00",
+    "thumbnail": "https://img.youtube.com/vi/yLAk3i5ZhZE/hqdefault.jpg",
+    "tags": [
+      "AI",
+      "Dev",
+      "Coding"
+    ],
+    "description": ""
+  },
+  {
     "id": "VBV4sxUBdsE",
     "title": "Hermes Agent + Free Unlimited GLM-5.1,Kimi API: RIP OpenClaw! This SELF-EVOLVING Agent is WAY BETTER",
     "url": "https://www.youtube.com/watch?v=VBV4sxUBdsE",
@@ -90,6 +180,51 @@
       "AI-Tools",
       "Tutorials",
       "LLMs"
+    ],
+    "description": ""
+  },
+  {
+    "id": "i0iQESYMjFc",
+    "title": "LightRAG + Claude Code",
+    "url": "https://www.youtube.com/shorts/i0iQESYMjFc",
+    "channel": "Chase-H-AI",
+    "channelUrl": "https://www.youtube.com/@Chase-H-AI",
+    "published": "2026-04-02T09:45:07+00:00",
+    "thumbnail": "https://img.youtube.com/vi/i0iQESYMjFc/hqdefault.jpg",
+    "tags": [
+      "AI",
+      "Dev",
+      "Coding"
+    ],
+    "description": ""
+  },
+  {
+    "id": "-QEYDtxkD14",
+    "title": "Claude Code for FREE | No Ollama, No GPU, No $200/M Subscription Needed (OpenRouter Setup)",
+    "url": "https://www.youtube.com/watch?v=-QEYDtxkD14",
+    "channel": "AIStackStudio-f2x",
+    "channelUrl": "https://www.youtube.com/@AIStackStudio-f2x",
+    "published": "2026-04-02T08:42:46+00:00",
+    "thumbnail": "https://img.youtube.com/vi/-QEYDtxkD14/hqdefault.jpg",
+    "tags": [
+      "AI",
+      "Dev",
+      "Coding"
+    ],
+    "description": ""
+  },
+  {
+    "id": "QHlB-RJfx8w",
+    "title": "Claude Code + LightRAG = UNSTOPPABLE",
+    "url": "https://www.youtube.com/watch?v=QHlB-RJfx8w",
+    "channel": "Chase-H-AI",
+    "channelUrl": "https://www.youtube.com/@Chase-H-AI",
+    "published": "2026-04-02T04:45:04+00:00",
+    "thumbnail": "https://img.youtube.com/vi/QHlB-RJfx8w/hqdefault.jpg",
+    "tags": [
+      "AI",
+      "Dev",
+      "Coding"
     ],
     "description": ""
   },
@@ -156,6 +291,21 @@
     "description": ""
   },
   {
+    "id": "xyZ6kPd-Vq8",
+    "title": "I Hate Scrolling Twitter, So Claude Code Created This For Me",
+    "url": "https://www.youtube.com/shorts/xyZ6kPd-Vq8",
+    "channel": "Chase-H-AI",
+    "channelUrl": "https://www.youtube.com/@Chase-H-AI",
+    "published": "2026-04-01T15:15:07+00:00",
+    "thumbnail": "https://img.youtube.com/vi/xyZ6kPd-Vq8/hqdefault.jpg",
+    "tags": [
+      "AI",
+      "Dev",
+      "Coding"
+    ],
+    "description": ""
+  },
+  {
     "id": "ZJTHdQmhGSA",
     "title": "OpenCode + Qwen 3.6 PRO = INSANE Coding for FREE",
     "url": "https://www.youtube.com/watch?v=ZJTHdQmhGSA",
@@ -178,6 +328,36 @@
     "channelUrl": "https://www.youtube.com/@nateherk",
     "published": "2026-04-01T14:00:54+00:00",
     "thumbnail": "https://img.youtube.com/vi/JoPmpwpRrBI/hqdefault.jpg",
+    "tags": [
+      "AI",
+      "Dev",
+      "Coding"
+    ],
+    "description": ""
+  },
+  {
+    "id": "6t32nPxeJb8",
+    "title": "Claude Code + NoteBookLM = Infinite Memory",
+    "url": "https://www.youtube.com/watch?v=6t32nPxeJb8",
+    "channel": "Itssssss_Jack",
+    "channelUrl": "https://www.youtube.com/@Itssssss_Jack",
+    "published": "2026-04-01T13:59:34+00:00",
+    "thumbnail": "https://img.youtube.com/vi/6t32nPxeJb8/hqdefault.jpg",
+    "tags": [
+      "AI",
+      "Dev",
+      "Coding"
+    ],
+    "description": ""
+  },
+  {
+    "id": "kT_MdlZyeCI",
+    "title": "NotebookLM Agent Skills: Turn Research Into $500 SEO Articles in 10 MINUTES!",
+    "url": "https://www.youtube.com/watch?v=kT_MdlZyeCI",
+    "channel": "AIStackStudio-f2x",
+    "channelUrl": "https://www.youtube.com/@AIStackStudio-f2x",
+    "published": "2026-04-01T10:06:08+00:00",
+    "thumbnail": "https://img.youtube.com/vi/kT_MdlZyeCI/hqdefault.jpg",
     "tags": [
       "AI",
       "Dev",
@@ -232,6 +412,21 @@
     "description": ""
   },
   {
+    "id": "UQPo8TIKAV0",
+    "title": "The #1 Use Case For The New Codex Plugin in Claude Code",
+    "url": "https://www.youtube.com/shorts/UQPo8TIKAV0",
+    "channel": "Chase-H-AI",
+    "channelUrl": "https://www.youtube.com/@Chase-H-AI",
+    "published": "2026-03-31T17:15:01+00:00",
+    "thumbnail": "https://img.youtube.com/vi/UQPo8TIKAV0/hqdefault.jpg",
+    "tags": [
+      "AI",
+      "Dev",
+      "Coding"
+    ],
+    "description": ""
+  },
+  {
     "id": "fa8fvJTR-tM",
     "title": "HarborSEO.ai Content That Actually RANKS on Google! #shorts",
     "url": "https://www.youtube.com/shorts/fa8fvJTR-tM",
@@ -259,6 +454,51 @@
       "Paywalls",
       "SaaS",
       "Growth"
+    ],
+    "description": ""
+  },
+  {
+    "id": "YSbB5gc_1K8",
+    "title": "Claude Code 3.0 Is Coming",
+    "url": "https://www.youtube.com/watch?v=YSbB5gc_1K8",
+    "channel": "RAmjad",
+    "channelUrl": "https://www.youtube.com/@RAmjad",
+    "published": "2026-03-31T15:39:40+00:00",
+    "thumbnail": "https://img.youtube.com/vi/YSbB5gc_1K8/hqdefault.jpg",
+    "tags": [
+      "AI",
+      "Dev",
+      "Coding"
+    ],
+    "description": ""
+  },
+  {
+    "id": "zZlYboJxR2Q",
+    "title": "These Claude Code Skills Automated My Social Media (And Got Me 10M Views)",
+    "url": "https://www.youtube.com/shorts/zZlYboJxR2Q",
+    "channel": "Chase-H-AI",
+    "channelUrl": "https://www.youtube.com/@Chase-H-AI",
+    "published": "2026-03-31T14:15:05+00:00",
+    "thumbnail": "https://img.youtube.com/vi/zZlYboJxR2Q/hqdefault.jpg",
+    "tags": [
+      "AI",
+      "Dev",
+      "Coding"
+    ],
+    "description": ""
+  },
+  {
+    "id": "NC12_VGP4j4",
+    "title": "Codex + Claude Code is Now a Thing",
+    "url": "https://www.youtube.com/shorts/NC12_VGP4j4",
+    "channel": "Chase-H-AI",
+    "channelUrl": "https://www.youtube.com/@Chase-H-AI",
+    "published": "2026-03-31T11:00:23+00:00",
+    "thumbnail": "https://img.youtube.com/vi/NC12_VGP4j4/hqdefault.jpg",
+    "tags": [
+      "AI",
+      "Dev",
+      "Coding"
     ],
     "description": ""
   },
@@ -309,6 +549,36 @@
     "description": ""
   },
   {
+    "id": "L7NPhaUBpZE",
+    "title": "Claude Code + Codex = AI GOD",
+    "url": "https://www.youtube.com/watch?v=L7NPhaUBpZE",
+    "channel": "Chase-H-AI",
+    "channelUrl": "https://www.youtube.com/@Chase-H-AI",
+    "published": "2026-03-31T05:05:30+00:00",
+    "thumbnail": "https://img.youtube.com/vi/L7NPhaUBpZE/hqdefault.jpg",
+    "tags": [
+      "AI",
+      "Dev",
+      "Coding"
+    ],
+    "description": ""
+  },
+  {
+    "id": "7q_rbT1a9dE",
+    "title": "These Claude Code Automations Got Me 10M Views in 1 Month",
+    "url": "https://www.youtube.com/watch?v=7q_rbT1a9dE",
+    "channel": "Chase-H-AI",
+    "channelUrl": "https://www.youtube.com/@Chase-H-AI",
+    "published": "2026-03-31T02:11:54+00:00",
+    "thumbnail": "https://img.youtube.com/vi/7q_rbT1a9dE/hqdefault.jpg",
+    "tags": [
+      "AI",
+      "Dev",
+      "Coding"
+    ],
+    "description": ""
+  },
+  {
     "id": "B2Kh_ZoLVTM",
     "title": "Codex Just 10x’d Claude Code Projects",
     "url": "https://www.youtube.com/watch?v=B2Kh_ZoLVTM",
@@ -331,6 +601,21 @@
     "channelUrl": "https://www.youtube.com/@Incomestreamsurfers",
     "published": "2026-03-30T18:42:49+00:00",
     "thumbnail": "https://img.youtube.com/vi/qvsxsfoTChI/hqdefault.jpg",
+    "tags": [
+      "AI",
+      "Dev",
+      "Coding"
+    ],
+    "description": ""
+  },
+  {
+    "id": "riPfkB5j7ok",
+    "title": "Top 3 Claude Code Browser Agents",
+    "url": "https://www.youtube.com/shorts/riPfkB5j7ok",
+    "channel": "Chase-H-AI",
+    "channelUrl": "https://www.youtube.com/@Chase-H-AI",
+    "published": "2026-03-30T17:15:06+00:00",
+    "thumbnail": "https://img.youtube.com/vi/riPfkB5j7ok/hqdefault.jpg",
     "tags": [
       "AI",
       "Dev",
@@ -369,6 +654,21 @@
     "description": ""
   },
   {
+    "id": "R0nA6SJ2fGk",
+    "title": "Claude Code + Firecrawl = SCRAPE ANYTHING",
+    "url": "https://www.youtube.com/shorts/R0nA6SJ2fGk",
+    "channel": "Chase-H-AI",
+    "channelUrl": "https://www.youtube.com/@Chase-H-AI",
+    "published": "2026-03-30T14:00:24+00:00",
+    "thumbnail": "https://img.youtube.com/vi/R0nA6SJ2fGk/hqdefault.jpg",
+    "tags": [
+      "AI",
+      "Dev",
+      "Coding"
+    ],
+    "description": ""
+  },
+  {
     "id": "Y3PcRp5RFzk",
     "title": "I’ve Built 500 AI Workflows, This is What Businesses Want in 2026",
     "url": "https://www.youtube.com/watch?v=Y3PcRp5RFzk",
@@ -376,6 +676,36 @@
     "channelUrl": "https://www.youtube.com/@nateherk",
     "published": "2026-03-30T12:35:12+00:00",
     "thumbnail": "https://img.youtube.com/vi/Y3PcRp5RFzk/hqdefault.jpg",
+    "tags": [
+      "AI",
+      "Dev",
+      "Coding"
+    ],
+    "description": ""
+  },
+  {
+    "id": "gt83F4FkHsU",
+    "title": "Every Top Open Source AI Project in 1 Place",
+    "url": "https://www.youtube.com/shorts/gt83F4FkHsU",
+    "channel": "Chase-H-AI",
+    "channelUrl": "https://www.youtube.com/@Chase-H-AI",
+    "published": "2026-03-30T12:15:05+00:00",
+    "thumbnail": "https://img.youtube.com/vi/gt83F4FkHsU/hqdefault.jpg",
+    "tags": [
+      "AI",
+      "Dev",
+      "Coding"
+    ],
+    "description": ""
+  },
+  {
+    "id": "5u6uCeqaZAU",
+    "title": "Claude Cowork: Automate 99% of Your Life (New Meta)",
+    "url": "https://www.youtube.com/watch?v=5u6uCeqaZAU",
+    "channel": "Itssssss_Jack",
+    "channelUrl": "https://www.youtube.com/@Itssssss_Jack",
+    "published": "2026-03-30T12:03:11+00:00",
+    "thumbnail": "https://img.youtube.com/vi/5u6uCeqaZAU/hqdefault.jpg",
     "tags": [
       "AI",
       "Dev",
@@ -396,6 +726,21 @@
       "AI-Tools",
       "Tutorials",
       "LLMs"
+    ],
+    "description": ""
+  },
+  {
+    "id": "X0MQP_DUGdY",
+    "title": "Claude Mythos: Anthropic's Secret Model Leaked, ,OpenAI Spud, and GLM 5.1",
+    "url": "https://www.youtube.com/watch?v=X0MQP_DUGdY",
+    "channel": "AIStackStudio-f2x",
+    "channelUrl": "https://www.youtube.com/@AIStackStudio-f2x",
+    "published": "2026-03-30T07:18:50+00:00",
+    "thumbnail": "https://img.youtube.com/vi/X0MQP_DUGdY/hqdefault.jpg",
+    "tags": [
+      "AI",
+      "Dev",
+      "Coding"
     ],
     "description": ""
   },
@@ -438,6 +783,21 @@
     "channelUrl": "https://www.youtube.com/@Incomestreamsurfers",
     "published": "2026-03-29T13:41:35+00:00",
     "thumbnail": "https://img.youtube.com/vi/HWhL1XE8V3g/hqdefault.jpg",
+    "tags": [
+      "AI",
+      "Dev",
+      "Coding"
+    ],
+    "description": ""
+  },
+  {
+    "id": "baGKgnbQUq8",
+    "title": "Supercharge OpenCode With 1300+ Free Skills in One Command Makes It 100x  Powerful",
+    "url": "https://www.youtube.com/watch?v=baGKgnbQUq8",
+    "channel": "AIStackStudio-f2x",
+    "channelUrl": "https://www.youtube.com/@AIStackStudio-f2x",
+    "published": "2026-03-29T11:23:46+00:00",
+    "thumbnail": "https://img.youtube.com/vi/baGKgnbQUq8/hqdefault.jpg",
     "tags": [
       "AI",
       "Dev",
@@ -554,6 +914,21 @@
     "description": ""
   },
   {
+    "id": "2gvFLFl4xw8",
+    "title": "Claude Code + Nano Banana 2 + FireCrawl = Epic $12k Websites",
+    "url": "https://www.youtube.com/watch?v=2gvFLFl4xw8",
+    "channel": "Itssssss_Jack",
+    "channelUrl": "https://www.youtube.com/@Itssssss_Jack",
+    "published": "2026-03-27T19:58:11+00:00",
+    "thumbnail": "https://img.youtube.com/vi/2gvFLFl4xw8/hqdefault.jpg",
+    "tags": [
+      "AI",
+      "Dev",
+      "Coding"
+    ],
+    "description": ""
+  },
+  {
     "id": "nExbJvtmS4o",
     "title": "AI Creates AMAZING Websites in SECONDS! (Astro + Markdown) #shorts",
     "url": "https://www.youtube.com/shorts/nExbJvtmS4o",
@@ -631,6 +1006,36 @@
     "description": ""
   },
   {
+    "id": "RDuVmE95IWQ",
+    "title": "Antigravity Skills Kit: Use 1,239+ Agent Skills in One Command Makes It 100x  Powerful",
+    "url": "https://www.youtube.com/watch?v=RDuVmE95IWQ",
+    "channel": "AIStackStudio-f2x",
+    "channelUrl": "https://www.youtube.com/@AIStackStudio-f2x",
+    "published": "2026-03-27T08:02:44+00:00",
+    "thumbnail": "https://img.youtube.com/vi/RDuVmE95IWQ/hqdefault.jpg",
+    "tags": [
+      "AI",
+      "Dev",
+      "Coding"
+    ],
+    "description": ""
+  },
+  {
+    "id": "StC0k7yQ6To",
+    "title": "5 WILD OpenClaw Use Cases",
+    "url": "https://www.youtube.com/shorts/StC0k7yQ6To",
+    "channel": "Itssssss_Jack",
+    "channelUrl": "https://www.youtube.com/@Itssssss_Jack",
+    "published": "2026-03-26T23:14:29+00:00",
+    "thumbnail": "https://img.youtube.com/vi/StC0k7yQ6To/hqdefault.jpg",
+    "tags": [
+      "AI",
+      "Dev",
+      "Coding"
+    ],
+    "description": ""
+  },
+  {
     "id": "r1OPMQoyAwE",
     "title": "This Claude Code Skill Builds FULL Websites in 13 Minutes (FREE)",
     "url": "https://www.youtube.com/watch?v=r1OPMQoyAwE",
@@ -638,6 +1043,21 @@
     "channelUrl": "https://www.youtube.com/@Incomestreamsurfers",
     "published": "2026-03-26T22:03:59+00:00",
     "thumbnail": "https://img.youtube.com/vi/r1OPMQoyAwE/hqdefault.jpg",
+    "tags": [
+      "AI",
+      "Dev",
+      "Coding"
+    ],
+    "description": ""
+  },
+  {
+    "id": "O-01egh0vvs",
+    "title": "5 Wild OpenClaw Use Cases (Automate Anything)",
+    "url": "https://www.youtube.com/watch?v=O-01egh0vvs",
+    "channel": "Itssssss_Jack",
+    "channelUrl": "https://www.youtube.com/@Itssssss_Jack",
+    "published": "2026-03-26T19:05:32+00:00",
+    "thumbnail": "https://img.youtube.com/vi/O-01egh0vvs/hqdefault.jpg",
     "tags": [
       "AI",
       "Dev",
@@ -770,6 +1190,36 @@
     "description": ""
   },
   {
+    "id": "CkstwaYQSKE",
+    "title": "Stitch 2.0: Build a Full Website with AI in Minutes (+ Stripe Payments) #stitch #googlestitch",
+    "url": "https://www.youtube.com/shorts/CkstwaYQSKE",
+    "channel": "Itssssss_Jack",
+    "channelUrl": "https://www.youtube.com/@Itssssss_Jack",
+    "published": "2026-03-24T21:34:13+00:00",
+    "thumbnail": "https://img.youtube.com/vi/CkstwaYQSKE/hqdefault.jpg",
+    "tags": [
+      "AI",
+      "Dev",
+      "Coding"
+    ],
+    "description": ""
+  },
+  {
+    "id": "eNJfD6yHeIY",
+    "title": "Claude Code + Stitch 2.0 Destroys Web design (Figma Killer)",
+    "url": "https://www.youtube.com/watch?v=eNJfD6yHeIY",
+    "channel": "Itssssss_Jack",
+    "channelUrl": "https://www.youtube.com/@Itssssss_Jack",
+    "published": "2026-03-24T18:42:19+00:00",
+    "thumbnail": "https://img.youtube.com/vi/eNJfD6yHeIY/hqdefault.jpg",
+    "tags": [
+      "AI",
+      "Dev",
+      "Coding"
+    ],
+    "description": ""
+  },
+  {
     "id": "DCAZHgQgOqk",
     "title": "Sell Painkillers, Not Vitamins: Business Startup Strategy #shorts",
     "url": "https://www.youtube.com/shorts/DCAZHgQgOqk",
@@ -813,6 +1263,36 @@
       "AI-Tools",
       "Tutorials",
       "LLMs"
+    ],
+    "description": ""
+  },
+  {
+    "id": "OnQ4BGN8B-s",
+    "title": "Anthropic Just Dropped the Feature Nobody Knew They Needed",
+    "url": "https://www.youtube.com/watch?v=OnQ4BGN8B-s",
+    "channel": "RAmjad",
+    "channelUrl": "https://www.youtube.com/@RAmjad",
+    "published": "2026-03-24T08:57:59+00:00",
+    "thumbnail": "https://img.youtube.com/vi/OnQ4BGN8B-s/hqdefault.jpg",
+    "tags": [
+      "AI",
+      "Dev",
+      "Coding"
+    ],
+    "description": ""
+  },
+  {
+    "id": "6Js4jmzPQPs",
+    "title": "OpenClaw Insane Updates – ClawHub, New Browser Control, Security Fixes, and What's Actually Changing",
+    "url": "https://www.youtube.com/watch?v=6Js4jmzPQPs",
+    "channel": "AIStackStudio-f2x",
+    "channelUrl": "https://www.youtube.com/@AIStackStudio-f2x",
+    "published": "2026-03-24T07:53:11+00:00",
+    "thumbnail": "https://img.youtube.com/vi/6Js4jmzPQPs/hqdefault.jpg",
+    "tags": [
+      "AI",
+      "Dev",
+      "Coding"
     ],
     "description": ""
   },
@@ -879,6 +1359,21 @@
     "description": ""
   },
   {
+    "id": "vXylQqxsGX0",
+    "title": "Claude Code + Karparthy’s AutoResearch = GOD MODE",
+    "url": "https://www.youtube.com/watch?v=vXylQqxsGX0",
+    "channel": "Itssssss_Jack",
+    "channelUrl": "https://www.youtube.com/@Itssssss_Jack",
+    "published": "2026-03-22T18:13:51+00:00",
+    "thumbnail": "https://img.youtube.com/vi/vXylQqxsGX0/hqdefault.jpg",
+    "tags": [
+      "AI",
+      "Dev",
+      "Coding"
+    ],
+    "description": ""
+  },
+  {
     "id": "gDa1VzVPrwI",
     "title": "Claude Stitch (Design Mode): Anthropic just CRUSHED Google with their DESIGN AGENT!",
     "url": "https://www.youtube.com/watch?v=gDa1VzVPrwI",
@@ -891,6 +1386,21 @@
       "AI-Tools",
       "Tutorials",
       "LLMs"
+    ],
+    "description": ""
+  },
+  {
+    "id": "v2YIA8a1-rU",
+    "title": "Google AI Studio's Biggest Update Yet — Antigravity Agent, Firebase, Multiplayer & More",
+    "url": "https://www.youtube.com/watch?v=v2YIA8a1-rU",
+    "channel": "AIStackStudio-f2x",
+    "channelUrl": "https://www.youtube.com/@AIStackStudio-f2x",
+    "published": "2026-03-22T06:31:13+00:00",
+    "thumbnail": "https://img.youtube.com/vi/v2YIA8a1-rU/hqdefault.jpg",
+    "tags": [
+      "AI",
+      "Dev",
+      "Coding"
     ],
     "description": ""
   },
@@ -911,6 +1421,21 @@
     "description": ""
   },
   {
+    "id": "5ehtJzeXv-k",
+    "title": "NEW Claude Code Feature Changes Everything (Channels + Cloud)",
+    "url": "https://www.youtube.com/watch?v=5ehtJzeXv-k",
+    "channel": "Itssssss_Jack",
+    "channelUrl": "https://www.youtube.com/@Itssssss_Jack",
+    "published": "2026-03-21T15:33:25+00:00",
+    "thumbnail": "https://img.youtube.com/vi/5ehtJzeXv-k/hqdefault.jpg",
+    "tags": [
+      "AI",
+      "Dev",
+      "Coding"
+    ],
+    "description": ""
+  },
+  {
     "id": "XjPpEEfqNBw",
     "title": "OpenClaw 2.0 (All New Updates Explained): These NEW UPDATES to OpenClaw is ACTUALLY CRAZY!",
     "url": "https://www.youtube.com/watch?v=XjPpEEfqNBw",
@@ -923,6 +1448,21 @@
       "AI-Tools",
       "Tutorials",
       "LLMs"
+    ],
+    "description": ""
+  },
+  {
+    "id": "pOsGxVKYd3s",
+    "title": "Anthropic Just Revealed Where Coding Is Heading",
+    "url": "https://www.youtube.com/watch?v=pOsGxVKYd3s",
+    "channel": "RAmjad",
+    "channelUrl": "https://www.youtube.com/@RAmjad",
+    "published": "2026-03-21T09:46:57+00:00",
+    "thumbnail": "https://img.youtube.com/vi/pOsGxVKYd3s/hqdefault.jpg",
+    "tags": [
+      "AI",
+      "Dev",
+      "Coding"
     ],
     "description": ""
   }
