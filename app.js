@@ -170,7 +170,9 @@ async function fetchVideos() {
 
     // Pre-fetch YouTube descriptions for videos without knowledge base summaries
     // Run in background - don't block rendering
-    prefetchYouTubeDescriptions().catch(e => console.warn('Description prefetch failed:', e));
+    setTimeout(() => {
+      prefetchYouTubeDescriptions().catch(e => console.warn('Description prefetch failed:', e));
+    }, 500);
 
     buildTagColorMap();
     buildChannelColorMap();
