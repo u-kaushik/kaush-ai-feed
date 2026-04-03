@@ -86,7 +86,7 @@ const SUPABASE_ANON_KEY =
 const FAVES_TABLE = '/rest/v1/favorites?source=eq.youtube-feed';
 const KNOWLEDGE_TABLE = '/rest/v1/knowledge';
 
-// OpenRouter API for fallback client-side calls (free tier)
+// OpenRouter API for client-side AI summarization (free tier)
 const OPENROUTER_API_KEY = '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';
 const OPENROUTER_API_URL = 'https://openrouter.ai/api/v1/chat/completions';
 
@@ -585,8 +585,7 @@ function renderFeed() {
         
         // If no KB summary, call AI summarizer directly (client-side)
         if (!summary) {
-          try {
-            const prompt = `You are a helpful assistant that summarizes YouTube videos.
+          const prompt = `You are a helpful assistant that summarizes YouTube videos.
 Given the video title and channel, provide a brief summary in 5-7 bullet points.
 Each bullet should capture a key point or insight from the video.
 Keep each bullet concise (under 20 words).
@@ -597,6 +596,7 @@ URL: ${videoUrl}
 
 Format as bullet points, one per line, starting with a dash or bullet character.`;
 
+          try {
             const aiRes = await fetch(OPENROUTER_API_URL, {
               method: 'POST',
               headers: {
@@ -619,26 +619,28 @@ Format as bullet points, one per line, starting with a dash or bullet character.
               aiData = await aiRes.json();
             } else {
               const text = await aiRes.text();
-              console.log('AI response non-JSON:', text.substring(0, 200));
               aiData = {};
             }
             
             if (aiData && aiData.choices && aiData.choices[0] && aiData.choices[0].message && aiData.choices[0].message.content) {
               const rawSummary = aiData.choices[0].message.content;
               summary = rawSummary.split('\n').map(line => {
-                // Clean up bullet points
-                const clean = line.replace(/^[-•*]\s*/, '').trim();
-                if (clean.length > 10) {
-                  return `<div style="margin-bottom:6px;padding-left:16px;position:relative"><span style="position:absolute;left:0;color:var(--accent)">•</span>${escapeHtml(clean)}</div>`;
-                }
-                return '';
-              }).join('');
-              videoSummaries[videoUrl] = summary;
+                  // Clean up bullet points
+                  const clean = line.replace(/^[-•*]\s*/, '').trim();
+                  if (clean.length > 10) {
+                    return `<div style="margin-bottom:6px;padding-left:16px;position:relative"><span style="position:absolute;left:0;color:var(--accent)">•</span>${escapeHtml(clean)}</div>`;
+                  }
+                  return '';
+                }).join('');
+                videoSummaries[videoUrl] = summary;
+              }
             }
           } catch (err) {
             console.warn('AI summary failed:', err.message);
           }
         }
+        
+        console.log('Final summary:', summary ? 'found' : 'not found');
         
         if (summary) {
           expandedContent.innerHTML = summary;
