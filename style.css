@@ -862,6 +862,19 @@ mark {
   overflow: hidden;
 }
 
+/* Shorts / vertical video mode */
+.lightbox-content.is-short {
+  max-width: 360px;
+  aspect-ratio: 9 / 16;
+}
+
+@media (max-height: 700px) {
+  .lightbox-content.is-short {
+    max-height: 90vh;
+    max-width: calc(90vh * 9 / 16);
+  }
+}
+
 .lightbox-content iframe {
   position: absolute;
   top: 0;
@@ -882,6 +895,7 @@ mark {
   cursor: pointer;
   padding: 8px;
   line-height: 1;
+  z-index: 10;
 }
 
 .lightbox-close:hover {
@@ -898,4 +912,5 @@ mark {
   padding: 40px 16px 16px;
   font-size: 14px;
   text-align: left;
+  pointer-events: none;
 }

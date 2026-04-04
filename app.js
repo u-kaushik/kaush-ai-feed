@@ -1062,19 +1062,85 @@ function escapeAttr(str) {
 }
 
 // ===== LIGHTBOX =====
+let ytPlayer = null;
+let ytReady = false;
+
+// Load YouTube IFrame API
+function loadYouTubeAPI(callback) {
+  if (window.YT && window.YT.Player) {
+    callback();
+    return;
+  }
+  const tag = document.createElement('script');
+  tag.src = 'https://www.youtube.com/iframe_api';
+  document.head.appendChild(tag);
+  window.onYouTubeIframeAPIReady = callback;
+}
+
 function openLightbox(videoUrl, title) {
   const videoId = extractVideoId(videoUrl);
   if (!videoId) return;
   
-  const embedUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
-  document.getElementById('lightbox-iframe').src = embedUrl;
+  const isShort = videoUrl.includes('/shorts/');
+  const content = document.getElementById('lightbox-content');
+  content.classList.toggle('is-short', isShort);
+  
   document.getElementById('lightbox-title').textContent = title;
   document.getElementById('lightbox').classList.add('active');
   document.body.style.overflow = 'hidden';
+  
+  // Replace iframe with YouTube Player API div
+  const iframe = document.getElementById('lightbox-iframe');
+  iframe.style.display = 'none';
+  
+  // Remove old player div if exists
+  const oldDiv = document.getElementById('yt-player-div');
+  if (oldDiv) oldDiv.remove();
+  
+  const playerDiv = document.createElement('div');
+  playerDiv.id = 'yt-player-div';
+  playerDiv.style.cssText = 'position:absolute;top:0;left:0;width:100%;height:100%;';
+  content.appendChild(playerDiv);
+  
+  loadYouTubeAPI(() => {
+    ytPlayer = new YT.Player('yt-player-div', {
+      videoId: videoId,
+      width: '100%',
+      height: '100%',
+      playerVars: {
+        autoplay: 1,
+        modestbranding: 1,
+        rel: 0,
+        fs: 1,
+      },
+      events: {
+        onReady: function(event) {
+          event.target.setPlaybackRate(2);
+        },
+        onPlaybackRateChange: function(event) {
+          // Re-enforce 2x if user changes it
+          if (event.data !== 2) {
+            event.target.setPlaybackRate(2);
+          }
+        }
+      }
+    });
+  });
 }
 
 function closeLightbox() {
-  document.getElementById('lightbox-iframe').src = '';
+  if (ytPlayer && ytPlayer.destroy) {
+    ytPlayer.destroy();
+    ytPlayer = null;
+  }
+  const playerDiv = document.getElementById('yt-player-div');
+  if (playerDiv) playerDiv.remove();
+  
+  const iframe = document.getElementById('lightbox-iframe');
+  iframe.src = '';
+  iframe.style.display = 'block';
+  
+  document.getElementById('lightbox-content').classList.remove('is-short');
   document.getElementById('lightbox').classList.remove('active');
   document.body.style.overflow = '';
 }
