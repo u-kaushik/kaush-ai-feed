@@ -1,5 +1,21 @@
 [
   {
+    "id": "x3IG3elJvZk",
+    "title": "Gemma 4 + Hermes/OpenClaw: HOW IS THIS POSSIBLE? FULLY LOCAL AI Agent that ACTUALLY WORKS!",
+    "url": "https://www.youtube.com/watch?v=x3IG3elJvZk",
+    "channel": "AICodeKing",
+    "channelUrl": "https://www.youtube.com/@AICodeKing",
+    "published": "2026-04-04T09:49:16+00:00",
+    "thumbnail": "https://img.youtube.com/vi/x3IG3elJvZk/hqdefault.jpg",
+    "tags": [
+      "Coding",
+      "AI-Tools",
+      "Tutorials",
+      "LLMs"
+    ],
+    "description": ""
+  },
+  {
     "id": "F3nYY3N2wgw",
     "title": "How to Use Claude Code for 99% CHEAPER",
     "url": "https://www.youtube.com/shorts/F3nYY3N2wgw",
@@ -251,21 +267,6 @@
     "channelUrl": "https://www.youtube.com/@Chase-H-AI",
     "published": "2026-04-02T09:45:07+00:00",
     "thumbnail": "https://img.youtube.com/vi/i0iQESYMjFc/hqdefault.jpg",
-    "tags": [
-      "AI",
-      "Dev",
-      "Coding"
-    ],
-    "description": ""
-  },
-  {
-    "id": "-QEYDtxkD14",
-    "title": "Claude Code for FREE | No Ollama, No GPU, No $200/M Subscription Needed (OpenRouter Setup)",
-    "url": "https://www.youtube.com/watch?v=-QEYDtxkD14",
-    "channel": "AIStackStudio-f2x",
-    "channelUrl": "https://www.youtube.com/@AIStackStudio-f2x",
-    "published": "2026-04-02T08:42:46+00:00",
-    "thumbnail": "https://img.youtube.com/vi/-QEYDtxkD14/hqdefault.jpg",
     "tags": [
       "AI",
       "Dev",
@@ -1448,21 +1449,6 @@
       "AI-Tools",
       "Tutorials",
       "LLMs"
-    ],
-    "description": ""
-  },
-  {
-    "id": "pOsGxVKYd3s",
-    "title": "Anthropic Just Revealed Where Coding Is Heading",
-    "url": "https://www.youtube.com/watch?v=pOsGxVKYd3s",
-    "channel": "RAmjad",
-    "channelUrl": "https://www.youtube.com/@RAmjad",
-    "published": "2026-03-21T09:46:57+00:00",
-    "thumbnail": "https://img.youtube.com/vi/pOsGxVKYd3s/hqdefault.jpg",
-    "tags": [
-      "AI",
-      "Dev",
-      "Coding"
     ],
     "description": ""
   }
