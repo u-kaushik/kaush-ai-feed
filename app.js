@@ -1063,19 +1063,7 @@ function escapeAttr(str) {
 
 // ===== LIGHTBOX =====
 let ytPlayer = null;
-let ytReady = false;
-
-// Load YouTube IFrame API
-function loadYouTubeAPI(callback) {
-  if (window.YT && window.YT.Player) {
-    callback();
-    return;
-  }
-  const tag = document.createElement('script');
-  tag.src = 'https://www.youtube.com/iframe_api';
-  document.head.appendChild(tag);
-  window.onYouTubeIframeAPIReady = callback;
-}
+let currentPlaybackRate = 2;
 
 function openLightbox(videoUrl, title) {
   const videoId = extractVideoId(videoUrl);
@@ -1102,30 +1090,15 @@ function openLightbox(videoUrl, title) {
   playerDiv.style.cssText = 'position:absolute;top:0;left:0;width:100%;height:100%;';
   content.appendChild(playerDiv);
   
-  loadYouTubeAPI(() => {
-    ytPlayer = new YT.Player('yt-player-div', {
-      videoId: videoId,
-      width: '100%',
-      height: '100%',
-      playerVars: {
-        autoplay: 1,
-        modestbranding: 1,
-        rel: 0,
-        fs: 1,
-      },
-      events: {
-        onReady: function(event) {
-          event.target.setPlaybackRate(2);
-        },
-        onPlaybackRateChange: function(event) {
-          // Re-enforce 2x if user changes it
-          if (event.data !== 2) {
-            event.target.setPlaybackRate(2);
-          }
-        }
-      }
-    });
-  });
+  // Use simple iframe embed with playback speed in URL
+  // YouTube doesn't support playback rate via URL, so we use the speed button
+  iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&modestbranding=1&rel=0`;
+  iframe.style.display = 'block';
+  
+  // Reset speed button
+  currentPlaybackRate = 2;
+  const speedBtn = document.getElementById('speed-btn');
+  if (speedBtn) speedBtn.textContent = '2x';
 }
 
 function closeLightbox() {
@@ -1144,6 +1117,19 @@ function closeLightbox() {
   document.getElementById('lightbox').classList.remove('active');
   document.body.style.overflow = '';
 }
+
+// Speed toggle button
+document.getElementById('speed-btn').addEventListener('click', () => {
+  const rates = [0.25, 0.5, 0.75, 1, 1.25, 1.5, 1.75, 2];
+  const idx = rates.indexOf(currentPlaybackRate);
+  currentPlaybackRate = rates[(idx + 1) % rates.length];
+  document.getElementById('speed-btn').textContent = currentPlaybackRate + 'x';
+  
+  // Try to set via YouTube API if available
+  if (ytPlayer && ytPlayer.setPlaybackRate) {
+    ytPlayer.setPlaybackRate(currentPlaybackRate);
+  }
+});
 
 // Close on background click
 document.getElementById('lightbox').addEventListener('click', (e) => {

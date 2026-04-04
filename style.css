@@ -914,3 +914,27 @@ mark {
   text-align: left;
   pointer-events: none;
 }
+
+.lightbox-controls {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  display: flex;
+  gap: 8px;
+}
+
+.speed-btn {
+  background: var(--accent);
+  border: none;
+  color: #fff;
+  padding: 6px 14px;
+  border-radius: 4px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: var(--font);
+}
+
+.speed-btn:hover {
+  background: var(--accent-hover);
+}
