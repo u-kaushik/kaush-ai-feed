@@ -1066,6 +1066,21 @@ let ytPlayer = null;
 let currentPlaybackRate = 2;
 let ytAPIReady = false;
 let hideControlsTimeout = null;
+let currentVideoId = null;
+
+// Video progress memory (localStorage)
+function getVideoProgress(videoId) {
+  try {
+    const saved = localStorage.getItem('yt-progress-' + videoId);
+    return saved ? JSON.parse(saved) : null;
+  } catch(e) { return null; }
+}
+
+function saveVideoProgress(videoId, timestamp) {
+  try {
+    localStorage.setItem('yt-progress-' + videoId, JSON.stringify({ ts: timestamp, when: Date.now() }));
+  } catch(e) {}
+}
 
 function loadYouTubeAPI(callback) {
   if (window.YT && window.YT.Player) {
@@ -1085,6 +1100,10 @@ function loadYouTubeAPI(callback) {
 function openLightbox(videoUrl, title) {
   const videoId = extractVideoId(videoUrl);
   if (!videoId) return;
+  
+  currentVideoId = videoId;
+  const savedProgress = getVideoProgress(videoId);
+  const startSeconds = savedProgress ? savedProgress.ts : 0;
   
   const isShort = videoUrl.includes('/shorts/');
   const content = document.getElementById('lightbox-content');
@@ -1123,29 +1142,40 @@ function openLightbox(videoUrl, title) {
         rel: 0,
         fs: 1,
         playsinline: 1,
+        start: Math.floor(startSeconds),
       },
       events: {
         onReady: function(event) {
+          if (startSeconds > 0) {
+            event.target.seekTo(startSeconds);
+          }
           event.target.playVideo();
-          // Set playback rate on ready
-          try {
-            event.target.setPlaybackRate(currentPlaybackRate);
-          } catch(e) {}
+          // Set playback rate on ready (multiple times to ensure it sticks)
+          for (let i = 0; i < 5; i++) {
+            setTimeout(() => {
+              try {
+                event.target.setPlaybackRate(currentPlaybackRate);
+              } catch(e) {}
+            }, i * 500);
+          }
         },
         onStateChange: function(event) {
           if (event.data === YT.PlayerState.PLAYING) {
-            // Set playback rate when video starts playing
-            setTimeout(() => {
-              try {
-                event.target.setPlaybackRate(currentPlaybackRate);
-              } catch(e) {}
-            }, 500);
-            // Keep setting it periodically to prevent YouTube from resetting
-            setTimeout(() => {
-              try {
-                event.target.setPlaybackRate(currentPlaybackRate);
-              } catch(e) {}
-            }, 2000);
+            // Keep setting playback rate periodically
+            for (let i = 1; i <= 10; i++) {
+              setTimeout(() => {
+                try {
+                  event.target.setPlaybackRate(currentPlaybackRate);
+                } catch(e) {}
+              }, i * 1000);
+            }
+          }
+          // Save progress periodically
+          if (event.data === YT.PlayerState.PLAYING || event.data === YT.PlayerState.PAUSED) {
+            if (currentVideoId) {
+              const currentTime = event.target.getCurrentTime();
+              saveVideoProgress(currentVideoId, currentTime);
+            }
           }
         }
       }
