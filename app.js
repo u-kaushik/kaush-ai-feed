@@ -1111,11 +1111,6 @@ function openLightbox(videoUrl, title) {
   playerDiv.style.cssText = 'position:absolute;top:0;left:0;width:100%;height:100%;border-radius:8px;';
   content.appendChild(playerDiv);
   
-  // Reset speed button
-  currentPlaybackRate = 2;
-  const speedBtn = document.getElementById('speed-btn');
-  if (speedBtn) speedBtn.textContent = '2x';
-  
   // Load YouTube API and create player
   loadYouTubeAPI(() => {
     ytPlayer = new YT.Player('yt-player-div', {
@@ -1132,6 +1127,10 @@ function openLightbox(videoUrl, title) {
       events: {
         onReady: function(event) {
           event.target.playVideo();
+          // Set playback rate on ready
+          try {
+            event.target.setPlaybackRate(currentPlaybackRate);
+          } catch(e) {}
         },
         onStateChange: function(event) {
           if (event.data === YT.PlayerState.PLAYING) {
@@ -1141,6 +1140,12 @@ function openLightbox(videoUrl, title) {
                 event.target.setPlaybackRate(currentPlaybackRate);
               } catch(e) {}
             }, 500);
+            // Keep setting it periodically to prevent YouTube from resetting
+            setTimeout(() => {
+              try {
+                event.target.setPlaybackRate(currentPlaybackRate);
+              } catch(e) {}
+            }, 2000);
           }
         }
       }
