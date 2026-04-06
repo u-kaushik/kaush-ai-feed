@@ -1064,6 +1064,23 @@ function escapeAttr(str) {
 // ===== LIGHTBOX =====
 let ytPlayer = null;
 let currentPlaybackRate = 2;
+let ytAPIReady = false;
+let hideControlsTimeout = null;
+
+function loadYouTubeAPI(callback) {
+  if (window.YT && window.YT.Player) {
+    ytAPIReady = true;
+    callback();
+    return;
+  }
+  window.onYouTubeIframeAPIReady = function() {
+    ytAPIReady = true;
+    callback();
+  };
+  const tag = document.createElement('script');
+  tag.src = 'https://www.youtube.com/iframe_api';
+  document.head.appendChild(tag);
+}
 
 function openLightbox(videoUrl, title) {
   const videoId = extractVideoId(videoUrl);
@@ -1077,7 +1094,10 @@ function openLightbox(videoUrl, title) {
   document.getElementById('lightbox').classList.add('active');
   document.body.style.overflow = 'hidden';
   
-  // Replace iframe with YouTube Player API div
+  // Show controls by default when lightbox opens
+  showControls();
+  
+  // Hide the static iframe
   const iframe = document.getElementById('lightbox-iframe');
   iframe.style.display = 'none';
   
@@ -1085,25 +1105,53 @@ function openLightbox(videoUrl, title) {
   const oldDiv = document.getElementById('yt-player-div');
   if (oldDiv) oldDiv.remove();
   
+  // Create player div
   const playerDiv = document.createElement('div');
   playerDiv.id = 'yt-player-div';
-  playerDiv.style.cssText = 'position:absolute;top:0;left:0;width:100%;height:100%;';
+  playerDiv.style.cssText = 'position:absolute;top:0;left:0;width:100%;height:100%;border-radius:8px;';
   content.appendChild(playerDiv);
-  
-  // Use simple iframe embed with playback speed in URL
-  // YouTube doesn't support playback rate via URL, so we use the speed button
-  iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&modestbranding=1&rel=0`;
-  iframe.style.display = 'block';
   
   // Reset speed button
   currentPlaybackRate = 2;
   const speedBtn = document.getElementById('speed-btn');
   if (speedBtn) speedBtn.textContent = '2x';
+  
+  // Load YouTube API and create player
+  loadYouTubeAPI(() => {
+    ytPlayer = new YT.Player('yt-player-div', {
+      videoId: videoId,
+      width: '100%',
+      height: '100%',
+      playerVars: {
+        autoplay: 1,
+        modestbranding: 1,
+        rel: 0,
+        fs: 1,
+        playsinline: 1,
+      },
+      events: {
+        onReady: function(event) {
+          event.target.playVideo();
+        },
+        onStateChange: function(event) {
+          if (event.data === YT.PlayerState.PLAYING) {
+            // Set playback rate when video starts playing
+            setTimeout(() => {
+              try {
+                event.target.setPlaybackRate(currentPlaybackRate);
+              } catch(e) {}
+            }, 500);
+          }
+        }
+      }
+    });
+  });
 }
 
 function closeLightbox() {
-  if (ytPlayer && ytPlayer.destroy) {
-    ytPlayer.destroy();
+  clearTimeout(hideControlsTimeout);
+  if (ytPlayer) {
+    try { ytPlayer.destroy(); } catch(e) {}
     ytPlayer = null;
   }
   const playerDiv = document.getElementById('yt-player-div');
@@ -1126,8 +1174,10 @@ document.getElementById('speed-btn').addEventListener('click', () => {
   document.getElementById('speed-btn').textContent = currentPlaybackRate + 'x';
   
   // Try to set via YouTube API if available
-  if (ytPlayer && ytPlayer.setPlaybackRate) {
-    ytPlayer.setPlaybackRate(currentPlaybackRate);
+  if (ytPlayer) {
+    try {
+      ytPlayer.setPlaybackRate(currentPlaybackRate);
+    } catch(e) {}
   }
 });
 
@@ -1139,4 +1189,35 @@ document.getElementById('lightbox').addEventListener('click', (e) => {
 // Close on escape key
 document.addEventListener('keydown', (e) => {
   if (e.key === 'Escape') closeLightbox();
+});
+
+// ===== MOUSE TRACKING FOR CONTROLS =====
+function showControls() {
+  clearTimeout(hideControlsTimeout);
+  const closeBtn = document.querySelector('.lightbox-close');
+  const controls = document.querySelector('.lightbox-controls');
+  if (closeBtn) closeBtn.style.opacity = '1';
+  if (controls) controls.style.opacity = '1';
+}
+
+function scheduleHideControls() {
+  clearTimeout(hideControlsTimeout);
+  hideControlsTimeout = setTimeout(() => {
+    const closeBtn = document.querySelector('.lightbox-close');
+    const controls = document.querySelector('.lightbox-controls');
+    if (closeBtn) closeBtn.style.opacity = '0';
+    if (controls) controls.style.opacity = '0';
+  }, 1500);
+}
+
+document.getElementById('lightbox').addEventListener('mousemove', () => {
+  showControls();
+  scheduleHideControls();
+});
+
+document.getElementById('lightbox').addEventListener('mouseleave', () => {
+  const closeBtn = document.querySelector('.lightbox-close');
+  const controls = document.querySelector('.lightbox-controls');
+  if (closeBtn) closeBtn.style.opacity = '0';
+  if (controls) controls.style.opacity = '0';
 });
