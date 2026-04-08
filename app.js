@@ -163,18 +163,34 @@ function groupByDate(items) {
   return groups;
 }
 
+function sourceIcon(item) {
+  const source = sourceLabel(item).toLowerCase();
+  if (source.includes('github')) return '⌘';
+  if (source.includes('youtube')) return '▶';
+  return '✦';
+}
+
 function renderCard(item) {
   const tags = Array.isArray(item.tags) ? item.tags : [];
-  const score = item.score ? `<span class="tag-chip">score ${escapeHtml(item.score)}</span>` : '';
+  const score = item.score ? `<span class="tag-chip tag-chip-score">score ${escapeHtml(item.score)}</span>` : '';
+  const source = sourceLabel(item);
+  const icon = sourceIcon(item);
+  const thumb = item.thumbnail
+    ? `<div class="card-thumb card-thumb-${escapeHtml(item.type || 'item')}"><img src="${escapeHtml(item.thumbnail)}" alt="${escapeHtml(item.title || source)}" loading="lazy" /></div>`
+    : '';
   return `
-    <article class="card">
+    <article class="card card-type-${escapeHtml(item.type || 'item')}">
       <a class="card-link" href="${escapeHtml(item.url || '#')}" target="_blank" rel="noopener noreferrer">
+        ${thumb}
         <div class="card-main">
           <div class="card-header">
             <div class="card-title-wrap">
               <div class="card-title">${escapeHtml(item.title || 'Untitled')}</div>
               <div class="card-meta-row">
-                <button class="card-channel-btn" data-source="${escapeHtml(sourceLabel(item))}" title="Filter by source">${escapeHtml(sourceLabel(item))}</button>
+                <button class="card-channel-btn card-channel-btn-${escapeHtml(item.type || 'item')}" data-source="${escapeHtml(source)}" title="Filter by source">
+                  <span class="source-icon" aria-hidden="true">${icon}</span>
+                  <span>${escapeHtml(source)}</span>
+                </button>
                 <span class="card-meta-sep">•</span>
                 <span class="card-date">${escapeHtml(formatRelativeDate(item.published))}</span>
                 <span class="card-meta-sep">•</span>
@@ -182,12 +198,12 @@ function renderCard(item) {
               </div>
             </div>
           </div>
-          <div class="summary-content expanded" style="display:block;margin-top:12px">
-            <div style="font-size:13px;line-height:1.65;color:var(--text);margin-bottom:10px">${escapeHtml(item.summary || '')}</div>
-            ${item.why_it_matters ? `<div style="font-size:12px;line-height:1.6;color:var(--text-muted)"><strong style="color:var(--text)">Why it matters:</strong> ${escapeHtml(item.why_it_matters)}</div>` : ''}
+          <div class="summary-content expanded card-summary-block">
+            <div class="card-summary-text">${escapeHtml(item.summary || '')}</div>
+            ${item.why_it_matters ? `<div class="card-why"><strong>Why it matters:</strong> ${escapeHtml(item.why_it_matters)}</div>` : ''}
             ${metricHtml(item.metrics)}
           </div>
-          <div class="card-tags" style="margin-top:12px">
+          <div class="card-tags card-tags-bottom">
             ${score}
             ${tags.map((tag) => `<span class="tag-chip">${escapeHtml(tag)}</span>`).join('')}
           </div>
