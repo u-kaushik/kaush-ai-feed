@@ -441,19 +441,29 @@ setInterval(() => {
     if (manualTheme === null) setTimeBasedTheme();
 }, 60000);
 
-document.addEventListener('DOMContentLoaded', () => {
-    document.getElementById('search-input').addEventListener('input', onSearch);
-    document.getElementById('search-clear').addEventListener('click', clearSearch);
-    document.getElementById('refresh-btn').addEventListener('click', fetchItems);
-    document.getElementById('theme-toggle').addEventListener('click', toggleTheme);
-    document.getElementById('clear-channel-filter').addEventListener('click', () => {
+function initApp() {
+    const searchInput = document.getElementById('search-input');
+    const searchClear = document.getElementById('search-clear');
+    const refreshBtn = document.getElementById('refresh-btn');
+    const themeToggle = document.getElementById('theme-toggle');
+    const clearChannelFilter = document.getElementById('clear-channel-filter');
+    const feed = document.getElementById('feed');
+
+    if (!searchInput || !searchClear || !refreshBtn || !themeToggle || !clearChannelFilter || !feed) {
+        return;
+    }
+
+    searchInput.addEventListener('input', onSearch);
+    searchClear.addEventListener('click', clearSearch);
+    refreshBtn.addEventListener('click', fetchItems);
+    themeToggle.addEventListener('click', toggleTheme);
+    clearChannelFilter.addEventListener('click', () => {
         activeChannelFilter = null;
         renderChannelFilterBar();
         renderFeed();
         updateCount();
     });
-    
-    // Add click handler for card links
+
     document.addEventListener('click', (event) => {
         const cardLink = event.target.closest('.card-link');
         if (cardLink) {
@@ -464,13 +474,18 @@ document.addEventListener('DOMContentLoaded', () => {
             openLightbox(url, type, title);
         }
     });
-    
-    // Add click handler for lightbox close button
+
     document.addEventListener('click', (event) => {
         if (event.target.classList.contains('lightbox-close')) {
             closeLightbox();
         }
     });
-    
+
     fetchItems();
-});
+}
+
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initApp, { once: true });
+} else {
+    initApp();
+}
