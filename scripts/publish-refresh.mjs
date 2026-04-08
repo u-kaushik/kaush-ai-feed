@@ -23,9 +23,8 @@ function getChangedAllowedPaths() {
   const out = run('git', ['status', '--porcelain', '--', ...allowedPaths], { capture: true });
   return out
     .split('\n')
-    .map((line) => line.trim())
-    .filter(Boolean)
-    .map((line) => line.slice(3))
+    .filter((line) => line.trim().length > 0)
+    .map((line) => line.slice(3).trim())
     .filter((path, index, arr) => allowedPaths.includes(path) && arr.indexOf(path) === index);
 }
 

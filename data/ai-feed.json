@@ -18,11 +18,11 @@
     "why_it_matters": "Relevant to Jarvis, AI workflows, and product ideas worth monitoring closely.",
     "score": 99,
     "metrics": {
-      "stars": 26454,
-      "forks": 3280,
+      "stars": 26813,
+      "forks": 3329,
       "language": "Python"
     },
-    "updated_at": "2026-04-08T21:45:14.662Z"
+    "updated_at": "2026-04-08T23:19:19.764Z"
   },
   {
     "id": "github-juliusbrussee-caveman",
@@ -43,11 +43,11 @@
     "why_it_matters": "Relevant to Jarvis, AI workflows, and product ideas worth monitoring closely.",
     "score": 99,
     "metrics": {
-      "stars": 7379,
-      "forks": 296,
+      "stars": 7431,
+      "forks": 301,
       "language": "Python"
     },
-    "updated_at": "2026-04-08T21:45:14.662Z"
+    "updated_at": "2026-04-08T23:19:19.766Z"
   },
   {
     "id": "youtube-eehssulxzn4",
@@ -66,7 +66,7 @@
     "why_it_matters": "Useful for spotting practical tools, coding workflow shifts, and adjacent AI opportunities without scanning YouTube manually.",
     "thumbnail": "https://img.youtube.com/vi/eehsSUlXZN4/hqdefault.jpg",
     "score": 74,
-    "updated_at": "2026-04-08T21:45:14.662Z"
+    "updated_at": "2026-04-08T23:19:19.767Z"
   },
   {
     "id": "youtube-de47tvijvni",
@@ -85,7 +85,7 @@
     "why_it_matters": "Useful for spotting practical tools, coding workflow shifts, and adjacent AI opportunities without scanning YouTube manually.",
     "thumbnail": "https://img.youtube.com/vi/dE47tvijvNI/hqdefault.jpg",
     "score": 74,
-    "updated_at": "2026-04-08T21:45:14.662Z"
+    "updated_at": "2026-04-08T23:19:19.768Z"
   },
   {
     "id": "youtube-eeybwjwvqtq",
@@ -104,7 +104,7 @@
     "why_it_matters": "Useful for spotting practical tools, coding workflow shifts, and adjacent AI opportunities without scanning YouTube manually.",
     "thumbnail": "https://img.youtube.com/vi/eEYbwJWVQtQ/hqdefault.jpg",
     "score": 74,
-    "updated_at": "2026-04-08T21:45:14.662Z"
+    "updated_at": "2026-04-08T23:19:19.768Z"
   },
   {
     "id": "youtube-p9mgmkhuz-4",
@@ -123,7 +123,7 @@
     "why_it_matters": "Useful for spotting practical tools, coding workflow shifts, and adjacent AI opportunities without scanning YouTube manually.",
     "thumbnail": "https://img.youtube.com/vi/p9mgmKhUz_4/hqdefault.jpg",
     "score": 74,
-    "updated_at": "2026-04-08T21:45:14.662Z"
+    "updated_at": "2026-04-08T23:19:19.768Z"
   },
   {
     "id": "youtube-t4fxb3sbjio",
@@ -142,7 +142,7 @@
     "why_it_matters": "Useful for spotting practical tools, coding workflow shifts, and adjacent AI opportunities without scanning YouTube manually.",
     "thumbnail": "https://img.youtube.com/vi/T4fXb3sbJIo/hqdefault.jpg",
     "score": 74,
-    "updated_at": "2026-04-08T21:45:14.662Z"
+    "updated_at": "2026-04-08T23:19:19.768Z"
   },
   {
     "id": "youtube-wylttz4s03c",
@@ -161,7 +161,7 @@
     "why_it_matters": "Useful for spotting practical tools, coding workflow shifts, and adjacent AI opportunities without scanning YouTube manually.",
     "thumbnail": "https://img.youtube.com/vi/wyLtTz4S03c/hqdefault.jpg",
     "score": 74,
-    "updated_at": "2026-04-08T21:45:14.662Z"
+    "updated_at": "2026-04-08T23:19:19.768Z"
   },
   {
     "id": "youtube-csf-bxotrz4",
@@ -181,7 +181,7 @@
     "why_it_matters": "Useful for spotting practical tools, coding workflow shifts, and adjacent AI opportunities without scanning YouTube manually.",
     "thumbnail": "https://img.youtube.com/vi/cSF-bxotrz4/hqdefault.jpg",
     "score": 70,
-    "updated_at": "2026-04-08T21:45:14.662Z"
+    "updated_at": "2026-04-08T23:19:19.768Z"
   },
   {
     "id": "github-rasbt-mini-coding-agent",
@@ -202,11 +202,11 @@
     "why_it_matters": "Strong fit for operator leverage, agent workflows, and business automation ideas.",
     "score": 69,
     "metrics": {
-      "stars": 481,
+      "stars": 484,
       "forks": 92,
       "language": "Python"
     },
-    "updated_at": "2026-04-08T21:45:14.662Z"
+    "updated_at": "2026-04-08T23:19:19.767Z"
   },
   {
     "id": "github-kessler-gemma-gem",
@@ -225,13 +225,13 @@
     ],
     "summary": "Gemma Gem runs Google's Gemma 4 model entirely on-device via WebGPU — no API keys, no cloud, no data leaving your machine.",
     "why_it_matters": "Relevant to Jarvis, AI workflows, and product ideas worth monitoring closely.",
-    "score": 67,
+    "score": 68,
     "metrics": {
-      "stars": 509,
-      "forks": 43,
+      "stars": 519,
+      "forks": 45,
       "language": "TypeScript"
     },
-    "updated_at": "2026-04-08T21:45:14.662Z"
+    "updated_at": "2026-04-08T23:19:19.767Z"
   },
   {
     "id": "github-houseofmvps-codesight",
@@ -252,11 +252,11 @@
     "why_it_matters": "Relevant to Jarvis, AI workflows, and product ideas worth monitoring closely.",
     "score": 67,
     "metrics": {
-      "stars": 486,
-      "forks": 44,
+      "stars": 498,
+      "forks": 45,
       "language": "TypeScript"
     },
-    "updated_at": "2026-04-08T21:45:14.662Z"
+    "updated_at": "2026-04-08T23:19:19.767Z"
   },
   {
     "id": "github-math-ai-org-mathcode",
@@ -277,11 +277,11 @@
     "why_it_matters": "Relevant to Jarvis, AI workflows, and product ideas worth monitoring closely.",
     "score": 66,
     "metrics": {
-      "stars": 289,
+      "stars": 290,
       "forks": 25,
       "language": "Shell"
     },
-    "updated_at": "2026-04-08T21:45:14.662Z"
+    "updated_at": "2026-04-08T23:19:19.767Z"
   },
   {
     "id": "youtube-yavycrzihx8",
@@ -301,7 +301,7 @@
     "why_it_matters": "Useful for spotting practical tools, coding workflow shifts, and adjacent AI opportunities without scanning YouTube manually.",
     "thumbnail": "https://img.youtube.com/vi/yaVYCrZIHX8/hqdefault.jpg",
     "score": 64,
-    "updated_at": "2026-04-08T21:45:14.662Z"
+    "updated_at": "2026-04-08T23:19:19.767Z"
   },
   {
     "id": "youtube-saq7ekd1-74",
@@ -320,7 +320,7 @@
     "why_it_matters": "Useful for spotting practical tools, coding workflow shifts, and adjacent AI opportunities without scanning YouTube manually.",
     "thumbnail": "https://img.youtube.com/vi/SAq7ekD1-74/hqdefault.jpg",
     "score": 64,
-    "updated_at": "2026-04-08T21:45:14.662Z"
+    "updated_at": "2026-04-08T23:19:19.767Z"
   },
   {
     "id": "github-agricidaniel-claude-obsidian",
@@ -341,11 +341,11 @@
     "why_it_matters": "Relevant to Jarvis, AI workflows, and product ideas worth monitoring closely.",
     "score": 64,
     "metrics": {
-      "stars": 167,
+      "stars": 174,
       "forks": 12,
       "language": "Shell"
     },
-    "updated_at": "2026-04-08T21:45:14.662Z"
+    "updated_at": "2026-04-08T23:19:19.767Z"
   },
   {
     "id": "youtube-tqbikjgr5mm",
@@ -364,7 +364,7 @@
     "why_it_matters": "Useful for spotting practical tools, coding workflow shifts, and adjacent AI opportunities without scanning YouTube manually.",
     "thumbnail": "https://img.youtube.com/vi/TqbIkJgr5mM/hqdefault.jpg",
     "score": 64,
-    "updated_at": "2026-04-08T21:45:14.662Z"
+    "updated_at": "2026-04-08T23:19:19.768Z"
   },
   {
     "id": "github-chencore-deep-live-cam-tutorial",
@@ -388,7 +388,7 @@
       "stars": 80,
       "forks": 12
     },
-    "updated_at": "2026-04-08T21:45:14.662Z"
+    "updated_at": "2026-04-08T23:19:19.767Z"
   },
   {
     "id": "github-zarazhangrui-personalized-podcast",
@@ -409,11 +409,11 @@
     "why_it_matters": "Relevant to Jarvis, AI workflows, and product ideas worth monitoring closely.",
     "score": 64,
     "metrics": {
-      "stars": 136,
+      "stars": 140,
       "forks": 14,
       "language": "Python"
     },
-    "updated_at": "2026-04-08T21:45:14.662Z"
+    "updated_at": "2026-04-08T23:19:19.767Z"
   },
   {
     "id": "github-thinkwatchproject-thinkwatch",
@@ -434,10 +434,10 @@
     "why_it_matters": "Relevant to Jarvis, AI workflows, and product ideas worth monitoring closely.",
     "score": 64,
     "metrics": {
-      "stars": 105,
+      "stars": 106,
       "forks": 1,
       "language": "Rust"
     },
-    "updated_at": "2026-04-08T21:45:14.662Z"
+    "updated_at": "2026-04-08T23:19:19.767Z"
   }
 ]

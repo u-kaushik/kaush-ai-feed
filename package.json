@@ -7,7 +7,9 @@
     "digest:email": "node scripts/render-email.mjs",
     "digest:send": "node scripts/send-email.mjs",
     "digest:test-send": "pnpm digest:run && pnpm digest:send",
-    "digest:run": "pnpm digest:update && pnpm digest:email"
+    "digest:run": "pnpm digest:update && pnpm digest:email",
+    "digest:publish": "node scripts/publish-refresh.mjs",
+    "digest:schedule": "node scripts/scheduled-refresh.mjs"
   },
   "dependencies": {
     "nodemailer": "^7.0.5"
