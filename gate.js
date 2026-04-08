@@ -1,6 +1,6 @@
 const DIGEST_GATE = {
   storageKey: 'ai-digest-unlocked',
-  passwordHash: 'd445d6f02dffa99c35b18a71ca2ceca01c21520d259055727f2104a26a68412e',
+  passwordHash: '180661a3306a4ffcaa5f9dc47e3708fccd292223e55ff7d99766a789986c3ba3',
   promptTitle: 'Private digest',
   promptBody: 'This digest is lightly gated while it is live on the public web.',
 };
