@@ -197,7 +197,7 @@ function renderCard(item) {
         : '';
     return `
         <article class="card card-type-${escapeHtml(item.type || 'item')}">
-            <div class="card-link" data-url="${escapeHtml(item.url || '#')}" data-type="${escapeHtml(item.type || 'item')}" data-title="${escapeHtml(item.title || 'Untitled')}" data-source="${escapeHtml(source)}">
+            <div class="card-link" data-id="${escapeHtml(item.id || '')}" data-url="${escapeHtml(item.url || '#')}" data-type="${escapeHtml(item.type || 'item')}" data-title="${escapeHtml(item.title || 'Untitled')}" data-source="${escapeHtml(source)}">
                 ${thumb}
                 <div class="card-main">
                     <div class="card-header">
@@ -263,186 +263,252 @@ function getYoutubeVideoId(url) {
     }
 }
 
-function openLightbox(url, type, title) {
+function parseGithubRepo(url) {
+    try {
+        const parsed = new URL(url);
+        const parts = parsed.pathname.split('/').filter(Boolean);
+        if (parsed.hostname.replace(/^www\./, '') !== 'github.com') return null;
+        if (parts.length < 2) return null;
+        return { owner: parts[0], repo: parts[1] };
+    } catch {
+        return null;
+    }
+}
+
+function getItemById(itemId) {
+    return allItems.find((item) => item.id === itemId) || null;
+}
+
+function renderGithubReadme(markdown) {
+    if (!markdown) return '<p class="github-lightbox-empty">No README preview available yet.</p>';
+    const cleaned = markdown
+        .replace(/```[\s\S]*?```/g, '\n[code block omitted]\n')
+        .replace(/^!\[[^\]]*\]\([^)]*\)$/gm, '')
+        .replace(/^\[[^\]]+\]\([^)]*\)$/gm, '')
+        .replace(/^#{1,6}\s*/gm, '')
+        .replace(/^>\s?/gm, '')
+        .replace(/\r/g, '')
+        .trim();
+    const excerpt = cleaned.slice(0, 2200).trim();
+    return excerpt
+        ? `<pre class="github-lightbox-readme">${escapeHtml(excerpt)}${cleaned.length > excerpt.length ? '\n\n…' : ''}</pre>`
+        : '<p class="github-lightbox-empty">No README preview available yet.</p>';
+}
+
+async function fetchGithubPreview(url) {
+    const repo = parseGithubRepo(url);
+    if (!repo) return null;
+
+    const repoRes = await fetch(`https://api.github.com/repos/${repo.owner}/${repo.repo}`);
+    if (!repoRes.ok) throw new Error(`GitHub repo fetch failed (${repoRes.status})`);
+    const repoData = await repoRes.json();
+
+    let readme = '';
+    try {
+        const readmeRes = await fetch(`https://api.github.com/repos/${repo.owner}/${repo.repo}/readme`, {
+            headers: { Accept: 'application/vnd.github.raw+json' },
+        });
+        if (readmeRes.ok) readme = await readmeRes.text();
+    } catch {
+        // README preview is optional
+    }
+
+    return {
+        repo,
+        repoData,
+        readme,
+    };
+}
+
+function renderYoutubeLightbox(lightboxContent, item) {
+    const lightbox = document.getElementById('lightbox');
+    const videoId = getYoutubeVideoId(item.url || '');
+    if (!videoId) return;
+
+    const isShort = (item.url || '').includes('/shorts/') || (item.url || '').includes('youtu.be/');
+    if (isShort) lightboxContent.classList.add('is-short');
+
+    const videoWrapper = document.createElement('div');
+    videoWrapper.style.position = 'relative';
+    videoWrapper.style.width = '100%';
+    videoWrapper.style.height = '100%';
+    videoWrapper.style.aspectRatio = isShort ? '9/16' : '16/9';
+
+    const iframe = document.createElement('iframe');
+    iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&enablejsapi=1&controls=0`;
+    iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+    iframe.allowFullscreen = true;
+    iframe.style.width = '100%';
+    iframe.style.height = '100%';
+    iframe.style.border = 'none';
+    iframe.onload = () => {
+        if (lightbox.seekToTime !== null && lightbox.seekToTime > 0) {
+            setTimeout(() => {
+                iframe.contentWindow.postMessage(`{"event":"command","func":"seekTo","args":[${lightbox.seekToTime},true]}`, '*');
+            }, 1000);
+        }
+    };
+
+    videoWrapper.appendChild(iframe);
+    lightboxContent.appendChild(videoWrapper);
+
+    const controlsContainer = document.createElement('div');
+    controlsContainer.className = 'lightbox-controls';
+    [0.5, 1, 1.5, 2].forEach((speed) => {
+        const btn = document.createElement('button');
+        btn.className = 'speed-btn';
+        btn.textContent = `${speed}x`;
+        btn.onclick = () => {
+            iframe.contentWindow.postMessage(`{"event":"command","func":"setPlaybackRate","args":[${speed}]}`, '*');
+        };
+        controlsContainer.appendChild(btn);
+    });
+    lightboxContent.appendChild(controlsContainer);
+
+    lightbox.currentIframe = iframe;
+    lightbox.currentVideoId = videoId;
+    const savedTime = localStorage.getItem(`yt_${videoId}`);
+    lightbox.seekToTime = savedTime ? parseFloat(savedTime) : null;
+}
+
+function renderGithubLightbox(lightboxContent, item) {
+  lightboxContent.classList.add('lightbox-content--github');
+  lightboxContent.innerHTML += `
+    <div class="lightbox-shell github-lightbox">
+      <div class="github-lightbox-head">
+        <div>
+          <div class="github-lightbox-kicker">GitHub preview</div>
+          <h2 class="github-lightbox-title">${escapeHtml(item.title || 'Untitled')}</h2>
+          <div class="github-lightbox-meta">
+            <span>${escapeHtml(authorLabel(item))}</span>
+            <span>•</span>
+            <span>${escapeHtml(formatRelativeDate(item.published))}</span>
+            ${item.metrics?.language ? `<span>•</span><span>${escapeHtml(item.metrics.language)}</span>` : ''}
+          </div>
+        </div>
+        <div class="github-lightbox-actions">
+          <a class="github-lightbox-btn" href="${escapeHtml(item.url || '#')}" target="_blank" rel="noreferrer">Open repo ↗</a>
+        </div>
+      </div>
+      <div class="github-lightbox-summary">
+        <p>${escapeHtml(item.summary || '')}</p>
+        ${item.why_it_matters ? `<p class="github-lightbox-why"><strong>Why it matters:</strong> ${escapeHtml(item.why_it_matters)}</p>` : ''}
+        ${metricHtml(item.metrics)}
+      </div>
+      <div id="github-lightbox-body" class="github-lightbox-body">
+        <div class="github-lightbox-loading">Loading repo preview…</div>
+      </div>
+    </div>
+  `;
+
+  const body = document.getElementById('github-lightbox-body');
+  fetchGithubPreview(item.url || '')
+    .then((preview) => {
+      if (!body) return;
+      if (!preview) {
+        body.innerHTML = '<p class="github-lightbox-empty">Could not parse the GitHub repo URL.</p>';
+        return;
+      }
+      const homepage = preview.repoData.homepage
+        ? `<a class="github-lightbox-btn github-lightbox-btn-secondary" href="${escapeHtml(preview.repoData.homepage)}" target="_blank" rel="noreferrer">Homepage ↗</a>`
+        : '';
+      body.innerHTML = `
+        <div class="github-lightbox-grid">
+          <div class="github-lightbox-panel">
+            <div class="github-lightbox-panel-title">Repository snapshot</div>
+            <div class="github-lightbox-facts">
+              <div><span>Stars</span><strong>${escapeHtml(preview.repoData.stargazers_count ?? item.metrics?.stars ?? '—')}</strong></div>
+              <div><span>Forks</span><strong>${escapeHtml(preview.repoData.forks_count ?? item.metrics?.forks ?? '—')}</strong></div>
+              <div><span>Watchers</span><strong>${escapeHtml(preview.repoData.subscribers_count ?? '—')}</strong></div>
+              <div><span>Open issues</span><strong>${escapeHtml(preview.repoData.open_issues_count ?? '—')}</strong></div>
+            </div>
+            <p class="github-lightbox-description">${escapeHtml(preview.repoData.description || item.summary || 'No description available.')}</p>
+            <div class="github-lightbox-actions-row">
+              <a class="github-lightbox-btn github-lightbox-btn-secondary" href="${escapeHtml(preview.repoData.html_url)}" target="_blank" rel="noreferrer">View on GitHub ↗</a>
+              ${homepage}
+            </div>
+          </div>
+          <div class="github-lightbox-panel">
+            <div class="github-lightbox-panel-title">README preview</div>
+            ${renderGithubReadme(preview.readme)}
+          </div>
+        </div>
+      `;
+    })
+    .catch((error) => {
+      if (!body) return;
+      body.innerHTML = `<p class="github-lightbox-empty">Couldn’t load the GitHub preview (${escapeHtml(error.message)}). Use “Open repo” instead.</p>`;
+    });
+}
+}
+            const homepage = preview.repoData.homepage
+                ? `<a class="github-lightbox-btn github-lightbox-btn-secondary" href="${escapeHtml(preview.repoData.homepage)}" target="_blank" rel="noreferrer">Homepage ↗</a>`
+                : '';
+            body.innerHTML = `
+                <div class="github-lightbox-grid">
+                    <div class="github-lightbox-panel">
+                        <div class="github-lightbox-panel-title">Repository snapshot</div>
+                        <div class="github-lightbox-facts">
+                            <div><span>Stars</span><strong>${escapeHtml(preview.repoData.stargazers_count ?? item.metrics?.stars ?? '—')}</strong></div>
+                            <div><span>Forks</span><strong>${escapeHtml(preview.repoData.forks_count ?? item.metrics?.forks ?? '—')}</strong></div>
+                            <div><span>Watchers</span><strong>${escapeHtml(preview.repoData.subscribers_count ?? '—')}</strong></div>
+                            <div><span>Open issues</span><strong>${escapeHtml(preview.repoData.open_issues_count ?? '—')}</strong></div>
+                        </div>
+                        <p class="github-lightbox-description">${escapeHtml(preview.repoData.description || item.summary || 'No description available.')}</p>
+                        <div class="github-lightbox-actions-row">
+                            <a class="github-lightbox-btn github-lightbox-btn-secondary" href="${escapeHtml(preview.repoData.html_url)}" target="_blank" rel="noreferrer">View on GitHub ↗</a>
+                            ${homepage}
+                        </div>
+                    </div>
+                    <div class="github-lightbox-panel">
+                        <div class="github-lightbox-panel-title">README preview</div>
+                        ${renderGithubReadme(preview.readme)}
+                    </div>
+                </div>
+            `;
+        })
+        .catch((error) => {
+            if (!body) return;
+            body.innerHTML = `<p class="github-lightbox-empty">Couldn’t load the GitHub preview (${escapeHtml(error.message)}). Use “Open repo” instead.</p>`;
+        });
+}
+
+function openLightbox(item) {
+    if (!item) return;
     const lightbox = document.getElementById('lightbox');
     const lightboxContent = lightbox.querySelector('.lightbox-content');
-    const lightboxTitle = document.getElementById('lightbox-title');
-    
-    // Reset content
+
+    lightbox.classList.add('active');
+    lightbox.onclick = (event) => {
+        if (event.target === lightbox) closeLightbox();
+    };
+
+    lightboxContent.className = 'lightbox-content';
     lightboxContent.innerHTML = '';
-    lightboxTitle.textContent = '';
-    
-    // Add close button
+
     const closeButton = document.createElement('div');
     closeButton.className = 'lightbox-close';
     closeButton.innerHTML = '&times;';
     closeButton.onclick = closeLightbox;
     lightboxContent.appendChild(closeButton);
-    
-    // Add title
-    lightboxTitle.textContent = title;
-    lightboxContent.appendChild(lightboxTitle);
-    
-    // Add content based on type
-    if (type === 'youtube') {
-        // Extract video ID from YouTube URL
-        const videoIdMatch = url.match(/[?&]v=([^&?\s]+)|youtu\.be\/([^&?\s]+)|youtube\.com\/shorts\/([^&?\s]+)/);
-        const videoId = videoIdMatch ? (videoIdMatch[1] || videoIdMatch[2] || videoIdMatch[3]) : null;
-        
-        if (videoId) {
-            // Check if it's a short (youtu.be/ or youtube.com/shorts/)
-            const isShort = url.includes('/shorts/') || url.includes('youtu.be/');
-            
-            // Create container for video and controls
-            const videoWrapper = document.createElement('div');
-            videoWrapper.style.position = 'relative';
-            videoWrapper.style.width = '100%';
-            videoWrapper.style.height = '100%';
-            
-            // Set aspect ratio based on video type
-            if (isShort) {
-                lightboxContent.classList.add('is-short');
-                videoWrapper.style.aspectRatio = '9/16';
-            } else {
-                lightboxContent.classList.remove('is-short');
-                videoWrapper.style.aspectRatio = '16/9';
-            }
-            
-            const iframe = document.createElement('iframe');
-            // Remove showinfo=0 and modestbranding=1 to get rid of blue controls, use controls=0 instead
-            iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&enablejsapi=1&controls=0`;
-            iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
-            iframe.allowFullscreen = true;
-            iframe.style.width = '100%';
-            iframe.style.height = '100%';
-            iframe.style.border = 'none';
-            
-            // Add load event listener to handle seeking to saved position
-            iframe.onload = () => {
-                // If we have a saved time, seek to it after a short delay
-                if (lightbox.seekToTime !== null && lightbox.seekToTime > 0) {
-                    setTimeout(() => {
-                        iframe.contentWindow.postMessage('{"event":"command","func":"seekTo","args":[' + lightbox.seekToTime + ',true]}', '*');
-                    }, 1000); // Wait for player to be ready
-                }
-            };
-            
-            videoWrapper.appendChild(iframe);
-            lightboxContent.appendChild(videoWrapper);
-            
-            // Add controls below the video
-            const controlsContainer = document.createElement('div');
-            controlsContainer.className = 'lightbox-controls';
-            controlsContainer.style.marginTop = '16px';
-            controlsContainer.style.display = 'flex';
-            controlsContainer.style.gap = '8px';
-            controlsContainer.style.justifyContent = 'center';
-            controlsContainer.style.flexWrap = 'wrap';
-            
-            const speeds = [0.5, 1, 1.5, 2];
-            speeds.forEach(speed => {
-                const btn = document.createElement('button');
-                btn.className = 'speed-btn';
-                btn.textContent = `${speed}x`;
-                btn.onclick = () => {
-                    // Send message to YouTube iframe to change playback rate
-                    iframe.contentWindow.postMessage('{"event":"command","func":"setPlaybackRate","args":[' + speed + ']}', '*');
-                };
-                controlsContainer.appendChild(btn);
-            });
-            
-            lightboxContent.appendChild(controlsContainer);
-            
-            // Store reference to iframe for cleanup and position tracking
-            lightbox.currentIframe = iframe;
-            lightbox.currentVideoId = videoId;
-            
-            // Try to restore playback position from localStorage
-            const savedTime = localStorage.getItem(`yt_${videoId}`);
-            if (savedTime) {
-                // We'll set the time after the iframe loads
-                lightbox.seekToTime = parseFloat(savedTime);
-            } else {
-                lightbox.seekToTime = null;
-            }
-        }
-    } else if (type === 'github') {
-        // For GitHub, we'll show the raw content or use a service like rawgit
-        // For simplicity, we'll just link to the GitHub page in an iframe
-        const iframe = document.createElement('iframe');
-        iframe.src = url;
-        iframe.allowFullscreen = true;
-        iframe.style.width = '100%';
-        iframe.style.height = 'calc(100% - 48px)'; // Account for controls
-        iframe.style.border = 'none';
-        lightboxContent.appendChild(iframe);
-        
-        // Add simple close instruction for GitHub
-        const instructions = document.createElement('div');
-        instructions.style.position = 'absolute';
-        instructions.style.top = '16px';
-        instructions.style.left = '16px';
-        instructions.style.background = 'rgba(0,0,0,0.7)';
-        instructions.style.color = 'white';
-        instructions.style.padding = '8px 12px';
-        instructions.style.borderRadius = '4px';
-        instructions.style.fontSize = '14px';
-        instructions.textContent = 'Click anywhere outside to close';
-        lightboxContent.appendChild(instructions);
+
+    if (item.type === 'youtube') {
+        const title = document.createElement('div');
+        title.id = 'lightbox-title';
+        title.className = 'lightbox-title';
+        title.textContent = item.title || 'Untitled';
+        lightboxContent.appendChild(title);
+        renderYoutubeLightbox(lightboxContent, item);
+        return;
     }
-    
-    // Show lightbox
-    lightbox.classList.add('active');
-    
-    // Add click outside to close for GitHub lightbox
-    if (type === 'github') {
-        lightbox.onclick = (e) => {
-            if (e.target === lightbox) {
-                closeLightbox();
-            }
-        };
-    } else {
-        lightbox.onclick = null;
+
+    if (item.type === 'github') {
+        renderGithubLightbox(lightboxContent, item);
+        return;
     }
-}
-    } else if (type === 'github') {
-        // For GitHub, we'll show the raw content or use a service like rawgit
-        // For simplicity, we'll just link to the GitHub page in an iframe
-        const iframe = document.createElement('iframe');
-        iframe.src = url;
-        iframe.allowFullscreen = true;
-        iframe.style.width = '100%';
-        iframe.style.height = 'calc(100% - 48px)'; // Account for controls
-        iframe.style.border = 'none';
-        lightboxContent.appendChild(iframe);
-        
-        // Add simple close instruction for GitHub
-        const instructions = document.createElement('div');
-        instructions.style.position = 'absolute';
-        instructions.style.top = '16px';
-        instructions.style.left = '16px';
-        instructions.style.background = 'rgba(0,0,0,0.7)';
-        instructions.style.color = 'white';
-        instructions.style.padding = '8px 12px';
-        instructions.style.borderRadius = '4px';
-        instructions.style.fontSize = '14px';
-        instructions.textContent = 'Click anywhere outside to close';
-        lightboxContent.appendChild(instructions);
-    }
-    
-    // Show lightbox
-    lightbox.classList.add('active');
-    
-    // Add click outside to close for GitHub lightbox
-    if (type === 'github') {
-        lightbox.onclick = (e) => {
-            if (e.target === lightbox) {
-                closeLightbox();
-            }
-        };
-    } else {
-        lightbox.onclick = null;
-    }
+
+    window.open(item.url || '#', '_blank', 'noopener,noreferrer');
+    closeLightbox();
 }
 
 function closeLightbox() {
@@ -563,10 +629,14 @@ function initApp() {
         const cardLink = event.target.closest('.card-link');
         if (cardLink) {
             event.preventDefault();
-            const url = cardLink.getAttribute('data-url');
-            const type = cardLink.getAttribute('data-type');
-            const title = cardLink.getAttribute('data-title');
-            openLightbox(url, type, title);
+            const item = getItemById(cardLink.getAttribute('data-id')) || {
+                id: cardLink.getAttribute('data-id') || '',
+                url: cardLink.getAttribute('data-url') || '#',
+                type: cardLink.getAttribute('data-type') || 'item',
+                title: cardLink.getAttribute('data-title') || 'Untitled',
+                source: cardLink.getAttribute('data-source') || 'Item',
+            };
+            openLightbox(item);
         }
     });
 
