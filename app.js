@@ -188,46 +188,46 @@ function sourceIcon(item) {
 }
 
 function renderCard(item) {
-  const tags = Array.isArray(item.tags) ? item.tags : [];
-  const score = item.score ? `<span class="tag-chip tag-chip-score">score ${escapeHtml(item.score)}</span>` : '';
-  const source = sourceLabel(item);
-  const icon = sourceIcon(item);
-  const thumb = item.thumbnail
-    ? `<div class="card-thumb card-thumb-${escapeHtml(item.type || 'item')}"><img src="${escapeHtml(item.thumbnail)}" alt="${escapeHtml(item.title || source)}" loading="lazy" /></div>`
-    : '';
-  return `
-    <article class="card card-type-${escapeHtml(item.type || 'item')}">
-      <a class="card-link" href="${escapeHtml(item.url || '#')}" target="_blank" rel="noopener noreferrer">
-        ${thumb}
-        <div class="card-main">
-          <div class="card-header">
-            <div class="card-title-wrap">
-              <div class="card-title">${escapeHtml(item.title || 'Untitled')}</div>
-              <div class="card-meta-row">
-                <button class="card-channel-btn card-channel-btn-${escapeHtml(item.type || 'item')}" data-source="${escapeHtml(source)}" title="Filter by source">
-                  <span class="source-icon" aria-hidden="true">${icon}</span>
-                  <span>${escapeHtml(source)}</span>
-                </button>
-                <span class="card-meta-sep">•</span>
-                <span class="card-date">${escapeHtml(formatRelativeDate(item.published))}</span>
-                <span class="card-meta-sep">•</span>
-                <span class="card-date">${escapeHtml(authorLabel(item))}</span>
-              </div>
+    const tags = Array.isArray(item.tags) ? item.tags : [];
+    const score = item.score ? `<span class="tag-chip tag-chip-score">score ${escapeHtml(item.score)}</span>` : '';
+    const source = sourceLabel(item);
+    const icon = sourceIcon(item);
+    const thumb = item.thumbnail
+        ? `<div class="card-thumb card-thumb-${escapeHtml(item.type || 'item')}"><img src="${escapeHtml(item.thumbnail)}" alt="${escapeHtml(item.title || source)}" loading="lazy" /></div>`
+        : '';
+    return `
+        <article class="card card-type-${escapeHtml(item.type || 'item')}">
+            <div class="card-link" data-url="${escapeHtml(item.url || '#')}" data-type="${escapeHtml(item.type || 'item')}" data-title="${escapeHtml(item.title || 'Untitled')}" data-source="${escapeHtml(source)}">
+                ${thumb}
+                <div class="card-main">
+                    <div class="card-header">
+                        <div class="card-title-wrap">
+                            <div class="card-title">${escapeHtml(item.title || 'Untitled')}</div>
+                            <div class="card-meta-row">
+                                <button class="card-channel-btn card-channel-btn-${escapeHtml(item.type || 'item')}" data-source="${escapeHtml(source)}" title="Filter by source">
+                                    <span class="source-icon" aria-hidden="true">${icon}</span>
+                                    <span>${escapeHtml(source)}</span>
+                                </button>
+                                <span class="card-meta-sep">•</span>
+                                <span class="card-date">${escapeHtml(formatRelativeDate(item.published))}</span>
+                                <span class="card-meta-sep">•</span>
+                                <span class="card-date">${escapeHtml(authorLabel(item))}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="summary-content expanded card-summary-block">
+                        <div class="card-summary-text">${escapeHtml(item.summary || '')}</div>
+                        ${item.why_it_matters ? `<div class="card-why"><strong>Why it matters:</strong> ${escapeHtml(item.why_it_matters)}</div>` : ''}
+                        ${metricHtml(item.metrics)}
+                    </div>
+                    <div class="card-tags card-tags-bottom">
+                        ${score}
+                        ${tags.map((tag) => `<span class="tag-chip">${escapeHtml(tag)}</span>`).join('')}
+                    </div>
+                </div>
             </div>
-          </div>
-          <div class="summary-content expanded card-summary-block">
-            <div class="card-summary-text">${escapeHtml(item.summary || '')}</div>
-            ${item.why_it_matters ? `<div class="card-why"><strong>Why it matters:</strong> ${escapeHtml(item.why_it_matters)}</div>` : ''}
-            ${metricHtml(item.metrics)}
-          </div>
-          <div class="card-tags card-tags-bottom">
-            ${score}
-            ${tags.map((tag) => `<span class="tag-chip">${escapeHtml(tag)}</span>`).join('')}
-          </div>
-        </div>
-      </a>
-    </article>
-  `;
+        </article>
+    `;
 }
 
 function emptyStateHTML(message = 'No items yet') {
@@ -239,9 +239,127 @@ function noResultsHTML() {
 }
 
 function updateCount() {
-  const el = document.getElementById('video-count');
-  const filtered = getFilteredItems();
-  el.textContent = `${filtered.length} items`;
+    const el = document.getElementById('video-count');
+    const filtered = getFilteredItems();
+    el.textContent = `${filtered.length} items`;
+}
+
+function openLightbox(url, type, title) {
+    const lightbox = document.getElementById('lightbox');
+    const lightboxContent = lightbox.querySelector('.lightbox-content');
+    const lightboxTitle = document.getElementById('lightbox-title');
+    
+    // Reset content
+    lightboxContent.innerHTML = '';
+    lightboxTitle.textContent = '';
+    
+    // Add close button
+    const closeButton = document.createElement('div');
+    closeButton.className = 'lightbox-close';
+    closeButton.innerHTML = '&times;';
+    closeButton.onclick = closeLightbox;
+    lightboxContent.appendChild(closeButton);
+    
+    // Add title
+    lightboxTitle.textContent = title;
+    lightboxContent.appendChild(lightboxTitle);
+    
+    // Add content based on type
+    if (type === 'youtube') {
+        // Extract video ID from YouTube URL
+        const videoIdMatch = url.match(/(?:youtube\.com\/(?:[^/]+/.+/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^&?\s/]+)/);
+        const videoId = videoIdMatch ? videoIdMatch[1] : null;
+        
+        if (videoId) {
+            // Create container for video and controls
+            const videoWrapper = document.createElement('div');
+            videoWrapper.style.position = 'relative';
+            videoWrapper.style.width = '100%';
+            videoWrapper.style.height = '100%';
+            
+            const iframe = document.createElement('iframe');
+            iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&enablejsapi=1`;
+            iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+            iframe.allowFullscreen = true;
+            iframe.style.width = '100%';
+            iframe.style.height = '100%';
+            iframe.style.border = 'none';
+            
+            videoWrapper.appendChild(iframe);
+            lightboxContent.appendChild(videoWrapper);
+            
+            // Add controls below the video
+            const controlsContainer = document.createElement('div');
+            controlsContainer.className = 'lightbox-controls';
+            controlsContainer.style.marginTop = '16px';
+            controlsContainer.style.display = 'flex';
+            controlsContainer.style.gap = '8px';
+            controlsContainer.style.justifyContent = 'center';
+            controlsContainer.style.flexWrap = 'wrap';
+            
+            const speeds = [0.5, 1, 1.5, 2];
+            speeds.forEach(speed => {
+                const btn = document.createElement('button');
+                btn.className = 'speed-btn';
+                btn.textContent = `${speed}x`;
+                btn.onclick = () => {
+                    // Send message to YouTube iframe to change playback rate
+                    iframe.contentWindow.postMessage('{"event":"command","func":"setPlaybackRate","args":[' + speed + ']}', '*');
+                };
+                controlsContainer.appendChild(btn);
+            });
+            
+            lightboxContent.appendChild(controlsContainer);
+            
+            // Store reference to iframe for cleanup
+            lightbox.currentIframe = iframe;
+        }
+    } else if (type === 'github') {
+        // For GitHub, we'll show the raw content or use a service like rawgit
+        // For simplicity, we'll just link to the GitHub page in an iframe
+        const iframe = document.createElement('iframe');
+        iframe.src = url;
+        iframe.allowFullscreen = true;
+        iframe.style.width = '100%';
+        iframe.style.height = 'calc(100% - 48px)'; // Account for controls
+        iframe.style.border = 'none';
+        lightboxContent.appendChild(iframe);
+        
+        // Add simple close instruction for GitHub
+        const instructions = document.createElement('div');
+        instructions.style.position = 'absolute';
+        instructions.style.top = '16px';
+        instructions.style.left = '16px';
+        instructions.style.background = 'rgba(0,0,0,0.7)';
+        instructions.style.color = 'white';
+        instructions.style.padding = '8px 12px';
+        instructions.style.borderRadius = '4px';
+        instructions.style.fontSize = '14px';
+        instructions.textContent = 'Click anywhere outside to close';
+        lightboxContent.appendChild(instructions);
+    }
+    
+    // Show lightbox
+    lightbox.classList.add('active');
+    
+    // Add click outside to close for GitHub lightbox
+    if (type === 'github') {
+        lightbox.onclick = (e) => {
+            if (e.target === lightbox) {
+                closeLightbox();
+            }
+        };
+    } else {
+        lightbox.onclick = null;
+    }
+}
+
+function closeLightbox() {
+    const lightbox = document.getElementById('lightbox');
+    lightbox.classList.remove('active');
+    // Clear content when closing
+    const lightboxContent = lightbox.querySelector('.lightbox-content');
+    lightboxContent.innerHTML = '';
 }
 
 async function fetchItems() {
@@ -320,19 +438,39 @@ function clearSearch() {
 
 initTheme();
 setInterval(() => {
-  if (manualTheme === null) setTimeBasedTheme();
+    if (manualTheme === null) setTimeBasedTheme();
 }, 60000);
 
 document.addEventListener('DOMContentLoaded', () => {
-  document.getElementById('search-input').addEventListener('input', onSearch);
-  document.getElementById('search-clear').addEventListener('click', clearSearch);
-  document.getElementById('refresh-btn').addEventListener('click', fetchItems);
-  document.getElementById('theme-toggle').addEventListener('click', toggleTheme);
-  document.getElementById('clear-channel-filter').addEventListener('click', () => {
-    activeChannelFilter = null;
-    renderChannelFilterBar();
-    renderFeed();
-    updateCount();
-  });
-  fetchItems();
+    document.getElementById('search-input').addEventListener('input', onSearch);
+    document.getElementById('search-clear').addEventListener('click', clearSearch);
+    document.getElementById('refresh-btn').addEventListener('click', fetchItems);
+    document.getElementById('theme-toggle').addEventListener('click', toggleTheme);
+    document.getElementById('clear-channel-filter').addEventListener('click', () => {
+        activeChannelFilter = null;
+        renderChannelFilterBar();
+        renderFeed();
+        updateCount();
+    });
+    
+    // Add click handler for card links
+    document.addEventListener('click', (event) => {
+        const cardLink = event.target.closest('.card-link');
+        if (cardLink) {
+            event.preventDefault();
+            const url = cardLink.getAttribute('data-url');
+            const type = cardLink.getAttribute('data-type');
+            const title = cardLink.getAttribute('data-title');
+            openLightbox(url, type, title);
+        }
+    });
+    
+    // Add click handler for lightbox close button
+    document.addEventListener('click', (event) => {
+        if (event.target.classList.contains('lightbox-close')) {
+            closeLightbox();
+        }
+    });
+    
+    fetchItems();
 });

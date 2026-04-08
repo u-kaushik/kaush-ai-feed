@@ -5,6 +5,11 @@
   "scripts": {
     "digest:update": "node scripts/update-feed.mjs",
     "digest:email": "node scripts/render-email.mjs",
+    "digest:send": "node scripts/send-email.mjs",
+    "digest:test-send": "pnpm digest:run && pnpm digest:send",
     "digest:run": "pnpm digest:update && pnpm digest:email"
+  },
+  "dependencies": {
+    "nodemailer": "^7.0.5"
   }
 }

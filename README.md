@@ -39,6 +39,8 @@ Main item fields:
 pnpm digest:update
 pnpm digest:email
 pnpm digest:run
+pnpm digest:send
+pnpm digest:test-send
 ```
 
 ## Current flow
@@ -56,14 +58,23 @@ pnpm digest:run
 ### Morning email
 - script: `scripts/render-email.mjs`
 - output: `out/morning-email.html`
-- send that HTML through your preferred mail pipeline
+- send via SMTP with `scripts/send-email.mjs`
+- configure local env in `.env` from `.env.example`
+
+### Saved items and notes
+- `data/saved-items.json` is the local placeholder for starred or saved items
+- `data/digest-notes.json` is the local placeholder for discussion notes and watched-item notes
+- Friday recap can pull from those files without touching business ops data
 
 ## Intended next step
 
 1. ingest real GitHub breakout/trending repos
 2. merge in selected YouTube AI/dev items
 3. score and trim to the top daily items
-4. render and send the morning email automatically
+4. keep the daily feed local-first
+5. store only explicitly saved items separately
+6. render a Friday recap from saved items and notes
+7. send the morning email automatically
 
 ## Why this shape
 

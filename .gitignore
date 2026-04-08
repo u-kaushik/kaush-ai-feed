@@ -17,3 +17,5 @@ dist/
 # Local runtime output
 out/
 .state/
+.env
+.env.*

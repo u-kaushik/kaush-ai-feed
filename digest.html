@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Digest</title>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <script src="gate.js" defer></script>
+</head>
+<body>
+  <main class="digest-page">
+    <section class="digest-hero">
+      <div class="section-kicker">Private briefing</div>
+      <h1>Daily AI digest</h1>
+      <p class="digest-hero-copy">Lean daily operator briefing, powered by local files and basic scoring. No business-table writes, no extra moving parts.</p>
+      <div class="digest-hero-meta">
+        <span id="digest-date"></span>
+        <span id="digest-count"></span>
+        <a href="/" class="digest-link">Open full feed</a>
+      </div>
+    </section>
+
+    <section id="digest-wrap-slot"></section>
+
+    <section>
+      <div class="section-kicker">Today</div>
+      <div id="digest-feed" class="digest-grid"></div>
+    </section>
+  </main>
+
+  <script src="digest.js"></script>
+</body>
+</html>

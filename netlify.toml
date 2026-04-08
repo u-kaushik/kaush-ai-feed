@@ -3,3 +3,8 @@
 
 [functions]
   directory = "netlify/functions"
+
+[[redirects]]
+  from = "/digest"
+  to = "/digest.html"
+  status = 200
