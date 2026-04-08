@@ -2,6 +2,25 @@ const FEED_URL = 'data/ai-feed.json';
 const SAVED_URL = 'data/saved-items.json';
 const NOTES_URL = 'data/digest-notes.json';
 
+let manualTheme = null;
+
+function setTimeBasedTheme() {
+  if (manualTheme !== null) return;
+  const hour = new Date().getHours();
+  const isDaytime = hour >= 6 && hour < 18;
+  document.documentElement.classList.toggle('dark', !isDaytime);
+}
+
+function initTheme() {
+  const saved = localStorage.getItem('theme');
+  if (saved) {
+    manualTheme = saved;
+    document.documentElement.classList.toggle('dark', saved === 'dark');
+  } else {
+    setTimeBasedTheme();
+  }
+}
+
 function escapeHtml(value) {
   return String(value ?? '')
     .replaceAll('&', '&amp;')
@@ -92,6 +111,8 @@ async function readJson(url, fallback) {
 }
 
 async function initDigestPage() {
+  initTheme();
+
   const [feed, savedItems, notes] = await Promise.all([
     readJson(FEED_URL, []),
     readJson(SAVED_URL, []),
