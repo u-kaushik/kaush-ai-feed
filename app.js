@@ -440,38 +440,6 @@ function renderGithubLightbox(lightboxContent, item) {
       body.innerHTML = `<p class="github-lightbox-empty">Couldn’t load the GitHub preview (${escapeHtml(error.message)}). Use “Open repo” instead.</p>`;
     });
 }
-}
-            const homepage = preview.repoData.homepage
-                ? `<a class="github-lightbox-btn github-lightbox-btn-secondary" href="${escapeHtml(preview.repoData.homepage)}" target="_blank" rel="noreferrer">Homepage ↗</a>`
-                : '';
-            body.innerHTML = `
-                <div class="github-lightbox-grid">
-                    <div class="github-lightbox-panel">
-                        <div class="github-lightbox-panel-title">Repository snapshot</div>
-                        <div class="github-lightbox-facts">
-                            <div><span>Stars</span><strong>${escapeHtml(preview.repoData.stargazers_count ?? item.metrics?.stars ?? '—')}</strong></div>
-                            <div><span>Forks</span><strong>${escapeHtml(preview.repoData.forks_count ?? item.metrics?.forks ?? '—')}</strong></div>
-                            <div><span>Watchers</span><strong>${escapeHtml(preview.repoData.subscribers_count ?? '—')}</strong></div>
-                            <div><span>Open issues</span><strong>${escapeHtml(preview.repoData.open_issues_count ?? '—')}</strong></div>
-                        </div>
-                        <p class="github-lightbox-description">${escapeHtml(preview.repoData.description || item.summary || 'No description available.')}</p>
-                        <div class="github-lightbox-actions-row">
-                            <a class="github-lightbox-btn github-lightbox-btn-secondary" href="${escapeHtml(preview.repoData.html_url)}" target="_blank" rel="noreferrer">View on GitHub ↗</a>
-                            ${homepage}
-                        </div>
-                    </div>
-                    <div class="github-lightbox-panel">
-                        <div class="github-lightbox-panel-title">README preview</div>
-                        ${renderGithubReadme(preview.readme)}
-                    </div>
-                </div>
-            `;
-        })
-        .catch((error) => {
-            if (!body) return;
-            body.innerHTML = `<p class="github-lightbox-empty">Couldn’t load the GitHub preview (${escapeHtml(error.message)}). Use “Open repo” instead.</p>`;
-        });
-}
 
 function openLightbox(item) {
     if (!item) return;
