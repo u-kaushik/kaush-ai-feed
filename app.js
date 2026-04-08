@@ -244,6 +244,25 @@ function updateCount() {
     el.textContent = `${filtered.length} items`;
 }
 
+function getYoutubeVideoId(url) {
+    try {
+        const parsed = new URL(url);
+        const host = parsed.hostname.replace(/^www\./, '');
+        if (host === 'youtu.be') {
+            return parsed.pathname.split('/').filter(Boolean)[0] || null;
+        }
+        if (host.endsWith('youtube.com')) {
+            if (parsed.pathname === '/watch') return parsed.searchParams.get('v');
+            const parts = parsed.pathname.split('/').filter(Boolean);
+            const marker = parts.findIndex((part) => ['embed', 'shorts', 'live', 'v'].includes(part));
+            if (marker !== -1 && parts[marker + 1]) return parts[marker + 1];
+        }
+        return null;
+    } catch {
+        return null;
+    }
+}
+
 function openLightbox(url, type, title) {
     const lightbox = document.getElementById('lightbox');
     const lightboxContent = lightbox.querySelector('.lightbox-content');
@@ -266,9 +285,7 @@ function openLightbox(url, type, title) {
     
     // Add content based on type
     if (type === 'youtube') {
-        // Extract video ID from YouTube URL
-        const videoIdMatch = url.match(/(?:youtube\.com\/(?:[^/]+/.+/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^&?\s/]+)/);
-        const videoId = videoIdMatch ? videoIdMatch[1] : null;
+        const videoId = getYoutubeVideoId(url);
         
         if (videoId) {
             // Create container for video and controls
