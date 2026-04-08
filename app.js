@@ -59,12 +59,25 @@ function formatRelativeDate(iso) {
   return new Date(iso).toLocaleDateString('en-GB', { day: 'numeric', month: 'short' });
 }
 
+function metricIcon(key) {
+  const normalized = String(key || '').toLowerCase();
+  if (normalized === 'stars') {
+    return `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.8l2.57 5.2 5.74.83-4.15 4.04.98 5.71L12 16.86l-5.14 2.72.98-5.71L3.69 9.83l5.74-.83L12 3.8z" fill="currentColor"/></svg>`;
+  }
+  if (normalized === 'forks') {
+    return `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 5a2 2 0 1 1 0 4 2 2 0 0 1 0-4zm10 10a2 2 0 1 1 0 4 2 2 0 0 1 0-4zM7 15a2 2 0 1 1 0 4 2 2 0 0 1 0-4zm1-6v3.2c0 .6.24 1.18.66 1.6l1.88 1.88c.42.42.66 1 .66 1.6V19h2v-1.72c0-1.13-.45-2.22-1.24-3.02l-1.88-1.88A4.27 4.27 0 0 1 10 9.2V9h4.17A2.99 2.99 0 0 0 17 12h2a4.99 4.99 0 0 1-4.83-4H8z" fill="currentColor"/></svg>`;
+  }
+  return `<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3.5" fill="currentColor"/></svg>`;
+}
+
 function metricHtml(metrics) {
   if (!metrics || typeof metrics !== 'object') return '';
   const entries = Object.entries(metrics).filter(([, value]) => value != null && value !== '');
   if (!entries.length) return '';
-  return `<div class="card-tags" style="margin-top:10px">${entries
-    .map(([key, value]) => `<span class="tag-chip">${escapeHtml(key)}: ${escapeHtml(value)}</span>`)
+  return `<div class="card-tags card-metrics" style="margin-top:10px">${entries
+    .map(
+      ([key, value]) => `<span class="tag-chip metric-chip metric-chip-${escapeHtml(String(key).toLowerCase())}">${metricIcon(key)}<span>${escapeHtml(value)}</span></span>`,
+    )
     .join('')}</div>`;
 }
 
@@ -165,9 +178,13 @@ function groupByDate(items) {
 
 function sourceIcon(item) {
   const source = sourceLabel(item).toLowerCase();
-  if (source.includes('github')) return '⌘';
-  if (source.includes('youtube')) return '▶';
-  return '✦';
+  if (source.includes('github')) {
+    return `<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 .5C5.65.5.5 5.65.5 12a11.5 11.5 0 0 0 7.86 10.92c.58.1.79-.25.79-.56v-2.17c-3.2.7-3.88-1.36-3.88-1.36-.52-1.33-1.27-1.69-1.27-1.69-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.02 1.76 2.68 1.25 3.34.95.1-.74.4-1.25.72-1.54-2.56-.29-5.26-1.28-5.26-5.7 0-1.26.45-2.3 1.18-3.12-.12-.29-.51-1.47.11-3.06 0 0 .97-.31 3.19 1.19a11.1 11.1 0 0 1 5.8 0c2.22-1.5 3.19-1.19 3.19-1.19.62 1.59.23 2.77.11 3.06.74.82 1.18 1.86 1.18 3.12 0 4.43-2.7 5.4-5.27 5.69.41.35.78 1.05.78 2.12v3.14c0 .31.21.67.8.56A11.5 11.5 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5z"/></svg>`;
+  }
+  if (source.includes('youtube')) {
+    return `<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M23 12.01s0-3.02-.39-4.48a3.2 3.2 0 0 0-2.25-2.26C18.9 4.88 12 4.88 12 4.88s-6.9 0-8.36.39A3.2 3.2 0 0 0 1.39 7.53C1 8.99 1 12.01 1 12.01s0 3.02.39 4.48a3.2 3.2 0 0 0 2.25 2.26c1.46.39 8.36.39 8.36.39s6.9 0 8.36-.39a3.2 3.2 0 0 0 2.25-2.26c.39-1.46.39-4.48.39-4.48zm-13.2 3.73V8.28l6.23 3.73-6.23 3.73z"/></svg>`;
+  }
+  return `<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2l2.4 7.6H22l-6.2 4.6 2.4 7.8-6.2-4.5-6.2 4.5 2.4-7.8L2 9.6h7.6L12 2z"/></svg>`;
 }
 
 function renderCard(item) {

@@ -498,9 +498,14 @@ body {
   align-items: center;
   justify-content: center;
   border-radius: 999px;
-  font-size: 10px;
   line-height: 1;
   background: rgba(255,255,255,0.08);
+}
+
+.source-icon svg {
+  width: 11px;
+  height: 11px;
+  display: block;
 }
 
 .card-timestamp {
@@ -631,6 +636,25 @@ body {
   color: #fbbf24;
   background: rgba(251, 191, 36, 0.1);
   border-color: rgba(251, 191, 36, 0.18);
+}
+
+.metric-chip {
+  gap: 6px;
+}
+
+.metric-chip svg {
+  width: 12px;
+  height: 12px;
+  display: block;
+  flex: 0 0 auto;
+}
+
+.metric-chip-stars {
+  color: #fbbf24;
+}
+
+.metric-chip-forks {
+  color: #a78bfa;
 }
 
 .card-summary-block {
