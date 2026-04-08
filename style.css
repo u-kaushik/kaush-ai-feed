@@ -795,7 +795,44 @@ mark {
   }
 
   .tag-filters {
-    gap: 5px;
+    gap: 4px;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding-bottom: 2px;
+    min-height: 0;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+
+  .tag-filters::-webkit-scrollbar {
+    display: none;
+  }
+
+  .tag-pill {
+    flex: 0 0 auto;
+    gap: 3px;
+    padding: 2px 8px;
+    font-size: 10px;
+    line-height: 1.2;
+  }
+
+  .tag-pill .pill-count {
+    font-size: 9px;
+  }
+
+  .channel-filter-bar {
+    margin-top: 6px;
+  }
+
+  .channel-filter-label,
+  .channel-filter-btn {
+    font-size: 10px;
+  }
+
+  .channel-filter-btn {
+    padding: 3px 8px;
+    gap: 4px;
   }
 }
 
