@@ -1,0 +1,10 @@
+{
+  "name": "ai-digest",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "digest:update": "node scripts/update-feed.mjs",
+    "digest:email": "node scripts/render-email.mjs",
+    "digest:run": "pnpm digest:update && pnpm digest:email"
+  }
+}

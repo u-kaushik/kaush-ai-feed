@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AI Digest Feed Item",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "required": ["id", "type", "source", "title", "url", "published"],
+    "properties": {
+      "id": { "type": "string" },
+      "type": { "type": "string", "enum": ["github", "youtube", "tool", "research", "post"] },
+      "source": { "type": "string" },
+      "title": { "type": "string" },
+      "url": { "type": "string" },
+      "author": { "type": "string" },
+      "published": { "type": "string" },
+      "tags": { "type": "array", "items": { "type": "string" } },
+      "summary": { "type": "string" },
+      "why_it_matters": { "type": "string" },
+      "score": { "type": "number" },
+      "thumbnail": { "type": "string" },
+      "metrics": { "type": "object" },
+      "updated_at": { "type": "string" }
+    }
+  }
+}

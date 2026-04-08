@@ -13,3 +13,7 @@ dist/
 
 # Claude
 .claude/
+
+# Local runtime output
+out/
+.state/

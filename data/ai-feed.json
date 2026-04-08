@@ -1,0 +1,443 @@
+[
+  {
+    "id": "github-milla-jovovich-mempalace",
+    "type": "github",
+    "source": "GitHub",
+    "title": "milla-jovovich/mempalace",
+    "url": "https://github.com/milla-jovovich/mempalace",
+    "author": "milla-jovovich",
+    "published": "2026-04-05T01:12:07Z",
+    "tags": [
+      "ai",
+      "chromadb",
+      "llm",
+      "mcp",
+      "GitHub"
+    ],
+    "summary": "The highest-scoring AI memory system ever benchmarked. And it's free.",
+    "why_it_matters": "Relevant to Jarvis, AI workflows, and product ideas worth monitoring closely.",
+    "score": 99,
+    "metrics": {
+      "stars": 26387,
+      "forks": 3269,
+      "language": "Python"
+    },
+    "updated_at": "2026-04-08T21:28:29.550Z"
+  },
+  {
+    "id": "github-juliusbrussee-caveman",
+    "type": "github",
+    "source": "GitHub",
+    "title": "JuliusBrussee/caveman",
+    "url": "https://github.com/JuliusBrussee/caveman",
+    "author": "JuliusBrussee",
+    "published": "2026-04-04T10:03:00Z",
+    "tags": [
+      "ai",
+      "anthropic",
+      "caveman",
+      "claude",
+      "GitHub"
+    ],
+    "summary": "🪨 why use many token when few token do trick — Claude Code skill that cuts 65% of tokens by talking like caveman",
+    "why_it_matters": "Relevant to Jarvis, AI workflows, and product ideas worth monitoring closely.",
+    "score": 99,
+    "metrics": {
+      "stars": 7369,
+      "forks": 293,
+      "language": "Python"
+    },
+    "updated_at": "2026-04-08T21:28:29.551Z"
+  },
+  {
+    "id": "youtube-eehssulxzn4",
+    "type": "youtube",
+    "source": "YouTube",
+    "title": "Gemma 4 + Ollama = FREE Claude Code",
+    "url": "https://www.youtube.com/watch?v=eehsSUlXZN4",
+    "author": "Itssssss_Jack",
+    "published": "2026-04-07T14:27:47+00:00",
+    "tags": [
+      "AI",
+      "Dev",
+      "Coding"
+    ],
+    "summary": "Selected AI/dev YouTube signal from the existing watched-channel feed.",
+    "why_it_matters": "Useful for spotting practical tools, coding workflow shifts, and adjacent AI opportunities without scanning YouTube manually.",
+    "thumbnail": "https://img.youtube.com/vi/eehsSUlXZN4/hqdefault.jpg",
+    "score": 74,
+    "updated_at": "2026-04-08T21:28:29.552Z"
+  },
+  {
+    "id": "youtube-de47tvijvni",
+    "type": "youtube",
+    "source": "YouTube",
+    "title": "Does Ultraplan change how we use Claude Code?",
+    "url": "https://www.youtube.com/shorts/dE47tvijvNI",
+    "author": "Chase-H-AI",
+    "published": "2026-04-07T11:15:32+00:00",
+    "tags": [
+      "AI",
+      "Dev",
+      "Coding"
+    ],
+    "summary": "Selected AI/dev YouTube signal from the existing watched-channel feed.",
+    "why_it_matters": "Useful for spotting practical tools, coding workflow shifts, and adjacent AI opportunities without scanning YouTube manually.",
+    "thumbnail": "https://img.youtube.com/vi/dE47tvijvNI/hqdefault.jpg",
+    "score": 74,
+    "updated_at": "2026-04-08T21:28:29.552Z"
+  },
+  {
+    "id": "youtube-eeybwjwvqtq",
+    "type": "youtube",
+    "source": "YouTube",
+    "title": "Did Claude Code Just Get Plan Mode 2.0?",
+    "url": "https://www.youtube.com/watch?v=eEYbwJWVQtQ",
+    "author": "Chase-H-AI",
+    "published": "2026-04-07T01:14:15+00:00",
+    "tags": [
+      "AI",
+      "Dev",
+      "Coding"
+    ],
+    "summary": "Selected AI/dev YouTube signal from the existing watched-channel feed.",
+    "why_it_matters": "Useful for spotting practical tools, coding workflow shifts, and adjacent AI opportunities without scanning YouTube manually.",
+    "thumbnail": "https://img.youtube.com/vi/eEYbwJWVQtQ/hqdefault.jpg",
+    "score": 74,
+    "updated_at": "2026-04-08T21:28:29.552Z"
+  },
+  {
+    "id": "youtube-p9mgmkhuz-4",
+    "type": "youtube",
+    "source": "YouTube",
+    "title": "Andrej Karpathy Just 10x'd Everyone's Claude Code",
+    "url": "https://www.youtube.com/shorts/p9mgmKhUz_4",
+    "author": "nateherk",
+    "published": "2026-04-06T18:42:04+00:00",
+    "tags": [
+      "AI",
+      "Dev",
+      "Coding"
+    ],
+    "summary": "Selected AI/dev YouTube signal from the existing watched-channel feed.",
+    "why_it_matters": "Useful for spotting practical tools, coding workflow shifts, and adjacent AI opportunities without scanning YouTube manually.",
+    "thumbnail": "https://img.youtube.com/vi/p9mgmKhUz_4/hqdefault.jpg",
+    "score": 74,
+    "updated_at": "2026-04-08T21:28:29.552Z"
+  },
+  {
+    "id": "youtube-t4fxb3sbjio",
+    "type": "youtube",
+    "source": "YouTube",
+    "title": "Planning In Claude Code Just Got a Huge Upgrade",
+    "url": "https://www.youtube.com/watch?v=T4fXb3sbJIo",
+    "author": "nateherk",
+    "published": "2026-04-06T17:58:04+00:00",
+    "tags": [
+      "AI",
+      "Dev",
+      "Coding"
+    ],
+    "summary": "Selected AI/dev YouTube signal from the existing watched-channel feed.",
+    "why_it_matters": "Useful for spotting practical tools, coding workflow shifts, and adjacent AI opportunities without scanning YouTube manually.",
+    "thumbnail": "https://img.youtube.com/vi/T4fXb3sbJIo/hqdefault.jpg",
+    "score": 74,
+    "updated_at": "2026-04-08T21:28:29.552Z"
+  },
+  {
+    "id": "youtube-wylttz4s03c",
+    "type": "youtube",
+    "source": "YouTube",
+    "title": "Claude Code + Qwen 3.6 Pro = COMPLETELY FREE APPS INSTANTLY",
+    "url": "https://www.youtube.com/watch?v=wyLtTz4S03c",
+    "author": "Incomestreamsurfers",
+    "published": "2026-04-06T16:17:46+00:00",
+    "tags": [
+      "AI",
+      "Dev",
+      "Coding"
+    ],
+    "summary": "Selected AI/dev YouTube signal from the existing watched-channel feed.",
+    "why_it_matters": "Useful for spotting practical tools, coding workflow shifts, and adjacent AI opportunities without scanning YouTube manually.",
+    "thumbnail": "https://img.youtube.com/vi/wyLtTz4S03c/hqdefault.jpg",
+    "score": 74,
+    "updated_at": "2026-04-08T21:28:29.552Z"
+  },
+  {
+    "id": "youtube-csf-bxotrz4",
+    "type": "youtube",
+    "source": "YouTube",
+    "title": "AwesomeDesign-md + OpenCode,Claude: This OPENSOURCE Design System is SO EASY & SO GOOD!",
+    "url": "https://www.youtube.com/watch?v=cSF-bxotrz4",
+    "author": "AICodeKing",
+    "published": "2026-04-07T09:15:07+00:00",
+    "tags": [
+      "Coding",
+      "AI-Tools",
+      "Tutorials",
+      "LLMs"
+    ],
+    "summary": "Selected AI/dev YouTube signal from the existing watched-channel feed.",
+    "why_it_matters": "Useful for spotting practical tools, coding workflow shifts, and adjacent AI opportunities without scanning YouTube manually.",
+    "thumbnail": "https://img.youtube.com/vi/cSF-bxotrz4/hqdefault.jpg",
+    "score": 70,
+    "updated_at": "2026-04-08T21:28:29.552Z"
+  },
+  {
+    "id": "github-rasbt-mini-coding-agent",
+    "type": "github",
+    "source": "GitHub",
+    "title": "rasbt/mini-coding-agent",
+    "url": "https://github.com/rasbt/mini-coding-agent",
+    "author": "rasbt",
+    "published": "2026-04-02T02:35:06Z",
+    "tags": [
+      "agents",
+      "ai",
+      "large language models",
+      "llms",
+      "GitHub"
+    ],
+    "summary": "Minimal and readable coding agent harness implementation in Python to explain the core components of coding agents.",
+    "why_it_matters": "Strong fit for operator leverage, agent workflows, and business automation ideas.",
+    "score": 69,
+    "metrics": {
+      "stars": 481,
+      "forks": 92,
+      "language": "Python"
+    },
+    "updated_at": "2026-04-08T21:28:29.552Z"
+  },
+  {
+    "id": "github-kessler-gemma-gem",
+    "type": "github",
+    "source": "GitHub",
+    "title": "kessler/gemma-gem",
+    "url": "https://github.com/kessler/gemma-gem",
+    "author": "kessler",
+    "published": "2026-04-05T20:07:56Z",
+    "tags": [
+      "ai",
+      "chrome extension",
+      "gemma4",
+      "gemma4 2b",
+      "GitHub"
+    ],
+    "summary": "Gemma Gem runs Google's Gemma 4 model entirely on-device via WebGPU — no API keys, no cloud, no data leaving your machine.",
+    "why_it_matters": "Relevant to Jarvis, AI workflows, and product ideas worth monitoring closely.",
+    "score": 67,
+    "metrics": {
+      "stars": 509,
+      "forks": 43,
+      "language": "TypeScript"
+    },
+    "updated_at": "2026-04-08T21:28:29.552Z"
+  },
+  {
+    "id": "github-houseofmvps-codesight",
+    "type": "github",
+    "source": "GitHub",
+    "title": "Houseofmvps/codesight",
+    "url": "https://github.com/Houseofmvps/codesight",
+    "author": "Houseofmvps",
+    "published": "2026-04-04T18:10:16Z",
+    "tags": [
+      "ai",
+      "claude",
+      "cli",
+      "code analysis",
+      "GitHub"
+    ],
+    "summary": "Universal AI context generator. Saves thousands of tokens per conversation in Claude Code, Cursor, Copilot, Codex, and more.",
+    "why_it_matters": "Relevant to Jarvis, AI workflows, and product ideas worth monitoring closely.",
+    "score": 67,
+    "metrics": {
+      "stars": 481,
+      "forks": 44,
+      "language": "TypeScript"
+    },
+    "updated_at": "2026-04-08T21:28:29.552Z"
+  },
+  {
+    "id": "github-math-ai-org-mathcode",
+    "type": "github",
+    "source": "GitHub",
+    "title": "math-ai-org/mathcode",
+    "url": "https://github.com/math-ai-org/mathcode",
+    "author": "math-ai-org",
+    "published": "2026-04-02T07:46:05Z",
+    "tags": [
+      "ai",
+      "coding",
+      "foundation models",
+      "llm",
+      "GitHub"
+    ],
+    "summary": "MathCode: A Frontier Mathematical Coding Agent",
+    "why_it_matters": "Relevant to Jarvis, AI workflows, and product ideas worth monitoring closely.",
+    "score": 66,
+    "metrics": {
+      "stars": 288,
+      "forks": 25,
+      "language": "Shell"
+    },
+    "updated_at": "2026-04-08T21:28:29.552Z"
+  },
+  {
+    "id": "youtube-yavycrzihx8",
+    "type": "youtube",
+    "source": "YouTube",
+    "title": "Social Media's REAL Social Aspect: Sharing, Not Just Following #shorts",
+    "url": "https://www.youtube.com/shorts/yaVYCrZIHX8",
+    "author": "SuperwallHQ",
+    "published": "2026-04-07T15:55:33+00:00",
+    "tags": [
+      "App-Marketing",
+      "Paywalls",
+      "SaaS",
+      "Growth"
+    ],
+    "summary": "Selected AI/dev YouTube signal from the existing watched-channel feed.",
+    "why_it_matters": "Useful for spotting practical tools, coding workflow shifts, and adjacent AI opportunities without scanning YouTube manually.",
+    "thumbnail": "https://img.youtube.com/vi/yaVYCrZIHX8/hqdefault.jpg",
+    "score": 64,
+    "updated_at": "2026-04-08T21:28:29.552Z"
+  },
+  {
+    "id": "youtube-saq7ekd1-74",
+    "type": "youtube",
+    "source": "YouTube",
+    "title": "One Link to Rule Them All - Zapier new SDK/SDK for AI/Apps!",
+    "url": "https://www.youtube.com/watch?v=SAq7ekD1-74",
+    "author": "AdrianTwarog",
+    "published": "2026-04-07T14:15:40+00:00",
+    "tags": [
+      "AI",
+      "Dev",
+      "Coding"
+    ],
+    "summary": "Selected AI/dev YouTube signal from the existing watched-channel feed.",
+    "why_it_matters": "Useful for spotting practical tools, coding workflow shifts, and adjacent AI opportunities without scanning YouTube manually.",
+    "thumbnail": "https://img.youtube.com/vi/SAq7ekD1-74/hqdefault.jpg",
+    "score": 64,
+    "updated_at": "2026-04-08T21:28:29.552Z"
+  },
+  {
+    "id": "github-agricidaniel-claude-obsidian",
+    "type": "github",
+    "source": "GitHub",
+    "title": "AgriciDaniel/claude-obsidian",
+    "url": "https://github.com/AgriciDaniel/claude-obsidian",
+    "author": "AgriciDaniel",
+    "published": "2026-04-07T08:59:37Z",
+    "tags": [
+      "ai",
+      "claude code",
+      "karpathy",
+      "knowledge base",
+      "GitHub"
+    ],
+    "summary": "Claude + Obsidian knowledge companion. Persistent, compounding wiki vault based on Karpathy's LLM Wiki pattern. /wiki /save /autoresearch",
+    "why_it_matters": "Relevant to Jarvis, AI workflows, and product ideas worth monitoring closely.",
+    "score": 64,
+    "metrics": {
+      "stars": 166,
+      "forks": 12,
+      "language": "Shell"
+    },
+    "updated_at": "2026-04-08T21:28:29.552Z"
+  },
+  {
+    "id": "youtube-tqbikjgr5mm",
+    "type": "youtube",
+    "source": "YouTube",
+    "title": "Plan Mode 2.0? (Ultraplan)",
+    "url": "https://www.youtube.com/shorts/TqbIkJgr5mM",
+    "author": "Chase-H-AI",
+    "published": "2026-04-07T02:15:13+00:00",
+    "tags": [
+      "AI",
+      "Dev",
+      "Coding"
+    ],
+    "summary": "Selected AI/dev YouTube signal from the existing watched-channel feed.",
+    "why_it_matters": "Useful for spotting practical tools, coding workflow shifts, and adjacent AI opportunities without scanning YouTube manually.",
+    "thumbnail": "https://img.youtube.com/vi/TqbIkJgr5mM/hqdefault.jpg",
+    "score": 64,
+    "updated_at": "2026-04-08T21:28:29.552Z"
+  },
+  {
+    "id": "github-chencore-deep-live-cam-tutorial",
+    "type": "github",
+    "source": "GitHub",
+    "title": "chencore/deep-live-cam-tutorial",
+    "url": "https://github.com/chencore/deep-live-cam-tutorial",
+    "author": "chencore",
+    "published": "2026-04-04T10:35:53Z",
+    "tags": [
+      "ai",
+      "chinese",
+      "deepfake",
+      "face swap",
+      "GitHub"
+    ],
+    "summary": "Deep-Live-Cam 完整安装与使用教程 - AI 换脸工具中文指南",
+    "why_it_matters": "Relevant to Jarvis, AI workflows, and product ideas worth monitoring closely.",
+    "score": 64,
+    "metrics": {
+      "stars": 80,
+      "forks": 12
+    },
+    "updated_at": "2026-04-08T21:28:29.552Z"
+  },
+  {
+    "id": "github-zarazhangrui-personalized-podcast",
+    "type": "github",
+    "source": "GitHub",
+    "title": "zarazhangrui/personalized-podcast",
+    "url": "https://github.com/zarazhangrui/personalized-podcast",
+    "author": "zarazhangrui",
+    "published": "2026-04-03T21:00:07Z",
+    "tags": [
+      "ai",
+      "claude code",
+      "podcast",
+      "rss",
+      "GitHub"
+    ],
+    "summary": "Turn any content into a personalized AI podcast. NotebookLM-style, except you control the script, voices, and hosts. Listen in Apple Podcasts, Spotify, or any podcast app.",
+    "why_it_matters": "Relevant to Jarvis, AI workflows, and product ideas worth monitoring closely.",
+    "score": 64,
+    "metrics": {
+      "stars": 131,
+      "forks": 13,
+      "language": "Python"
+    },
+    "updated_at": "2026-04-08T21:28:29.552Z"
+  },
+  {
+    "id": "github-thinkwatchproject-thinkwatch",
+    "type": "github",
+    "source": "GitHub",
+    "title": "ThinkWatchProject/ThinkWatch",
+    "url": "https://github.com/ThinkWatchProject/ThinkWatch",
+    "author": "ThinkWatchProject",
+    "published": "2026-04-02T15:29:52Z",
+    "tags": [
+      "ai",
+      "ai gateway",
+      "ai security",
+      "ai tools",
+      "GitHub"
+    ],
+    "summary": "Enterprise AI bastion host for secure AI API and MCP access, with unified proxying, RBAC, audit logs, rate limiting, and cost tracking across OpenAI, Anthropic, Gemini, and self-hosted LLMs.",
+    "why_it_matters": "Relevant to Jarvis, AI workflows, and product ideas worth monitoring closely.",
+    "score": 64,
+    "metrics": {
+      "stars": 105,
+      "forks": 1,
+      "language": "Rust"
+    },
+    "updated_at": "2026-04-08T21:28:29.552Z"
+  }
+]
