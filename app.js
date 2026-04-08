@@ -286,8 +286,8 @@ function openLightbox(url, type, title) {
     // Add content based on type
     if (type === 'youtube') {
         // Extract video ID from YouTube URL
-        const videoIdMatch = url.match(/(?:youtube\.com\/(?:[^/]+/.+/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^&?\s/]+)/);
-        const videoId = videoIdMatch ? videoIdMatch[1] : null;
+        const videoIdMatch = url.match(/[?&]v=([^&?\s]+)|youtu\.be\/([^&?\s]+)|youtube\.com\/shorts\/([^&?\s]+)/);
+        const videoId = videoIdMatch ? (videoIdMatch[1] || videoIdMatch[2] || videoIdMatch[3]) : null;
         
         if (videoId) {
             // Check if it's a short (youtu.be/ or youtube.com/shorts/)
