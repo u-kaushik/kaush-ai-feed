@@ -285,22 +285,47 @@ function openLightbox(url, type, title) {
     
     // Add content based on type
     if (type === 'youtube') {
-        const videoId = getYoutubeVideoId(url);
+        // Extract video ID from YouTube URL
+        const videoIdMatch = url.match(/(?:youtube\.com\/(?:[^/]+/.+/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^&?\s/]+)/);
+        const videoId = videoIdMatch ? videoIdMatch[1] : null;
         
         if (videoId) {
+            // Check if it's a short (youtu.be/ or youtube.com/shorts/)
+            const isShort = url.includes('/shorts/') || url.includes('youtu.be/');
+            
             // Create container for video and controls
             const videoWrapper = document.createElement('div');
             videoWrapper.style.position = 'relative';
             videoWrapper.style.width = '100%';
             videoWrapper.style.height = '100%';
             
+            // Set aspect ratio based on video type
+            if (isShort) {
+                lightboxContent.classList.add('is-short');
+                videoWrapper.style.aspectRatio = '9/16';
+            } else {
+                lightboxContent.classList.remove('is-short');
+                videoWrapper.style.aspectRatio = '16/9';
+            }
+            
             const iframe = document.createElement('iframe');
-            iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&enablejsapi=1`;
+            // Remove showinfo=0 and modestbranding=1 to get rid of blue controls, use controls=0 instead
+            iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&enablejsapi=1&controls=0`;
             iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
             iframe.allowFullscreen = true;
             iframe.style.width = '100%';
             iframe.style.height = '100%';
             iframe.style.border = 'none';
+            
+            // Add load event listener to handle seeking to saved position
+            iframe.onload = () => {
+                // If we have a saved time, seek to it after a short delay
+                if (lightbox.seekToTime !== null && lightbox.seekToTime > 0) {
+                    setTimeout(() => {
+                        iframe.contentWindow.postMessage('{"event":"command","func":"seekTo","args":[' + lightbox.seekToTime + ',true]}', '*');
+                    }, 1000); // Wait for player to be ready
+                }
+            };
             
             videoWrapper.appendChild(iframe);
             lightboxContent.appendChild(videoWrapper);
@@ -328,9 +353,58 @@ function openLightbox(url, type, title) {
             
             lightboxContent.appendChild(controlsContainer);
             
-            // Store reference to iframe for cleanup
+            // Store reference to iframe for cleanup and position tracking
             lightbox.currentIframe = iframe;
+            lightbox.currentVideoId = videoId;
+            
+            // Try to restore playback position from localStorage
+            const savedTime = localStorage.getItem(`yt_${videoId}`);
+            if (savedTime) {
+                // We'll set the time after the iframe loads
+                lightbox.seekToTime = parseFloat(savedTime);
+            } else {
+                lightbox.seekToTime = null;
+            }
         }
+    } else if (type === 'github') {
+        // For GitHub, we'll show the raw content or use a service like rawgit
+        // For simplicity, we'll just link to the GitHub page in an iframe
+        const iframe = document.createElement('iframe');
+        iframe.src = url;
+        iframe.allowFullscreen = true;
+        iframe.style.width = '100%';
+        iframe.style.height = 'calc(100% - 48px)'; // Account for controls
+        iframe.style.border = 'none';
+        lightboxContent.appendChild(iframe);
+        
+        // Add simple close instruction for GitHub
+        const instructions = document.createElement('div');
+        instructions.style.position = 'absolute';
+        instructions.style.top = '16px';
+        instructions.style.left = '16px';
+        instructions.style.background = 'rgba(0,0,0,0.7)';
+        instructions.style.color = 'white';
+        instructions.style.padding = '8px 12px';
+        instructions.style.borderRadius = '4px';
+        instructions.style.fontSize = '14px';
+        instructions.textContent = 'Click anywhere outside to close';
+        lightboxContent.appendChild(instructions);
+    }
+    
+    // Show lightbox
+    lightbox.classList.add('active');
+    
+    // Add click outside to close for GitHub lightbox
+    if (type === 'github') {
+        lightbox.onclick = (e) => {
+            if (e.target === lightbox) {
+                closeLightbox();
+            }
+        };
+    } else {
+        lightbox.onclick = null;
+    }
+}
     } else if (type === 'github') {
         // For GitHub, we'll show the raw content or use a service like rawgit
         // For simplicity, we'll just link to the GitHub page in an iframe
@@ -377,6 +451,10 @@ function closeLightbox() {
     // Clear content when closing
     const lightboxContent = lightbox.querySelector('.lightbox-content');
     lightboxContent.innerHTML = '';
+    // Reset lightbox state
+    lightbox.currentIframe = null;
+    lightbox.currentVideoId = null;
+    lightbox.seekToTime = null;
 }
 
 async function fetchItems() {
@@ -492,11 +570,30 @@ function initApp() {
         }
     });
 
-    document.addEventListener('click', (event) => {
-        if (event.target.classList.contains('lightbox-close')) {
-            closeLightbox();
-        }
-    });
+     document.addEventListener('click', (event) => {
+         if (event.target.classList.contains('lightbox-close')) {
+             closeLightbox();
+         }
+     });
+     
+     // Add event listener for YouTube API messages (for getting current time)
+     window.addEventListener('message', (event) => {
+         // Only accept messages from YouTube iframes
+         if (event.origin !== 'https://www.youtube.com') return;
+         
+         const data = event.data;
+         // Handle YouTube API responses
+         if (data && typeof data === 'object' && data.event === 'infoDelivery') {
+             // Save current playback time when we get it
+             if (data.info && data.info.currentTime) {
+                 const currentTime = data.info.currentTime;
+                 // Save to localStorage if we have a video ID
+                 if (document.getElementById('lightbox').currentVideoId) {
+                     localStorage.setItem(`yt_${document.getElementById('lightbox').currentVideoId}`, currentTime);
+                 }
+             }
+         }
+     });
 
     fetchItems();
 }
