@@ -352,19 +352,6 @@ function renderYoutubeLightbox(lightboxContent, item) {
     videoWrapper.appendChild(iframe);
     lightboxContent.appendChild(videoWrapper);
 
-    const controlsContainer = document.createElement('div');
-    controlsContainer.className = 'lightbox-controls';
-    [0.5, 1, 1.5, 2].forEach((speed) => {
-        const btn = document.createElement('button');
-        btn.className = 'speed-btn';
-        btn.textContent = `${speed}x`;
-        btn.onclick = () => {
-            iframe.contentWindow.postMessage(`{"event":"command","func":"setPlaybackRate","args":[${speed}]}`, '*');
-        };
-        controlsContainer.appendChild(btn);
-    });
-    lightboxContent.appendChild(controlsContainer);
-
     lightbox.currentIframe = iframe;
     lightbox.currentVideoId = videoId;
     const savedTime = localStorage.getItem(`yt_${videoId}`);
