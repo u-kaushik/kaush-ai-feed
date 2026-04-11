@@ -18,11 +18,11 @@
     "why_it_matters": "Relevant to Jarvis, AI workflows, and product ideas worth monitoring closely.",
     "score": 99,
     "metrics": {
-      "stars": 26813,
-      "forks": 3329,
+      "stars": 41519,
+      "forks": 5295,
       "language": "Python"
     },
-    "updated_at": "2026-04-08T23:19:19.764Z"
+    "updated_at": "2026-04-11T19:47:50.773Z"
   },
   {
     "id": "github-juliusbrussee-caveman",
@@ -43,11 +43,11 @@
     "why_it_matters": "Relevant to Jarvis, AI workflows, and product ideas worth monitoring closely.",
     "score": 99,
     "metrics": {
-      "stars": 7431,
-      "forks": 301,
+      "stars": 17815,
+      "forks": 802,
       "language": "Python"
     },
-    "updated_at": "2026-04-08T23:19:19.766Z"
+    "updated_at": "2026-04-11T19:47:50.773Z"
   },
   {
     "id": "youtube-eehssulxzn4",
@@ -66,7 +66,7 @@
     "why_it_matters": "Useful for spotting practical tools, coding workflow shifts, and adjacent AI opportunities without scanning YouTube manually.",
     "thumbnail": "https://img.youtube.com/vi/eehsSUlXZN4/hqdefault.jpg",
     "score": 74,
-    "updated_at": "2026-04-08T23:19:19.767Z"
+    "updated_at": "2026-04-11T19:47:50.773Z"
   },
   {
     "id": "youtube-de47tvijvni",
@@ -85,7 +85,7 @@
     "why_it_matters": "Useful for spotting practical tools, coding workflow shifts, and adjacent AI opportunities without scanning YouTube manually.",
     "thumbnail": "https://img.youtube.com/vi/dE47tvijvNI/hqdefault.jpg",
     "score": 74,
-    "updated_at": "2026-04-08T23:19:19.768Z"
+    "updated_at": "2026-04-11T19:47:50.773Z"
   },
   {
     "id": "youtube-eeybwjwvqtq",
@@ -104,7 +104,7 @@
     "why_it_matters": "Useful for spotting practical tools, coding workflow shifts, and adjacent AI opportunities without scanning YouTube manually.",
     "thumbnail": "https://img.youtube.com/vi/eEYbwJWVQtQ/hqdefault.jpg",
     "score": 74,
-    "updated_at": "2026-04-08T23:19:19.768Z"
+    "updated_at": "2026-04-11T19:47:50.773Z"
   },
   {
     "id": "youtube-p9mgmkhuz-4",
@@ -123,7 +123,7 @@
     "why_it_matters": "Useful for spotting practical tools, coding workflow shifts, and adjacent AI opportunities without scanning YouTube manually.",
     "thumbnail": "https://img.youtube.com/vi/p9mgmKhUz_4/hqdefault.jpg",
     "score": 74,
-    "updated_at": "2026-04-08T23:19:19.768Z"
+    "updated_at": "2026-04-11T19:47:50.773Z"
   },
   {
     "id": "youtube-t4fxb3sbjio",
@@ -142,7 +142,7 @@
     "why_it_matters": "Useful for spotting practical tools, coding workflow shifts, and adjacent AI opportunities without scanning YouTube manually.",
     "thumbnail": "https://img.youtube.com/vi/T4fXb3sbJIo/hqdefault.jpg",
     "score": 74,
-    "updated_at": "2026-04-08T23:19:19.768Z"
+    "updated_at": "2026-04-11T19:47:50.773Z"
   },
   {
     "id": "youtube-wylttz4s03c",
@@ -161,7 +161,7 @@
     "why_it_matters": "Useful for spotting practical tools, coding workflow shifts, and adjacent AI opportunities without scanning YouTube manually.",
     "thumbnail": "https://img.youtube.com/vi/wyLtTz4S03c/hqdefault.jpg",
     "score": 74,
-    "updated_at": "2026-04-08T23:19:19.768Z"
+    "updated_at": "2026-04-11T19:47:50.774Z"
   },
   {
     "id": "youtube-csf-bxotrz4",
@@ -181,57 +181,7 @@
     "why_it_matters": "Useful for spotting practical tools, coding workflow shifts, and adjacent AI opportunities without scanning YouTube manually.",
     "thumbnail": "https://img.youtube.com/vi/cSF-bxotrz4/hqdefault.jpg",
     "score": 70,
-    "updated_at": "2026-04-08T23:19:19.768Z"
-  },
-  {
-    "id": "github-rasbt-mini-coding-agent",
-    "type": "github",
-    "source": "GitHub",
-    "title": "rasbt/mini-coding-agent",
-    "url": "https://github.com/rasbt/mini-coding-agent",
-    "author": "rasbt",
-    "published": "2026-04-02T02:35:06Z",
-    "tags": [
-      "agents",
-      "ai",
-      "large language models",
-      "llms",
-      "GitHub"
-    ],
-    "summary": "Minimal and readable coding agent harness implementation in Python to explain the core components of coding agents.",
-    "why_it_matters": "Strong fit for operator leverage, agent workflows, and business automation ideas.",
-    "score": 69,
-    "metrics": {
-      "stars": 484,
-      "forks": 92,
-      "language": "Python"
-    },
-    "updated_at": "2026-04-08T23:19:19.767Z"
-  },
-  {
-    "id": "github-kessler-gemma-gem",
-    "type": "github",
-    "source": "GitHub",
-    "title": "kessler/gemma-gem",
-    "url": "https://github.com/kessler/gemma-gem",
-    "author": "kessler",
-    "published": "2026-04-05T20:07:56Z",
-    "tags": [
-      "ai",
-      "chrome extension",
-      "gemma4",
-      "gemma4 2b",
-      "GitHub"
-    ],
-    "summary": "Gemma Gem runs Google's Gemma 4 model entirely on-device via WebGPU — no API keys, no cloud, no data leaving your machine.",
-    "why_it_matters": "Relevant to Jarvis, AI workflows, and product ideas worth monitoring closely.",
-    "score": 68,
-    "metrics": {
-      "stars": 519,
-      "forks": 45,
-      "language": "TypeScript"
-    },
-    "updated_at": "2026-04-08T23:19:19.767Z"
+    "updated_at": "2026-04-11T19:47:50.773Z"
   },
   {
     "id": "github-houseofmvps-codesight",
@@ -250,38 +200,112 @@
     ],
     "summary": "Universal AI context generator. Saves thousands of tokens per conversation in Claude Code, Cursor, Copilot, Codex, and more.",
     "why_it_matters": "Relevant to Jarvis, AI workflows, and product ideas worth monitoring closely.",
-    "score": 67,
+    "score": 70,
     "metrics": {
-      "stars": 498,
-      "forks": 45,
+      "stars": 825,
+      "forks": 77,
       "language": "TypeScript"
     },
-    "updated_at": "2026-04-08T23:19:19.767Z"
+    "updated_at": "2026-04-11T19:47:50.773Z"
   },
   {
-    "id": "github-math-ai-org-mathcode",
+    "id": "github-kessler-gemma-gem",
     "type": "github",
     "source": "GitHub",
-    "title": "math-ai-org/mathcode",
-    "url": "https://github.com/math-ai-org/mathcode",
-    "author": "math-ai-org",
-    "published": "2026-04-02T07:46:05Z",
+    "title": "kessler/gemma-gem",
+    "url": "https://github.com/kessler/gemma-gem",
+    "author": "kessler",
+    "published": "2026-04-05T20:07:56Z",
     "tags": [
       "ai",
-      "coding",
-      "foundation models",
-      "llm",
+      "chrome extension",
+      "gemma4",
+      "gemma4 2b",
       "GitHub"
     ],
-    "summary": "MathCode: A Frontier Mathematical Coding Agent",
+    "summary": "Gemma Gem runs Google's Gemma 4 model entirely on-device via WebGPU — no API keys, no cloud, no data leaving your machine.",
     "why_it_matters": "Relevant to Jarvis, AI workflows, and product ideas worth monitoring closely.",
-    "score": 66,
+    "score": 69,
     "metrics": {
-      "stars": 290,
-      "forks": 25,
+      "stars": 641,
+      "forks": 59,
+      "language": "TypeScript"
+    },
+    "updated_at": "2026-04-11T19:47:50.773Z"
+  },
+  {
+    "id": "github-agricidaniel-claude-obsidian",
+    "type": "github",
+    "source": "GitHub",
+    "title": "AgriciDaniel/claude-obsidian",
+    "url": "https://github.com/AgriciDaniel/claude-obsidian",
+    "author": "AgriciDaniel",
+    "published": "2026-04-07T08:59:37Z",
+    "tags": [
+      "ai",
+      "claude code",
+      "claude code skill",
+      "knowledge management",
+      "GitHub"
+    ],
+    "summary": "Claude + Obsidian knowledge companion. Persistent, compounding wiki vault based on Karpathy's LLM Wiki pattern. /wiki /save /autoresearch",
+    "why_it_matters": "Relevant to Jarvis, AI workflows, and product ideas worth monitoring closely.",
+    "score": 67,
+    "metrics": {
+      "stars": 482,
+      "forks": 45,
       "language": "Shell"
     },
-    "updated_at": "2026-04-08T23:19:19.767Z"
+    "updated_at": "2026-04-11T19:47:50.773Z"
+  },
+  {
+    "id": "github-liyupi-yupi-skill",
+    "type": "github",
+    "source": "GitHub",
+    "title": "liyupi/yupi-skill",
+    "url": "https://github.com/liyupi/yupi-skill",
+    "author": "liyupi",
+    "published": "2026-04-09T08:54:00Z",
+    "tags": [
+      "agent",
+      "agent skills",
+      "ai",
+      "ai coding",
+      "GitHub"
+    ],
+    "summary": "🐟 程序员鱼皮 Agent Skill｜把自己蒸馏成 AI 技能包，用我的思维方式和表达风格回答编程学习、求职面试、AI 编程、简历优化、技术选型、创业经验等问题。支持 Claude Code / Cursor / OpenClaw",
+    "why_it_matters": "Strong fit for operator leverage, agent workflows, and business automation ideas.",
+    "score": 64,
+    "metrics": {
+      "stars": 80,
+      "forks": 11
+    },
+    "updated_at": "2026-04-11T19:47:50.773Z"
+  },
+  {
+    "id": "github-pratiyush-llm-wiki",
+    "type": "github",
+    "source": "GitHub",
+    "title": "Pratiyush/llm-wiki",
+    "url": "https://github.com/Pratiyush/llm-wiki",
+    "author": "Pratiyush",
+    "published": "2026-04-08T00:07:14Z",
+    "tags": [
+      "ai",
+      "claude code",
+      "cli",
+      "codex cli",
+      "GitHub"
+    ],
+    "summary": "LLM-powered knowledge base from your Claude Code, Codex CLI, Copilot, Cursor & Gemini sessions. Karpathy's LLM Wiki pattern — implemented and shipped.",
+    "why_it_matters": "Relevant to Jarvis, AI workflows, and product ideas worth monitoring closely.",
+    "score": 64,
+    "metrics": {
+      "stars": 58,
+      "forks": 5,
+      "language": "Python"
+    },
+    "updated_at": "2026-04-11T19:47:50.773Z"
   },
   {
     "id": "youtube-yavycrzihx8",
@@ -301,7 +325,7 @@
     "why_it_matters": "Useful for spotting practical tools, coding workflow shifts, and adjacent AI opportunities without scanning YouTube manually.",
     "thumbnail": "https://img.youtube.com/vi/yaVYCrZIHX8/hqdefault.jpg",
     "score": 64,
-    "updated_at": "2026-04-08T23:19:19.767Z"
+    "updated_at": "2026-04-11T19:47:50.773Z"
   },
   {
     "id": "youtube-saq7ekd1-74",
@@ -320,32 +344,7 @@
     "why_it_matters": "Useful for spotting practical tools, coding workflow shifts, and adjacent AI opportunities without scanning YouTube manually.",
     "thumbnail": "https://img.youtube.com/vi/SAq7ekD1-74/hqdefault.jpg",
     "score": 64,
-    "updated_at": "2026-04-08T23:19:19.767Z"
-  },
-  {
-    "id": "github-agricidaniel-claude-obsidian",
-    "type": "github",
-    "source": "GitHub",
-    "title": "AgriciDaniel/claude-obsidian",
-    "url": "https://github.com/AgriciDaniel/claude-obsidian",
-    "author": "AgriciDaniel",
-    "published": "2026-04-07T08:59:37Z",
-    "tags": [
-      "ai",
-      "claude code",
-      "karpathy",
-      "knowledge base",
-      "GitHub"
-    ],
-    "summary": "Claude + Obsidian knowledge companion. Persistent, compounding wiki vault based on Karpathy's LLM Wiki pattern. /wiki /save /autoresearch",
-    "why_it_matters": "Relevant to Jarvis, AI workflows, and product ideas worth monitoring closely.",
-    "score": 64,
-    "metrics": {
-      "stars": 174,
-      "forks": 12,
-      "language": "Shell"
-    },
-    "updated_at": "2026-04-08T23:19:19.767Z"
+    "updated_at": "2026-04-11T19:47:50.773Z"
   },
   {
     "id": "youtube-tqbikjgr5mm",
@@ -364,7 +363,82 @@
     "why_it_matters": "Useful for spotting practical tools, coding workflow shifts, and adjacent AI opportunities without scanning YouTube manually.",
     "thumbnail": "https://img.youtube.com/vi/TqbIkJgr5mM/hqdefault.jpg",
     "score": 64,
-    "updated_at": "2026-04-08T23:19:19.768Z"
+    "updated_at": "2026-04-11T19:47:50.773Z"
+  },
+  {
+    "id": "github-416rehman-deepzero",
+    "type": "github",
+    "source": "GitHub",
+    "title": "416rehman/DeepZero",
+    "url": "https://github.com/416rehman/DeepZero",
+    "author": "416rehman",
+    "published": "2026-04-07T01:51:34Z",
+    "tags": [
+      "ai",
+      "ai agents",
+      "automated analysis",
+      "cybersecurity",
+      "GitHub"
+    ],
+    "summary": "Find zero-days while you sleep. DeepZero is an automated vulnerability research framework that parses, decompiles, and analyzes thousands of Windows kernel drivers for exploitable IOCTLs natively using AI agents.",
+    "why_it_matters": "Relevant to Jarvis, AI workflows, and product ideas worth monitoring closely.",
+    "score": 64,
+    "metrics": {
+      "stars": 66,
+      "forks": 7,
+      "language": "Python"
+    },
+    "updated_at": "2026-04-11T19:47:50.773Z"
+  },
+  {
+    "id": "github-nicholasspisak-second-brain",
+    "type": "github",
+    "source": "GitHub",
+    "title": "NicholasSpisak/second-brain",
+    "url": "https://github.com/NicholasSpisak/second-brain",
+    "author": "NicholasSpisak",
+    "published": "2026-04-06T18:28:01Z",
+    "tags": [
+      "agent skills",
+      "ai",
+      "knowledge base",
+      "llm",
+      "GitHub"
+    ],
+    "summary": "LLM-maintained personal knowledge base for Obsidian. Based on Andrej Karpathy's LLM Wiki pattern.",
+    "why_it_matters": "Relevant to Jarvis, AI workflows, and product ideas worth monitoring closely.",
+    "score": 64,
+    "metrics": {
+      "stars": 101,
+      "forks": 10,
+      "language": "Shell"
+    },
+    "updated_at": "2026-04-11T19:47:50.773Z"
+  },
+  {
+    "id": "github-neuzhou-awesome-ai-anatomy",
+    "type": "github",
+    "source": "GitHub",
+    "title": "NeuZhou/awesome-ai-anatomy",
+    "url": "https://github.com/NeuZhou/awesome-ai-anatomy",
+    "author": "NeuZhou",
+    "published": "2026-04-04T13:02:24Z",
+    "tags": [
+      "ai",
+      "ai agent",
+      "ai security",
+      "architecture",
+      "GitHub"
+    ],
+    "summary": "Source code teardowns of 15 AI coding agents. What is actually inside Claude Code, Dify, OpenHands, Cline, MemPalace, oh-my-codex, Goose, Codex CLI, and 7 more. Architecture diagrams, design patterns. Every claim fact-checked.",
+    "why_it_matters": "Relevant to Jarvis, AI workflows, and product ideas worth monitoring closely.",
+    "score": 64,
+    "metrics": {
+      "stars": 112,
+      "forks": 7,
+      "language": "D2"
+    },
+    "updated_at": "2026-04-11T19:47:50.773Z"
   },
   {
     "id": "github-chencore-deep-live-cam-tutorial",
@@ -385,59 +459,34 @@
     "why_it_matters": "Relevant to Jarvis, AI workflows, and product ideas worth monitoring closely.",
     "score": 64,
     "metrics": {
-      "stars": 80,
+      "stars": 81,
       "forks": 12
     },
-    "updated_at": "2026-04-08T23:19:19.767Z"
+    "updated_at": "2026-04-11T19:47:50.773Z"
   },
   {
-    "id": "github-zarazhangrui-personalized-podcast",
+    "id": "github-klemensgc-modular-context-obsidian-plugin",
     "type": "github",
     "source": "GitHub",
-    "title": "zarazhangrui/personalized-podcast",
-    "url": "https://github.com/zarazhangrui/personalized-podcast",
-    "author": "zarazhangrui",
-    "published": "2026-04-03T21:00:07Z",
+    "title": "klemensgc/modular-context-obsidian-plugin",
+    "url": "https://github.com/klemensgc/modular-context-obsidian-plugin",
+    "author": "klemensgc",
+    "published": "2026-04-05T10:20:43Z",
     "tags": [
       "ai",
-      "claude code",
-      "podcast",
-      "rss",
+      "claude",
+      "knowledge base",
+      "obsidian plugin",
       "GitHub"
     ],
-    "summary": "Turn any content into a personalized AI podcast. NotebookLM-style, except you control the script, voices, and hosts. Listen in Apple Podcasts, Spotify, or any podcast app.",
+    "summary": "Run multiple Claude Code & Codex terminals side-by-side in Obsidian — split layouts, skills dashboard, agent tracking, session glyphs. Zero context-switching.",
     "why_it_matters": "Relevant to Jarvis, AI workflows, and product ideas worth monitoring closely.",
-    "score": 64,
+    "score": 63,
     "metrics": {
-      "stars": 140,
-      "forks": 14,
-      "language": "Python"
+      "stars": 59,
+      "forks": 2,
+      "language": "JavaScript"
     },
-    "updated_at": "2026-04-08T23:19:19.767Z"
-  },
-  {
-    "id": "github-thinkwatchproject-thinkwatch",
-    "type": "github",
-    "source": "GitHub",
-    "title": "ThinkWatchProject/ThinkWatch",
-    "url": "https://github.com/ThinkWatchProject/ThinkWatch",
-    "author": "ThinkWatchProject",
-    "published": "2026-04-02T15:29:52Z",
-    "tags": [
-      "ai",
-      "ai gateway",
-      "ai security",
-      "ai tools",
-      "GitHub"
-    ],
-    "summary": "Enterprise AI bastion host for secure AI API and MCP access, with unified proxying, RBAC, audit logs, rate limiting, and cost tracking across OpenAI, Anthropic, Gemini, and self-hosted LLMs.",
-    "why_it_matters": "Relevant to Jarvis, AI workflows, and product ideas worth monitoring closely.",
-    "score": 64,
-    "metrics": {
-      "stars": 106,
-      "forks": 1,
-      "language": "Rust"
-    },
-    "updated_at": "2026-04-08T23:19:19.767Z"
+    "updated_at": "2026-04-11T19:47:50.773Z"
   }
 ]
