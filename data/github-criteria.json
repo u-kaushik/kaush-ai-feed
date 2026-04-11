@@ -1,0 +1,38 @@
+[
+  {
+    "name": "AI repos",
+    "query": "pushed:>={since} stars:>50 topic:ai"
+  },
+  {
+    "name": "Agent repos",
+    "query": "pushed:>={since} stars:>25 topic:agent"
+  },
+  {
+    "name": "Automation repos",
+    "query": "pushed:>={since} stars:>25 topic:automation"
+  },
+  {
+    "name": "MCP repos",
+    "query": "pushed:>={since} stars:>25 topic:mcp"
+  },
+  {
+    "name": "LLM tooling",
+    "query": "pushed:>={since} stars:>25 llm in:name,description,readme"
+  },
+  {
+    "name": "Claude tooling",
+    "query": "pushed:>={since} stars:>25 claude in:name,description,readme"
+  },
+  {
+    "name": "OpenAI tooling",
+    "query": "pushed:>={since} stars:>25 openai in:name,description,readme"
+  },
+  {
+    "name": "Anthropic tooling",
+    "query": "pushed:>={since} stars:>25 anthropic in:name,description,readme"
+  },
+  {
+    "name": "Memory tooling",
+    "query": "pushed:>={since} stars:>25 memory in:name,description,readme"
+  }
+]

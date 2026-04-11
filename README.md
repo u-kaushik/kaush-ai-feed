@@ -52,8 +52,9 @@ pnpm digest:test-send
 ### Daily updater
 - script: `scripts/update-feed.mjs`
 - fetches GitHub and YouTube candidates and writes the merged result to `data/ai-feed.json`
-- GitHub uses `gh` search (`GITHUB_QUERY` or `GITHUB_WINDOW_DAYS`)
-- YouTube is fetched in this order: YouTube Data API search (if `YOUTUBE_API_KEY`/`GOOGLE_API_KEY` is set), then channel RSS (`YOUTUBE_FEEDS`/`YOUTUBE_CHANNEL_IDS`), then local `data/yt-feed.json` as fallback
+- YouTube creator sources live in `data/youtube-sources.json` and are used first; `data/yt-feed.json` remains the fallback snapshot
+- GitHub search criteria live in `data/github-criteria.json`; the updater falls back to a default “recently pushed AI repos” query if that file is missing
+- YouTube is fetched in this order: creator RSS, then YouTube Data API search (if `YOUTUBE_API_KEY`/`GOOGLE_API_KEY` is set), then the local snapshot
 
 ### Automation
 - run updates manually: `pnpm digest:update`

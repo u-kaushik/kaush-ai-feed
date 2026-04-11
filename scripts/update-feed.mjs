@@ -12,6 +12,8 @@ const root = path.resolve(__dirname, '..');
 const dataDir = path.join(root, 'data');
 const feedPath = path.join(dataDir, 'ai-feed.json');
 const ytFeedPath = path.join(dataDir, 'yt-feed.json');
+const youtubeSourcesPath = path.join(dataDir, 'youtube-sources.json');
+const githubCriteriaPath = path.join(dataDir, 'github-criteria.json');
 const stateDir = path.join(root, '.state');
 const statePath = path.join(stateDir, 'last-run.json');
 
@@ -57,6 +59,55 @@ function normalizeYoutubeId(rawId) {
   return null;
 }
 
+function uniqueByKey(items, keyFn) {
+  const seen = new Set();
+  return items.filter((item) => {
+    const key = keyFn(item);
+    if (!key || seen.has(key)) return false;
+    seen.add(key);
+    return true;
+  });
+}
+
+function normalizeYoutubeSource(raw) {
+  if (!raw) return null;
+  if (typeof raw === 'string') {
+    return {
+      name: raw,
+      channelUrl: raw.startsWith('http') ? raw : `https://www.youtube.com/@${raw.replace(/^@/, '')}`,
+    };
+  }
+
+  const name = String(raw.name || raw.channel || raw.title || raw.handle || raw.channelUrl || '').trim();
+  const channelUrl = String(raw.channelUrl || raw.url || '').trim();
+  const channelId = String(raw.channelId || '').trim();
+
+  if (!name && !channelUrl && !channelId) return null;
+
+  return {
+    name: name || channelUrl || channelId,
+    channelUrl,
+    channelId,
+  };
+}
+
+function normalizeGithubCriteria(raw) {
+  if (!raw) return null;
+  if (typeof raw === 'string') {
+    return { name: raw, query: raw };
+  }
+
+  const name = String(raw.name || raw.label || raw.title || raw.query || '').trim();
+  const query = String(raw.query || raw.search || '').trim();
+
+  if (!name && !query) return null;
+
+  return {
+    name: name || query,
+    query: query || name,
+  };
+}
+
 function buildGithubQuery() {
   if (process.env.GITHUB_QUERY && process.env.GITHUB_QUERY.trim()) {
     return process.env.GITHUB_QUERY.trim();
@@ -64,7 +115,7 @@ function buildGithubQuery() {
 
   const since = isoDateDaysAgo(GITHUB_WINDOW_DAYS);
   return [
-    `created:>=${since}`,
+    `pushed:>=${since}`,
     'stars:>50',
     'topic:ai',
   ].join(' ');
@@ -149,28 +200,51 @@ function scoreGithub(repo) {
 
 async function fetchGithubRepos() {
   const gh = await resolveGithubCli();
-  const query = buildGithubQuery();
+  const configuredCriteria = await loadGithubCriteria();
+  const queries = configuredCriteria.length
+    ? configuredCriteria
+    : [{ name: 'default', query: buildGithubQuery() }];
+  const queryWindow = isoDateDaysAgo(GITHUB_WINDOW_DAYS);
+  const repos = [];
+  const seen = new Set();
+
   try {
-    const { stdout } = await execFile(
-      gh,
-      [
-        'api',
-        '/search/repositories',
-        '-X',
-        'GET',
-        '-f',
-        `q=${query}`,
-        '-f',
-        'sort=stars',
-        '-f',
-        'order=desc',
-        '-f',
-        'per_page=12',
-      ],
-      { cwd: root, maxBuffer: 1024 * 1024 * 4 },
-    );
-    const json = safeJsonParse(stdout, { items: [] });
-    return Array.isArray(json.items) ? json.items : [];
+    for (const criterion of queries) {
+      const query = criterion.query.replace(/\{since\}/g, queryWindow);
+      try {
+        const { stdout } = await execFile(
+          gh,
+          [
+            'api',
+            '/search/repositories',
+            '-X',
+            'GET',
+            '-f',
+            `q=${query}`,
+            '-f',
+            'sort=stars',
+            '-f',
+            'order=desc',
+            '-f',
+            'per_page=12',
+          ],
+          { cwd: root, maxBuffer: 1024 * 1024 * 4 },
+        );
+        const json = safeJsonParse(stdout, { items: [] });
+        const items = Array.isArray(json.items) ? json.items : [];
+        for (const repo of items) {
+          const key = repo.full_name || repo.html_url;
+          if (!key || seen.has(key)) continue;
+          seen.add(key);
+          repos.push(repo);
+        }
+      } catch (error) {
+        console.warn(
+          `ai-digest: GitHub query "${criterion.name}" failed; continuing with other criteria. (${error instanceof Error ? error.message : String(error)})`,
+        );
+      }
+    }
+    return repos;
   } catch (error) {
     const code = error && typeof error === 'object' && 'code' in error ? String(error.code) : null;
     const hint = code === 'ENOENT'
@@ -184,6 +258,11 @@ async function fetchGithubRepos() {
   }
 }
 
+async function loadGithubCriteria() {
+  const criteria = await readJsonArray(githubCriteriaPath, []);
+  return criteria.map(normalizeGithubCriteria).filter(Boolean);
+}
+
 async function readJson(pathname, fallback) {
   try {
     const raw = await readFile(pathname, 'utf8');
@@ -191,6 +270,11 @@ async function readJson(pathname, fallback) {
   } catch {
     return fallback;
   }
+}
+
+async function readJsonArray(pathname, fallback = []) {
+  const value = await readJson(pathname, fallback);
+  return Array.isArray(value) ? value : fallback;
 }
 
 function toGithubItem(repo) {
@@ -221,6 +305,7 @@ function scoreYoutube(item) {
   if (title.includes('claude code')) base += 10;
   if (title.includes('open source') || title.includes('opensource')) base += 6;
   if (title.includes('agent') || title.includes('automation')) base += 6;
+  if (title.includes('repo')) base += 3;
   return Math.min(88, base);
 }
 
@@ -234,9 +319,9 @@ function toYoutubeItem(video) {
     author: video.channel || 'YouTube',
     published: video.published || nowIso(),
     tags: Array.isArray(video.tags) ? video.tags.slice(0, 5) : ['YouTube'],
-    summary: video.description?.trim() || 'Selected AI/dev YouTube signal from the existing watched-channel feed.',
+    summary: video.description?.trim() || 'Selected AI/dev YouTube signal from the curated favorite-creator list.',
     why_it_matters:
-      'Useful for spotting practical tools, coding workflow shifts, and adjacent AI opportunities without scanning YouTube manually.',
+      'Useful for spotting practical tools, coding workflow shifts, and adjacent AI opportunities from your favorite yters without scanning YouTube manually.',
     thumbnail: video.thumbnail,
     score: scoreYoutube(video),
     updated_at: nowIso(),
@@ -280,18 +365,61 @@ function normalizeYoutubePayload(raw) {
   };
 }
 
-function parseFeedIds(raw) {
-  if (!raw || typeof raw !== 'string') return [];
-  return raw
-    .replace(/[\n,;]+/g, ',')
-    .split(',')
-    .map((value) => value.trim())
-    .filter((value) => value.length > 0);
-}
-
 function extractXmlField(html, regex, fallback) {
   const match = html.match(regex);
   return match ? decodeXmlText(match[1] || '') : fallback;
+}
+
+function extractChannelIdFromUrl(url) {
+  if (!url) return null;
+  const match = String(url).match(/youtube\.com\/channel\/(UC[a-zA-Z0-9_-]{20,})/i);
+  return match ? match[1] : null;
+}
+
+function parseHandleFromUrl(url) {
+  if (!url) return null;
+  const match = String(url).match(/youtube\.com\/@([^/?#]+)/i);
+  return match ? match[1] : null;
+}
+
+async function resolveYoutubeChannelId(source) {
+  if (source.channelId) return source.channelId;
+
+  const directId = extractChannelIdFromUrl(source.channelUrl);
+  if (directId) return directId;
+
+  const handle = parseHandleFromUrl(source.channelUrl);
+  if (!source.channelUrl && !handle) return null;
+
+  try {
+    const resolvedUrl = source.channelUrl || `https://www.youtube.com/@${handle}`;
+    const { stdout: effectiveUrl } = await execFile(
+      'curl',
+      ['-L', '-s', '-o', '/dev/null', '-w', '%{url_effective}', resolvedUrl],
+      { maxBuffer: 1024 * 1024 },
+    );
+    const effectiveId = extractChannelIdFromUrl(effectiveUrl.trim());
+    if (effectiveId) return effectiveId;
+  } catch {
+    // fall back to HTML parsing below
+  }
+
+  try {
+    const resolvedUrl = source.channelUrl || `https://www.youtube.com/@${handle}`;
+    const videosUrl = resolvedUrl.replace(/\/$/, '') + '/videos';
+    const { stdout } = await execFile('curl', ['-L', '--compressed', '--max-time', '20', videosUrl], {
+      maxBuffer: 1024 * 1024 * 4,
+    });
+    const htmlId =
+      extractXmlField(stdout, /"channelId":"(UC[a-zA-Z0-9_-]{20,})"/) ||
+      extractXmlField(stdout, /"browseId":"(UC[a-zA-Z0-9_-]{20,})"/) ||
+      extractXmlField(stdout, /"externalId":"(UC[a-zA-Z0-9_-]{20,})"/);
+    if (htmlId) return htmlId;
+  } catch {
+    // fall back to snapshot
+  }
+
+  return null;
 }
 
 async function fetchYoutubeBySearch() {
@@ -318,45 +446,97 @@ async function fetchYoutubeBySearch() {
   return Array.isArray(payload.items) ? payload.items.map((item) => normalizeYoutubePayload(item)).filter(Boolean) : [];
 }
 
-async function fetchYoutubeByFeedUrls() {
-  const channelIds = parseFeedIds(YOUTUBE_FEEDS);
-  if (!channelIds.length) return [];
+async function loadYoutubeSources() {
+  const configuredSources = await readJsonArray(youtubeSourcesPath, []);
+  const explicitSources = uniqueByKey(
+    configuredSources.map(normalizeYoutubeSource).filter(Boolean),
+    (source) => source.channelUrl || source.channelId || source.name,
+  );
 
-  const requests = channelIds.slice(0, 5).map(async (channelId) => {
-    const rssUrl = `https://www.youtube.com/feeds/videos.xml?channel_id=${encodeURIComponent(channelId)}`;
-    const { stdout } = await execFile('curl', ['-L', '--compressed', '--max-time', '20', rssUrl], {
-      maxBuffer: 1024 * 1024 * 4,
-    });
+  if (explicitSources.length) return explicitSources;
 
-    const entryRegex = /<entry>([\s\S]*?)<\/entry>/g;
-    let entryMatch = entryRegex.exec(stdout);
-    if (!entryMatch) return [];
+  if (YOUTUBE_FEEDS && YOUTUBE_FEEDS.trim()) {
+    const envSources = uniqueByKey(
+      YOUTUBE_FEEDS.split(/[\n,;]+/)
+        .map((value) => normalizeYoutubeSource(value.trim()))
+        .filter(Boolean),
+      (source) => source.channelUrl || source.channelId || source.name,
+    );
+    if (envSources.length) return envSources;
+  }
 
-    const entries = [];
-    let remaining = Math.max(1, channelIds.length);
-    while (entryMatch && entries.length < Math.ceil(YOUTUBE_MAX_RESULTS / remaining)) {
-      const entry = entryMatch[1] || '';
-      const id = extractXmlField(entry, /<yt:videoId>([^<]+)<\/yt:videoId>/);
-      const thumbnail = extractXmlField(entry, /<media:thumbnail[^>]*url="([^"]+)"/);
-      const title = extractXmlField(entry, /<title>([^<]+)<\/title>/);
-      const channelIdCaptured = extractXmlField(entry, /<yt:channelId>([^<]+)<\/yt:channelId>/);
-      const published = extractXmlField(entry, /<published>([^<]+)<\/published>/);
-      const channel = extractXmlField(entry, /<media:credit role="uploader"[^>]*>([^<]+)<\/media:credit>/, 'YouTube');
-
-      entries.push(
-        normalizeYoutubePayload({
-          id,
-          title,
-          channelTitle: channel || channelIdCaptured || 'YouTube',
-          channelId: channelIdCaptured,
-          publishedAt: published,
-          thumbnails: { default: { url: thumbnail } },
-          description: '',
+  const snapshotVideos = await readJsonArray(ytFeedPath, []);
+  return uniqueByKey(
+    snapshotVideos
+      .map((video) =>
+        normalizeYoutubeSource({
+          name: video.channel || video.author || video.channelUrl,
+          channelUrl: video.channelUrl,
         }),
+      )
+      .filter(Boolean),
+    (source) => source.channelUrl || source.channelId || source.name,
+  );
+}
+
+async function fetchYoutubeByFeedUrls() {
+  const sources = await loadYoutubeSources();
+  if (!sources.length) return [];
+
+  const resolvedSources = await Promise.all(
+    sources.map(async (source) => ({
+      ...source,
+      channelId: source.channelId || (await resolveYoutubeChannelId(source)),
+    })),
+  );
+  const channelSources = uniqueByKey(
+    resolvedSources.filter((source) => source.channelId),
+    (source) => source.channelId,
+  );
+
+  if (!channelSources.length) return [];
+
+  const requests = channelSources.slice(0, 10).map(async (source) => {
+    try {
+      const rssUrl = `https://www.youtube.com/feeds/videos.xml?channel_id=${encodeURIComponent(source.channelId)}`;
+      const { stdout } = await execFile('curl', ['-L', '--compressed', '--max-time', '20', rssUrl], {
+        maxBuffer: 1024 * 1024 * 4,
+      });
+
+      const entryRegex = /<entry>([\s\S]*?)<\/entry>/g;
+      let entryMatch = entryRegex.exec(stdout);
+      if (!entryMatch) return [];
+
+      const entries = [];
+      while (entryMatch && entries.length < Math.ceil(YOUTUBE_MAX_RESULTS / Math.max(1, channelSources.length))) {
+        const entry = entryMatch[1] || '';
+        const id = extractXmlField(entry, /<yt:videoId>([^<]+)<\/yt:videoId>/);
+        const thumbnail = extractXmlField(entry, /<media:thumbnail[^>]*url="([^"]+)"/);
+        const title = extractXmlField(entry, /<title>([^<]+)<\/title>/);
+        const published = extractXmlField(entry, /<published>([^<]+)<\/published>/);
+        const channel = extractXmlField(entry, /<media:credit role="uploader"[^>]*>([^<]+)<\/media:credit>/, source.name || 'YouTube');
+
+        entries.push(
+          normalizeYoutubePayload({
+            id,
+            title,
+            channelTitle: channel || source.name || 'YouTube',
+            channelId: source.channelId,
+            publishedAt: published,
+            thumbnails: { default: { url: thumbnail } },
+            description: '',
+            channelUrl: source.channelUrl,
+          }),
+        );
+        entryMatch = entryRegex.exec(stdout);
+      }
+      return entries.filter(Boolean);
+    } catch (error) {
+      console.warn(
+        `ai-digest: YouTube channel "${source.name}" failed; continuing with other creators. (${error instanceof Error ? error.message : String(error)})`,
       );
-      entryMatch = entryRegex.exec(stdout);
+      return [];
     }
-    return entries.filter(Boolean);
   });
 
   const bucket = await Promise.all(requests);
@@ -364,8 +544,8 @@ async function fetchYoutubeByFeedUrls() {
 }
 
 async function fetchYoutubeFeed() {
-  const fallbackVideos = await readJson(ytFeedPath, []);
-  const localCandidates = Array.isArray(fallbackVideos) ? fallbackVideos : [];
+  const channelVideos = await fetchYoutubeByFeedUrls();
+  if (channelVideos.length) return channelVideos;
 
   try {
     const fetched = await fetchYoutubeBySearch();
@@ -373,19 +553,11 @@ async function fetchYoutubeFeed() {
       return fetched;
     }
   } catch (error) {
-    // fall through to RSS feed / local snapshot below
+    // fall through to local snapshot below
   }
 
-  if (YOUTUBE_FEEDS.trim()) {
-    try {
-      const channelVideos = await fetchYoutubeByFeedUrls();
-      if (channelVideos.length) return channelVideos;
-    } catch (error) {
-      // continue fallback
-    }
-  }
-
-  return localCandidates.map((video) => normalizeYoutubePayload(video)).filter(Boolean);
+  const fallbackVideos = await readJsonArray(ytFeedPath, []);
+  return fallbackVideos.map((video) => normalizeYoutubePayload(video)).filter(Boolean);
 }
 
 function dedupeByUrl(items) {
