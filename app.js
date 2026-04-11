@@ -482,7 +482,8 @@ async function fetchItems() {
   const btn = document.getElementById('refresh-btn');
   btn.classList.add('spinning');
   try {
-    const res = await fetch(FEED_URL);
+    const url = `${FEED_URL}?v=${Date.now()}`;
+    const res = await fetch(url, { cache: 'no-store' });
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     allItems = await res.json();
     allItems.sort((a, b) => new Date(b.published || 0) - new Date(a.published || 0));

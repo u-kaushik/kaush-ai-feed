@@ -102,7 +102,8 @@ function renderWrap(savedItems, notes) {
 
 async function readJson(url, fallback) {
   try {
-    const res = await fetch(url);
+    const cacheBustedUrl = `${url}?v=${Date.now()}`;
+    const res = await fetch(cacheBustedUrl, { cache: 'no-store' });
     if (!res.ok) throw new Error(String(res.status));
     return await res.json();
   } catch {
