@@ -5,6 +5,20 @@ import { join } from 'node:path';
 
 const mode = (process.argv[2] || 'full').toLowerCase();
 const root = process.cwd();
+
+const home = process.env.HOME;
+const basePath = process.env.PATH || '';
+const extraPaths = [
+  home ? join(home, 'bin') : null,
+  '/opt/homebrew/bin',
+  '/usr/local/bin',
+  '/usr/bin',
+  '/bin',
+  '/usr/sbin',
+  '/sbin',
+].filter(Boolean);
+process.env.PATH = [...new Set([...extraPaths, ...basePath.split(':').filter(Boolean)])].join(':');
+
 const logDir = join(root, '.state', 'logs');
 mkdirSync(logDir, { recursive: true });
 const logFile = join(logDir, 'scheduler.log');

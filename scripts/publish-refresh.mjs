@@ -6,6 +6,7 @@ const allowedPaths = [
   'data/ai-feed.json',
   'scripts/scheduled-refresh.mjs',
   'scripts/publish-refresh.mjs',
+  'scripts/update-feed.mjs',
   'package.json',
   'package-lock.json',
 ];

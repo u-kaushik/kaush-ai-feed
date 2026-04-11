@@ -1,5 +1,7 @@
 import { execFile as execFileCb } from 'node:child_process';
-import { mkdir, readFile, writeFile } from 'node:fs/promises';
+import { constants } from 'node:fs';
+import { access, mkdir, readFile, writeFile } from 'node:fs/promises';
+import os from 'node:os';
 import { promisify } from 'node:util';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -13,14 +15,55 @@ const ytFeedPath = path.join(dataDir, 'yt-feed.json');
 const stateDir = path.join(root, '.state');
 const statePath = path.join(stateDir, 'last-run.json');
 
-const GITHUB_QUERY = [
-  'created:>2026-04-01',
-  'stars:>80',
-  'topic:ai',
-].join(' ');
+const GITHUB_WINDOW_DAYS = Number(process.env.GITHUB_WINDOW_DAYS || 7);
+
+function isoDateDaysAgo(days) {
+  const date = new Date();
+  date.setUTCDate(date.getUTCDate() - Math.max(0, Number(days) || 0));
+  return date.toISOString().slice(0, 10);
+}
+
+function buildGithubQuery() {
+  if (process.env.GITHUB_QUERY && process.env.GITHUB_QUERY.trim()) {
+    return process.env.GITHUB_QUERY.trim();
+  }
+
+  const since = isoDateDaysAgo(GITHUB_WINDOW_DAYS);
+  return [
+    `created:>=${since}`,
+    'stars:>50',
+    'topic:ai',
+  ].join(' ');
+}
 
 function nowIso() {
   return new Date().toISOString();
+}
+
+async function resolveGithubCli() {
+  const envPath = process.env.GH_PATH || process.env.GITHUB_CLI_PATH;
+  if (envPath) return envPath;
+
+  const home = os.homedir();
+  const candidates = [
+    path.join(home, 'bin', 'gh'),
+    '/opt/homebrew/bin/gh',
+    '/usr/local/bin/gh',
+    '/usr/bin/gh',
+    'gh',
+  ];
+
+  for (const candidate of candidates) {
+    if (candidate === 'gh') return 'gh';
+    try {
+      await access(candidate, constants.X_OK);
+      return candidate;
+    } catch {
+      // ignore
+    }
+  }
+
+  return 'gh';
 }
 
 function slug(value) {
@@ -71,26 +114,40 @@ function scoreGithub(repo) {
 }
 
 async function fetchGithubRepos() {
-  const { stdout } = await execFile(
-    'gh',
-    [
-      'api',
-      '/search/repositories',
-      '-X',
-      'GET',
-      '-f',
-      `q=${GITHUB_QUERY}`,
-      '-f',
-      'sort=stars',
-      '-f',
-      'order=desc',
-      '-f',
-      'per_page=12',
-    ],
-    { cwd: root, maxBuffer: 1024 * 1024 * 4 },
-  );
-  const json = safeJsonParse(stdout, { items: [] });
-  return Array.isArray(json.items) ? json.items : [];
+  const gh = await resolveGithubCli();
+  const query = buildGithubQuery();
+  try {
+    const { stdout } = await execFile(
+      gh,
+      [
+        'api',
+        '/search/repositories',
+        '-X',
+        'GET',
+        '-f',
+        `q=${query}`,
+        '-f',
+        'sort=stars',
+        '-f',
+        'order=desc',
+        '-f',
+        'per_page=12',
+      ],
+      { cwd: root, maxBuffer: 1024 * 1024 * 4 },
+    );
+    const json = safeJsonParse(stdout, { items: [] });
+    return Array.isArray(json.items) ? json.items : [];
+  } catch (error) {
+    const code = error && typeof error === 'object' && 'code' in error ? String(error.code) : null;
+    const hint = code === 'ENOENT'
+      ? `GitHub CLI not found (${gh})`
+      : 'GitHub ingestion failed';
+
+    console.warn(
+      `ai-digest: ${hint}; continuing without GitHub items. (${error instanceof Error ? error.message : String(error)})`,
+    );
+    return [];
+  }
 }
 
 async function readJson(pathname, fallback) {
