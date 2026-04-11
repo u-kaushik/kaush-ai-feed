@@ -268,7 +268,11 @@ function normalizeYoutubePayload(raw) {
       raw.videoUrl ||
       `https://www.youtube.com/watch?v=${encodeURIComponent(String(id))}`,
     channel: snippet.channelTitle || raw.channel || 'YouTube',
-    channelUrl: snippet.channelId || raw.channelId ? `https://www.youtube.com/channel/${snippet.channelId || raw.channelId}` : raw.channelUrl,
+    channelUrl: snippet.channelId
+      ? `https://www.youtube.com/channel/${snippet.channelId}`
+      : raw.channelId
+      ? `https://www.youtube.com/channel/${raw.channelId}`
+      : raw.channelUrl,
     published: snippet.publishedAt || raw.published || raw.publishedAt || nowIso(),
     thumbnail,
     tags: Array.isArray(raw.tags) ? raw.tags.slice(0, 5) : ['YouTube'],
