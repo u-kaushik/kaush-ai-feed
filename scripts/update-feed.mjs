@@ -108,6 +108,24 @@ function normalizeGithubCriteria(raw) {
   };
 }
 
+function hasChineseText(value) {
+  return /[\u3400-\u4dbf\u4e00-\u9fff\u3040-\u30ff]/.test(String(value || ''));
+}
+
+function isChineseRepo(repo) {
+  const haystack = [
+    repo.full_name,
+    repo.name,
+    repo.description,
+    Array.isArray(repo.topics) ? repo.topics.join(' ') : '',
+    repo.owner?.login,
+  ]
+    .filter(Boolean)
+    .join(' ');
+
+  return hasChineseText(haystack) || /\b(china|chinese|中文|汉化|國產|国产)\b/i.test(haystack);
+}
+
 function buildGithubQuery() {
   if (process.env.GITHUB_QUERY && process.env.GITHUB_QUERY.trim()) {
     return process.env.GITHUB_QUERY.trim();
@@ -235,6 +253,12 @@ async function fetchGithubRepos() {
         for (const repo of items) {
           const key = repo.full_name || repo.html_url;
           if (!key || seen.has(key)) continue;
+          if (isChineseRepo(repo)) {
+            console.warn(
+              `ai-digest: skipping Chinese-language GitHub repo ${key}`,
+            );
+            continue;
+          }
           seen.add(key);
           repos.push(repo);
         }
