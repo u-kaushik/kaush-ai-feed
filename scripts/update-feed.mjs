@@ -16,11 +16,45 @@ const stateDir = path.join(root, '.state');
 const statePath = path.join(stateDir, 'last-run.json');
 
 const GITHUB_WINDOW_DAYS = Number(process.env.GITHUB_WINDOW_DAYS || 7);
+const YOUTUBE_WINDOW_DAYS = Number(process.env.YOUTUBE_WINDOW_DAYS || 14);
+const YOUTUBE_MAX_RESULTS = Math.min(20, Number(process.env.YOUTUBE_MAX_RESULTS || 12));
+const YOUTUBE_SEARCH_QUERY = process.env.YOUTUBE_QUERY || process.env.YOUTUBE_SEARCH || 'AI OR "machine learning" OR developer tools';
+const YOUTUBE_API_KEY =
+  process.env.YOUTUBE_API_KEY || process.env.GOOGLE_API_KEY || process.env.GOOGLE_YOUTUBE_API_KEY;
+const YOUTUBE_FEEDS =
+  process.env.YOUTUBE_FEEDS ||
+  process.env.YOUTUBE_CHANNEL_IDS ||
+  process.env.YT_CHANNEL_IDS ||
+  '';
+const YOUTUBE_API_URL = 'https://www.googleapis.com/youtube/v3';
+const YOUTUBE_SEARCH_ENDPOINT = `${YOUTUBE_API_URL}/search`;
 
 function isoDateDaysAgo(days) {
   const date = new Date();
   date.setUTCDate(date.getUTCDate() - Math.max(0, Number(days) || 0));
   return date.toISOString().slice(0, 10);
+}
+
+function toRfc3339(date) {
+  return new Date(date).toISOString();
+}
+
+function decodeXmlText(value) {
+  return String(value || '')
+    .replace(/&amp;/g, '&')
+    .replace(/&lt;/g, '<')
+    .replace(/&gt;/g, '>')
+    .replace(/&quot;/g, '"')
+    .replace(/&#39;/g, "'")
+    .replace(/&apos;/g, "'")
+    .trim();
+}
+
+function normalizeYoutubeId(rawId) {
+  if (rawId == null) return null;
+  if (typeof rawId === 'string' || typeof rawId === 'number') return String(rawId);
+  if (typeof rawId === 'object' && rawId.videoId) return String(rawId.videoId);
+  return null;
 }
 
 function buildGithubQuery() {
@@ -209,6 +243,147 @@ function toYoutubeItem(video) {
   };
 }
 
+function normalizeYoutubePayload(raw) {
+  if (!raw) return null;
+  const snippet = raw.snippet || {};
+  const id = normalizeYoutubeId(raw.id) || normalizeYoutubeId(raw.videoId) || raw.videoId || raw.id;
+  const title = snippet.title || raw.title;
+
+  if (!id || !title) return null;
+
+  const thumb = snippet.thumbnails || {};
+  const thumbnail =
+    thumb.maxres?.url ||
+    thumb.high?.url ||
+    thumb.medium?.url ||
+    thumb.default?.url ||
+    raw.thumbnail ||
+    '';
+
+  return {
+    id: String(id),
+    title: String(title),
+    url:
+      raw.url ||
+      raw.videoUrl ||
+      `https://www.youtube.com/watch?v=${encodeURIComponent(String(id))}`,
+    channel: snippet.channelTitle || raw.channel || 'YouTube',
+    channelUrl: snippet.channelId || raw.channelId ? `https://www.youtube.com/channel/${snippet.channelId || raw.channelId}` : raw.channelUrl,
+    published: snippet.publishedAt || raw.published || raw.publishedAt || nowIso(),
+    thumbnail,
+    tags: Array.isArray(raw.tags) ? raw.tags.slice(0, 5) : ['YouTube'],
+    description: raw.description || snippet.description || '',
+  };
+}
+
+function parseFeedIds(raw) {
+  if (!raw || typeof raw !== 'string') return [];
+  return raw
+    .replace(/[\n,;]+/g, ',')
+    .split(',')
+    .map((value) => value.trim())
+    .filter((value) => value.length > 0);
+}
+
+function extractXmlField(html, regex, fallback) {
+  const match = html.match(regex);
+  return match ? decodeXmlText(match[1] || '') : fallback;
+}
+
+async function fetchYoutubeBySearch() {
+  if (!YOUTUBE_API_KEY) {
+    throw new Error('YOUTUBE_API_KEY is not set');
+  }
+
+  const since = toRfc3339(new Date(Date.now() - Math.max(0, YOUTUBE_WINDOW_DAYS) * 24 * 60 * 60 * 1000));
+  const params = new URLSearchParams({
+    part: 'snippet',
+    type: 'video',
+    order: 'date',
+    maxResults: String(Math.max(1, YOUTUBE_MAX_RESULTS)),
+    q: YOUTUBE_SEARCH_QUERY,
+    key: YOUTUBE_API_KEY,
+    publishedAfter: since,
+  });
+
+  const url = `${YOUTUBE_SEARCH_ENDPOINT}?${params.toString()}`;
+  const { stdout } = await execFile('curl', ['-L', '--compressed', '--max-time', '20', url], {
+    maxBuffer: 1024 * 1024 * 4,
+  });
+  const payload = safeJsonParse(stdout, { items: [] });
+  return Array.isArray(payload.items) ? payload.items.map((item) => normalizeYoutubePayload(item)).filter(Boolean) : [];
+}
+
+async function fetchYoutubeByFeedUrls() {
+  const channelIds = parseFeedIds(YOUTUBE_FEEDS);
+  if (!channelIds.length) return [];
+
+  const requests = channelIds.slice(0, 5).map(async (channelId) => {
+    const rssUrl = `https://www.youtube.com/feeds/videos.xml?channel_id=${encodeURIComponent(channelId)}`;
+    const { stdout } = await execFile('curl', ['-L', '--compressed', '--max-time', '20', rssUrl], {
+      maxBuffer: 1024 * 1024 * 4,
+    });
+
+    const entryRegex = /<entry>([\s\S]*?)<\/entry>/g;
+    let entryMatch = entryRegex.exec(stdout);
+    if (!entryMatch) return [];
+
+    const entries = [];
+    let remaining = Math.max(1, channelIds.length);
+    while (entryMatch && entries.length < Math.ceil(YOUTUBE_MAX_RESULTS / remaining)) {
+      const entry = entryMatch[1] || '';
+      const id = extractXmlField(entry, /<yt:videoId>([^<]+)<\/yt:videoId>/);
+      const thumbnail = extractXmlField(entry, /<media:thumbnail[^>]*url="([^"]+)"/);
+      const title = extractXmlField(entry, /<title>([^<]+)<\/title>/);
+      const channelIdCaptured = extractXmlField(entry, /<yt:channelId>([^<]+)<\/yt:channelId>/);
+      const published = extractXmlField(entry, /<published>([^<]+)<\/published>/);
+      const channel = extractXmlField(entry, /<media:credit role="uploader"[^>]*>([^<]+)<\/media:credit>/, 'YouTube');
+
+      entries.push(
+        normalizeYoutubePayload({
+          id,
+          title,
+          channelTitle: channel || channelIdCaptured || 'YouTube',
+          channelId: channelIdCaptured,
+          publishedAt: published,
+          thumbnails: { default: { url: thumbnail } },
+          description: '',
+        }),
+      );
+      entryMatch = entryRegex.exec(stdout);
+    }
+    return entries.filter(Boolean);
+  });
+
+  const bucket = await Promise.all(requests);
+  return bucket.flat().filter(Boolean);
+}
+
+async function fetchYoutubeFeed() {
+  const fallbackVideos = await readJson(ytFeedPath, []);
+  const localCandidates = Array.isArray(fallbackVideos) ? fallbackVideos : [];
+
+  try {
+    const fetched = await fetchYoutubeBySearch();
+    if (fetched.length) {
+      return fetched;
+    }
+  } catch (error) {
+    // fall through to RSS feed / local snapshot below
+  }
+
+  if (YOUTUBE_FEEDS.trim()) {
+    try {
+      const channelVideos = await fetchYoutubeByFeedUrls();
+      if (channelVideos.length) return channelVideos;
+    } catch (error) {
+      // continue fallback
+    }
+  }
+
+  return localCandidates.map((video) => normalizeYoutubePayload(video)).filter(Boolean);
+}
+
 function dedupeByUrl(items) {
   const seen = new Set();
   return items.filter((item) => {
@@ -223,12 +398,14 @@ async function main() {
   await mkdir(stateDir, { recursive: true });
 
   const [youtubeFeed, githubRepos] = await Promise.all([
-    readJson(ytFeedPath, []),
+    fetchYoutubeFeed(),
     fetchGithubRepos(),
   ]);
 
   const githubItems = githubRepos.map(toGithubItem);
-  const youtubeItems = (Array.isArray(youtubeFeed) ? youtubeFeed : []).slice(0, 10).map(toYoutubeItem);
+  const youtubeItems = (Array.isArray(youtubeFeed) ? youtubeFeed : [])
+    .map((video) => toYoutubeItem(video))
+    .slice(0, 10);
   const merged = dedupeByUrl([...githubItems, ...youtubeItems])
     .sort((a, b) => {
       const scoreDelta = Number(b.score || 0) - Number(a.score || 0);
@@ -248,7 +425,7 @@ async function main() {
         youtubeCount: youtubeItems.length,
         notes: [
           'GitHub items are fetched from GitHub search via gh auth.',
-          'YouTube items are pulled from the local yt-feed.json source.',
+          'YouTube items are fetched from YouTube (API or channel RSS), with local yt-feed.json fallback.',
           'Morning email reads directly from data/ai-feed.json.',
         ],
       },

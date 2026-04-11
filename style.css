@@ -1100,6 +1100,123 @@ mark {
   border-radius: 8px;
 }
 
+.lightbox-content--github {
+  max-width: 720px;
+  width: min(720px, 92vw);
+  aspect-ratio: auto;
+  height: auto;
+  max-height: min(72vh, 680px);
+  background: var(--card);
+  color: var(--text);
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  overflow: auto;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.45);
+  padding: 0;
+}
+
+.lightbox-content--github .lightbox-close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: rgba(0, 0, 0, 0.55);
+}
+
+.github-lightbox {
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.github-lightbox-head {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.github-lightbox-kicker {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-faint);
+}
+
+.github-lightbox-title {
+  margin: 0;
+  font-size: 28px;
+  line-height: 1.2;
+}
+
+.github-lightbox-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  color: var(--text-muted);
+  font-size: 13px;
+}
+
+.github-lightbox-summary {
+  font-size: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.github-lightbox-summary p {
+  margin: 0;
+  line-height: 1.45;
+}
+
+.github-lightbox-why {
+  color: var(--text-muted);
+}
+
+.github-lightbox-body {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.github-lightbox-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.github-lightbox-tags span {
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 4px 10px;
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.github-lightbox-empty {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 13px;
+}
+
+.github-lightbox-actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.github-lightbox-btn {
+  background: var(--accent);
+  color: #fff;
+  border-radius: 8px;
+  padding: 9px 14px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.github-lightbox-btn:hover {
+  background: var(--accent-hover);
+}
+
 /* Shorts / vertical video mode */
 .lightbox-content.is-short {
   max-width: 360px;

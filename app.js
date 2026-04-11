@@ -263,61 +263,8 @@ function getYoutubeVideoId(url) {
     }
 }
 
-function parseGithubRepo(url) {
-    try {
-        const parsed = new URL(url);
-        const parts = parsed.pathname.split('/').filter(Boolean);
-        if (parsed.hostname.replace(/^www\./, '') !== 'github.com') return null;
-        if (parts.length < 2) return null;
-        return { owner: parts[0], repo: parts[1] };
-    } catch {
-        return null;
-    }
-}
-
 function getItemById(itemId) {
     return allItems.find((item) => item.id === itemId) || null;
-}
-
-function renderGithubReadme(markdown) {
-    if (!markdown) return '<p class="github-lightbox-empty">No README preview available yet.</p>';
-    const cleaned = markdown
-        .replace(/```[\s\S]*?```/g, '\n[code block omitted]\n')
-        .replace(/^!\[[^\]]*\]\([^)]*\)$/gm, '')
-        .replace(/^\[[^\]]+\]\([^)]*\)$/gm, '')
-        .replace(/^#{1,6}\s*/gm, '')
-        .replace(/^>\s?/gm, '')
-        .replace(/\r/g, '')
-        .trim();
-    const excerpt = cleaned.slice(0, 2200).trim();
-    return excerpt
-        ? `<pre class="github-lightbox-readme">${escapeHtml(excerpt)}${cleaned.length > excerpt.length ? '\n\n…' : ''}</pre>`
-        : '<p class="github-lightbox-empty">No README preview available yet.</p>';
-}
-
-async function fetchGithubPreview(url) {
-    const repo = parseGithubRepo(url);
-    if (!repo) return null;
-
-    const repoRes = await fetch(`https://api.github.com/repos/${repo.owner}/${repo.repo}`);
-    if (!repoRes.ok) throw new Error(`GitHub repo fetch failed (${repoRes.status})`);
-    const repoData = await repoRes.json();
-
-    let readme = '';
-    try {
-        const readmeRes = await fetch(`https://api.github.com/repos/${repo.owner}/${repo.repo}/readme`, {
-            headers: { Accept: 'application/vnd.github.raw+json' },
-        });
-        if (readmeRes.ok) readme = await readmeRes.text();
-    } catch {
-        // README preview is optional
-    }
-
-    return {
-        repo,
-        repoData,
-        readme,
-    };
 }
 
 function renderYoutubeLightbox(lightboxContent, item) {
@@ -359,12 +306,12 @@ function renderYoutubeLightbox(lightboxContent, item) {
 }
 
 function renderGithubLightbox(lightboxContent, item) {
-  lightboxContent.classList.add('lightbox-content--github');
-  lightboxContent.innerHTML += `
-    <div class="lightbox-shell github-lightbox">
-      <div class="github-lightbox-head">
-        <div>
-          <div class="github-lightbox-kicker">GitHub preview</div>
+    lightboxContent.className = 'lightbox-content lightbox-content--github';
+    lightboxContent.innerHTML = `
+      <div class="lightbox-close" aria-label="Close lightbox">&times;</div>
+      <div class="lightbox-shell github-lightbox">
+        <div class="github-lightbox-head">
+          <div class="github-lightbox-kicker">GitHub summary</div>
           <h2 class="github-lightbox-title">${escapeHtml(item.title || 'Untitled')}</h2>
           <div class="github-lightbox-meta">
             <span>${escapeHtml(authorLabel(item))}</span>
@@ -373,59 +320,20 @@ function renderGithubLightbox(lightboxContent, item) {
             ${item.metrics?.language ? `<span>•</span><span>${escapeHtml(item.metrics.language)}</span>` : ''}
           </div>
         </div>
+        <div class="github-lightbox-summary">
+          <p>${escapeHtml(item.summary || 'No summary yet.')}</p>
+          ${item.why_it_matters ? `<p class=\"github-lightbox-why\"><strong>Why it matters:</strong> ${escapeHtml(item.why_it_matters)}</p>` : ''}
+          ${metricHtml(item.metrics)}
+        </div>
+        <div class="github-lightbox-body">
+          <div class="github-lightbox-tags">${(Array.isArray(item.tags) && item.tags.length ? item.tags : ['GitHub']).map((tag) => `<span>${escapeHtml(tag)}</span>`).join(' ')}</div>
+          <p class="github-lightbox-empty">Open the repo for a full breakdown.</p>
+        </div>
         <div class="github-lightbox-actions">
           <a class="github-lightbox-btn" href="${escapeHtml(item.url || '#')}" target="_blank" rel="noreferrer">Open repo ↗</a>
         </div>
       </div>
-      <div class="github-lightbox-summary">
-        <p>${escapeHtml(item.summary || '')}</p>
-        ${item.why_it_matters ? `<p class="github-lightbox-why"><strong>Why it matters:</strong> ${escapeHtml(item.why_it_matters)}</p>` : ''}
-        ${metricHtml(item.metrics)}
-      </div>
-      <div id="github-lightbox-body" class="github-lightbox-body">
-        <div class="github-lightbox-loading">Loading repo preview…</div>
-      </div>
-    </div>
-  `;
-
-  const body = document.getElementById('github-lightbox-body');
-  fetchGithubPreview(item.url || '')
-    .then((preview) => {
-      if (!body) return;
-      if (!preview) {
-        body.innerHTML = '<p class="github-lightbox-empty">Could not parse the GitHub repo URL.</p>';
-        return;
-      }
-      const homepage = preview.repoData.homepage
-        ? `<a class="github-lightbox-btn github-lightbox-btn-secondary" href="${escapeHtml(preview.repoData.homepage)}" target="_blank" rel="noreferrer">Homepage ↗</a>`
-        : '';
-      body.innerHTML = `
-        <div class="github-lightbox-grid">
-          <div class="github-lightbox-panel">
-            <div class="github-lightbox-panel-title">Repository snapshot</div>
-            <div class="github-lightbox-facts">
-              <div><span>Stars</span><strong>${escapeHtml(preview.repoData.stargazers_count ?? item.metrics?.stars ?? '—')}</strong></div>
-              <div><span>Forks</span><strong>${escapeHtml(preview.repoData.forks_count ?? item.metrics?.forks ?? '—')}</strong></div>
-              <div><span>Watchers</span><strong>${escapeHtml(preview.repoData.subscribers_count ?? '—')}</strong></div>
-              <div><span>Open issues</span><strong>${escapeHtml(preview.repoData.open_issues_count ?? '—')}</strong></div>
-            </div>
-            <p class="github-lightbox-description">${escapeHtml(preview.repoData.description || item.summary || 'No description available.')}</p>
-            <div class="github-lightbox-actions-row">
-              <a class="github-lightbox-btn github-lightbox-btn-secondary" href="${escapeHtml(preview.repoData.html_url)}" target="_blank" rel="noreferrer">View on GitHub ↗</a>
-              ${homepage}
-            </div>
-          </div>
-          <div class="github-lightbox-panel">
-            <div class="github-lightbox-panel-title">README preview</div>
-            ${renderGithubReadme(preview.readme)}
-          </div>
-        </div>
-      `;
-    })
-    .catch((error) => {
-      if (!body) return;
-      body.innerHTML = `<p class="github-lightbox-empty">Couldn’t load the GitHub preview (${escapeHtml(error.message)}). Use “Open repo” instead.</p>`;
-    });
+    `;
 }
 
 function openLightbox(item) {
@@ -459,6 +367,8 @@ function openLightbox(item) {
 
     if (item.type === 'github') {
         renderGithubLightbox(lightboxContent, item);
+        const githubCloseButton = lightboxContent.querySelector('.lightbox-close');
+        if (githubCloseButton) githubCloseButton.onclick = closeLightbox;
         return;
     }
 

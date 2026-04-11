@@ -51,9 +51,14 @@ pnpm digest:test-send
 
 ### Daily updater
 - script: `scripts/update-feed.mjs`
-- current version is intentionally lean
-- it normalizes and refreshes the local feed file
-- next step is plugging in real GitHub and YouTube ingestion
+- fetches GitHub and YouTube candidates and writes the merged result to `data/ai-feed.json`
+- GitHub uses `gh` search (`GITHUB_QUERY` or `GITHUB_WINDOW_DAYS`)
+- YouTube is fetched in this order: YouTube Data API search (if `YOUTUBE_API_KEY`/`GOOGLE_API_KEY` is set), then channel RSS (`YOUTUBE_FEEDS`/`YOUTUBE_CHANNEL_IDS`), then local `data/yt-feed.json` as fallback
+
+### Automation
+- run updates manually: `pnpm digest:update`
+- wire into your scheduler with `scripts/scheduled-refresh.mjs` (full run: `node scripts/scheduled-refresh.mjs`, PM refresh: `node scripts/scheduled-refresh.mjs pm`)
+- the file `netlify.toml` only serves static files and does not add a cron by itself
 
 ### Morning email
 - script: `scripts/render-email.mjs`
@@ -67,14 +72,10 @@ pnpm digest:test-send
 - Friday recap can pull from those files without touching business ops data
 
 ## Intended next step
-
-1. ingest real GitHub breakout/trending repos
-2. merge in selected YouTube AI/dev items
-3. score and trim to the top daily items
-4. keep the daily feed local-first
-5. store only explicitly saved items separately
-6. render a Friday recap from saved items and notes
-7. send the morning email automatically
+1. keep the feed ingestion reliable in one-shot + scheduled runs
+2. keep the feed local-first in `data/ai-feed.json`
+3. refine scoring/filters for your preferred signals
+4. send the morning email automatically
 
 ## Why this shape
 
