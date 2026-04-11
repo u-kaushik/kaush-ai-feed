@@ -108,11 +108,11 @@ function normalizeGithubCriteria(raw) {
   };
 }
 
-function hasChineseText(value) {
-  return /[\u3400-\u4dbf\u4e00-\u9fff\u3040-\u30ff]/.test(String(value || ''));
+function hasNonEnglishScript(value) {
+  return /[\u3400-\u4dbf\u4e00-\u9fff\u3040-\u30ff\uac00-\ud7af]/.test(String(value || ''));
 }
 
-function isChineseRepo(repo) {
+function isEnglishRepo(repo) {
   const haystack = [
     repo.full_name,
     repo.name,
@@ -123,7 +123,7 @@ function isChineseRepo(repo) {
     .filter(Boolean)
     .join(' ');
 
-  return hasChineseText(haystack) || /\b(china|chinese|中文|汉化|國產|国产)\b/i.test(haystack);
+  return !hasNonEnglishScript(haystack);
 }
 
 function buildGithubQuery() {
@@ -253,9 +253,9 @@ async function fetchGithubRepos() {
         for (const repo of items) {
           const key = repo.full_name || repo.html_url;
           if (!key || seen.has(key)) continue;
-          if (isChineseRepo(repo)) {
+          if (!isEnglishRepo(repo)) {
             console.warn(
-              `ai-digest: skipping Chinese-language GitHub repo ${key}`,
+              `ai-digest: skipping non-English GitHub repo ${key}`,
             );
             continue;
           }
@@ -415,6 +415,30 @@ async function resolveYoutubeChannelId(source) {
   const handle = parseHandleFromUrl(source.channelUrl);
   if (!source.channelUrl && !handle) return null;
 
+  if (YOUTUBE_API_KEY) {
+    try {
+      const query = encodeURIComponent(source.name || handle || source.channelUrl || '');
+      const url = `${YOUTUBE_SEARCH_ENDPOINT}?part=snippet&type=channel&maxResults=5&q=${query}&key=${encodeURIComponent(YOUTUBE_API_KEY)}`;
+      const { stdout } = await execFile('curl', ['-L', '--compressed', '--max-time', '20', url], {
+        maxBuffer: 1024 * 1024 * 4,
+      });
+      const payload = safeJsonParse(stdout, { items: [] });
+      const items = Array.isArray(payload.items) ? payload.items : [];
+      for (const item of items) {
+        const channelId = item?.id?.channelId;
+        const title = item?.snippet?.title || '';
+        if (channelId && (!source.name || title.toLowerCase().includes(String(source.name).toLowerCase()))) {
+          return channelId;
+        }
+      }
+      if (items[0]?.id?.channelId) {
+        return items[0].id.channelId;
+      }
+    } catch {
+      // fall back to HTML parsing below
+    }
+  }
+
   try {
     const resolvedUrl = source.channelUrl || `https://www.youtube.com/@${handle}`;
     const { stdout: effectiveUrl } = await execFile(
@@ -522,6 +546,40 @@ async function fetchYoutubeByFeedUrls() {
 
   const requests = channelSources.slice(0, 10).map(async (source) => {
     try {
+      if (YOUTUBE_API_KEY) {
+        const since = toRfc3339(new Date(Date.now() - Math.max(0, YOUTUBE_WINDOW_DAYS) * 24 * 60 * 60 * 1000));
+        const params = new URLSearchParams({
+          part: 'snippet',
+          type: 'video',
+          order: 'date',
+          maxResults: String(Math.max(1, YOUTUBE_MAX_RESULTS)),
+          channelId: source.channelId,
+          key: YOUTUBE_API_KEY,
+          publishedAfter: since,
+        });
+
+        const { stdout } = await execFile('curl', ['-L', '--compressed', '--max-time', '20', `${YOUTUBE_SEARCH_ENDPOINT}?${params.toString()}`], {
+          maxBuffer: 1024 * 1024 * 4,
+        });
+
+        const payload = safeJsonParse(stdout, { items: [] });
+        const entries = Array.isArray(payload.items) ? payload.items : [];
+        return entries
+          .map((item) =>
+            normalizeYoutubePayload({
+              id: item.id?.videoId || item.id,
+              title: item.snippet?.title,
+              channelTitle: item.snippet?.channelTitle || source.name || 'YouTube',
+              channelId: item.snippet?.channelId || source.channelId,
+              publishedAt: item.snippet?.publishedAt,
+              thumbnails: item.snippet?.thumbnails,
+              description: item.snippet?.description || '',
+              channelUrl: source.channelUrl,
+            }),
+          )
+          .filter(Boolean);
+      }
+
       const rssUrl = `https://www.youtube.com/feeds/videos.xml?channel_id=${encodeURIComponent(source.channelId)}`;
       const { stdout } = await execFile('curl', ['-L', '--compressed', '--max-time', '20', rssUrl], {
         maxBuffer: 1024 * 1024 * 4,
