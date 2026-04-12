@@ -195,13 +195,17 @@ function renderCard(item) {
     const source = sourceLabel(item);
     const icon = sourceIcon(item);
     const thumbnail = item.thumbnail || (item.type === 'youtube' && item.url ? `https://i.ytimg.com/vi/${escapeHtml(getYoutubeVideoId(item.url) || '')}/hqdefault.jpg` : '');
-    const sourceChip =
-        item.type === 'youtube'
-            ? ''
-            : `<button class="card-channel-btn card-channel-btn-${escapeHtml(item.type || 'item')}" data-source="${escapeHtml(source)}" title="Filter by source">
-                  <span class="source-icon" aria-hidden="true">${icon}</span>
-                  <span>${escapeHtml(source)}</span>
-               </button>`;
+    const categoryTags = item.type === 'youtube'
+        ? tags.filter((tag) => String(tag).toLowerCase() !== 'youtube').slice(0, 4)
+        : [];
+    const sourceChip = item.type === 'youtube'
+        ? `<span class="card-category-pills">${categoryTags
+            .map((tag, index) => `<span class="tag-chip tag-c-${index % 8}">${escapeHtml(tag)}</span>`)
+            .join('')}</span>`
+        : `<button class="card-channel-btn card-channel-btn-${escapeHtml(item.type || 'item')}" data-source="${escapeHtml(source)}" title="Filter by source">
+              <span class="source-icon" aria-hidden="true">${icon}</span>
+              <span>${escapeHtml(source)}</span>
+           </button>`;
     const thumb = thumbnail
         ? `<div class="card-thumb card-thumb-${escapeHtml(item.type || 'item')}"><img src="${escapeHtml(thumbnail)}" alt="${escapeHtml(item.title || source)}" loading="lazy" /></div>`
         : '';

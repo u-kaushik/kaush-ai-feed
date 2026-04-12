@@ -589,6 +589,19 @@ body {
   color: #f87171;
 }
 
+.card-meta-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+}
+
+.card-category-pills {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
 .source-icon {
   width: 16px;
   height: 16px;
