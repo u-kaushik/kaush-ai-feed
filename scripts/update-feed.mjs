@@ -508,6 +508,23 @@ function compareFeedItems(a, b) {
   return new Date(b.published || 0) - new Date(a.published || 0);
 }
 
+function interleaveFeedItems(lists, limit = 24) {
+  const queues = lists.map((items) => items.slice());
+  const merged = [];
+
+  while (merged.length < limit && queues.some((queue) => queue.length > 0)) {
+    for (const queue of queues) {
+      const next = queue.shift();
+      if (next) {
+        merged.push(next);
+        if (merged.length >= limit) break;
+      }
+    }
+  }
+
+  return merged;
+}
+
 async function main() {
   await mkdir(stateDir, { recursive: true });
 
@@ -516,15 +533,9 @@ async function main() {
     fetchGithubRepos(),
   ]);
 
-  const githubItems = githubRepos.map(toGithubItem);
-  const youtubeItems = (Array.isArray(youtubeFeed) ? youtubeFeed : []).map((video) => toYoutubeItem(video));
-  const youtubeSelection = youtubeItems.sort(compareFeedItems).slice(0, Math.min(8, youtubeItems.length));
-  const githubSelection = githubItems
-    .sort(compareFeedItems)
-    .slice(0, Math.max(0, 24 - youtubeSelection.length));
-  const merged = dedupeByUrl([...githubSelection, ...youtubeSelection])
-    .sort(compareFeedItems)
-    .slice(0, 24);
+  const githubItems = githubRepos.map(toGithubItem).sort(compareFeedItems);
+  const youtubeItems = (Array.isArray(youtubeFeed) ? youtubeFeed : []).map((video) => toYoutubeItem(video)).sort(compareFeedItems);
+  const merged = dedupeByUrl(interleaveFeedItems([youtubeItems, githubItems], 24));
 
   await writeFile(feedPath, JSON.stringify(merged, null, 2) + '\n');
   await writeFile(
