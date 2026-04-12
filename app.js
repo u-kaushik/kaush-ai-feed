@@ -267,42 +267,111 @@ function getItemById(itemId) {
     return allItems.find((item) => item.id === itemId) || null;
 }
 
+function getYoutubePlaybackRate() {
+    const stored = Number(localStorage.getItem('yt_playback_rate'));
+    return Number.isFinite(stored) && stored > 0 ? stored : 2;
+}
+
+function setYoutubePlaybackRate(rate) {
+    const lightbox = document.getElementById('lightbox');
+    const iframe = lightbox.currentIframe;
+    const nextRate = Number(rate) || 2;
+
+    localStorage.setItem('yt_playback_rate', String(nextRate));
+    lightbox.currentPlaybackRate = nextRate;
+
+    document.querySelectorAll('.speed-btn').forEach((button) => {
+        button.classList.toggle('active', Number(button.dataset.rate) === nextRate);
+    });
+
+    if (iframe && iframe.contentWindow) {
+        iframe.contentWindow.postMessage(
+            JSON.stringify({ event: 'command', func: 'setPlaybackRate', args: [nextRate] }),
+            '*',
+        );
+    }
+}
+
+function applyYoutubeControls(lightboxContent, item) {
+    const controls = lightboxContent.querySelector('.lightbox-controls');
+    if (!controls) return;
+
+    controls.querySelectorAll('.speed-btn').forEach((button) => {
+      button.dataset.rate = button.dataset.rate || button.id.replace('speed-', '');
+        button.onclick = (event) => {
+            event.preventDefault();
+            event.stopPropagation();
+            setYoutubePlaybackRate(Number(button.dataset.rate));
+        };
+    });
+
+    const currentRate = getYoutubePlaybackRate();
+    setTimeout(() => setYoutubePlaybackRate(currentRate), 150);
+}
+
 function renderYoutubeLightbox(lightboxContent, item) {
     const lightbox = document.getElementById('lightbox');
     const videoId = getYoutubeVideoId(item.url || '');
     if (!videoId) return;
+    const embedOrigin = window.location.origin ? `&origin=${encodeURIComponent(window.location.origin)}` : '';
 
     const isShort = (item.url || '').includes('/shorts/') || (item.url || '').includes('youtu.be/');
-    if (isShort) lightboxContent.classList.add('is-short');
+    const thumb = item.thumbnail || '';
+    const thumbBlock = thumb
+        ? `<img class="youtube-lightbox-thumb" src="${escapeHtml(thumb)}" alt="${escapeHtml(item.title || 'YouTube video')}" loading="eager" />`
+        : '<div class="youtube-lightbox-thumb youtube-lightbox-thumb--empty"></div>';
 
-    const videoWrapper = document.createElement('div');
-    videoWrapper.style.position = 'relative';
-    videoWrapper.style.width = '100%';
-    videoWrapper.style.height = '100%';
-    videoWrapper.style.aspectRatio = isShort ? '9/16' : '16/9';
+    lightboxContent.className = 'lightbox-content lightbox-content--youtube';
+    lightboxContent.innerHTML = `
+      <div class="lightbox-close" aria-label="Close lightbox">&times;</div>
+      <div class="lightbox-controls">
+        <button class="speed-btn" id="speed-0.5" data-rate="0.5">0.5x</button>
+        <button class="speed-btn" id="speed-1" data-rate="1">1x</button>
+        <button class="speed-btn" id="speed-1.5" data-rate="1.5">1.5x</button>
+        <button class="speed-btn" id="speed-2" data-rate="2">2x</button>
+      </div>
+      <div class="youtube-lightbox-shell">
+        <div class="youtube-lightbox-hero">
+          ${thumbBlock}
+          <div class="youtube-lightbox-head">
+            <div class="youtube-lightbox-kicker">YouTube video</div>
+            <h2 class="youtube-lightbox-title">${escapeHtml(item.title || 'Untitled')}</h2>
+            <div class="youtube-lightbox-meta">
+              <span>${escapeHtml(authorLabel(item))}</span>
+              <span>•</span>
+              <span>${escapeHtml(formatRelativeDate(item.published))}</span>
+            </div>
+          </div>
+        </div>
+        <div class="youtube-lightbox-player-wrap${isShort ? ' is-short' : ''}">
+          <iframe
+            src="https://www.youtube.com/embed/${videoId}?autoplay=1&enablejsapi=1&playsinline=1&controls=0&rel=0&modestbranding=1${embedOrigin}"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen
+          ></iframe>
+        </div>
+      </div>
+    `;
 
-    const iframe = document.createElement('iframe');
-    iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&enablejsapi=1&controls=0`;
-    iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
-    iframe.allowFullscreen = true;
-    iframe.style.width = '100%';
-    iframe.style.height = '100%';
-    iframe.style.border = 'none';
+    const iframe = lightboxContent.querySelector('iframe');
     iframe.onload = () => {
         if (lightbox.seekToTime !== null && lightbox.seekToTime > 0) {
             setTimeout(() => {
-                iframe.contentWindow.postMessage(`{"event":"command","func":"seekTo","args":[${lightbox.seekToTime},true]}`, '*');
+                iframe.contentWindow.postMessage(
+                    JSON.stringify({ event: 'command', func: 'seekTo', args: [lightbox.seekToTime, true] }),
+                    '*',
+                );
             }, 1000);
         }
+        setTimeout(() => setYoutubePlaybackRate(getYoutubePlaybackRate()), 250);
     };
-
-    videoWrapper.appendChild(iframe);
-    lightboxContent.appendChild(videoWrapper);
 
     lightbox.currentIframe = iframe;
     lightbox.currentVideoId = videoId;
     const savedTime = localStorage.getItem(`yt_${videoId}`);
     lightbox.seekToTime = savedTime ? parseFloat(savedTime) : null;
+
+    applyYoutubeControls(lightboxContent, item);
 }
 
 function renderGithubLightbox(lightboxContent, item) {
@@ -349,18 +418,7 @@ function openLightbox(item) {
     lightboxContent.className = 'lightbox-content';
     lightboxContent.innerHTML = '';
 
-    const closeButton = document.createElement('div');
-    closeButton.className = 'lightbox-close';
-    closeButton.innerHTML = '&times;';
-    closeButton.onclick = closeLightbox;
-    lightboxContent.appendChild(closeButton);
-
     if (item.type === 'youtube') {
-        const title = document.createElement('div');
-        title.id = 'lightbox-title';
-        title.className = 'lightbox-title';
-        title.textContent = item.title || 'Untitled';
-        lightboxContent.appendChild(title);
         renderYoutubeLightbox(lightboxContent, item);
         return;
     }

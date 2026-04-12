@@ -1122,6 +1122,106 @@ mark {
   background: rgba(0, 0, 0, 0.55);
 }
 
+.lightbox-content--youtube {
+  width: min(980px, 94vw);
+  aspect-ratio: auto;
+  height: auto;
+  max-height: 92vh;
+  background: var(--card);
+  color: var(--text);
+  border-radius: 16px;
+  border: 1px solid var(--border);
+  overflow: auto;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.45);
+  padding: 0;
+}
+
+.lightbox-content--youtube .lightbox-close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: rgba(0, 0, 0, 0.55);
+}
+
+.youtube-lightbox-shell {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 20px;
+}
+
+.youtube-lightbox-hero {
+  display: grid;
+  grid-template-columns: 180px minmax(0, 1fr);
+  gap: 16px;
+  align-items: center;
+}
+
+.youtube-lightbox-thumb {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  background: var(--border);
+  display: block;
+}
+
+.youtube-lightbox-thumb--empty {
+  background: linear-gradient(135deg, var(--border), var(--card-hover));
+}
+
+.youtube-lightbox-head {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.youtube-lightbox-kicker {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-faint);
+}
+
+.youtube-lightbox-title {
+  margin: 0;
+  font-size: 28px;
+  line-height: 1.15;
+}
+
+.youtube-lightbox-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  color: var(--text-muted);
+  font-size: 13px;
+}
+
+.youtube-lightbox-player-wrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: 16px;
+  overflow: hidden;
+  background: #000;
+  border: 1px solid var(--border);
+}
+
+.youtube-lightbox-player-wrap.is-short {
+  width: min(420px, 100%);
+  aspect-ratio: 9 / 16;
+  align-self: center;
+}
+
+.youtube-lightbox-player-wrap iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
 .github-lightbox {
   padding: 22px;
   display: flex;
@@ -1218,26 +1318,10 @@ mark {
 }
 
 /* Shorts / vertical video mode */
-.lightbox-content.is-short {
-  max-width: 360px;
-  aspect-ratio: 9 / 16;
-}
-
 @media (max-height: 700px) {
-  .lightbox-content.is-short {
-    max-height: 90vh;
+  .youtube-lightbox-player-wrap.is-short {
     max-width: calc(90vh * 9 / 16);
   }
-}
-
-.lightbox-content iframe {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  border: none;
-  border-radius: 8px;
 }
 
 .lightbox-close {
@@ -1286,6 +1370,11 @@ mark {
 }
 
 .speed-btn:hover {
+  background: var(--accent-hover);
+}
+
+.speed-btn.active {
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.2) inset;
   background: var(--accent-hover);
 }
 
