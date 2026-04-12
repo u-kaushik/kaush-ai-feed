@@ -1,20 +1,22 @@
 [
   {
-    "id": "youtube-asdjsatu5oc",
+    "id": "youtube-8cs3ijxnhug",
     "type": "youtube",
     "source": "YouTube",
-    "title": "The #1 Trending Design Repo for Claude Code",
-    "url": "https://www.youtube.com/watch?v=ASDjsatU5oc",
+    "title": "3 GitHub Repos to 10x Your Next Claude Code Project",
+    "url": "https://www.youtube.com/shorts/8cs3Ijxnhug",
     "author": "Chase-H-AI",
-    "published": "2026-04-11T02:45:45+00:00",
+    "published": "2026-04-06T04:29:10+00:00",
     "tags": [
-      "YouTube"
+      "AI",
+      "Dev",
+      "Coding"
     ],
     "summary": "Selected AI/dev YouTube signal from the curated favorite-creator list.",
     "why_it_matters": "Useful for spotting practical tools, coding workflow shifts, and adjacent AI opportunities from your favorite yters without scanning YouTube manually.",
-    "thumbnail": "https://i.ytimg.com/vi/ASDjsatU5oc/hqdefault.jpg",
+    "thumbnail": "https://img.youtube.com/vi/8cs3Ijxnhug/hqdefault.jpg",
     "score": 77,
-    "updated_at": "2026-04-12T00:13:26.837Z"
+    "updated_at": "2026-04-12T07:00:09.928Z"
   },
   {
     "id": "github-ultraworkers-claw-code",
@@ -31,28 +33,30 @@
     "why_it_matters": "Potentially useful signal for the morning AI digest and fast-moving product patterns.",
     "score": 99,
     "metrics": {
-      "stars": 181538,
-      "forks": 107227,
+      "stars": 181805,
+      "forks": 107299,
       "language": "Rust"
     },
-    "updated_at": "2026-04-12T00:13:26.837Z"
+    "updated_at": "2026-04-12T07:00:09.927Z"
   },
   {
-    "id": "youtube-ztuv3chqcus",
+    "id": "youtube-8rywswxhrbo",
     "type": "youtube",
     "source": "YouTube",
-    "title": "How to Build $10k Websites Better than 99% of people (Claude Code)",
-    "url": "https://www.youtube.com/watch?v=zTuV3chQCus",
-    "author": "Itssssss_Jack",
-    "published": "2026-04-11T19:08:41+00:00",
+    "title": "3 GitHub Repos that 10x Claude Code's Frontend Design",
+    "url": "https://www.youtube.com/shorts/8RYWsWXHRBo",
+    "author": "Chase-H-AI",
+    "published": "2026-04-05T21:28:11+00:00",
     "tags": [
-      "YouTube"
+      "AI",
+      "Dev",
+      "Coding"
     ],
     "summary": "Selected AI/dev YouTube signal from the curated favorite-creator list.",
     "why_it_matters": "Useful for spotting practical tools, coding workflow shifts, and adjacent AI opportunities from your favorite yters without scanning YouTube manually.",
-    "thumbnail": "https://i.ytimg.com/vi/zTuV3chQCus/hqdefault.jpg",
-    "score": 74,
-    "updated_at": "2026-04-12T00:13:26.837Z"
+    "thumbnail": "https://img.youtube.com/vi/8RYWsWXHRBo/hqdefault.jpg",
+    "score": 77,
+    "updated_at": "2026-04-12T07:00:09.928Z"
   },
   {
     "id": "github-affaan-m-everything-claude-code",
@@ -73,28 +77,30 @@
     "why_it_matters": "Relevant to Jarvis, AI workflows, and product ideas worth monitoring closely.",
     "score": 99,
     "metrics": {
-      "stars": 151333,
-      "forks": 23452,
+      "stars": 151652,
+      "forks": 23524,
       "language": "JavaScript"
     },
-    "updated_at": "2026-04-12T00:13:26.837Z"
+    "updated_at": "2026-04-12T07:00:09.927Z"
   },
   {
-    "id": "youtube-eey8wqj5boi",
+    "id": "youtube-eehssulxzn4",
     "type": "youtube",
     "source": "YouTube",
-    "title": "Seedance 2.0 + Claude Code = Beautiful $10k Websites",
-    "url": "https://www.youtube.com/watch?v=EeY8wqJ5BOI",
-    "author": "nateherk",
-    "published": "2026-04-11T15:50:54+00:00",
+    "title": "Gemma 4 + Ollama = FREE Claude Code",
+    "url": "https://www.youtube.com/watch?v=eehsSUlXZN4",
+    "author": "Itssssss_Jack",
+    "published": "2026-04-07T14:27:47+00:00",
     "tags": [
-      "YouTube"
+      "AI",
+      "Dev",
+      "Coding"
     ],
     "summary": "Selected AI/dev YouTube signal from the curated favorite-creator list.",
     "why_it_matters": "Useful for spotting practical tools, coding workflow shifts, and adjacent AI opportunities from your favorite yters without scanning YouTube manually.",
-    "thumbnail": "https://i.ytimg.com/vi/EeY8wqJ5BOI/hqdefault.jpg",
+    "thumbnail": "https://img.youtube.com/vi/eehsSUlXZN4/hqdefault.jpg",
     "score": 74,
-    "updated_at": "2026-04-12T00:13:26.837Z"
+    "updated_at": "2026-04-12T07:00:09.928Z"
   },
   {
     "id": "github-openclaw-openclaw",
@@ -115,28 +121,30 @@
     "why_it_matters": "Relevant to Jarvis, AI workflows, and product ideas worth monitoring closely.",
     "score": 99,
     "metrics": {
-      "stars": 354940,
-      "forks": 71786,
+      "stars": 355152,
+      "forks": 71850,
       "language": "TypeScript"
     },
-    "updated_at": "2026-04-12T00:13:26.836Z"
+    "updated_at": "2026-04-12T07:00:09.926Z"
   },
   {
-    "id": "youtube-nvxisg34mpu",
+    "id": "youtube-de47tvijvni",
     "type": "youtube",
     "source": "YouTube",
-    "title": "Seedance 2.0 + Claude Code Creates $10k Websites in Minutes",
-    "url": "https://www.youtube.com/watch?v=NvxiSG34mPU",
-    "author": "nateherk",
-    "published": "2026-04-11T06:31:36+00:00",
+    "title": "Does Ultraplan change how we use Claude Code?",
+    "url": "https://www.youtube.com/shorts/dE47tvijvNI",
+    "author": "Chase-H-AI",
+    "published": "2026-04-07T11:15:32+00:00",
     "tags": [
-      "YouTube"
+      "AI",
+      "Dev",
+      "Coding"
     ],
     "summary": "Selected AI/dev YouTube signal from the curated favorite-creator list.",
     "why_it_matters": "Useful for spotting practical tools, coding workflow shifts, and adjacent AI opportunities from your favorite yters without scanning YouTube manually.",
-    "thumbnail": "https://i.ytimg.com/vi/NvxiSG34mPU/hqdefault.jpg",
+    "thumbnail": "https://img.youtube.com/vi/dE47tvijvNI/hqdefault.jpg",
     "score": 74,
-    "updated_at": "2026-04-12T00:13:26.837Z"
+    "updated_at": "2026-04-12T07:00:09.928Z"
   },
   {
     "id": "github-obra-superpowers",
@@ -153,28 +161,30 @@
     "why_it_matters": "Potentially useful signal for the morning AI digest and fast-moving product patterns.",
     "score": 99,
     "metrics": {
-      "stars": 147133,
-      "forks": 12633,
+      "stars": 147465,
+      "forks": 12670,
       "language": "Shell"
     },
-    "updated_at": "2026-04-12T00:13:26.837Z"
+    "updated_at": "2026-04-12T07:00:09.927Z"
   },
   {
-    "id": "youtube-eglvxlawruu",
+    "id": "youtube-eeybwjwvqtq",
     "type": "youtube",
     "source": "YouTube",
-    "title": "Claude Code + Karpathy's Obsidian = New Meta",
-    "url": "https://www.youtube.com/watch?v=eglVxLaWRUU",
-    "author": "Itssssss_Jack",
-    "published": "2026-04-10T19:37:46+00:00",
+    "title": "Did Claude Code Just Get Plan Mode 2.0?",
+    "url": "https://www.youtube.com/watch?v=eEYbwJWVQtQ",
+    "author": "Chase-H-AI",
+    "published": "2026-04-07T01:14:15+00:00",
     "tags": [
-      "YouTube"
+      "AI",
+      "Dev",
+      "Coding"
     ],
     "summary": "Selected AI/dev YouTube signal from the curated favorite-creator list.",
     "why_it_matters": "Useful for spotting practical tools, coding workflow shifts, and adjacent AI opportunities from your favorite yters without scanning YouTube manually.",
-    "thumbnail": "https://i.ytimg.com/vi/eglVxLaWRUU/hqdefault.jpg",
+    "thumbnail": "https://img.youtube.com/vi/eEYbwJWVQtQ/hqdefault.jpg",
     "score": 74,
-    "updated_at": "2026-04-12T00:13:26.837Z"
+    "updated_at": "2026-04-12T07:00:09.928Z"
   },
   {
     "id": "github-anthropics-skills",
@@ -192,28 +202,30 @@
     "why_it_matters": "Potentially useful signal for the morning AI digest and fast-moving product patterns.",
     "score": 99,
     "metrics": {
-      "stars": 115193,
-      "forks": 13177,
+      "stars": 115347,
+      "forks": 13209,
       "language": "Python"
     },
-    "updated_at": "2026-04-12T00:13:26.837Z"
+    "updated_at": "2026-04-12T07:00:09.927Z"
   },
   {
-    "id": "youtube-vwqnowqpyjo",
+    "id": "youtube-p9mgmkhuz-4",
     "type": "youtube",
     "source": "YouTube",
-    "title": "Muse Spark + Claude Code: This FULLY FREE MODEL is A CRAZY FRONTEND BEAST!",
-    "url": "https://www.youtube.com/watch?v=vWqNowqpYjo",
-    "author": "AICodeKing",
-    "published": "2026-04-10T11:39:39+00:00",
+    "title": "Andrej Karpathy Just 10x'd Everyone's Claude Code",
+    "url": "https://www.youtube.com/shorts/p9mgmKhUz_4",
+    "author": "nateherk",
+    "published": "2026-04-06T18:42:04+00:00",
     "tags": [
-      "YouTube"
+      "AI",
+      "Dev",
+      "Coding"
     ],
     "summary": "Selected AI/dev YouTube signal from the curated favorite-creator list.",
     "why_it_matters": "Useful for spotting practical tools, coding workflow shifts, and adjacent AI opportunities from your favorite yters without scanning YouTube manually.",
-    "thumbnail": "https://i.ytimg.com/vi/vWqNowqpYjo/hqdefault.jpg",
+    "thumbnail": "https://img.youtube.com/vi/p9mgmKhUz_4/hqdefault.jpg",
     "score": 74,
-    "updated_at": "2026-04-12T00:13:26.837Z"
+    "updated_at": "2026-04-12T07:00:09.928Z"
   },
   {
     "id": "github-wshobson-agents",
@@ -234,28 +246,30 @@
     "why_it_matters": "Strong fit for operator leverage, agent workflows, and business automation ideas.",
     "score": 99,
     "metrics": {
-      "stars": 33409,
-      "forks": 3621,
+      "stars": 33430,
+      "forks": 3622,
       "language": "Python"
     },
-    "updated_at": "2026-04-12T00:13:26.837Z"
+    "updated_at": "2026-04-12T07:00:09.927Z"
   },
   {
-    "id": "youtube-mpsf7en5dhc",
+    "id": "youtube-t4fxb3sbjio",
     "type": "youtube",
     "source": "YouTube",
-    "title": "Claude Code just shipped the monitor tool",
-    "url": "https://www.youtube.com/watch?v=MpSf7EN5dhc",
-    "author": "RAmjad",
-    "published": "2026-04-10T07:41:50+00:00",
+    "title": "Planning In Claude Code Just Got a Huge Upgrade",
+    "url": "https://www.youtube.com/watch?v=T4fXb3sbJIo",
+    "author": "nateherk",
+    "published": "2026-04-06T17:58:04+00:00",
     "tags": [
-      "YouTube"
+      "AI",
+      "Dev",
+      "Coding"
     ],
     "summary": "Selected AI/dev YouTube signal from the curated favorite-creator list.",
     "why_it_matters": "Useful for spotting practical tools, coding workflow shifts, and adjacent AI opportunities from your favorite yters without scanning YouTube manually.",
-    "thumbnail": "https://i.ytimg.com/vi/MpSf7EN5dhc/hqdefault.jpg",
+    "thumbnail": "https://img.youtube.com/vi/T4fXb3sbJIo/hqdefault.jpg",
     "score": 74,
-    "updated_at": "2026-04-12T00:13:26.837Z"
+    "updated_at": "2026-04-12T07:00:09.928Z"
   },
   {
     "id": "github-nousresearch-hermes-agent",
@@ -276,28 +290,30 @@
     "why_it_matters": "Relevant to Jarvis, AI workflows, and product ideas worth monitoring closely.",
     "score": 99,
     "metrics": {
-      "stars": 58767,
-      "forks": 7792,
+      "stars": 61063,
+      "forks": 8157,
       "language": "Python"
     },
-    "updated_at": "2026-04-12T00:13:26.837Z"
+    "updated_at": "2026-04-12T07:00:09.927Z"
   },
   {
-    "id": "youtube-ewf0macjujo",
+    "id": "youtube-wylttz4s03c",
     "type": "youtube",
     "source": "YouTube",
-    "title": "OpenClaw 4.9: Your AI Agent Now Learns and Dreams While You Sleep (REM Backfill)",
-    "url": "https://www.youtube.com/watch?v=EWf0mACjUJo",
-    "author": "AIStackStudio-f2x",
-    "published": "2026-04-09T08:29:02+00:00",
+    "title": "Claude Code + Qwen 3.6 Pro = COMPLETELY FREE APPS INSTANTLY",
+    "url": "https://www.youtube.com/watch?v=wyLtTz4S03c",
+    "author": "Incomestreamsurfers",
+    "published": "2026-04-06T16:17:46+00:00",
     "tags": [
-      "YouTube"
+      "AI",
+      "Dev",
+      "Coding"
     ],
     "summary": "Selected AI/dev YouTube signal from the curated favorite-creator list.",
     "why_it_matters": "Useful for spotting practical tools, coding workflow shifts, and adjacent AI opportunities from your favorite yters without scanning YouTube manually.",
-    "thumbnail": "https://i.ytimg.com/vi/EWf0mACjUJo/hqdefault.jpg",
-    "score": 70,
-    "updated_at": "2026-04-12T00:13:26.837Z"
+    "thumbnail": "https://img.youtube.com/vi/wyLtTz4S03c/hqdefault.jpg",
+    "score": 74,
+    "updated_at": "2026-04-12T07:00:09.928Z"
   },
   {
     "id": "github-shareai-lab-learn-claude-code",
@@ -318,28 +334,30 @@
     "why_it_matters": "Strong fit for operator leverage, agent workflows, and business automation ideas.",
     "score": 99,
     "metrics": {
-      "stars": 51726,
-      "forks": 8442,
+      "stars": 51834,
+      "forks": 8469,
       "language": "TypeScript"
     },
-    "updated_at": "2026-04-12T00:13:26.837Z"
+    "updated_at": "2026-04-12T07:00:09.927Z"
   },
   {
-    "id": "youtube-r34d3evir18",
+    "id": "youtube-unha17l6cww",
     "type": "youtube",
     "source": "YouTube",
-    "title": "OpenCode + Gemma 4 31b = Full Apps INSTANTLY (100% FREE)",
-    "url": "https://www.youtube.com/watch?v=r34D3eviR18",
-    "author": "Incomestreamsurfers",
-    "published": "2026-04-11T16:29:12+00:00",
+    "title": "Anthropic Just Dropped Ultra Plan for Claude Code",
+    "url": "https://www.youtube.com/watch?v=UNhA17l6CWw",
+    "author": "RAmjad",
+    "published": "2026-04-06T02:02:07+00:00",
     "tags": [
-      "YouTube"
+      "AI",
+      "Dev",
+      "Coding"
     ],
     "summary": "Selected AI/dev YouTube signal from the curated favorite-creator list.",
     "why_it_matters": "Useful for spotting practical tools, coding workflow shifts, and adjacent AI opportunities from your favorite yters without scanning YouTube manually.",
-    "thumbnail": "https://i.ytimg.com/vi/r34D3eviR18/hqdefault.jpg",
-    "score": 64,
-    "updated_at": "2026-04-12T00:13:26.837Z"
+    "thumbnail": "https://img.youtube.com/vi/UNhA17l6CWw/hqdefault.jpg",
+    "score": 74,
+    "updated_at": "2026-04-12T07:00:09.928Z"
   },
   {
     "id": "github-bytedance-deer-flow",
@@ -360,28 +378,30 @@
     "why_it_matters": "Strong fit for operator leverage, agent workflows, and business automation ideas.",
     "score": 99,
     "metrics": {
-      "stars": 60471,
-      "forks": 7714,
+      "stars": 60547,
+      "forks": 7725,
       "language": "Python"
     },
-    "updated_at": "2026-04-12T00:13:26.836Z"
+    "updated_at": "2026-04-12T07:00:09.927Z"
   },
   {
-    "id": "youtube-fr59-b7quqi",
+    "id": "youtube-sbonwymh3ay",
     "type": "youtube",
     "source": "YouTube",
-    "title": "Mobile Apps: Beyond Games, New Era of Growth #shorts",
-    "url": "https://www.youtube.com/watch?v=Fr59-b7qUQI",
-    "author": "SuperwallHQ",
-    "published": "2026-04-11T15:58:32+00:00",
+    "title": "Andrej Karpathy Just 10x’d Everyone’s Claude Code",
+    "url": "https://www.youtube.com/watch?v=sboNwYmH3AY",
+    "author": "nateherk",
+    "published": "2026-04-05T17:03:18+00:00",
     "tags": [
-      "YouTube"
+      "AI",
+      "Dev",
+      "Coding"
     ],
     "summary": "Selected AI/dev YouTube signal from the curated favorite-creator list.",
     "why_it_matters": "Useful for spotting practical tools, coding workflow shifts, and adjacent AI opportunities from your favorite yters without scanning YouTube manually.",
-    "thumbnail": "https://i.ytimg.com/vi/Fr59-b7qUQI/hqdefault.jpg",
-    "score": 64,
-    "updated_at": "2026-04-12T00:13:26.837Z"
+    "thumbnail": "https://img.youtube.com/vi/sboNwYmH3AY/hqdefault.jpg",
+    "score": 74,
+    "updated_at": "2026-04-12T07:00:09.928Z"
   },
   {
     "id": "github-anomalyco-opencode",
@@ -398,28 +418,30 @@
     "why_it_matters": "Potentially useful signal for the morning AI digest and fast-moving product patterns.",
     "score": 99,
     "metrics": {
-      "stars": 141622,
-      "forks": 15854,
+      "stars": 141733,
+      "forks": 15883,
       "language": "TypeScript"
     },
-    "updated_at": "2026-04-12T00:13:26.837Z"
+    "updated_at": "2026-04-12T07:00:09.927Z"
   },
   {
-    "id": "youtube-vawushsozns",
+    "id": "youtube-oszdfnqmgrw",
     "type": "youtube",
     "source": "YouTube",
-    "title": "Mempalace drama (fake benchmarks?)",
-    "url": "https://www.youtube.com/watch?v=vAWUSHsoZns",
+    "title": "Karpathy's Obsidian RAG + Claude Code = CHEAT CODE",
+    "url": "https://www.youtube.com/watch?v=OSZdFnQmgRw",
     "author": "Chase-H-AI",
-    "published": "2026-04-11T12:01:40+00:00",
+    "published": "2026-04-04T19:51:42+00:00",
     "tags": [
-      "YouTube"
+      "AI",
+      "Dev",
+      "Coding"
     ],
     "summary": "Selected AI/dev YouTube signal from the curated favorite-creator list.",
     "why_it_matters": "Useful for spotting practical tools, coding workflow shifts, and adjacent AI opportunities from your favorite yters without scanning YouTube manually.",
-    "thumbnail": "https://i.ytimg.com/vi/vAWUSHsoZns/hqdefault.jpg",
-    "score": 64,
-    "updated_at": "2026-04-12T00:13:26.837Z"
+    "thumbnail": "https://img.youtube.com/vi/OSZdFnQmgRw/hqdefault.jpg",
+    "score": 74,
+    "updated_at": "2026-04-12T07:00:09.928Z"
   },
   {
     "id": "github-google-gemini-gemini-cli",
@@ -440,28 +462,30 @@
     "why_it_matters": "Relevant to Jarvis, AI workflows, and product ideas worth monitoring closely.",
     "score": 99,
     "metrics": {
-      "stars": 100964,
-      "forks": 13043,
+      "stars": 100977,
+      "forks": 13053,
       "language": "TypeScript"
     },
-    "updated_at": "2026-04-12T00:13:26.836Z"
+    "updated_at": "2026-04-12T07:00:09.927Z"
   },
   {
-    "id": "youtube-80qwfscug3w",
+    "id": "youtube-f3nyy3n2wgw",
     "type": "youtube",
     "source": "YouTube",
-    "title": "Hermes V0.8 (New Upgrades) + New Free APIs & Local Models: LOL OPENCLAW! This is JUST SO BETTER NOW!",
-    "url": "https://www.youtube.com/watch?v=80qWFscUG3w",
-    "author": "AICodeKing",
-    "published": "2026-04-11T09:15:00+00:00",
+    "title": "How to Use Claude Code for 99% CHEAPER",
+    "url": "https://www.youtube.com/shorts/F3nYY3N2wgw",
+    "author": "nateherk",
+    "published": "2026-04-04T02:56:12+00:00",
     "tags": [
-      "YouTube"
+      "AI",
+      "Dev",
+      "Coding"
     ],
     "summary": "Selected AI/dev YouTube signal from the curated favorite-creator list.",
     "why_it_matters": "Useful for spotting practical tools, coding workflow shifts, and adjacent AI opportunities from your favorite yters without scanning YouTube manually.",
-    "thumbnail": "https://i.ytimg.com/vi/80qWFscUG3w/hqdefault.jpg",
-    "score": 64,
-    "updated_at": "2026-04-12T00:13:26.837Z"
+    "thumbnail": "https://img.youtube.com/vi/F3nYY3N2wgw/hqdefault.jpg",
+    "score": 74,
+    "updated_at": "2026-04-12T07:00:09.928Z"
   },
   {
     "id": "github-upstash-context7",
@@ -482,10 +506,10 @@
     "why_it_matters": "Relevant to Jarvis, AI workflows, and product ideas worth monitoring closely.",
     "score": 99,
     "metrics": {
-      "stars": 52370,
+      "stars": 52388,
       "forks": 2475,
       "language": "TypeScript"
     },
-    "updated_at": "2026-04-12T00:13:26.837Z"
+    "updated_at": "2026-04-12T07:00:09.927Z"
   }
 ]
