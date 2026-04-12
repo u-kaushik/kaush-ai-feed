@@ -192,6 +192,13 @@ function renderCard(item) {
     const score = item.score ? `<span class="tag-chip tag-chip-score">score ${escapeHtml(item.score)}</span>` : '';
     const source = sourceLabel(item);
     const icon = sourceIcon(item);
+    const sourceChip =
+        item.type === 'youtube'
+            ? ''
+            : `<button class="card-channel-btn card-channel-btn-${escapeHtml(item.type || 'item')}" data-source="${escapeHtml(source)}" title="Filter by source">
+                  <span class="source-icon" aria-hidden="true">${icon}</span>
+                  <span>${escapeHtml(source)}</span>
+               </button>`;
     const thumb = item.thumbnail
         ? `<div class="card-thumb card-thumb-${escapeHtml(item.type || 'item')}"><img src="${escapeHtml(item.thumbnail)}" alt="${escapeHtml(item.title || source)}" loading="lazy" /></div>`
         : '';
@@ -204,10 +211,7 @@ function renderCard(item) {
                         <div class="card-title-wrap">
                             <div class="card-title">${escapeHtml(item.title || 'Untitled')}</div>
                             <div class="card-meta-row">
-                                <button class="card-channel-btn card-channel-btn-${escapeHtml(item.type || 'item')}" data-source="${escapeHtml(source)}" title="Filter by source">
-                                    <span class="source-icon" aria-hidden="true">${icon}</span>
-                                    <span>${escapeHtml(source)}</span>
-                                </button>
+                                ${sourceChip}
                                 <span class="card-meta-sep">•</span>
                                 <span class="card-date">${escapeHtml(formatRelativeDate(item.published))}</span>
                                 <span class="card-meta-sep">•</span>
