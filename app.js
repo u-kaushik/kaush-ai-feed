@@ -45,7 +45,9 @@ function sourceLabel(item) {
 }
 
 function authorLabel(item) {
-  return item.author || 'Unknown';
+  if (item.type === 'youtube' && item.author && item.author !== 'YouTube') return item.author;
+  if (item.type === 'youtube' && item.channel && item.channel !== 'YouTube') return item.channel;
+  return item.author || item.channel || 'Unknown';
 }
 
 function formatRelativeDate(iso) {
@@ -192,6 +194,7 @@ function renderCard(item) {
     const score = item.score ? `<span class="tag-chip tag-chip-score">score ${escapeHtml(item.score)}</span>` : '';
     const source = sourceLabel(item);
     const icon = sourceIcon(item);
+    const thumbnail = item.thumbnail || (item.type === 'youtube' && item.url ? `https://i.ytimg.com/vi/${escapeHtml(getYoutubeVideoId(item.url) || '')}/hqdefault.jpg` : '');
     const sourceChip =
         item.type === 'youtube'
             ? ''
@@ -199,8 +202,8 @@ function renderCard(item) {
                   <span class="source-icon" aria-hidden="true">${icon}</span>
                   <span>${escapeHtml(source)}</span>
                </button>`;
-    const thumb = item.thumbnail
-        ? `<div class="card-thumb card-thumb-${escapeHtml(item.type || 'item')}"><img src="${escapeHtml(item.thumbnail)}" alt="${escapeHtml(item.title || source)}" loading="lazy" /></div>`
+    const thumb = thumbnail
+        ? `<div class="card-thumb card-thumb-${escapeHtml(item.type || 'item')}"><img src="${escapeHtml(thumbnail)}" alt="${escapeHtml(item.title || source)}" loading="lazy" /></div>`
         : '';
     return `
         <article class="card card-type-${escapeHtml(item.type || 'item')}">

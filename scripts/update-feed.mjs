@@ -333,7 +333,7 @@ function toYoutubeItem(video) {
     source: 'YouTube',
     title: video.title,
     url: video.url,
-    author: video.channel || 'YouTube',
+    author: video.channel || video.channelTitle || 'YouTube',
     published: video.published || nowIso(),
     tags: Array.isArray(video.tags) ? video.tags.slice(0, 5) : ['YouTube'],
     summary: video.description?.trim() || 'Selected AI/dev YouTube signal from the curated favorite-creator list.',
@@ -369,14 +369,14 @@ function normalizeYoutubePayload(raw) {
       raw.url ||
       raw.videoUrl ||
       `https://www.youtube.com/watch?v=${encodeURIComponent(String(id))}`,
-    channel: snippet.channelTitle || raw.channel || 'YouTube',
+    channel: snippet.channelTitle || raw.channelTitle || raw.channel || 'YouTube',
     channelUrl: snippet.channelId
       ? `https://www.youtube.com/channel/${snippet.channelId}`
       : raw.channelId
       ? `https://www.youtube.com/channel/${raw.channelId}`
       : raw.channelUrl,
     published: snippet.publishedAt || raw.published || raw.publishedAt || nowIso(),
-    thumbnail,
+    thumbnail: thumbnail || `https://i.ytimg.com/vi/${encodeURIComponent(String(id))}/hqdefault.jpg`,
     tags: Array.isArray(raw.tags) ? raw.tags.slice(0, 5) : ['YouTube'],
     description: raw.description || snippet.description || '',
   };
