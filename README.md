@@ -55,7 +55,7 @@ pnpm digest:test-send
 - YouTube creator sources live in `data/youtube-sources.json` and are used first; `data/yt-feed.json` remains the fallback snapshot
 - GitHub search criteria live in `data/github-criteria.json`; the updater falls back to a default “recently pushed AI repos” query if that file is missing
 - GitHub ingestion keeps English-only metadata, so non-English repos do not enter the feed
-- YouTube is fetched in this order: creator channel search and per-channel latest videos via the YouTube API, then YouTube Data API search (if `YOUTUBE_API_KEY`/`GOOGLE_API_KEY` is set), then the local snapshot
+- YouTube is fetched in this order: free channel RSS from `data/youtube-sources.json`, then the local snapshot
 
 ### Automation
 - run updates manually: `pnpm digest:update`
