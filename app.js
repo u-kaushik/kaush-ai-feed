@@ -310,7 +310,7 @@ function renderYoutubeLightbox(lightboxContent, item) {
 
     const isShort = (item.url || '').includes('/shorts/') || (item.url || '').includes('youtu.be/');
 
-    lightboxContent.className = 'lightbox-content lightbox-content--youtube';
+    lightboxContent.className = `lightbox-content lightbox-content--youtube${isShort ? ' is-short' : ''}`;
     lightboxContent.innerHTML = `
       <div class="lightbox-close" aria-label="Close lightbox">&times;</div>
       <div class="youtube-lightbox-player-wrap${isShort ? ' is-short' : ''}">

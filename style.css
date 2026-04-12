@@ -1136,6 +1136,11 @@ mark {
   padding: 0;
 }
 
+.lightbox-content--youtube.is-short {
+  width: min(440px, 92vw);
+  max-height: 94vh;
+}
+
 .lightbox-content--youtube .lightbox-close {
   position: absolute;
   top: 12px;
@@ -1209,7 +1214,7 @@ mark {
 }
 
 .youtube-lightbox-player-wrap.is-short {
-  width: min(420px, 100%);
+  width: 100%;
   aspect-ratio: 9 / 16;
   align-self: center;
 }
@@ -1220,6 +1225,12 @@ mark {
   width: 100%;
   height: 100%;
   border: none;
+}
+
+.lightbox-content--youtube.is-short .lightbox-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
 }
 
 .github-lightbox {
@@ -1319,6 +1330,9 @@ mark {
 
 /* Shorts / vertical video mode */
 @media (max-height: 700px) {
+  .lightbox-content--youtube.is-short {
+    width: min(360px, 92vw);
+  }
   .youtube-lightbox-player-wrap.is-short {
     max-width: calc(90vh * 9 / 16);
   }
