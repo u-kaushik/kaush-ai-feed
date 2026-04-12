@@ -598,8 +598,15 @@ body {
 
 .card-category-pills {
   display: inline-flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   gap: 6px;
+  min-width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.card-category-pills .tag-chip {
+  flex: 0 0 auto;
 }
 
 .source-icon {
