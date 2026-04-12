@@ -280,10 +280,6 @@ function setYoutubePlaybackRate(rate) {
     localStorage.setItem('yt_playback_rate', String(nextRate));
     lightbox.currentPlaybackRate = nextRate;
 
-    document.querySelectorAll('.speed-btn').forEach((button) => {
-        button.classList.toggle('active', Number(button.dataset.rate) === nextRate);
-    });
-
     if (iframe && iframe.contentWindow) {
         iframe.contentWindow.postMessage(
             JSON.stringify({ event: 'command', func: 'setPlaybackRate', args: [nextRate] }),
@@ -292,21 +288,11 @@ function setYoutubePlaybackRate(rate) {
     }
 }
 
-function applyYoutubeControls(lightboxContent, item) {
-    const controls = lightboxContent.querySelector('.lightbox-controls');
-    if (!controls) return;
-
-    controls.querySelectorAll('.speed-btn').forEach((button) => {
-      button.dataset.rate = button.dataset.rate || button.id.replace('speed-', '');
-        button.onclick = (event) => {
-            event.preventDefault();
-            event.stopPropagation();
-            setYoutubePlaybackRate(Number(button.dataset.rate));
-        };
-    });
-
-    const currentRate = getYoutubePlaybackRate();
-    setTimeout(() => setYoutubePlaybackRate(currentRate), 150);
+function stepYoutubePlaybackRate() {
+    const lightbox = document.getElementById('lightbox');
+    const currentRate = Number(lightbox.currentPlaybackRate || getYoutubePlaybackRate() || 1);
+    const steppedRate = Math.min(3, Math.round((currentRate + 0.5) * 2) / 2);
+    setYoutubePlaybackRate(steppedRate);
 }
 
 function renderYoutubeLightbox(lightboxContent, item) {
@@ -316,40 +302,16 @@ function renderYoutubeLightbox(lightboxContent, item) {
     const embedOrigin = window.location.origin ? `&origin=${encodeURIComponent(window.location.origin)}` : '';
 
     const isShort = (item.url || '').includes('/shorts/') || (item.url || '').includes('youtu.be/');
-    const thumb = item.thumbnail || '';
-    const thumbBlock = thumb
-        ? `<img class="youtube-lightbox-thumb" src="${escapeHtml(thumb)}" alt="${escapeHtml(item.title || 'YouTube video')}" loading="eager" />`
-        : '<div class="youtube-lightbox-thumb youtube-lightbox-thumb--empty"></div>';
 
     lightboxContent.className = 'lightbox-content lightbox-content--youtube';
     lightboxContent.innerHTML = `
       <div class="lightbox-close" aria-label="Close lightbox">&times;</div>
-      <div class="lightbox-controls">
-        <button class="speed-btn" id="speed-0.5" data-rate="0.5">0.5x</button>
-        <button class="speed-btn" id="speed-1" data-rate="1">1x</button>
-        <button class="speed-btn" id="speed-1.5" data-rate="1.5">1.5x</button>
-        <button class="speed-btn" id="speed-2" data-rate="2">2x</button>
-      </div>
-      <div class="youtube-lightbox-shell">
-        <div class="youtube-lightbox-hero">
-          ${thumbBlock}
-          <div class="youtube-lightbox-head">
-            <div class="youtube-lightbox-kicker">YouTube video</div>
-            <h2 class="youtube-lightbox-title">${escapeHtml(item.title || 'Untitled')}</h2>
-            <div class="youtube-lightbox-meta">
-              <span>${escapeHtml(authorLabel(item))}</span>
-              <span>•</span>
-              <span>${escapeHtml(formatRelativeDate(item.published))}</span>
-            </div>
-          </div>
-        </div>
-        <div class="youtube-lightbox-player-wrap${isShort ? ' is-short' : ''}">
-          <iframe
-            src="https://www.youtube.com/embed/${videoId}?autoplay=1&enablejsapi=1&playsinline=1&controls=0&rel=0&modestbranding=1${embedOrigin}"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowfullscreen
-          ></iframe>
-        </div>
+      <div class="youtube-lightbox-player-wrap${isShort ? ' is-short' : ''}">
+        <iframe
+          src="https://www.youtube.com/embed/${videoId}?autoplay=1&enablejsapi=1&playsinline=1&controls=0&rel=0&modestbranding=1${embedOrigin}"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
+        ></iframe>
       </div>
     `;
 
@@ -363,15 +325,14 @@ function renderYoutubeLightbox(lightboxContent, item) {
                 );
             }, 1000);
         }
-        setTimeout(() => setYoutubePlaybackRate(getYoutubePlaybackRate()), 250);
+        setTimeout(() => setYoutubePlaybackRate(Number(lightbox.currentPlaybackRate || getYoutubePlaybackRate() || 1)), 250);
     };
 
     lightbox.currentIframe = iframe;
     lightbox.currentVideoId = videoId;
+    lightbox.currentPlaybackRate = getYoutubePlaybackRate();
     const savedTime = localStorage.getItem(`yt_${videoId}`);
     lightbox.seekToTime = savedTime ? parseFloat(savedTime) : null;
-
-    applyYoutubeControls(lightboxContent, item);
 }
 
 function renderGithubLightbox(lightboxContent, item) {
@@ -439,11 +400,16 @@ function closeLightbox() {
     lightbox.classList.remove('active');
     // Clear content when closing
     const lightboxContent = lightbox.querySelector('.lightbox-content');
+    if (lightbox.currentVideoId && Number.isFinite(lightbox.lastKnownTime)) {
+        localStorage.setItem(`yt_${lightbox.currentVideoId}`, String(lightbox.lastKnownTime));
+    }
     lightboxContent.innerHTML = '';
     // Reset lightbox state
     lightbox.currentIframe = null;
     lightbox.currentVideoId = null;
     lightbox.seekToTime = null;
+    lightbox.currentPlaybackRate = null;
+    lightbox.lastKnownTime = null;
 }
 
 async function fetchItems() {
@@ -564,11 +530,20 @@ function initApp() {
         }
     });
 
-     document.addEventListener('click', (event) => {
+    document.addEventListener('click', (event) => {
          if (event.target.classList.contains('lightbox-close')) {
              closeLightbox();
          }
      });
+
+    document.addEventListener('keydown', (event) => {
+        if (!document.getElementById('lightbox').classList.contains('active')) return;
+        const key = event.key.toLowerCase();
+        if (key === 'd') {
+            event.preventDefault();
+            stepYoutubePlaybackRate();
+        }
+    });
      
      // Add event listener for YouTube API messages (for getting current time)
      window.addEventListener('message', (event) => {
@@ -581,13 +556,22 @@ function initApp() {
              // Save current playback time when we get it
              if (data.info && data.info.currentTime) {
                  const currentTime = data.info.currentTime;
+                 const lightbox = document.getElementById('lightbox');
+                 lightbox.lastKnownTime = currentTime;
                  // Save to localStorage if we have a video ID
-                 if (document.getElementById('lightbox').currentVideoId) {
-                     localStorage.setItem(`yt_${document.getElementById('lightbox').currentVideoId}`, currentTime);
+                 if (lightbox.currentVideoId) {
+                     localStorage.setItem(`yt_${lightbox.currentVideoId}`, currentTime);
                  }
              }
          }
      });
+
+    window.addEventListener('beforeunload', () => {
+        const lightbox = document.getElementById('lightbox');
+        if (lightbox.currentVideoId && Number.isFinite(lightbox.lastKnownTime)) {
+            localStorage.setItem(`yt_${lightbox.currentVideoId}`, String(lightbox.lastKnownTime));
+        }
+    });
 
     fetchItems();
 }
