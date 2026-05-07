@@ -6,6 +6,8 @@ let searchQuery = '';
 let searchDebounceTimer = null;
 
 const FEED_URL = 'data/ai-feed.json';
+const YOUTUBE_PLAYBACK_RATE = 2;
+const YOUTUBE_PROGRESS_PREFIX = 'yt_progress_';
 
 function setTimeBasedTheme() {
   if (manualTheme !== null) return;
@@ -274,19 +276,26 @@ function getYoutubeVideoId(url) {
     }
 }
 
+function isYoutubeShort(item) {
+    const url = item.url || '';
+    const title = item.title || '';
+    const tags = Array.isArray(item.tags) ? item.tags.join(' ') : '';
+    return /youtube\.com\/shorts\//i.test(url) || /(^|\s)#?shorts?(\s|$)/i.test(`${title} ${tags}`);
+}
+
 function getItemById(itemId) {
     return allItems.find((item) => item.id === itemId) || null;
 }
 
 function getYoutubePlaybackRate() {
     const stored = Number(localStorage.getItem('yt_playback_rate'));
-    return Number.isFinite(stored) && stored > 0 ? stored : 2;
+    return Number.isFinite(stored) && stored > 0 ? stored : YOUTUBE_PLAYBACK_RATE;
 }
 
 function setYoutubePlaybackRate(rate) {
     const lightbox = document.getElementById('lightbox');
     const iframe = lightbox.currentIframe;
-    const nextRate = Number(rate) || 2;
+    const nextRate = Number(rate) || YOUTUBE_PLAYBACK_RATE;
 
     localStorage.setItem('yt_playback_rate', String(nextRate));
     lightbox.currentPlaybackRate = nextRate;
@@ -296,6 +305,48 @@ function setYoutubePlaybackRate(rate) {
             JSON.stringify({ event: 'command', func: 'setPlaybackRate', args: [nextRate] }),
             '*',
         );
+    }
+}
+
+function getYoutubeProgressKey(videoId) {
+    return `${YOUTUBE_PROGRESS_PREFIX}${videoId}`;
+}
+
+function getSavedYoutubeTime(videoId) {
+    const savedTime = Number(localStorage.getItem(getYoutubeProgressKey(videoId)));
+    if (Number.isFinite(savedTime) && savedTime > 0) return savedTime;
+    const legacySavedTime = Number(localStorage.getItem(`yt_${videoId}`));
+    return Number.isFinite(legacySavedTime) && legacySavedTime > 0 ? legacySavedTime : 0;
+}
+
+function saveYoutubeTime(videoId, time) {
+    const currentTime = Number(time);
+    if (!videoId || !Number.isFinite(currentTime) || currentTime < 0) return;
+    localStorage.setItem(getYoutubeProgressKey(videoId), String(Math.max(0, Math.floor(currentTime))));
+}
+
+function sendYoutubeCommand(func, args = []) {
+    const iframe = document.getElementById('lightbox').currentIframe;
+    if (!iframe || !iframe.contentWindow) return;
+    iframe.contentWindow.postMessage(JSON.stringify({ event: 'command', func, args }), '*');
+}
+
+function syncYoutubePlaybackState() {
+    const lightbox = document.getElementById('lightbox');
+    if (!lightbox.currentIframe || !lightbox.currentVideoId) return;
+
+    const rate = Number(lightbox.currentPlaybackRate || getYoutubePlaybackRate() || YOUTUBE_PLAYBACK_RATE);
+    sendYoutubeCommand('setPlaybackRate', [rate]);
+    sendYoutubeCommand('playVideo');
+    sendYoutubeCommand('getCurrentTime');
+}
+
+function persistCurrentYoutubeTime() {
+    const lightbox = document.getElementById('lightbox');
+    if (!lightbox.currentVideoId) return;
+    sendYoutubeCommand('getCurrentTime');
+    if (Number.isFinite(lightbox.lastKnownTime)) {
+        saveYoutubeTime(lightbox.currentVideoId, lightbox.lastKnownTime);
     }
 }
 
@@ -312,14 +363,16 @@ function renderYoutubeLightbox(lightboxContent, item) {
     if (!videoId) return;
     const embedOrigin = window.location.origin ? `&origin=${encodeURIComponent(window.location.origin)}` : '';
 
-    const isShort = (item.url || '').includes('/shorts/') || (item.url || '').includes('youtu.be/');
+    const isShort = isYoutubeShort(item);
+    const savedTime = getSavedYoutubeTime(videoId);
+    const startParam = savedTime > 0 ? `&start=${Math.max(0, Math.floor(savedTime))}` : '';
 
     lightboxContent.className = `lightbox-content lightbox-content--youtube${isShort ? ' is-short' : ''}`;
     lightboxContent.innerHTML = `
       <div class="lightbox-close" aria-label="Close lightbox">&times;</div>
       <div class="youtube-lightbox-player-wrap${isShort ? ' is-short' : ''}">
         <iframe
-          src="https://www.youtube.com/embed/${videoId}?autoplay=1&enablejsapi=1&playsinline=1&controls=0&rel=0&modestbranding=1${embedOrigin}"
+          src="https://www.youtube.com/embed/${videoId}?autoplay=1&enablejsapi=1&playsinline=1&controls=1&rel=0&modestbranding=1${startParam}${embedOrigin}"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowfullscreen
         ></iframe>
@@ -329,21 +382,19 @@ function renderYoutubeLightbox(lightboxContent, item) {
     const iframe = lightboxContent.querySelector('iframe');
     iframe.onload = () => {
         if (lightbox.seekToTime !== null && lightbox.seekToTime > 0) {
-            setTimeout(() => {
-                iframe.contentWindow.postMessage(
-                    JSON.stringify({ event: 'command', func: 'seekTo', args: [lightbox.seekToTime, true] }),
-                    '*',
-                );
-            }, 1000);
+            setTimeout(() => sendYoutubeCommand('seekTo', [lightbox.seekToTime, true]), 700);
         }
-        setTimeout(() => setYoutubePlaybackRate(Number(lightbox.currentPlaybackRate || getYoutubePlaybackRate() || 1)), 250);
+        [250, 700, 1400, 2400].forEach((delay) => setTimeout(syncYoutubePlaybackState, delay));
     };
 
     lightbox.currentIframe = iframe;
     lightbox.currentVideoId = videoId;
-    lightbox.currentPlaybackRate = getYoutubePlaybackRate();
-    const savedTime = localStorage.getItem(`yt_${videoId}`);
-    lightbox.seekToTime = savedTime ? parseFloat(savedTime) : null;
+    lightbox.currentPlaybackRate = YOUTUBE_PLAYBACK_RATE;
+    lightbox.seekToTime = savedTime;
+    lightbox.lastKnownTime = savedTime || null;
+    setYoutubePlaybackRate(YOUTUBE_PLAYBACK_RATE);
+    clearInterval(lightbox.progressTimer);
+    lightbox.progressTimer = setInterval(persistCurrentYoutubeTime, 1500);
 }
 
 function renderGithubLightbox(lightboxContent, item) {
@@ -408,12 +459,14 @@ function openLightbox(item) {
 
 function closeLightbox() {
     const lightbox = document.getElementById('lightbox');
+    persistCurrentYoutubeTime();
     lightbox.classList.remove('active');
     // Clear content when closing
     const lightboxContent = lightbox.querySelector('.lightbox-content');
     if (lightbox.currentVideoId && Number.isFinite(lightbox.lastKnownTime)) {
-        localStorage.setItem(`yt_${lightbox.currentVideoId}`, String(lightbox.lastKnownTime));
+        saveYoutubeTime(lightbox.currentVideoId, lightbox.lastKnownTime);
     }
+    clearInterval(lightbox.progressTimer);
     lightboxContent.innerHTML = '';
     // Reset lightbox state
     lightbox.currentIframe = null;
@@ -421,6 +474,7 @@ function closeLightbox() {
     lightbox.seekToTime = null;
     lightbox.currentPlaybackRate = null;
     lightbox.lastKnownTime = null;
+    lightbox.progressTimer = null;
 }
 
 async function fetchItems() {
@@ -558,29 +612,36 @@ function initApp() {
      
      // Add event listener for YouTube API messages (for getting current time)
      window.addEventListener('message', (event) => {
-         // Only accept messages from YouTube iframes
-         if (event.origin !== 'https://www.youtube.com') return;
-         
-         const data = event.data;
-         // Handle YouTube API responses
-         if (data && typeof data === 'object' && data.event === 'infoDelivery') {
-             // Save current playback time when we get it
-             if (data.info && data.info.currentTime) {
-                 const currentTime = data.info.currentTime;
-                 const lightbox = document.getElementById('lightbox');
-                 lightbox.lastKnownTime = currentTime;
-                 // Save to localStorage if we have a video ID
-                 if (lightbox.currentVideoId) {
-                     localStorage.setItem(`yt_${lightbox.currentVideoId}`, currentTime);
-                 }
+         if (event.origin !== 'https://www.youtube.com' && event.origin !== 'https://www.youtube-nocookie.com') return;
+
+         let data = event.data;
+         if (typeof data === 'string') {
+             try {
+                 data = JSON.parse(data);
+             } catch {
+                 return;
              }
+         }
+
+         if (!data || typeof data !== 'object' || data.event !== 'infoDelivery') return;
+
+         const lightbox = document.getElementById('lightbox');
+         const currentTime = Number(data.info?.currentTime);
+         if (Number.isFinite(currentTime)) {
+             lightbox.lastKnownTime = currentTime;
+             saveYoutubeTime(lightbox.currentVideoId, currentTime);
+         }
+
+         const playbackRate = Number(data.info?.playbackRate);
+         if (Number.isFinite(playbackRate) && playbackRate !== YOUTUBE_PLAYBACK_RATE) {
+             setTimeout(() => setYoutubePlaybackRate(YOUTUBE_PLAYBACK_RATE), 100);
          }
      });
 
     window.addEventListener('beforeunload', () => {
         const lightbox = document.getElementById('lightbox');
         if (lightbox.currentVideoId && Number.isFinite(lightbox.lastKnownTime)) {
-            localStorage.setItem(`yt_${lightbox.currentVideoId}`, String(lightbox.lastKnownTime));
+            saveYoutubeTime(lightbox.currentVideoId, lightbox.lastKnownTime);
         }
     });
 
