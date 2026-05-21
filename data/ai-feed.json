@@ -1,20 +1,20 @@
 [
   {
-    "id": "youtube-pgti3g7fcmk",
+    "id": "youtube-6ceqeba0i2a",
     "type": "youtube",
     "source": "YouTube",
-    "title": "Every Claude Code Beginner Must Watch This",
-    "url": "https://www.youtube.com/watch?v=pGti3g7Fcmk",
-    "author": "Chase-H-AI",
-    "published": "2026-05-20T01:45:07+00:00",
+    "title": "The One Habit That Doubles Your Claude Code Session Limit",
+    "url": "https://www.youtube.com/watch?v=6cEQEba0i2A",
+    "author": "nateherk",
+    "published": "2026-05-21T12:58:00+00:00",
     "tags": [
       "YouTube"
     ],
     "summary": "Selected AI/dev YouTube signal from the curated favorite-creator list.",
     "why_it_matters": "Useful for spotting practical tools, coding workflow shifts, and adjacent AI opportunities from your favorite yters without scanning YouTube manually.",
-    "thumbnail": "https://i.ytimg.com/vi/pGti3g7Fcmk/hqdefault.jpg",
+    "thumbnail": "https://i.ytimg.com/vi/6cEQEba0i2A/hqdefault.jpg",
     "score": 74,
-    "updated_at": "2026-05-21T07:00:11.280Z"
+    "updated_at": "2026-05-21T17:00:14.926Z"
   },
   {
     "id": "github-santifer-career-ops",
@@ -35,28 +35,28 @@
     "why_it_matters": "Strong fit for operator leverage, agent workflows, and business automation ideas.",
     "score": 99,
     "metrics": {
-      "stars": 46429,
-      "forks": 9707,
+      "stars": 46510,
+      "forks": 9725,
       "language": "JavaScript"
     },
-    "updated_at": "2026-05-21T07:00:11.278Z"
+    "updated_at": "2026-05-21T17:00:14.925Z"
   },
   {
-    "id": "youtube-girpqefyf3u",
+    "id": "youtube-pgti3g7fcmk",
     "type": "youtube",
     "source": "YouTube",
-    "title": "Any-to-Any: Building Native Multimodal Agents - Patrick Löber, Google DeepMind",
-    "url": "https://www.youtube.com/watch?v=GIRpQEfYf3U",
-    "author": "AI Engineer",
-    "published": "2026-05-20T17:00:07+00:00",
+    "title": "Every Claude Code Beginner Must Watch This",
+    "url": "https://www.youtube.com/watch?v=pGti3g7Fcmk",
+    "author": "Chase-H-AI",
+    "published": "2026-05-20T01:45:07+00:00",
     "tags": [
       "YouTube"
     ],
     "summary": "Selected AI/dev YouTube signal from the curated favorite-creator list.",
     "why_it_matters": "Useful for spotting practical tools, coding workflow shifts, and adjacent AI opportunities from your favorite yters without scanning YouTube manually.",
-    "thumbnail": "https://i.ytimg.com/vi/GIRpQEfYf3U/hqdefault.jpg",
-    "score": 70,
-    "updated_at": "2026-05-21T07:00:11.280Z"
+    "thumbnail": "https://i.ytimg.com/vi/pGti3g7Fcmk/hqdefault.jpg",
+    "score": 74,
+    "updated_at": "2026-05-21T17:00:14.926Z"
   },
   {
     "id": "github-voltagent-awesome-design-md",
@@ -77,27 +77,27 @@
     "why_it_matters": "Potentially useful signal for the morning AI digest and fast-moving product patterns.",
     "score": 99,
     "metrics": {
-      "stars": 81946,
-      "forks": 9881
+      "stars": 82204,
+      "forks": 9909
     },
-    "updated_at": "2026-05-21T07:00:11.279Z"
+    "updated_at": "2026-05-21T17:00:14.926Z"
   },
   {
-    "id": "youtube-r5zpo-o1ql4",
+    "id": "youtube-vas2h-dy1-4",
     "type": "youtube",
     "source": "YouTube",
-    "title": "Google’s AntiGravity 2.0 Just Dropped, and…",
-    "url": "https://www.youtube.com/watch?v=r5ZPO_O1ql4",
-    "author": "Itssssss_Jack",
-    "published": "2026-05-20T19:19:27+00:00",
+    "title": "Scaling Agents on Kubernetes with acpx and ACP — Onur Solmaz, OpenClaw",
+    "url": "https://www.youtube.com/watch?v=VaS2h-dY1-4",
+    "author": "AI Engineer",
+    "published": "2026-05-21T15:00:06+00:00",
     "tags": [
       "YouTube"
     ],
     "summary": "Selected AI/dev YouTube signal from the curated favorite-creator list.",
     "why_it_matters": "Useful for spotting practical tools, coding workflow shifts, and adjacent AI opportunities from your favorite yters without scanning YouTube manually.",
-    "thumbnail": "https://i.ytimg.com/vi/r5ZPO_O1ql4/hqdefault.jpg",
-    "score": 64,
-    "updated_at": "2026-05-21T07:00:11.280Z"
+    "thumbnail": "https://i.ytimg.com/vi/VaS2h-dY1-4/hqdefault.jpg",
+    "score": 70,
+    "updated_at": "2026-05-21T17:00:14.926Z"
   },
   {
     "id": "github-ultraworkers-claw-code",
@@ -114,28 +114,28 @@
     "why_it_matters": "Potentially useful signal for the morning AI digest and fast-moving product patterns.",
     "score": 99,
     "metrics": {
-      "stars": 192121,
-      "forks": 109952,
+      "stars": 192158,
+      "forks": 109958,
       "language": "Rust"
     },
-    "updated_at": "2026-05-21T07:00:11.279Z"
+    "updated_at": "2026-05-21T17:00:14.925Z"
   },
   {
-    "id": "youtube-mpqoxx1ugte",
+    "id": "youtube-stt1nxmkujy",
     "type": "youtube",
     "source": "YouTube",
-    "title": "44 Million Views: Unlocking the Secrets of Viral UGC! #shorts",
-    "url": "https://www.youtube.com/watch?v=MpQOXx1UgTE",
+    "title": "$8,000 Payout Revealed: Viral Videos Earn Millions! Unpacking Earnings #shorts",
+    "url": "https://www.youtube.com/watch?v=Stt1nxmKUJY",
     "author": "SuperwallHQ",
-    "published": "2026-05-20T15:57:37+00:00",
+    "published": "2026-05-21T15:54:32+00:00",
     "tags": [
       "YouTube"
     ],
     "summary": "Selected AI/dev YouTube signal from the curated favorite-creator list.",
     "why_it_matters": "Useful for spotting practical tools, coding workflow shifts, and adjacent AI opportunities from your favorite yters without scanning YouTube manually.",
-    "thumbnail": "https://i.ytimg.com/vi/MpQOXx1UgTE/hqdefault.jpg",
+    "thumbnail": "https://i.ytimg.com/vi/Stt1nxmKUJY/hqdefault.jpg",
     "score": 64,
-    "updated_at": "2026-05-21T07:00:11.280Z"
+    "updated_at": "2026-05-21T17:00:14.926Z"
   },
   {
     "id": "github-garrytan-gstack",
@@ -152,28 +152,28 @@
     "why_it_matters": "Potentially useful signal for the morning AI digest and fast-moving product patterns.",
     "score": 99,
     "metrics": {
-      "stars": 100151,
-      "forks": 14912,
+      "stars": 100364,
+      "forks": 14940,
       "language": "TypeScript"
     },
-    "updated_at": "2026-05-21T07:00:11.279Z"
+    "updated_at": "2026-05-21T17:00:14.925Z"
   },
   {
-    "id": "youtube-o0rxxzdjbyg",
+    "id": "youtube-pfiryglzlty",
     "type": "youtube",
     "source": "YouTube",
-    "title": "Google Antigravity 2.0 Just Changed EVERYTHING (3 Modes)",
-    "url": "https://www.youtube.com/watch?v=O0rXXZDJByg",
+    "title": "How To Use Cursor COMPLETELY FOR FREE",
+    "url": "https://www.youtube.com/watch?v=pFiRyglZLTY",
     "author": "Incomestreamsurfers",
-    "published": "2026-05-20T15:48:29+00:00",
+    "published": "2026-05-21T14:08:46+00:00",
     "tags": [
       "YouTube"
     ],
     "summary": "Selected AI/dev YouTube signal from the curated favorite-creator list.",
     "why_it_matters": "Useful for spotting practical tools, coding workflow shifts, and adjacent AI opportunities from your favorite yters without scanning YouTube manually.",
-    "thumbnail": "https://i.ytimg.com/vi/O0rXXZDJByg/hqdefault.jpg",
+    "thumbnail": "https://i.ytimg.com/vi/pFiRyglZLTY/hqdefault.jpg",
     "score": 64,
-    "updated_at": "2026-05-21T07:00:11.280Z"
+    "updated_at": "2026-05-21T17:00:14.926Z"
   },
   {
     "id": "github-affaan-m-ecc",
@@ -194,28 +194,28 @@
     "why_it_matters": "Relevant to Jarvis, AI workflows, and product ideas worth monitoring closely.",
     "score": 99,
     "metrics": {
-      "stars": 187859,
-      "forks": 29074,
+      "stars": 188092,
+      "forks": 29113,
       "language": "JavaScript"
     },
-    "updated_at": "2026-05-21T07:00:11.278Z"
+    "updated_at": "2026-05-21T17:00:14.925Z"
   },
   {
-    "id": "youtube-8jecaxmwqkc",
+    "id": "youtube-rsjalvtztxm",
     "type": "youtube",
     "source": "YouTube",
-    "title": "Google Antigravity 2.0: New Desktop App, CLI, and Gemini 3.5 Flash",
-    "url": "https://www.youtube.com/watch?v=8jECAXmWQKc",
+    "title": "Gemini 3.5: The Hidden Cost of the Flash Model (It's Not the Budget Model)",
+    "url": "https://www.youtube.com/watch?v=RsJALVtZTXM",
     "author": "AIStackStudio-f2x",
-    "published": "2026-05-20T11:06:15+00:00",
+    "published": "2026-05-21T11:44:57+00:00",
     "tags": [
       "YouTube"
     ],
     "summary": "Selected AI/dev YouTube signal from the curated favorite-creator list.",
     "why_it_matters": "Useful for spotting practical tools, coding workflow shifts, and adjacent AI opportunities from your favorite yters without scanning YouTube manually.",
-    "thumbnail": "https://i.ytimg.com/vi/8jECAXmWQKc/hqdefault.jpg",
+    "thumbnail": "https://i.ytimg.com/vi/RsJALVtZTXM/hqdefault.jpg",
     "score": 64,
-    "updated_at": "2026-05-21T07:00:11.280Z"
+    "updated_at": "2026-05-21T17:00:14.926Z"
   },
   {
     "id": "github-openclaw-openclaw",
@@ -236,28 +236,28 @@
     "why_it_matters": "Relevant to Jarvis, AI workflows, and product ideas worth monitoring closely.",
     "score": 99,
     "metrics": {
-      "stars": 373618,
-      "forks": 77586,
+      "stars": 373735,
+      "forks": 77639,
       "language": "TypeScript"
     },
-    "updated_at": "2026-05-21T07:00:11.276Z"
+    "updated_at": "2026-05-21T17:00:14.925Z"
   },
   {
-    "id": "youtube-0ej08fub5ti",
+    "id": "youtube-8zbq4msh4jm",
     "type": "youtube",
     "source": "YouTube",
-    "title": "Antigravity 2.0 & Gemini 3.5 Flash (Fully Tested): SO BAD! FINAL NAIL IN THE COFFIN FOR GOOGLE.",
-    "url": "https://www.youtube.com/watch?v=0Ej08fUb5TI",
+    "title": "KingGravity (I Fixed Antigravity 2.0): SIMPLEST AND EASIEST WAY to CORRECTLY USE ANTIGRAVITY!",
+    "url": "https://www.youtube.com/watch?v=8zBQ4msh4jM",
     "author": "AICodeKing",
-    "published": "2026-05-20T10:00:34+00:00",
+    "published": "2026-05-21T11:06:02+00:00",
     "tags": [
       "YouTube"
     ],
     "summary": "Selected AI/dev YouTube signal from the curated favorite-creator list.",
     "why_it_matters": "Useful for spotting practical tools, coding workflow shifts, and adjacent AI opportunities from your favorite yters without scanning YouTube manually.",
-    "thumbnail": "https://i.ytimg.com/vi/0Ej08fUb5TI/hqdefault.jpg",
+    "thumbnail": "https://i.ytimg.com/vi/8zBQ4msh4jM/hqdefault.jpg",
     "score": 64,
-    "updated_at": "2026-05-21T07:00:11.280Z"
+    "updated_at": "2026-05-21T17:00:14.926Z"
   },
   {
     "id": "github-composiohq-awesome-claude-skills",
@@ -278,28 +278,28 @@
     "why_it_matters": "Strong fit for operator leverage, agent workflows, and business automation ideas.",
     "score": 99,
     "metrics": {
-      "stars": 60969,
-      "forks": 6644,
+      "stars": 61061,
+      "forks": 6653,
       "language": "Python"
     },
-    "updated_at": "2026-05-21T07:00:11.278Z"
+    "updated_at": "2026-05-21T17:00:14.925Z"
   },
   {
-    "id": "youtube-ml45m-w4-44",
+    "id": "youtube-r5zpo-o1ql4",
     "type": "youtube",
     "source": "YouTube",
-    "title": "Stop Using These AI App Builders Until You Watch This - Emergent vs Lovable vs Replit vs Base44",
-    "url": "https://www.youtube.com/watch?v=mL45m_W4_44",
-    "author": "AdrianTwarog",
-    "published": "2026-05-20T07:50:32+00:00",
+    "title": "Google’s AntiGravity 2.0 Just Dropped, and…",
+    "url": "https://www.youtube.com/watch?v=r5ZPO_O1ql4",
+    "author": "Itssssss_Jack",
+    "published": "2026-05-20T19:19:27+00:00",
     "tags": [
       "YouTube"
     ],
     "summary": "Selected AI/dev YouTube signal from the curated favorite-creator list.",
     "why_it_matters": "Useful for spotting practical tools, coding workflow shifts, and adjacent AI opportunities from your favorite yters without scanning YouTube manually.",
-    "thumbnail": "https://i.ytimg.com/vi/mL45m_W4_44/hqdefault.jpg",
+    "thumbnail": "https://i.ytimg.com/vi/r5ZPO_O1ql4/hqdefault.jpg",
     "score": 64,
-    "updated_at": "2026-05-21T07:00:11.280Z"
+    "updated_at": "2026-05-21T17:00:14.926Z"
   },
   {
     "id": "github-obra-superpowers",
@@ -316,28 +316,28 @@
     "why_it_matters": "Potentially useful signal for the morning AI digest and fast-moving product patterns.",
     "score": 99,
     "metrics": {
-      "stars": 200538,
-      "forks": 17875,
+      "stars": 201256,
+      "forks": 17932,
       "language": "Shell"
     },
-    "updated_at": "2026-05-21T07:00:11.279Z"
+    "updated_at": "2026-05-21T17:00:14.925Z"
   },
   {
-    "id": "youtube-brb-hsiv2iu",
+    "id": "youtube-ml45m-w4-44",
     "type": "youtube",
     "source": "YouTube",
-    "title": "What Karpathy Joining Anthropic Actually Means For Claude",
-    "url": "https://www.youtube.com/watch?v=brB-hSiV2iU",
-    "author": "nateherk",
-    "published": "2026-05-19T21:36:51+00:00",
+    "title": "Stop Using These AI App Builders Until You Watch This - Emergent vs Lovable vs Replit vs Base44",
+    "url": "https://www.youtube.com/watch?v=mL45m_W4_44",
+    "author": "AdrianTwarog",
+    "published": "2026-05-20T07:50:32+00:00",
     "tags": [
       "YouTube"
     ],
     "summary": "Selected AI/dev YouTube signal from the curated favorite-creator list.",
     "why_it_matters": "Useful for spotting practical tools, coding workflow shifts, and adjacent AI opportunities from your favorite yters without scanning YouTube manually.",
-    "thumbnail": "https://i.ytimg.com/vi/brB-hSiV2iU/hqdefault.jpg",
+    "thumbnail": "https://i.ytimg.com/vi/mL45m_W4_44/hqdefault.jpg",
     "score": 64,
-    "updated_at": "2026-05-21T07:00:11.280Z"
+    "updated_at": "2026-05-21T17:00:14.926Z"
   },
   {
     "id": "github-anthropics-skills",
@@ -355,11 +355,11 @@
     "why_it_matters": "Potentially useful signal for the morning AI digest and fast-moving product patterns.",
     "score": 99,
     "metrics": {
-      "stars": 138456,
-      "forks": 16330,
+      "stars": 138754,
+      "forks": 16358,
       "language": "Python"
     },
-    "updated_at": "2026-05-21T07:00:11.279Z"
+    "updated_at": "2026-05-21T17:00:14.925Z"
   },
   {
     "id": "youtube-p88mkfpkozc",
@@ -376,7 +376,7 @@
     "why_it_matters": "Useful for spotting practical tools, coding workflow shifts, and adjacent AI opportunities from your favorite yters without scanning YouTube manually.",
     "thumbnail": "https://i.ytimg.com/vi/p88mkfPkOZc/hqdefault.jpg",
     "score": 64,
-    "updated_at": "2026-05-21T07:00:11.280Z"
+    "updated_at": "2026-05-21T17:00:14.926Z"
   },
   {
     "id": "github-farion1231-cc-switch",
@@ -397,11 +397,11 @@
     "why_it_matters": "Potentially useful signal for the morning AI digest and fast-moving product patterns.",
     "score": 99,
     "metrics": {
-      "stars": 76755,
-      "forks": 4988,
+      "stars": 77249,
+      "forks": 5027,
       "language": "Rust"
     },
-    "updated_at": "2026-05-21T07:00:11.278Z"
+    "updated_at": "2026-05-21T17:00:14.925Z"
   },
   {
     "id": "github-nousresearch-hermes-agent",
@@ -422,11 +422,11 @@
     "why_it_matters": "Relevant to Jarvis, AI workflows, and product ideas worth monitoring closely.",
     "score": 99,
     "metrics": {
-      "stars": 160221,
-      "forks": 26024,
+      "stars": 161149,
+      "forks": 26202,
       "language": "Python"
     },
-    "updated_at": "2026-05-21T07:00:11.276Z"
+    "updated_at": "2026-05-21T17:00:14.925Z"
   },
   {
     "id": "github-shareai-lab-learn-claude-code",
@@ -447,11 +447,11 @@
     "why_it_matters": "Strong fit for operator leverage, agent workflows, and business automation ideas.",
     "score": 99,
     "metrics": {
-      "stars": 61663,
-      "forks": 10075,
+      "stars": 61793,
+      "forks": 10096,
       "language": "Python"
     },
-    "updated_at": "2026-05-21T07:00:11.278Z"
+    "updated_at": "2026-05-21T17:00:14.925Z"
   },
   {
     "id": "github-bytedance-deer-flow",
@@ -472,11 +472,11 @@
     "why_it_matters": "Strong fit for operator leverage, agent workflows, and business automation ideas.",
     "score": 99,
     "metrics": {
-      "stars": 68867,
-      "forks": 9181,
+      "stars": 68962,
+      "forks": 9202,
       "language": "Python"
     },
-    "updated_at": "2026-05-21T07:00:11.278Z"
+    "updated_at": "2026-05-21T17:00:14.925Z"
   },
   {
     "id": "github-upstash-context7",
@@ -497,10 +497,10 @@
     "why_it_matters": "Relevant to Jarvis, AI workflows, and product ideas worth monitoring closely.",
     "score": 99,
     "metrics": {
-      "stars": 55766,
-      "forks": 2646,
+      "stars": 55799,
+      "forks": 2647,
       "language": "TypeScript"
     },
-    "updated_at": "2026-05-21T07:00:11.278Z"
+    "updated_at": "2026-05-21T17:00:14.925Z"
   }
 ]
