@@ -1,20 +1,20 @@
 [
   {
-    "id": "youtube-kupvwpp-60w",
+    "id": "youtube-x9yxs3r4ude",
     "type": "youtube",
     "source": "YouTube",
-    "title": "Top 5 Claude Code Plugins for June 2026",
-    "url": "https://www.youtube.com/watch?v=KUpVwPP-60w",
-    "author": "Chase-H-AI",
-    "published": "2026-06-04T05:09:42+00:00",
+    "title": "Claude code for free?",
+    "url": "https://www.youtube.com/watch?v=X9YXS3r4udE",
+    "author": "Itssssss_Jack",
+    "published": "2026-06-04T16:00:20+00:00",
     "tags": [
       "YouTube"
     ],
     "summary": "Selected AI/dev YouTube signal from the curated favorite-creator list.",
     "why_it_matters": "Useful for spotting practical tools, coding workflow shifts, and adjacent AI opportunities from your favorite yters without scanning YouTube manually.",
-    "thumbnail": "https://i.ytimg.com/vi/KUpVwPP-60w/hqdefault.jpg",
+    "thumbnail": "https://i.ytimg.com/vi/X9YXS3r4udE/hqdefault.jpg",
     "score": 74,
-    "updated_at": "2026-06-04T07:00:16.186Z"
+    "updated_at": "2026-06-04T17:00:14.452Z"
   },
   {
     "id": "github-mempalace-mempalace",
@@ -35,11 +35,11 @@
     "why_it_matters": "Relevant to Jarvis, AI workflows, and product ideas worth monitoring closely.",
     "score": 99,
     "metrics": {
-      "stars": 53391,
-      "forks": 7051,
+      "stars": 53493,
+      "forks": 7053,
       "language": "Python"
     },
-    "updated_at": "2026-06-04T07:00:16.185Z"
+    "updated_at": "2026-06-04T17:00:14.451Z"
   },
   {
     "id": "youtube-vfwtyereoec",
@@ -56,7 +56,7 @@
     "why_it_matters": "Useful for spotting practical tools, coding workflow shifts, and adjacent AI opportunities from your favorite yters without scanning YouTube manually.",
     "thumbnail": "https://i.ytimg.com/vi/vfWTyEreOEc/hqdefault.jpg",
     "score": 74,
-    "updated_at": "2026-06-04T07:00:16.186Z"
+    "updated_at": "2026-06-04T17:00:14.452Z"
   },
   {
     "id": "github-santifer-career-ops",
@@ -77,28 +77,28 @@
     "why_it_matters": "Strong fit for operator leverage, agent workflows, and business automation ideas.",
     "score": 99,
     "metrics": {
-      "stars": 48582,
-      "forks": 10088,
+      "stars": 48653,
+      "forks": 10106,
       "language": "JavaScript"
     },
-    "updated_at": "2026-06-04T07:00:16.185Z"
+    "updated_at": "2026-06-04T17:00:14.451Z"
   },
   {
-    "id": "youtube-3ungdq38dmg",
+    "id": "youtube-inkflciij0u",
     "type": "youtube",
     "source": "YouTube",
-    "title": "3 skills that you need for Claude code",
-    "url": "https://www.youtube.com/watch?v=3UNgdq38Dmg",
-    "author": "Itssssss_Jack",
-    "published": "2026-06-03T16:00:09+00:00",
+    "title": "The Art & Science of Benchmarking Agents — Vincent Chen, Snorkel AI",
+    "url": "https://www.youtube.com/watch?v=iNkFlCiij0U",
+    "author": "AI Engineer",
+    "published": "2026-06-04T16:00:06+00:00",
     "tags": [
       "YouTube"
     ],
     "summary": "Selected AI/dev YouTube signal from the curated favorite-creator list.",
     "why_it_matters": "Useful for spotting practical tools, coding workflow shifts, and adjacent AI opportunities from your favorite yters without scanning YouTube manually.",
-    "thumbnail": "https://i.ytimg.com/vi/3UNgdq38Dmg/hqdefault.jpg",
-    "score": 74,
-    "updated_at": "2026-06-04T07:00:16.186Z"
+    "thumbnail": "https://i.ytimg.com/vi/iNkFlCiij0U/hqdefault.jpg",
+    "score": 70,
+    "updated_at": "2026-06-04T17:00:14.452Z"
   },
   {
     "id": "github-voltagent-awesome-design-md",
@@ -119,27 +119,27 @@
     "why_it_matters": "Potentially useful signal for the morning AI digest and fast-moving product patterns.",
     "score": 99,
     "metrics": {
-      "stars": 87238,
-      "forks": 10433
+      "stars": 87416,
+      "forks": 10456
     },
-    "updated_at": "2026-06-04T07:00:16.185Z"
+    "updated_at": "2026-06-04T17:00:14.451Z"
   },
   {
-    "id": "youtube-gkwimswbeni",
+    "id": "youtube-ulq0gx1uo4w",
     "type": "youtube",
     "source": "YouTube",
-    "title": "Hermes Agent WebUI: Run Hermes Agent From Browser Instead Of Terminal",
-    "url": "https://www.youtube.com/watch?v=gKwIMswBENI",
-    "author": "AIStackStudio-f2x",
-    "published": "2026-06-03T12:00:20+00:00",
+    "title": "Viral Traffic Strategy: Millions of Views with ChatGPT & AI #shorts",
+    "url": "https://www.youtube.com/watch?v=ULq0gx1uO4w",
+    "author": "SuperwallHQ",
+    "published": "2026-06-04T16:04:38+00:00",
     "tags": [
       "YouTube"
     ],
     "summary": "Selected AI/dev YouTube signal from the curated favorite-creator list.",
     "why_it_matters": "Useful for spotting practical tools, coding workflow shifts, and adjacent AI opportunities from your favorite yters without scanning YouTube manually.",
-    "thumbnail": "https://i.ytimg.com/vi/gKwIMswBENI/hqdefault.jpg",
-    "score": 70,
-    "updated_at": "2026-06-04T07:00:16.186Z"
+    "thumbnail": "https://i.ytimg.com/vi/ULq0gx1uO4w/hqdefault.jpg",
+    "score": 64,
+    "updated_at": "2026-06-04T17:00:14.452Z"
   },
   {
     "id": "github-ultraworkers-claw-code",
@@ -156,28 +156,28 @@
     "why_it_matters": "Potentially useful signal for the morning AI digest and fast-moving product patterns.",
     "score": 99,
     "metrics": {
-      "stars": 193232,
-      "forks": 109970,
+      "stars": 193252,
+      "forks": 109973,
       "language": "Rust"
     },
-    "updated_at": "2026-06-04T07:00:16.185Z"
+    "updated_at": "2026-06-04T17:00:14.451Z"
   },
   {
-    "id": "youtube-ixsfppkvtk0",
+    "id": "youtube-xhvyn-6jspc",
     "type": "youtube",
     "source": "YouTube",
-    "title": "Hermes Agent Desktop + FREE APIs: This is ACTUALLY ONE OF THE BEST AGENT APPS!",
-    "url": "https://www.youtube.com/watch?v=iXsfPPKvtk0",
-    "author": "AICodeKing",
-    "published": "2026-06-03T11:38:53+00:00",
+    "title": "The Missing Piece of Every AI Workflow",
+    "url": "https://www.youtube.com/watch?v=xHvYn-6JSpc",
+    "author": "Chase-H-AI",
+    "published": "2026-06-04T14:54:47+00:00",
     "tags": [
       "YouTube"
     ],
     "summary": "Selected AI/dev YouTube signal from the curated favorite-creator list.",
     "why_it_matters": "Useful for spotting practical tools, coding workflow shifts, and adjacent AI opportunities from your favorite yters without scanning YouTube manually.",
-    "thumbnail": "https://i.ytimg.com/vi/iXsfPPKvtk0/hqdefault.jpg",
-    "score": 70,
-    "updated_at": "2026-06-04T07:00:16.186Z"
+    "thumbnail": "https://i.ytimg.com/vi/xHvYn-6JSpc/hqdefault.jpg",
+    "score": 64,
+    "updated_at": "2026-06-04T17:00:14.452Z"
   },
   {
     "id": "github-garrytan-gstack",
@@ -194,28 +194,28 @@
     "why_it_matters": "Potentially useful signal for the morning AI digest and fast-moving product patterns.",
     "score": 99,
     "metrics": {
-      "stars": 106861,
-      "forks": 15895,
+      "stars": 107036,
+      "forks": 15913,
       "language": "TypeScript"
     },
-    "updated_at": "2026-06-04T07:00:16.185Z"
+    "updated_at": "2026-06-04T17:00:14.451Z"
   },
   {
-    "id": "youtube-nmjgfdzlnis",
+    "id": "youtube-1uypl1onchi",
     "type": "youtube",
     "source": "YouTube",
-    "title": "AI Engineer Melbourne 2026 Keynote Livestream | Day 2",
-    "url": "https://www.youtube.com/watch?v=NmjGfdZLNIs",
-    "author": "AI Engineer",
-    "published": "2026-06-04T01:38:08+00:00",
+    "title": "Gemma-4 12B + Hermes,Google AI Edge: EASY, GOOD & LOCAL!",
+    "url": "https://www.youtube.com/watch?v=1uypL1oNChI",
+    "author": "AICodeKing",
+    "published": "2026-06-04T10:24:02+00:00",
     "tags": [
       "YouTube"
     ],
     "summary": "Selected AI/dev YouTube signal from the curated favorite-creator list.",
     "why_it_matters": "Useful for spotting practical tools, coding workflow shifts, and adjacent AI opportunities from your favorite yters without scanning YouTube manually.",
-    "thumbnail": "https://i.ytimg.com/vi/NmjGfdZLNIs/hqdefault.jpg",
+    "thumbnail": "https://i.ytimg.com/vi/1uypL1oNChI/hqdefault.jpg",
     "score": 64,
-    "updated_at": "2026-06-04T07:00:16.186Z"
+    "updated_at": "2026-06-04T17:00:14.452Z"
   },
   {
     "id": "github-affaan-m-ecc",
@@ -236,28 +236,28 @@
     "why_it_matters": "Relevant to Jarvis, AI workflows, and product ideas worth monitoring closely.",
     "score": 99,
     "metrics": {
-      "stars": 206189,
-      "forks": 31654,
+      "stars": 206887,
+      "forks": 31759,
       "language": "JavaScript"
     },
-    "updated_at": "2026-06-04T07:00:16.185Z"
+    "updated_at": "2026-06-04T17:00:14.451Z"
   },
   {
-    "id": "youtube-ngtq7uxofka",
+    "id": "youtube-jvemamj9jlc",
     "type": "youtube",
     "source": "YouTube",
-    "title": "The AI MRR Scam of 2026! #shorts",
-    "url": "https://www.youtube.com/watch?v=ngtQ7uXofKA",
-    "author": "Incomestreamsurfers",
-    "published": "2026-06-03T19:53:19+00:00",
+    "title": "Gemma 4 12B: Unified, Encoder-Free, Multimodal AI You Can Run on 16GM Memory",
+    "url": "https://www.youtube.com/watch?v=jVEMAmj9jlc",
+    "author": "AIStackStudio-f2x",
+    "published": "2026-06-04T09:50:08+00:00",
     "tags": [
       "YouTube"
     ],
     "summary": "Selected AI/dev YouTube signal from the curated favorite-creator list.",
     "why_it_matters": "Useful for spotting practical tools, coding workflow shifts, and adjacent AI opportunities from your favorite yters without scanning YouTube manually.",
-    "thumbnail": "https://i.ytimg.com/vi/ngtQ7uXofKA/hqdefault.jpg",
+    "thumbnail": "https://i.ytimg.com/vi/jVEMAmj9jlc/hqdefault.jpg",
     "score": 64,
-    "updated_at": "2026-06-04T07:00:16.186Z"
+    "updated_at": "2026-06-04T17:00:14.452Z"
   },
   {
     "id": "github-openclaw-openclaw",
@@ -278,28 +278,28 @@
     "why_it_matters": "Relevant to Jarvis, AI workflows, and product ideas worth monitoring closely.",
     "score": 99,
     "metrics": {
-      "stars": 376663,
-      "forks": 78707,
+      "stars": 376804,
+      "forks": 78743,
       "language": "TypeScript"
     },
-    "updated_at": "2026-06-04T07:00:16.184Z"
+    "updated_at": "2026-06-04T17:00:14.451Z"
   },
   {
-    "id": "youtube-fln8pedcl-0",
+    "id": "youtube-ngtq7uxofka",
     "type": "youtube",
     "source": "YouTube",
-    "title": "App Launch Secrets: 2K Sign-ups BEFORE App Existed! #shorts",
-    "url": "https://www.youtube.com/watch?v=flN8PEdCl-0",
-    "author": "SuperwallHQ",
-    "published": "2026-06-03T16:05:23+00:00",
+    "title": "The AI MRR Scam of 2026! #shorts",
+    "url": "https://www.youtube.com/watch?v=ngtQ7uXofKA",
+    "author": "Incomestreamsurfers",
+    "published": "2026-06-03T19:53:19+00:00",
     "tags": [
       "YouTube"
     ],
     "summary": "Selected AI/dev YouTube signal from the curated favorite-creator list.",
     "why_it_matters": "Useful for spotting practical tools, coding workflow shifts, and adjacent AI opportunities from your favorite yters without scanning YouTube manually.",
-    "thumbnail": "https://i.ytimg.com/vi/flN8PEdCl-0/hqdefault.jpg",
+    "thumbnail": "https://i.ytimg.com/vi/ngtQ7uXofKA/hqdefault.jpg",
     "score": 64,
-    "updated_at": "2026-06-04T07:00:16.186Z"
+    "updated_at": "2026-06-04T17:00:14.452Z"
   },
   {
     "id": "github-obra-superpowers",
@@ -316,11 +316,11 @@
     "why_it_matters": "Potentially useful signal for the morning AI digest and fast-moving product patterns.",
     "score": 99,
     "metrics": {
-      "stars": 217274,
-      "forks": 19342,
+      "stars": 217780,
+      "forks": 19384,
       "language": "Shell"
     },
-    "updated_at": "2026-06-04T07:00:16.185Z"
+    "updated_at": "2026-06-04T17:00:14.451Z"
   },
   {
     "id": "youtube-c0gvowvmr-g",
@@ -337,7 +337,7 @@
     "why_it_matters": "Useful for spotting practical tools, coding workflow shifts, and adjacent AI opportunities from your favorite yters without scanning YouTube manually.",
     "thumbnail": "https://i.ytimg.com/vi/c0gVowvMR-g/hqdefault.jpg",
     "score": 64,
-    "updated_at": "2026-06-04T07:00:16.186Z"
+    "updated_at": "2026-06-04T17:00:14.452Z"
   },
   {
     "id": "github-anthropics-skills",
@@ -355,11 +355,11 @@
     "why_it_matters": "Potentially useful signal for the morning AI digest and fast-moving product patterns.",
     "score": 99,
     "metrics": {
-      "stars": 146270,
-      "forks": 17237,
+      "stars": 146488,
+      "forks": 17272,
       "language": "Python"
     },
-    "updated_at": "2026-06-04T07:00:16.185Z"
+    "updated_at": "2026-06-04T17:00:14.451Z"
   },
   {
     "id": "youtube-mdw-ig10rqo",
@@ -376,7 +376,7 @@
     "why_it_matters": "Useful for spotting practical tools, coding workflow shifts, and adjacent AI opportunities from your favorite yters without scanning YouTube manually.",
     "thumbnail": "https://i.ytimg.com/vi/Mdw-IG10RQo/hqdefault.jpg",
     "score": 64,
-    "updated_at": "2026-06-04T07:00:16.186Z"
+    "updated_at": "2026-06-04T17:00:14.452Z"
   },
   {
     "id": "github-farion1231-cc-switch",
@@ -397,11 +397,11 @@
     "why_it_matters": "Potentially useful signal for the morning AI digest and fast-moving product patterns.",
     "score": 99,
     "metrics": {
-      "stars": 91009,
-      "forks": 5928,
+      "stars": 91604,
+      "forks": 5968,
       "language": "Rust"
     },
-    "updated_at": "2026-06-04T07:00:16.185Z"
+    "updated_at": "2026-06-04T17:00:14.451Z"
   },
   {
     "id": "github-nousresearch-hermes-agent",
@@ -422,11 +422,11 @@
     "why_it_matters": "Relevant to Jarvis, AI workflows, and product ideas worth monitoring closely.",
     "score": 99,
     "metrics": {
-      "stars": 179684,
-      "forks": 30795,
+      "stars": 180572,
+      "forks": 30965,
       "language": "Python"
     },
-    "updated_at": "2026-06-04T07:00:16.184Z"
+    "updated_at": "2026-06-04T17:00:14.451Z"
   },
   {
     "id": "github-shareai-lab-learn-claude-code",
@@ -447,11 +447,11 @@
     "why_it_matters": "Strong fit for operator leverage, agent workflows, and business automation ideas.",
     "score": 99,
     "metrics": {
-      "stars": 64587,
-      "forks": 10543,
+      "stars": 64698,
+      "forks": 10562,
       "language": "Python"
     },
-    "updated_at": "2026-06-04T07:00:16.184Z"
+    "updated_at": "2026-06-04T17:00:14.451Z"
   },
   {
     "id": "github-bytedance-deer-flow",
@@ -472,11 +472,11 @@
     "why_it_matters": "Strong fit for operator leverage, agent workflows, and business automation ideas.",
     "score": 99,
     "metrics": {
-      "stars": 70413,
-      "forks": 9518,
+      "stars": 70460,
+      "forks": 9532,
       "language": "Python"
     },
-    "updated_at": "2026-06-04T07:00:16.184Z"
+    "updated_at": "2026-06-04T17:00:14.451Z"
   },
   {
     "id": "github-upstash-context7",
@@ -497,10 +497,10 @@
     "why_it_matters": "Relevant to Jarvis, AI workflows, and product ideas worth monitoring closely.",
     "score": 99,
     "metrics": {
-      "stars": 56694,
-      "forks": 2678,
+      "stars": 56730,
+      "forks": 2679,
       "language": "TypeScript"
     },
-    "updated_at": "2026-06-04T07:00:16.185Z"
+    "updated_at": "2026-06-04T17:00:14.451Z"
   }
 ]
