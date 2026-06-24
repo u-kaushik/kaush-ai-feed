@@ -14,7 +14,7 @@
     "why_it_matters": "Useful for spotting practical tools, coding workflow shifts, and adjacent AI opportunities from your favorite yters without scanning YouTube manually.",
     "thumbnail": "https://i.ytimg.com/vi/1sMHcJMxYqo/hqdefault.jpg",
     "score": 74,
-    "updated_at": "2026-06-23T17:00:15.779Z"
+    "updated_at": "2026-06-24T07:07:53.796Z"
   },
   {
     "id": "github-santifer-career-ops",
@@ -35,69 +35,28 @@
     "why_it_matters": "Strong fit for operator leverage, agent workflows, and business automation ideas.",
     "score": 99,
     "metrics": {
-      "stars": 55360,
-      "forks": 10944,
+      "stars": 55456,
+      "forks": 10955,
       "language": "JavaScript"
     },
-    "updated_at": "2026-06-23T17:00:15.766Z"
+    "updated_at": "2026-06-24T07:07:53.786Z"
   },
   {
-    "id": "youtube-x-daepxsldc",
+    "id": "youtube-xxpc-6gaggo",
     "type": "youtube",
     "source": "YouTube",
-    "title": "OpenCode + GLM 5.2: OpenSource Built THIS in 15 Minutes (RIP OPUS)",
-    "url": "https://www.youtube.com/watch?v=X_dAePXsLdc",
-    "author": "Incomestreamsurfers",
-    "published": "2026-06-22T14:40:32+00:00",
-    "tags": [
-      "YouTube"
-    ],
-    "summary": "Selected AI/dev YouTube signal from the curated favorite-creator list.",
-    "why_it_matters": "Useful for spotting practical tools, coding workflow shifts, and adjacent AI opportunities from your favorite yters without scanning YouTube manually.",
-    "thumbnail": "https://i.ytimg.com/vi/X_dAePXsLdc/hqdefault.jpg",
-    "score": 70,
-    "updated_at": "2026-06-23T17:00:15.779Z"
-  },
-  {
-    "id": "github-voltagent-awesome-design-md",
-    "type": "github",
-    "source": "GitHub",
-    "title": "VoltAgent/awesome-design-md",
-    "url": "https://github.com/VoltAgent/awesome-design-md",
-    "author": "VoltAgent",
-    "published": "2026-03-31T16:37:01Z",
-    "tags": [
-      "awesome list",
-      "design md",
-      "design system",
-      "design tokens",
-      "GitHub"
-    ],
-    "summary": "A collection of DESIGN.md files analysis by popular brand design systems. Drop one into your project and let coding agents generate a matching UI.",
-    "why_it_matters": "Potentially useful signal for the morning AI digest and fast-moving product patterns.",
-    "score": 99,
-    "metrics": {
-      "stars": 92491,
-      "forks": 10993
-    },
-    "updated_at": "2026-06-23T17:00:15.767Z"
-  },
-  {
-    "id": "youtube-7xs6s-lyoci",
-    "type": "youtube",
-    "source": "YouTube",
-    "title": "99% of people don’t know about this Free AI Repo",
-    "url": "https://www.youtube.com/watch?v=7XS6S_lyOCI",
+    "title": "Hermes Agent is the Greatest AI Tool Ever",
+    "url": "https://www.youtube.com/watch?v=xxpc_6GAgGo",
     "author": "Itssssss_Jack",
-    "published": "2026-06-23T09:00:19+00:00",
+    "published": "2026-06-23T19:17:16+00:00",
     "tags": [
       "YouTube"
     ],
     "summary": "Selected AI/dev YouTube signal from the curated favorite-creator list.",
     "why_it_matters": "Useful for spotting practical tools, coding workflow shifts, and adjacent AI opportunities from your favorite yters without scanning YouTube manually.",
-    "thumbnail": "https://i.ytimg.com/vi/7XS6S_lyOCI/hqdefault.jpg",
-    "score": 67,
-    "updated_at": "2026-06-23T17:00:15.779Z"
+    "thumbnail": "https://i.ytimg.com/vi/xxpc_6GAgGo/hqdefault.jpg",
+    "score": 70,
+    "updated_at": "2026-06-24T07:07:53.796Z"
   },
   {
     "id": "github-garrytan-gstack",
@@ -114,28 +73,28 @@
     "why_it_matters": "Potentially useful signal for the morning AI digest and fast-moving product patterns.",
     "score": 99,
     "metrics": {
-      "stars": 113864,
-      "forks": 16865,
+      "stars": 114410,
+      "forks": 16919,
       "language": "TypeScript"
     },
-    "updated_at": "2026-06-23T17:00:15.767Z"
+    "updated_at": "2026-06-24T07:07:53.786Z"
   },
   {
-    "id": "youtube-0g-nhspvyji",
+    "id": "youtube-x-daepxsldc",
     "type": "youtube",
     "source": "YouTube",
-    "title": "STOP Overcomplicating Loop Engineering",
-    "url": "https://www.youtube.com/watch?v=0G-NHspVYJI",
-    "author": "Chase-H-AI",
-    "published": "2026-06-23T16:46:30+00:00",
+    "title": "OpenCode + GLM 5.2: OpenSource Built THIS in 15 Minutes (RIP OPUS)",
+    "url": "https://www.youtube.com/watch?v=X_dAePXsLdc",
+    "author": "Incomestreamsurfers",
+    "published": "2026-06-22T14:40:32+00:00",
     "tags": [
       "YouTube"
     ],
     "summary": "Selected AI/dev YouTube signal from the curated favorite-creator list.",
     "why_it_matters": "Useful for spotting practical tools, coding workflow shifts, and adjacent AI opportunities from your favorite yters without scanning YouTube manually.",
-    "thumbnail": "https://i.ytimg.com/vi/0G-NHspVYJI/hqdefault.jpg",
-    "score": 64,
-    "updated_at": "2026-06-23T17:00:15.779Z"
+    "thumbnail": "https://i.ytimg.com/vi/X_dAePXsLdc/hqdefault.jpg",
+    "score": 70,
+    "updated_at": "2026-06-24T07:07:53.796Z"
   },
   {
     "id": "github-leonxlnx-taste-skill",
@@ -156,28 +115,28 @@
     "why_it_matters": "Strong fit for operator leverage, agent workflows, and business automation ideas.",
     "score": 99,
     "metrics": {
-      "stars": 49545,
-      "forks": 3424,
+      "stars": 49855,
+      "forks": 3447,
       "language": "JavaScript"
     },
-    "updated_at": "2026-06-23T17:00:15.766Z"
+    "updated_at": "2026-06-24T07:07:53.786Z"
   },
   {
-    "id": "youtube-i-q3n2g47le",
+    "id": "youtube-jirdfgjcjfu",
     "type": "youtube",
     "source": "YouTube",
-    "title": "3 Years Startup Experience: Consumer Apps Rule! #shorts",
-    "url": "https://www.youtube.com/watch?v=i_q3N2G47LE",
-    "author": "SuperwallHQ",
-    "published": "2026-06-23T15:59:40+00:00",
+    "title": "The Four Step Process to Loop Engineer ANYTHING (+ Why Prompt Engineering Isn't Dead)",
+    "url": "https://www.youtube.com/watch?v=JirDfgJcJFU",
+    "author": "Chase-H-AI",
+    "published": "2026-06-24T02:40:28+00:00",
     "tags": [
       "YouTube"
     ],
     "summary": "Selected AI/dev YouTube signal from the curated favorite-creator list.",
     "why_it_matters": "Useful for spotting practical tools, coding workflow shifts, and adjacent AI opportunities from your favorite yters without scanning YouTube manually.",
-    "thumbnail": "https://i.ytimg.com/vi/i_q3N2G47LE/hqdefault.jpg",
+    "thumbnail": "https://i.ytimg.com/vi/JirDfgJcJFU/hqdefault.jpg",
     "score": 64,
-    "updated_at": "2026-06-23T17:00:15.778Z"
+    "updated_at": "2026-06-24T07:07:53.796Z"
   },
   {
     "id": "github-mattpocock-skills",
@@ -194,28 +153,28 @@
     "why_it_matters": "Potentially useful signal for the morning AI digest and fast-moving product patterns.",
     "score": 99,
     "metrics": {
-      "stars": 143048,
-      "forks": 12366,
+      "stars": 143824,
+      "forks": 12443,
       "language": "Shell"
     },
-    "updated_at": "2026-06-23T17:00:15.766Z"
+    "updated_at": "2026-06-24T07:07:53.786Z"
   },
   {
-    "id": "youtube-hogwar8cfri",
+    "id": "youtube-ldrtmmdcdzi",
     "type": "youtube",
     "source": "YouTube",
-    "title": "Sakana Fugu Ultra: Model to Use After the Fable & Mythos Ban",
-    "url": "https://www.youtube.com/watch?v=HoGwAR8cFrI",
+    "title": "Claude Sonnet 5: Really Coming This Week? The Leak Breakdown",
+    "url": "https://www.youtube.com/watch?v=LdrTmMdcdzI",
     "author": "AIStackStudio-f2x",
-    "published": "2026-06-23T10:56:34+00:00",
+    "published": "2026-06-23T17:17:13+00:00",
     "tags": [
       "YouTube"
     ],
     "summary": "Selected AI/dev YouTube signal from the curated favorite-creator list.",
     "why_it_matters": "Useful for spotting practical tools, coding workflow shifts, and adjacent AI opportunities from your favorite yters without scanning YouTube manually.",
-    "thumbnail": "https://i.ytimg.com/vi/HoGwAR8cFrI/hqdefault.jpg",
+    "thumbnail": "https://i.ytimg.com/vi/LdrTmMdcdzI/hqdefault.jpg",
     "score": 64,
-    "updated_at": "2026-06-23T17:00:15.779Z"
+    "updated_at": "2026-06-24T07:07:53.796Z"
   },
   {
     "id": "github-affaan-m-ecc",
@@ -236,28 +195,28 @@
     "why_it_matters": "Relevant to Jarvis, AI workflows, and product ideas worth monitoring closely.",
     "score": 99,
     "metrics": {
-      "stars": 220323,
-      "forks": 33754,
+      "stars": 220756,
+      "forks": 33802,
       "language": "JavaScript"
     },
-    "updated_at": "2026-06-23T17:00:15.766Z"
+    "updated_at": "2026-06-24T07:07:53.786Z"
   },
   {
-    "id": "youtube-uqyfry9jz1o",
+    "id": "youtube-i-q3n2g47le",
     "type": "youtube",
     "source": "YouTube",
-    "title": "Sakana Fugu (Fully Tested - V/S Fable): UHM... REALLY?",
-    "url": "https://www.youtube.com/watch?v=uQyfry9JZ1o",
-    "author": "AICodeKing",
-    "published": "2026-06-23T10:43:47+00:00",
+    "title": "3 Years Startup Experience: Consumer Apps Rule! #shorts",
+    "url": "https://www.youtube.com/watch?v=i_q3N2G47LE",
+    "author": "SuperwallHQ",
+    "published": "2026-06-23T15:59:40+00:00",
     "tags": [
       "YouTube"
     ],
     "summary": "Selected AI/dev YouTube signal from the curated favorite-creator list.",
     "why_it_matters": "Useful for spotting practical tools, coding workflow shifts, and adjacent AI opportunities from your favorite yters without scanning YouTube manually.",
-    "thumbnail": "https://i.ytimg.com/vi/uQyfry9JZ1o/hqdefault.jpg",
+    "thumbnail": "https://i.ytimg.com/vi/i_q3N2G47LE/hqdefault.jpg",
     "score": 64,
-    "updated_at": "2026-06-23T17:00:15.779Z"
+    "updated_at": "2026-06-24T07:07:53.796Z"
   },
   {
     "id": "github-openclaw-openclaw",
@@ -278,28 +237,28 @@
     "why_it_matters": "Relevant to Jarvis, AI workflows, and product ideas worth monitoring closely.",
     "score": 99,
     "metrics": {
-      "stars": 380118,
-      "forks": 79592,
+      "stars": 380194,
+      "forks": 79622,
       "language": "TypeScript"
     },
-    "updated_at": "2026-06-23T17:00:15.766Z"
+    "updated_at": "2026-06-24T07:07:53.775Z"
   },
   {
-    "id": "youtube-gpsqbjw6hr4",
+    "id": "youtube-uqyfry9jz1o",
     "type": "youtube",
     "source": "YouTube",
-    "title": "I Battle Tested Sakana Fugu's Fable Killer",
-    "url": "https://www.youtube.com/watch?v=GpSqBjW6hR4",
-    "author": "nateherk",
-    "published": "2026-06-23T00:26:39+00:00",
+    "title": "Sakana Fugu (Fully Tested - V/S Fable): UHM... REALLY?",
+    "url": "https://www.youtube.com/watch?v=uQyfry9JZ1o",
+    "author": "AICodeKing",
+    "published": "2026-06-23T10:43:47+00:00",
     "tags": [
       "YouTube"
     ],
     "summary": "Selected AI/dev YouTube signal from the curated favorite-creator list.",
     "why_it_matters": "Useful for spotting practical tools, coding workflow shifts, and adjacent AI opportunities from your favorite yters without scanning YouTube manually.",
-    "thumbnail": "https://i.ytimg.com/vi/GpSqBjW6hR4/hqdefault.jpg",
+    "thumbnail": "https://i.ytimg.com/vi/uQyfry9JZ1o/hqdefault.jpg",
     "score": 64,
-    "updated_at": "2026-06-23T17:00:15.779Z"
+    "updated_at": "2026-06-24T07:07:53.796Z"
   },
   {
     "id": "github-msitarzewski-agency-agents",
@@ -316,28 +275,28 @@
     "why_it_matters": "Potentially useful signal for the morning AI digest and fast-moving product patterns.",
     "score": 99,
     "metrics": {
-      "stars": 115337,
-      "forks": 18868,
+      "stars": 115459,
+      "forks": 18888,
       "language": "Shell"
     },
-    "updated_at": "2026-06-23T17:00:15.767Z"
+    "updated_at": "2026-06-24T07:07:53.786Z"
   },
   {
-    "id": "youtube-0s8xe9ftgtm",
+    "id": "youtube-gpsqbjw6hr4",
     "type": "youtube",
     "source": "YouTube",
-    "title": "6 Things to Know about AIE World's Fair 2026",
-    "url": "https://www.youtube.com/watch?v=0S8xe9ftGTM",
-    "author": "AI Engineer",
-    "published": "2026-06-21T03:46:17+00:00",
+    "title": "I Battle Tested Sakana Fugu's Fable Killer",
+    "url": "https://www.youtube.com/watch?v=GpSqBjW6hR4",
+    "author": "nateherk",
+    "published": "2026-06-23T00:26:39+00:00",
     "tags": [
       "YouTube"
     ],
     "summary": "Selected AI/dev YouTube signal from the curated favorite-creator list.",
     "why_it_matters": "Useful for spotting practical tools, coding workflow shifts, and adjacent AI opportunities from your favorite yters without scanning YouTube manually.",
-    "thumbnail": "https://i.ytimg.com/vi/0S8xe9ftGTM/hqdefault.jpg",
+    "thumbnail": "https://i.ytimg.com/vi/GpSqBjW6hR4/hqdefault.jpg",
     "score": 64,
-    "updated_at": "2026-06-23T17:00:15.779Z"
+    "updated_at": "2026-06-24T07:07:53.796Z"
   },
   {
     "id": "github-obra-superpowers",
@@ -358,28 +317,28 @@
     "why_it_matters": "Relevant to Jarvis, AI workflows, and product ideas worth monitoring closely.",
     "score": 99,
     "metrics": {
-      "stars": 236788,
-      "forks": 21016,
+      "stars": 237196,
+      "forks": 21059,
       "language": "Shell"
     },
-    "updated_at": "2026-06-23T17:00:15.766Z"
+    "updated_at": "2026-06-24T07:07:53.786Z"
   },
   {
-    "id": "youtube-mdw-ig10rqo",
+    "id": "youtube-0s8xe9ftgtm",
     "type": "youtube",
     "source": "YouTube",
-    "title": "OpenClaw Cloud Hosting VPS Tutorial (Without Your PC)",
-    "url": "https://www.youtube.com/watch?v=Mdw-IG10RQo",
-    "author": "AdrianTwarog",
-    "published": "2026-05-22T06:42:38+00:00",
+    "title": "6 Things to Know about AIE World's Fair 2026",
+    "url": "https://www.youtube.com/watch?v=0S8xe9ftGTM",
+    "author": "AI Engineer",
+    "published": "2026-06-21T03:46:17+00:00",
     "tags": [
       "YouTube"
     ],
     "summary": "Selected AI/dev YouTube signal from the curated favorite-creator list.",
     "why_it_matters": "Useful for spotting practical tools, coding workflow shifts, and adjacent AI opportunities from your favorite yters without scanning YouTube manually.",
-    "thumbnail": "https://i.ytimg.com/vi/Mdw-IG10RQo/hqdefault.jpg",
+    "thumbnail": "https://i.ytimg.com/vi/0S8xe9ftGTM/hqdefault.jpg",
     "score": 64,
-    "updated_at": "2026-06-23T17:00:15.779Z"
+    "updated_at": "2026-06-24T07:07:53.796Z"
   },
   {
     "id": "github-github-spec-kit",
@@ -400,11 +359,28 @@
     "why_it_matters": "Relevant to Jarvis, AI workflows, and product ideas worth monitoring closely.",
     "score": 99,
     "metrics": {
-      "stars": 114979,
-      "forks": 10147,
+      "stars": 115105,
+      "forks": 10158,
       "language": "Python"
     },
-    "updated_at": "2026-06-23T17:00:15.767Z"
+    "updated_at": "2026-06-24T07:07:53.786Z"
+  },
+  {
+    "id": "youtube-mdw-ig10rqo",
+    "type": "youtube",
+    "source": "YouTube",
+    "title": "OpenClaw Cloud Hosting VPS Tutorial (Without Your PC)",
+    "url": "https://www.youtube.com/watch?v=Mdw-IG10RQo",
+    "author": "AdrianTwarog",
+    "published": "2026-05-22T06:42:38+00:00",
+    "tags": [
+      "YouTube"
+    ],
+    "summary": "Selected AI/dev YouTube signal from the curated favorite-creator list.",
+    "why_it_matters": "Useful for spotting practical tools, coding workflow shifts, and adjacent AI opportunities from your favorite yters without scanning YouTube manually.",
+    "thumbnail": "https://i.ytimg.com/vi/Mdw-IG10RQo/hqdefault.jpg",
+    "score": 64,
+    "updated_at": "2026-06-24T07:07:53.796Z"
   },
   {
     "id": "github-farion1231-cc-switch",
@@ -425,11 +401,11 @@
     "why_it_matters": "Potentially useful signal for the morning AI digest and fast-moving product patterns.",
     "score": 99,
     "metrics": {
-      "stars": 107004,
-      "forks": 7076,
+      "stars": 107308,
+      "forks": 7100,
       "language": "Rust"
     },
-    "updated_at": "2026-06-23T17:00:15.766Z"
+    "updated_at": "2026-06-24T07:07:53.786Z"
   },
   {
     "id": "github-nousresearch-hermes-agent",
@@ -450,11 +426,11 @@
     "why_it_matters": "Relevant to Jarvis, AI workflows, and product ideas worth monitoring closely.",
     "score": 99,
     "metrics": {
-      "stars": 200698,
-      "forks": 35773,
+      "stars": 201290,
+      "forks": 35927,
       "language": "Python"
     },
-    "updated_at": "2026-06-23T17:00:15.766Z"
+    "updated_at": "2026-06-24T07:07:53.786Z"
   },
   {
     "id": "github-shareai-lab-learn-claude-code",
@@ -475,11 +451,11 @@
     "why_it_matters": "Strong fit for operator leverage, agent workflows, and business automation ideas.",
     "score": 99,
     "metrics": {
-      "stars": 68065,
-      "forks": 11073,
+      "stars": 68156,
+      "forks": 11091,
       "language": "Python"
     },
-    "updated_at": "2026-06-23T17:00:15.766Z"
+    "updated_at": "2026-06-24T07:07:53.786Z"
   },
   {
     "id": "github-bytedance-deer-flow",
@@ -500,10 +476,35 @@
     "why_it_matters": "Strong fit for operator leverage, agent workflows, and business automation ideas.",
     "score": 99,
     "metrics": {
-      "stars": 73785,
-      "forks": 9962,
+      "stars": 74146,
+      "forks": 9993,
       "language": "Python"
     },
-    "updated_at": "2026-06-23T17:00:15.766Z"
+    "updated_at": "2026-06-24T07:07:53.786Z"
+  },
+  {
+    "id": "github-upstash-context7",
+    "type": "github",
+    "source": "GitHub",
+    "title": "upstash/context7",
+    "url": "https://github.com/upstash/context7",
+    "author": "upstash",
+    "published": "2025-03-26T23:40:39Z",
+    "tags": [
+      "llm",
+      "mcp",
+      "mcp server",
+      "vibe coding",
+      "GitHub"
+    ],
+    "summary": "Context7 Platform -- Up-to-date code documentation for LLMs and AI code editors",
+    "why_it_matters": "Relevant to Jarvis, AI workflows, and product ideas worth monitoring closely.",
+    "score": 99,
+    "metrics": {
+      "stars": 57948,
+      "forks": 2725,
+      "language": "TypeScript"
+    },
+    "updated_at": "2026-06-24T07:07:53.786Z"
   }
 ]
