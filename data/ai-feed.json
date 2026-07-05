@@ -1,20 +1,20 @@
 [
   {
-    "id": "youtube-hmgb1bjki7o",
+    "id": "youtube-3rvzxhcc6cu",
     "type": "youtube",
     "source": "YouTube",
-    "title": "How Anthropic Engineers ACTUALLY Prompt Claude Code",
-    "url": "https://www.youtube.com/watch?v=hMgB1bjkI7o",
-    "author": "RAmjad",
-    "published": "2026-07-05T04:46:52+00:00",
+    "title": "ZCode Runs GLM 5.2 for Free — Z.ai's New Coding Agent With 5M Daily Tokens",
+    "url": "https://www.youtube.com/watch?v=3RvzXHCc6CU",
+    "author": "AIStackStudio-f2x",
+    "published": "2026-07-04T09:30:33+00:00",
     "tags": [
       "YouTube"
     ],
     "summary": "Selected AI/dev YouTube signal from the curated favorite-creator list.",
     "why_it_matters": "Useful for spotting practical tools, coding workflow shifts, and adjacent AI opportunities from your favorite yters without scanning YouTube manually.",
-    "thumbnail": "https://i.ytimg.com/vi/hMgB1bjkI7o/hqdefault.jpg",
-    "score": 74,
-    "updated_at": "2026-07-05T07:00:13.412Z"
+    "thumbnail": "https://i.ytimg.com/vi/3RvzXHCc6CU/hqdefault.jpg",
+    "score": 70,
+    "updated_at": "2026-07-05T17:00:13.865Z"
   },
   {
     "id": "github-santifer-career-ops",
@@ -35,28 +35,28 @@
     "why_it_matters": "Strong fit for operator leverage, agent workflows, and business automation ideas.",
     "score": 99,
     "metrics": {
-      "stars": 58587,
-      "forks": 11492,
+      "stars": 58643,
+      "forks": 11504,
       "language": "JavaScript"
     },
-    "updated_at": "2026-07-05T07:00:13.410Z"
+    "updated_at": "2026-07-05T17:00:13.862Z"
   },
   {
-    "id": "youtube-3rvzxhcc6cu",
+    "id": "youtube-b1sykowvhr0",
     "type": "youtube",
     "source": "YouTube",
-    "title": "ZCode Runs GLM 5.2 for Free — Z.ai's New Coding Agent With 5M Daily Tokens",
-    "url": "https://www.youtube.com/watch?v=3RvzXHCc6CU",
-    "author": "AIStackStudio-f2x",
-    "published": "2026-07-04T09:30:33+00:00",
+    "title": "The Last Cheap Days of Fable 5 (Spend Them Right)",
+    "url": "https://www.youtube.com/watch?v=B1sYKOWVHR0",
+    "author": "RAmjad",
+    "published": "2026-07-05T14:30:12+00:00",
     "tags": [
       "YouTube"
     ],
     "summary": "Selected AI/dev YouTube signal from the curated favorite-creator list.",
     "why_it_matters": "Useful for spotting practical tools, coding workflow shifts, and adjacent AI opportunities from your favorite yters without scanning YouTube manually.",
-    "thumbnail": "https://i.ytimg.com/vi/3RvzXHCc6CU/hqdefault.jpg",
-    "score": 70,
-    "updated_at": "2026-07-05T07:00:13.412Z"
+    "thumbnail": "https://i.ytimg.com/vi/B1sYKOWVHR0/hqdefault.jpg",
+    "score": 64,
+    "updated_at": "2026-07-05T17:00:13.865Z"
   },
   {
     "id": "github-panniantong-agent-reach",
@@ -77,28 +77,28 @@
     "why_it_matters": "Strong fit for operator leverage, agent workflows, and business automation ideas.",
     "score": 99,
     "metrics": {
-      "stars": 50801,
-      "forks": 4070,
+      "stars": 51132,
+      "forks": 4102,
       "language": "Python"
     },
-    "updated_at": "2026-07-05T07:00:13.410Z"
+    "updated_at": "2026-07-05T17:00:13.862Z"
   },
   {
-    "id": "youtube-seziivqme2q",
+    "id": "youtube-li-gqq7-rla",
     "type": "youtube",
     "source": "YouTube",
-    "title": "Agents A1 + Hermes,Zed: This LOCAL AI CODER is CRAZY!",
-    "url": "https://www.youtube.com/watch?v=SeZiiVqme2Q",
+    "title": "Caveman + Fable 5: This SIMPLE Trick makes Fable cheaper than Opus!",
+    "url": "https://www.youtube.com/watch?v=LI_GQq7_rLA",
     "author": "AICodeKing",
-    "published": "2026-07-04T09:15:36+00:00",
+    "published": "2026-07-05T09:15:15+00:00",
     "tags": [
       "YouTube"
     ],
     "summary": "Selected AI/dev YouTube signal from the curated favorite-creator list.",
     "why_it_matters": "Useful for spotting practical tools, coding workflow shifts, and adjacent AI opportunities from your favorite yters without scanning YouTube manually.",
-    "thumbnail": "https://i.ytimg.com/vi/SeZiiVqme2Q/hqdefault.jpg",
-    "score": 70,
-    "updated_at": "2026-07-05T07:00:13.412Z"
+    "thumbnail": "https://i.ytimg.com/vi/LI_GQq7_rLA/hqdefault.jpg",
+    "score": 64,
+    "updated_at": "2026-07-05T17:00:13.865Z"
   },
   {
     "id": "github-leonxlnx-taste-skill",
@@ -119,11 +119,11 @@
     "why_it_matters": "Strong fit for operator leverage, agent workflows, and business automation ideas.",
     "score": 99,
     "metrics": {
-      "stars": 56688,
-      "forks": 3881,
+      "stars": 57188,
+      "forks": 3916,
       "language": "JavaScript"
     },
-    "updated_at": "2026-07-05T07:00:13.410Z"
+    "updated_at": "2026-07-05T17:00:13.862Z"
   },
   {
     "id": "youtube-kzsf-sfm7ru",
@@ -140,7 +140,7 @@
     "why_it_matters": "Useful for spotting practical tools, coding workflow shifts, and adjacent AI opportunities from your favorite yters without scanning YouTube manually.",
     "thumbnail": "https://i.ytimg.com/vi/kZsf_Sfm7RU/hqdefault.jpg",
     "score": 64,
-    "updated_at": "2026-07-05T07:00:13.411Z"
+    "updated_at": "2026-07-05T17:00:13.865Z"
   },
   {
     "id": "github-mattpocock-skills",
@@ -157,17 +157,17 @@
     "why_it_matters": "Potentially useful signal for the morning AI digest and fast-moving product patterns.",
     "score": 99,
     "metrics": {
-      "stars": 156822,
-      "forks": 13493,
+      "stars": 157283,
+      "forks": 13521,
       "language": "Shell"
     },
-    "updated_at": "2026-07-05T07:00:13.411Z"
+    "updated_at": "2026-07-05T17:00:13.863Z"
   },
   {
     "id": "youtube-1dolq8xy0qi",
     "type": "youtube",
     "source": "YouTube",
-    "title": "Fable 5 Dies in 4 Days... Do these 5 Things RIGHT NOW",
+    "title": "Fable 5 Dies in 3 Days... Do these 5 Things RIGHT NOW",
     "url": "https://www.youtube.com/watch?v=1DOLq8xy0qI",
     "author": "Itssssss_Jack",
     "published": "2026-07-04T17:34:10+00:00",
@@ -178,7 +178,7 @@
     "why_it_matters": "Useful for spotting practical tools, coding workflow shifts, and adjacent AI opportunities from your favorite yters without scanning YouTube manually.",
     "thumbnail": "https://i.ytimg.com/vi/1DOLq8xy0qI/hqdefault.jpg",
     "score": 64,
-    "updated_at": "2026-07-05T07:00:13.411Z"
+    "updated_at": "2026-07-05T17:00:13.865Z"
   },
   {
     "id": "github-affaan-m-ecc",
@@ -199,11 +199,11 @@
     "why_it_matters": "Relevant to Jarvis, AI workflows, and product ideas worth monitoring closely.",
     "score": 99,
     "metrics": {
-      "stars": 226116,
-      "forks": 34594,
+      "stars": 226254,
+      "forks": 34611,
       "language": "JavaScript"
     },
-    "updated_at": "2026-07-05T07:00:13.410Z"
+    "updated_at": "2026-07-05T17:00:13.863Z"
   },
   {
     "id": "youtube-syosuxgngee",
@@ -220,7 +220,49 @@
     "why_it_matters": "Useful for spotting practical tools, coding workflow shifts, and adjacent AI opportunities from your favorite yters without scanning YouTube manually.",
     "thumbnail": "https://i.ytimg.com/vi/sYosUxgngEE/hqdefault.jpg",
     "score": 64,
-    "updated_at": "2026-07-05T07:00:13.411Z"
+    "updated_at": "2026-07-05T17:00:13.865Z"
+  },
+  {
+    "id": "github-koala73-worldmonitor",
+    "type": "github",
+    "source": "GitHub",
+    "title": "koala73/worldmonitor",
+    "url": "https://github.com/koala73/worldmonitor",
+    "author": "koala73",
+    "published": "2026-01-08T17:26:06Z",
+    "tags": [
+      "agent",
+      "ai",
+      "dashboard",
+      "geopolitics",
+      "GitHub"
+    ],
+    "summary": "Real-time global intelligence dashboard. AI-powered news aggregation, geopolitical monitoring, and infrastructure tracking in a unified situational awareness interface",
+    "why_it_matters": "Strong fit for operator leverage, agent workflows, and business automation ideas.",
+    "score": 99,
+    "metrics": {
+      "stars": 61372,
+      "forks": 9552,
+      "language": "TypeScript"
+    },
+    "updated_at": "2026-07-05T17:00:13.862Z"
+  },
+  {
+    "id": "youtube-nu4lz-lwrxy",
+    "type": "youtube",
+    "source": "YouTube",
+    "title": "This Makes Claude Fable 5 80% Cheaper",
+    "url": "https://www.youtube.com/watch?v=nU4LZ_LWRxY",
+    "author": "Chase-H-AI",
+    "published": "2026-07-04T02:00:16+00:00",
+    "tags": [
+      "YouTube"
+    ],
+    "summary": "Selected AI/dev YouTube signal from the curated favorite-creator list.",
+    "why_it_matters": "Useful for spotting practical tools, coding workflow shifts, and adjacent AI opportunities from your favorite yters without scanning YouTube manually.",
+    "thumbnail": "https://i.ytimg.com/vi/nU4LZ_LWRxY/hqdefault.jpg",
+    "score": 64,
+    "updated_at": "2026-07-05T17:00:13.865Z"
   },
   {
     "id": "github-headroomlabs-ai-headroom",
@@ -241,28 +283,28 @@
     "why_it_matters": "Strong fit for operator leverage, agent workflows, and business automation ideas.",
     "score": 99,
     "metrics": {
-      "stars": 56609,
-      "forks": 4136,
+      "stars": 56737,
+      "forks": 4154,
       "language": "Python"
     },
-    "updated_at": "2026-07-05T07:00:13.410Z"
+    "updated_at": "2026-07-05T17:00:13.862Z"
   },
   {
-    "id": "youtube-nu4lz-lwrxy",
+    "id": "youtube-hqvwmj7ije4",
     "type": "youtube",
     "source": "YouTube",
-    "title": "This Makes Claude Fable 5 80% Cheaper",
-    "url": "https://www.youtube.com/watch?v=nU4LZ_LWRxY",
-    "author": "Chase-H-AI",
-    "published": "2026-07-04T02:00:16+00:00",
+    "title": "Fable 5 + Karpathy’s LLM Wiki is Basically Cheating",
+    "url": "https://www.youtube.com/watch?v=hQvwMj7IJe4",
+    "author": "nateherk",
+    "published": "2026-07-03T21:53:05+00:00",
     "tags": [
       "YouTube"
     ],
     "summary": "Selected AI/dev YouTube signal from the curated favorite-creator list.",
     "why_it_matters": "Useful for spotting practical tools, coding workflow shifts, and adjacent AI opportunities from your favorite yters without scanning YouTube manually.",
-    "thumbnail": "https://i.ytimg.com/vi/nU4LZ_LWRxY/hqdefault.jpg",
+    "thumbnail": "https://i.ytimg.com/vi/hQvwMj7IJe4/hqdefault.jpg",
     "score": 64,
-    "updated_at": "2026-07-05T07:00:13.411Z"
+    "updated_at": "2026-07-05T17:00:13.865Z"
   },
   {
     "id": "github-openclaw-openclaw",
@@ -283,49 +325,11 @@
     "why_it_matters": "Relevant to Jarvis, AI workflows, and product ideas worth monitoring closely.",
     "score": 99,
     "metrics": {
-      "stars": 381768,
-      "forks": 80049,
+      "stars": 381814,
+      "forks": 80074,
       "language": "TypeScript"
     },
-    "updated_at": "2026-07-05T07:00:13.410Z"
-  },
-  {
-    "id": "youtube-hqvwmj7ije4",
-    "type": "youtube",
-    "source": "YouTube",
-    "title": "Fable 5 + Karpathy’s LLM Wiki is Basically Cheating",
-    "url": "https://www.youtube.com/watch?v=hQvwMj7IJe4",
-    "author": "nateherk",
-    "published": "2026-07-03T21:53:05+00:00",
-    "tags": [
-      "YouTube"
-    ],
-    "summary": "Selected AI/dev YouTube signal from the curated favorite-creator list.",
-    "why_it_matters": "Useful for spotting practical tools, coding workflow shifts, and adjacent AI opportunities from your favorite yters without scanning YouTube manually.",
-    "thumbnail": "https://i.ytimg.com/vi/hQvwMj7IJe4/hqdefault.jpg",
-    "score": 64,
-    "updated_at": "2026-07-05T07:00:13.412Z"
-  },
-  {
-    "id": "github-msitarzewski-agency-agents",
-    "type": "github",
-    "source": "GitHub",
-    "title": "msitarzewski/agency-agents",
-    "url": "https://github.com/msitarzewski/agency-agents",
-    "author": "msitarzewski",
-    "published": "2025-10-13T12:12:29Z",
-    "tags": [
-      "GitHub"
-    ],
-    "summary": "A complete AI agency at your fingertips - From frontend wizards to Reddit community ninjas, from whimsy injectors to reality checkers. Each agent is a specialized expert with personality, processes, and proven deliverables.",
-    "why_it_matters": "Potentially useful signal for the morning AI digest and fast-moving product patterns.",
-    "score": 99,
-    "metrics": {
-      "stars": 127146,
-      "forks": 20642,
-      "language": "Shell"
-    },
-    "updated_at": "2026-07-05T07:00:13.411Z"
+    "updated_at": "2026-07-05T17:00:13.862Z"
   },
   {
     "id": "youtube-zynf2a5ohu8",
@@ -342,7 +346,45 @@
     "why_it_matters": "Useful for spotting practical tools, coding workflow shifts, and adjacent AI opportunities from your favorite yters without scanning YouTube manually.",
     "thumbnail": "https://i.ytimg.com/vi/zYNf2a5oHu8/hqdefault.jpg",
     "score": 64,
-    "updated_at": "2026-07-05T07:00:13.412Z"
+    "updated_at": "2026-07-05T17:00:13.865Z"
+  },
+  {
+    "id": "github-msitarzewski-agency-agents",
+    "type": "github",
+    "source": "GitHub",
+    "title": "msitarzewski/agency-agents",
+    "url": "https://github.com/msitarzewski/agency-agents",
+    "author": "msitarzewski",
+    "published": "2025-10-13T12:12:29Z",
+    "tags": [
+      "GitHub"
+    ],
+    "summary": "A complete AI agency at your fingertips - From frontend wizards to Reddit community ninjas, from whimsy injectors to reality checkers. Each agent is a specialized expert with personality, processes, and proven deliverables.",
+    "why_it_matters": "Potentially useful signal for the morning AI digest and fast-moving product patterns.",
+    "score": 99,
+    "metrics": {
+      "stars": 127399,
+      "forks": 20684,
+      "language": "Shell"
+    },
+    "updated_at": "2026-07-05T17:00:13.863Z"
+  },
+  {
+    "id": "youtube-mdw-ig10rqo",
+    "type": "youtube",
+    "source": "YouTube",
+    "title": "OpenClaw Cloud Hosting VPS Tutorial (Without Your PC)",
+    "url": "https://www.youtube.com/watch?v=Mdw-IG10RQo",
+    "author": "AdrianTwarog",
+    "published": "2026-05-22T06:42:38+00:00",
+    "tags": [
+      "YouTube"
+    ],
+    "summary": "Selected AI/dev YouTube signal from the curated favorite-creator list.",
+    "why_it_matters": "Useful for spotting practical tools, coding workflow shifts, and adjacent AI opportunities from your favorite yters without scanning YouTube manually.",
+    "thumbnail": "https://i.ytimg.com/vi/Mdw-IG10RQo/hqdefault.jpg",
+    "score": 64,
+    "updated_at": "2026-07-05T17:00:13.865Z"
   },
   {
     "id": "github-obra-superpowers",
@@ -363,28 +405,11 @@
     "why_it_matters": "Relevant to Jarvis, AI workflows, and product ideas worth monitoring closely.",
     "score": 99,
     "metrics": {
-      "stars": 246378,
-      "forks": 21854,
+      "stars": 246722,
+      "forks": 21889,
       "language": "Shell"
     },
-    "updated_at": "2026-07-05T07:00:13.410Z"
-  },
-  {
-    "id": "youtube-mdw-ig10rqo",
-    "type": "youtube",
-    "source": "YouTube",
-    "title": "OpenClaw Cloud Hosting VPS Tutorial (Without Your PC)",
-    "url": "https://www.youtube.com/watch?v=Mdw-IG10RQo",
-    "author": "AdrianTwarog",
-    "published": "2026-05-22T06:42:38+00:00",
-    "tags": [
-      "YouTube"
-    ],
-    "summary": "Selected AI/dev YouTube signal from the curated favorite-creator list.",
-    "why_it_matters": "Useful for spotting practical tools, coding workflow shifts, and adjacent AI opportunities from your favorite yters without scanning YouTube manually.",
-    "thumbnail": "https://i.ytimg.com/vi/Mdw-IG10RQo/hqdefault.jpg",
-    "score": 64,
-    "updated_at": "2026-07-05T07:00:13.411Z"
+    "updated_at": "2026-07-05T17:00:13.862Z"
   },
   {
     "id": "github-anthropics-skills",
@@ -402,11 +427,11 @@
     "why_it_matters": "Potentially useful signal for the morning AI digest and fast-moving product patterns.",
     "score": 99,
     "metrics": {
-      "stars": 158279,
-      "forks": 18652,
+      "stars": 158390,
+      "forks": 18680,
       "language": "Python"
     },
-    "updated_at": "2026-07-05T07:00:13.411Z"
+    "updated_at": "2026-07-05T17:00:13.863Z"
   },
   {
     "id": "github-farion1231-cc-switch",
@@ -427,11 +452,11 @@
     "why_it_matters": "Potentially useful signal for the morning AI digest and fast-moving product patterns.",
     "score": 99,
     "metrics": {
-      "stars": 113285,
-      "forks": 7539,
+      "stars": 113455,
+      "forks": 7554,
       "language": "Rust"
     },
-    "updated_at": "2026-07-05T07:00:13.410Z"
+    "updated_at": "2026-07-05T17:00:13.863Z"
   },
   {
     "id": "github-nousresearch-hermes-agent",
@@ -452,11 +477,11 @@
     "why_it_matters": "Relevant to Jarvis, AI workflows, and product ideas worth monitoring closely.",
     "score": 99,
     "metrics": {
-      "stars": 209330,
-      "forks": 38204,
+      "stars": 209553,
+      "forks": 38283,
       "language": "Python"
     },
-    "updated_at": "2026-07-05T07:00:13.410Z"
+    "updated_at": "2026-07-05T17:00:13.862Z"
   },
   {
     "id": "github-bytedance-deer-flow",
@@ -477,35 +502,10 @@
     "why_it_matters": "Strong fit for operator leverage, agent workflows, and business automation ideas.",
     "score": 99,
     "metrics": {
-      "stars": 76118,
-      "forks": 10295,
+      "stars": 76157,
+      "forks": 10308,
       "language": "Python"
     },
-    "updated_at": "2026-07-05T07:00:13.410Z"
-  },
-  {
-    "id": "github-upstash-context7",
-    "type": "github",
-    "source": "GitHub",
-    "title": "upstash/context7",
-    "url": "https://github.com/upstash/context7",
-    "author": "upstash",
-    "published": "2025-03-26T23:40:39Z",
-    "tags": [
-      "llm",
-      "mcp",
-      "mcp server",
-      "vibe coding",
-      "GitHub"
-    ],
-    "summary": "Context7 Platform -- Up-to-date code documentation for LLMs and AI code editors",
-    "why_it_matters": "Relevant to Jarvis, AI workflows, and product ideas worth monitoring closely.",
-    "score": 99,
-    "metrics": {
-      "stars": 58591,
-      "forks": 2748,
-      "language": "TypeScript"
-    },
-    "updated_at": "2026-07-05T07:00:13.410Z"
+    "updated_at": "2026-07-05T17:00:13.862Z"
   }
 ]
