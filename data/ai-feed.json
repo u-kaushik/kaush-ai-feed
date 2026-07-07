@@ -1,20 +1,20 @@
 [
   {
-    "id": "youtube-brnoepok5m4",
+    "id": "youtube-i4sd2j-muak",
     "type": "youtube",
     "source": "YouTube",
-    "title": "The Pipeline Is Dead - Iris ten Teije, Sky Valley Ambient Computing",
-    "url": "https://www.youtube.com/watch?v=bRnoEpoK5m4",
-    "author": "AI Engineer",
-    "published": "2026-07-07T03:46:29+00:00",
+    "title": "Welcome to our live show!",
+    "url": "https://www.youtube.com/watch?v=I4sD2j-muak",
+    "author": "SuperwallHQ",
+    "published": "2026-07-07T14:41:47+00:00",
     "tags": [
       "YouTube"
     ],
     "summary": "Selected AI/dev YouTube signal from the curated favorite-creator list.",
     "why_it_matters": "Useful for spotting practical tools, coding workflow shifts, and adjacent AI opportunities from your favorite yters without scanning YouTube manually.",
-    "thumbnail": "https://i.ytimg.com/vi/bRnoEpoK5m4/hqdefault.jpg",
+    "thumbnail": "https://i.ytimg.com/vi/I4sD2j-muak/hqdefault.jpg",
     "score": 64,
-    "updated_at": "2026-07-07T07:00:14.124Z"
+    "updated_at": "2026-07-07T17:00:16.835Z"
   },
   {
     "id": "github-santifer-career-ops",
@@ -35,28 +35,28 @@
     "why_it_matters": "Strong fit for operator leverage, agent workflows, and business automation ideas.",
     "score": 99,
     "metrics": {
-      "stars": 58902,
-      "forks": 11566,
+      "stars": 58988,
+      "forks": 11587,
       "language": "JavaScript"
     },
-    "updated_at": "2026-07-07T07:00:14.123Z"
+    "updated_at": "2026-07-07T17:00:16.834Z"
   },
   {
-    "id": "youtube-0hqsebglway",
+    "id": "youtube-4nirfwn1dti",
     "type": "youtube",
     "source": "YouTube",
-    "title": "5 Ways To Not Lose Thousands on Claude Fable Tokens",
-    "url": "https://www.youtube.com/watch?v=0hqsebGlwAY",
-    "author": "Chase-H-AI",
-    "published": "2026-07-07T02:59:03+00:00",
+    "title": "Tencent Hy3 (Fully Tested) + Fully Free API: BEATS GLM-5.2?",
+    "url": "https://www.youtube.com/watch?v=4niRFwN1DtI",
+    "author": "AICodeKing",
+    "published": "2026-07-07T09:15:00+00:00",
     "tags": [
       "YouTube"
     ],
     "summary": "Selected AI/dev YouTube signal from the curated favorite-creator list.",
     "why_it_matters": "Useful for spotting practical tools, coding workflow shifts, and adjacent AI opportunities from your favorite yters without scanning YouTube manually.",
-    "thumbnail": "https://i.ytimg.com/vi/0hqsebGlwAY/hqdefault.jpg",
+    "thumbnail": "https://i.ytimg.com/vi/4niRFwN1DtI/hqdefault.jpg",
     "score": 64,
-    "updated_at": "2026-07-07T07:00:14.124Z"
+    "updated_at": "2026-07-07T17:00:16.835Z"
   },
   {
     "id": "github-panniantong-agent-reach",
@@ -77,28 +77,28 @@
     "why_it_matters": "Strong fit for operator leverage, agent workflows, and business automation ideas.",
     "score": 99,
     "metrics": {
-      "stars": 52253,
-      "forks": 4200,
+      "stars": 52553,
+      "forks": 4221,
       "language": "Python"
     },
-    "updated_at": "2026-07-07T07:00:14.123Z"
+    "updated_at": "2026-07-07T17:00:16.834Z"
   },
   {
-    "id": "youtube-xtbwvvcf3pk",
+    "id": "youtube-syozp-wv-5u",
     "type": "youtube",
     "source": "YouTube",
-    "title": "How I Make Opus Think Like Fable (5 easy steps)",
-    "url": "https://www.youtube.com/watch?v=XTBWVVcF3Pk",
-    "author": "nateherk",
-    "published": "2026-07-07T02:44:05+00:00",
+    "title": "Tencent HY3: Free & Open Model Model Is Landing Near Fable 5",
+    "url": "https://www.youtube.com/watch?v=sYOZp_Wv-5U",
+    "author": "AIStackStudio-f2x",
+    "published": "2026-07-07T08:08:16+00:00",
     "tags": [
       "YouTube"
     ],
     "summary": "Selected AI/dev YouTube signal from the curated favorite-creator list.",
     "why_it_matters": "Useful for spotting practical tools, coding workflow shifts, and adjacent AI opportunities from your favorite yters without scanning YouTube manually.",
-    "thumbnail": "https://i.ytimg.com/vi/XTBWVVcF3Pk/hqdefault.jpg",
+    "thumbnail": "https://i.ytimg.com/vi/sYOZp_Wv-5U/hqdefault.jpg",
     "score": 64,
-    "updated_at": "2026-07-07T07:00:14.124Z"
+    "updated_at": "2026-07-07T17:00:16.835Z"
   },
   {
     "id": "github-leonxlnx-taste-skill",
@@ -119,28 +119,28 @@
     "why_it_matters": "Strong fit for operator leverage, agent workflows, and business automation ideas.",
     "score": 99,
     "metrics": {
-      "stars": 59412,
-      "forks": 4035,
+      "stars": 59943,
+      "forks": 4070,
       "language": "JavaScript"
     },
-    "updated_at": "2026-07-07T07:00:14.123Z"
+    "updated_at": "2026-07-07T17:00:16.834Z"
   },
   {
-    "id": "youtube-amkkpco8elc",
+    "id": "youtube-brnoepok5m4",
     "type": "youtube",
     "source": "YouTube",
-    "title": "The Video Editor That Edits Itself",
-    "url": "https://www.youtube.com/watch?v=amKkPcO8ELc",
-    "author": "Itssssss_Jack",
-    "published": "2026-07-06T22:51:45+00:00",
+    "title": "The Pipeline Is Dead - Iris ten Teije, Sky Valley Ambient Computing",
+    "url": "https://www.youtube.com/watch?v=bRnoEpoK5m4",
+    "author": "AI Engineer",
+    "published": "2026-07-07T03:46:29+00:00",
     "tags": [
       "YouTube"
     ],
     "summary": "Selected AI/dev YouTube signal from the curated favorite-creator list.",
     "why_it_matters": "Useful for spotting practical tools, coding workflow shifts, and adjacent AI opportunities from your favorite yters without scanning YouTube manually.",
-    "thumbnail": "https://i.ytimg.com/vi/amKkPcO8ELc/hqdefault.jpg",
+    "thumbnail": "https://i.ytimg.com/vi/bRnoEpoK5m4/hqdefault.jpg",
     "score": 64,
-    "updated_at": "2026-07-07T07:00:14.124Z"
+    "updated_at": "2026-07-07T17:00:16.835Z"
   },
   {
     "id": "github-mattpocock-skills",
@@ -157,28 +157,28 @@
     "why_it_matters": "Potentially useful signal for the morning AI digest and fast-moving product patterns.",
     "score": 99,
     "metrics": {
-      "stars": 159079,
-      "forks": 13661,
+      "stars": 159646,
+      "forks": 13724,
       "language": "Shell"
     },
-    "updated_at": "2026-07-07T07:00:14.124Z"
+    "updated_at": "2026-07-07T17:00:16.834Z"
   },
   {
-    "id": "youtube-egartcgc4oc",
+    "id": "youtube-0hqsebglway",
     "type": "youtube",
     "source": "YouTube",
-    "title": "Fable 5 Access Change: Don't Panic, It's Fine! #shorts",
-    "url": "https://www.youtube.com/watch?v=eGArtCgC4oc",
-    "author": "Incomestreamsurfers",
-    "published": "2026-07-06T15:08:54+00:00",
+    "title": "5 Ways To Not Lose Thousands on Claude Fable Tokens",
+    "url": "https://www.youtube.com/watch?v=0hqsebGlwAY",
+    "author": "Chase-H-AI",
+    "published": "2026-07-07T02:59:03+00:00",
     "tags": [
       "YouTube"
     ],
     "summary": "Selected AI/dev YouTube signal from the curated favorite-creator list.",
     "why_it_matters": "Useful for spotting practical tools, coding workflow shifts, and adjacent AI opportunities from your favorite yters without scanning YouTube manually.",
-    "thumbnail": "https://i.ytimg.com/vi/eGArtCgC4oc/hqdefault.jpg",
+    "thumbnail": "https://i.ytimg.com/vi/0hqsebGlwAY/hqdefault.jpg",
     "score": 64,
-    "updated_at": "2026-07-07T07:00:14.124Z"
+    "updated_at": "2026-07-07T17:00:16.835Z"
   },
   {
     "id": "github-affaan-m-ecc",
@@ -199,28 +199,28 @@
     "why_it_matters": "Relevant to Jarvis, AI workflows, and product ideas worth monitoring closely.",
     "score": 99,
     "metrics": {
-      "stars": 226756,
-      "forks": 34675,
+      "stars": 226937,
+      "forks": 34698,
       "language": "JavaScript"
     },
-    "updated_at": "2026-07-07T07:00:14.123Z"
+    "updated_at": "2026-07-07T17:00:16.834Z"
   },
   {
-    "id": "youtube-n2nawxl-rc8",
+    "id": "youtube-xtbwvvcf3pk",
     "type": "youtube",
     "source": "YouTube",
-    "title": "Minimax M3 + Open Design: 100% Free Claude Design Alternative For UI Designs",
-    "url": "https://www.youtube.com/watch?v=N2nAwXl_Rc8",
-    "author": "AIStackStudio-f2x",
-    "published": "2026-07-06T09:26:25+00:00",
+    "title": "How I Make Opus Think Like Fable (5 easy steps)",
+    "url": "https://www.youtube.com/watch?v=XTBWVVcF3Pk",
+    "author": "nateherk",
+    "published": "2026-07-07T02:44:05+00:00",
     "tags": [
       "YouTube"
     ],
     "summary": "Selected AI/dev YouTube signal from the curated favorite-creator list.",
     "why_it_matters": "Useful for spotting practical tools, coding workflow shifts, and adjacent AI opportunities from your favorite yters without scanning YouTube manually.",
-    "thumbnail": "https://i.ytimg.com/vi/N2nAwXl_Rc8/hqdefault.jpg",
+    "thumbnail": "https://i.ytimg.com/vi/XTBWVVcF3Pk/hqdefault.jpg",
     "score": 64,
-    "updated_at": "2026-07-07T07:00:14.124Z"
+    "updated_at": "2026-07-07T17:00:16.835Z"
   },
   {
     "id": "github-koala73-worldmonitor",
@@ -241,28 +241,28 @@
     "why_it_matters": "Strong fit for operator leverage, agent workflows, and business automation ideas.",
     "score": 99,
     "metrics": {
-      "stars": 61491,
-      "forks": 9570,
+      "stars": 61513,
+      "forks": 9574,
       "language": "TypeScript"
     },
-    "updated_at": "2026-07-07T07:00:14.123Z"
+    "updated_at": "2026-07-07T17:00:16.834Z"
   },
   {
-    "id": "youtube-e0geiohdhiw",
+    "id": "youtube-amkkpco8elc",
     "type": "youtube",
     "source": "YouTube",
-    "title": "FULLY FREE Fable 5 & Sonnet 5 API + OpenCode: IT'S ACTUALLY REAL!",
-    "url": "https://www.youtube.com/watch?v=E0gEIoHdHiw",
-    "author": "AICodeKing",
-    "published": "2026-07-06T09:15:05+00:00",
+    "title": "The Video Editor That Edits Itself",
+    "url": "https://www.youtube.com/watch?v=amKkPcO8ELc",
+    "author": "Itssssss_Jack",
+    "published": "2026-07-06T22:51:45+00:00",
     "tags": [
       "YouTube"
     ],
     "summary": "Selected AI/dev YouTube signal from the curated favorite-creator list.",
     "why_it_matters": "Useful for spotting practical tools, coding workflow shifts, and adjacent AI opportunities from your favorite yters without scanning YouTube manually.",
-    "thumbnail": "https://i.ytimg.com/vi/E0gEIoHdHiw/hqdefault.jpg",
+    "thumbnail": "https://i.ytimg.com/vi/amKkPcO8ELc/hqdefault.jpg",
     "score": 64,
-    "updated_at": "2026-07-07T07:00:14.124Z"
+    "updated_at": "2026-07-07T17:00:16.835Z"
   },
   {
     "id": "github-headroomlabs-ai-headroom",
@@ -283,28 +283,28 @@
     "why_it_matters": "Strong fit for operator leverage, agent workflows, and business automation ideas.",
     "score": 99,
     "metrics": {
-      "stars": 57246,
-      "forks": 4207,
+      "stars": 57435,
+      "forks": 4232,
       "language": "Python"
     },
-    "updated_at": "2026-07-07T07:00:14.123Z"
+    "updated_at": "2026-07-07T17:00:16.834Z"
   },
   {
-    "id": "youtube-b1sykowvhr0",
+    "id": "youtube-egartcgc4oc",
     "type": "youtube",
     "source": "YouTube",
-    "title": "You Only Have 1 Day Left For Fable 5. Here's Maximize It.",
-    "url": "https://www.youtube.com/watch?v=B1sYKOWVHR0",
-    "author": "RAmjad",
-    "published": "2026-07-05T14:30:12+00:00",
+    "title": "Fable 5 Access Change: Don't Panic, It's Fine! #shorts",
+    "url": "https://www.youtube.com/watch?v=eGArtCgC4oc",
+    "author": "Incomestreamsurfers",
+    "published": "2026-07-06T15:08:54+00:00",
     "tags": [
       "YouTube"
     ],
     "summary": "Selected AI/dev YouTube signal from the curated favorite-creator list.",
     "why_it_matters": "Useful for spotting practical tools, coding workflow shifts, and adjacent AI opportunities from your favorite yters without scanning YouTube manually.",
-    "thumbnail": "https://i.ytimg.com/vi/B1sYKOWVHR0/hqdefault.jpg",
+    "thumbnail": "https://i.ytimg.com/vi/eGArtCgC4oc/hqdefault.jpg",
     "score": 64,
-    "updated_at": "2026-07-07T07:00:14.124Z"
+    "updated_at": "2026-07-07T17:00:16.835Z"
   },
   {
     "id": "github-openclaw-openclaw",
@@ -325,28 +325,28 @@
     "why_it_matters": "Relevant to Jarvis, AI workflows, and product ideas worth monitoring closely.",
     "score": 99,
     "metrics": {
-      "stars": 382009,
-      "forks": 80128,
+      "stars": 382080,
+      "forks": 80146,
       "language": "TypeScript"
     },
-    "updated_at": "2026-07-07T07:00:14.123Z"
+    "updated_at": "2026-07-07T17:00:16.834Z"
   },
   {
-    "id": "youtube-syosuxgngee",
+    "id": "youtube-b1sykowvhr0",
     "type": "youtube",
     "source": "YouTube",
-    "title": "Growing $1,000,000/year Apps in 60 Mins – LIVE Coaching",
-    "url": "https://www.youtube.com/watch?v=sYosUxgngEE",
-    "author": "SuperwallHQ",
-    "published": "2026-07-04T06:13:14+00:00",
+    "title": "You Only Have 1 Day Left With Fable 5. Maximize It.",
+    "url": "https://www.youtube.com/watch?v=B1sYKOWVHR0",
+    "author": "RAmjad",
+    "published": "2026-07-05T14:30:12+00:00",
     "tags": [
       "YouTube"
     ],
     "summary": "Selected AI/dev YouTube signal from the curated favorite-creator list.",
     "why_it_matters": "Useful for spotting practical tools, coding workflow shifts, and adjacent AI opportunities from your favorite yters without scanning YouTube manually.",
-    "thumbnail": "https://i.ytimg.com/vi/sYosUxgngEE/hqdefault.jpg",
+    "thumbnail": "https://i.ytimg.com/vi/B1sYKOWVHR0/hqdefault.jpg",
     "score": 64,
-    "updated_at": "2026-07-07T07:00:14.124Z"
+    "updated_at": "2026-07-07T17:00:16.835Z"
   },
   {
     "id": "github-msitarzewski-agency-agents",
@@ -363,11 +363,11 @@
     "why_it_matters": "Potentially useful signal for the morning AI digest and fast-moving product patterns.",
     "score": 99,
     "metrics": {
-      "stars": 128364,
-      "forks": 20854,
+      "stars": 128664,
+      "forks": 20906,
       "language": "Shell"
     },
-    "updated_at": "2026-07-07T07:00:14.124Z"
+    "updated_at": "2026-07-07T17:00:16.834Z"
   },
   {
     "id": "youtube-mdw-ig10rqo",
@@ -384,7 +384,7 @@
     "why_it_matters": "Useful for spotting practical tools, coding workflow shifts, and adjacent AI opportunities from your favorite yters without scanning YouTube manually.",
     "thumbnail": "https://i.ytimg.com/vi/Mdw-IG10RQo/hqdefault.jpg",
     "score": 64,
-    "updated_at": "2026-07-07T07:00:14.124Z"
+    "updated_at": "2026-07-07T17:00:16.835Z"
   },
   {
     "id": "github-obra-superpowers",
@@ -405,11 +405,11 @@
     "why_it_matters": "Relevant to Jarvis, AI workflows, and product ideas worth monitoring closely.",
     "score": 99,
     "metrics": {
-      "stars": 248040,
-      "forks": 22023,
+      "stars": 248549,
+      "forks": 22060,
       "language": "Shell"
     },
-    "updated_at": "2026-07-07T07:00:14.123Z"
+    "updated_at": "2026-07-07T17:00:16.834Z"
   },
   {
     "id": "github-anthropics-skills",
@@ -427,11 +427,11 @@
     "why_it_matters": "Potentially useful signal for the morning AI digest and fast-moving product patterns.",
     "score": 99,
     "metrics": {
-      "stars": 158957,
-      "forks": 18754,
+      "stars": 159128,
+      "forks": 18769,
       "language": "Python"
     },
-    "updated_at": "2026-07-07T07:00:14.124Z"
+    "updated_at": "2026-07-07T17:00:16.834Z"
   },
   {
     "id": "github-farion1231-cc-switch",
@@ -452,11 +452,11 @@
     "why_it_matters": "Potentially useful signal for the morning AI digest and fast-moving product patterns.",
     "score": 99,
     "metrics": {
-      "stars": 114108,
-      "forks": 7617,
+      "stars": 114340,
+      "forks": 7633,
       "language": "Rust"
     },
-    "updated_at": "2026-07-07T07:00:14.123Z"
+    "updated_at": "2026-07-07T17:00:16.834Z"
   },
   {
     "id": "github-nousresearch-hermes-agent",
@@ -477,11 +477,11 @@
     "why_it_matters": "Relevant to Jarvis, AI workflows, and product ideas worth monitoring closely.",
     "score": 99,
     "metrics": {
-      "stars": 210551,
-      "forks": 38591,
+      "stars": 210859,
+      "forks": 38692,
       "language": "Python"
     },
-    "updated_at": "2026-07-07T07:00:14.123Z"
+    "updated_at": "2026-07-07T17:00:16.834Z"
   },
   {
     "id": "github-bytedance-deer-flow",
@@ -502,10 +502,10 @@
     "why_it_matters": "Strong fit for operator leverage, agent workflows, and business automation ideas.",
     "score": 99,
     "metrics": {
-      "stars": 76318,
-      "forks": 10342,
+      "stars": 76359,
+      "forks": 10354,
       "language": "Python"
     },
-    "updated_at": "2026-07-07T07:00:14.123Z"
+    "updated_at": "2026-07-07T17:00:16.834Z"
   }
 ]
