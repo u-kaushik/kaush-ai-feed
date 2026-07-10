@@ -1,20 +1,20 @@
 [
   {
-    "id": "youtube-xcgxlhmzt2e",
+    "id": "youtube-stbu1ztyxim",
     "type": "youtube",
     "source": "YouTube",
-    "title": "Genspark Workspace: The AI Agents That Actually Does Your Work",
-    "url": "https://www.youtube.com/watch?v=xCGxLHmZt2E",
-    "author": "AIStackStudio-f2x",
-    "published": "2026-07-09T07:00:33+00:00",
+    "title": "Run MultiAgent at a 75% Discount",
+    "url": "https://www.youtube.com/watch?v=stBU1ztyXIM",
+    "author": "Itssssss_Jack",
+    "published": "2026-07-09T21:39:21+00:00",
     "tags": [
       "YouTube"
     ],
     "summary": "Selected AI/dev YouTube signal from the curated favorite-creator list.",
     "why_it_matters": "Useful for spotting practical tools, coding workflow shifts, and adjacent AI opportunities from your favorite yters without scanning YouTube manually.",
-    "thumbnail": "https://i.ytimg.com/vi/xCGxLHmZt2E/hqdefault.jpg",
+    "thumbnail": "https://i.ytimg.com/vi/stBU1ztyXIM/hqdefault.jpg",
     "score": 70,
-    "updated_at": "2026-07-09T17:00:11.070Z"
+    "updated_at": "2026-07-10T07:00:44.578Z"
   },
   {
     "id": "github-santifer-career-ops",
@@ -35,28 +35,66 @@
     "why_it_matters": "Strong fit for operator leverage, agent workflows, and business automation ideas.",
     "score": 99,
     "metrics": {
-      "stars": 59308,
-      "forks": 11669,
+      "stars": 59406,
+      "forks": 11722,
       "language": "JavaScript"
     },
-    "updated_at": "2026-07-09T17:00:11.068Z"
+    "updated_at": "2026-07-10T07:00:44.577Z"
   },
   {
-    "id": "youtube-4jaq9qxthrw",
+    "id": "youtube-xcgxlhmzt2e",
     "type": "youtube",
     "source": "YouTube",
-    "title": "Why Resubscribe Rate Is a Better Valuation Metric Than DAU",
-    "url": "https://www.youtube.com/watch?v=4Jaq9QXThRw",
-    "author": "SuperwallHQ",
-    "published": "2026-07-09T14:39:23+00:00",
+    "title": "Genspark Workspace: The AI Agents That Actually Does Your Work",
+    "url": "https://www.youtube.com/watch?v=xCGxLHmZt2E",
+    "author": "AIStackStudio-f2x",
+    "published": "2026-07-09T07:00:33+00:00",
     "tags": [
       "YouTube"
     ],
     "summary": "Selected AI/dev YouTube signal from the curated favorite-creator list.",
     "why_it_matters": "Useful for spotting practical tools, coding workflow shifts, and adjacent AI opportunities from your favorite yters without scanning YouTube manually.",
-    "thumbnail": "https://i.ytimg.com/vi/4Jaq9QXThRw/hqdefault.jpg",
+    "thumbnail": "https://i.ytimg.com/vi/xCGxLHmZt2E/hqdefault.jpg",
+    "score": 70,
+    "updated_at": "2026-07-10T07:00:44.578Z"
+  },
+  {
+    "id": "github-garrytan-gstack",
+    "type": "github",
+    "source": "GitHub",
+    "title": "garrytan/gstack",
+    "url": "https://github.com/garrytan/gstack",
+    "author": "garrytan",
+    "published": "2026-03-11T21:22:45Z",
+    "tags": [
+      "GitHub"
+    ],
+    "summary": "Use Garry Tan's exact Claude Code setup: 23 opinionated tools that serve as CEO, Designer, Eng Manager, Release Manager, Doc Engineer, and QA",
+    "why_it_matters": "Potentially useful signal for the morning AI digest and fast-moving product patterns.",
+    "score": 99,
+    "metrics": {
+      "stars": 120881,
+      "forks": 18056,
+      "language": "TypeScript"
+    },
+    "updated_at": "2026-07-10T07:00:44.578Z"
+  },
+  {
+    "id": "youtube-ethxadswufo",
+    "type": "youtube",
+    "source": "YouTube",
+    "title": "I Tested GPT 5.6 Sol vs Fable 5. What You Need To Know.",
+    "url": "https://www.youtube.com/watch?v=EthxaDswUFo",
+    "author": "nateherk",
+    "published": "2026-07-10T01:30:15+00:00",
+    "tags": [
+      "YouTube"
+    ],
+    "summary": "Selected AI/dev YouTube signal from the curated favorite-creator list.",
+    "why_it_matters": "Useful for spotting practical tools, coding workflow shifts, and adjacent AI opportunities from your favorite yters without scanning YouTube manually.",
+    "thumbnail": "https://i.ytimg.com/vi/EthxaDswUFo/hqdefault.jpg",
     "score": 64,
-    "updated_at": "2026-07-09T17:00:11.070Z"
+    "updated_at": "2026-07-10T07:00:44.578Z"
   },
   {
     "id": "github-panniantong-agent-reach",
@@ -77,28 +115,28 @@
     "why_it_matters": "Strong fit for operator leverage, agent workflows, and business automation ideas.",
     "score": 99,
     "metrics": {
-      "stars": 53760,
-      "forks": 4307,
+      "stars": 54055,
+      "forks": 4370,
       "language": "Python"
     },
-    "updated_at": "2026-07-09T17:00:11.068Z"
+    "updated_at": "2026-07-10T07:00:44.577Z"
   },
   {
-    "id": "youtube-ujeca1i4g0k",
+    "id": "youtube-55wus7uikhs",
     "type": "youtube",
     "source": "YouTube",
-    "title": "Claude Fable 5 + Higgsfield Make Billion-Dollar Websites Instantly",
-    "url": "https://www.youtube.com/watch?v=UjeCa1i4G0k",
-    "author": "Incomestreamsurfers",
-    "published": "2026-07-09T13:48:01+00:00",
+    "title": "Charging Under $10/Month? Test Higher Prices Before You Assume Nobody Will Pay",
+    "url": "https://www.youtube.com/watch?v=55WUS7UIKHs",
+    "author": "SuperwallHQ",
+    "published": "2026-07-10T01:20:57+00:00",
     "tags": [
       "YouTube"
     ],
     "summary": "Selected AI/dev YouTube signal from the curated favorite-creator list.",
     "why_it_matters": "Useful for spotting practical tools, coding workflow shifts, and adjacent AI opportunities from your favorite yters without scanning YouTube manually.",
-    "thumbnail": "https://i.ytimg.com/vi/UjeCa1i4G0k/hqdefault.jpg",
+    "thumbnail": "https://i.ytimg.com/vi/55WUS7UIKHs/hqdefault.jpg",
     "score": 64,
-    "updated_at": "2026-07-09T17:00:11.070Z"
+    "updated_at": "2026-07-10T07:00:44.578Z"
   },
   {
     "id": "github-leonxlnx-taste-skill",
@@ -119,28 +157,28 @@
     "why_it_matters": "Strong fit for operator leverage, agent workflows, and business automation ideas.",
     "score": 99,
     "metrics": {
-      "stars": 61150,
-      "forks": 4156,
+      "stars": 61408,
+      "forks": 4221,
       "language": "JavaScript"
     },
-    "updated_at": "2026-07-09T17:00:11.068Z"
+    "updated_at": "2026-07-10T07:00:44.577Z"
   },
   {
-    "id": "youtube-xdxx2m5dro0",
+    "id": "youtube-pmggiob18tc",
     "type": "youtube",
     "source": "YouTube",
-    "title": "GPT-5.6 SOL,TERRA,LUNA (Fully Tested): I GOT EARLY ACCESS & Here's my thoughts.",
-    "url": "https://www.youtube.com/watch?v=xDXX2M5DrO0",
-    "author": "AICodeKing",
-    "published": "2026-07-09T09:15:23+00:00",
+    "title": "The Golden Age of AI Engineering — Alexander Embiricos & Romain Huet & Peter Steinberger, OpenAI",
+    "url": "https://www.youtube.com/watch?v=pMggiOb18tc",
+    "author": "AI Engineer",
+    "published": "2026-07-09T18:53:34+00:00",
     "tags": [
       "YouTube"
     ],
     "summary": "Selected AI/dev YouTube signal from the curated favorite-creator list.",
     "why_it_matters": "Useful for spotting practical tools, coding workflow shifts, and adjacent AI opportunities from your favorite yters without scanning YouTube manually.",
-    "thumbnail": "https://i.ytimg.com/vi/xDXX2M5DrO0/hqdefault.jpg",
+    "thumbnail": "https://i.ytimg.com/vi/pMggiOb18tc/hqdefault.jpg",
     "score": 64,
-    "updated_at": "2026-07-09T17:00:11.070Z"
+    "updated_at": "2026-07-10T07:00:44.578Z"
   },
   {
     "id": "github-mattpocock-skills",
@@ -157,28 +195,28 @@
     "why_it_matters": "Potentially useful signal for the morning AI digest and fast-moving product patterns.",
     "score": 99,
     "metrics": {
-      "stars": 162681,
-      "forks": 13992,
+      "stars": 163500,
+      "forks": 14077,
       "language": "Shell"
     },
-    "updated_at": "2026-07-09T17:00:11.069Z"
+    "updated_at": "2026-07-10T07:00:44.578Z"
   },
   {
-    "id": "youtube-u9etvcaat1s",
+    "id": "youtube-ujeca1i4g0k",
     "type": "youtube",
     "source": "YouTube",
-    "title": "GLM-5.2 just matched Opus 4.8",
-    "url": "https://www.youtube.com/watch?v=u9etvCAaT1s",
-    "author": "Itssssss_Jack",
-    "published": "2026-07-08T23:32:32+00:00",
+    "title": "Claude Fable 5 + Higgsfield Make Billion-Dollar Websites Instantly",
+    "url": "https://www.youtube.com/watch?v=UjeCa1i4G0k",
+    "author": "Incomestreamsurfers",
+    "published": "2026-07-09T13:48:01+00:00",
     "tags": [
       "YouTube"
     ],
     "summary": "Selected AI/dev YouTube signal from the curated favorite-creator list.",
     "why_it_matters": "Useful for spotting practical tools, coding workflow shifts, and adjacent AI opportunities from your favorite yters without scanning YouTube manually.",
-    "thumbnail": "https://i.ytimg.com/vi/u9etvCAaT1s/hqdefault.jpg",
+    "thumbnail": "https://i.ytimg.com/vi/UjeCa1i4G0k/hqdefault.jpg",
     "score": 64,
-    "updated_at": "2026-07-09T17:00:11.070Z"
+    "updated_at": "2026-07-10T07:00:44.578Z"
   },
   {
     "id": "github-affaan-m-ecc",
@@ -199,28 +237,28 @@
     "why_it_matters": "Relevant to Jarvis, AI workflows, and product ideas worth monitoring closely.",
     "score": 99,
     "metrics": {
-      "stars": 227772,
-      "forks": 34810,
+      "stars": 227984,
+      "forks": 34877,
       "language": "JavaScript"
     },
-    "updated_at": "2026-07-09T17:00:11.068Z"
+    "updated_at": "2026-07-10T07:00:44.578Z"
   },
   {
-    "id": "youtube-zpx-yrz4-wm",
+    "id": "youtube-xdxx2m5dro0",
     "type": "youtube",
     "source": "YouTube",
-    "title": "This Skill Combines GPT 5.6 + Fable 5",
-    "url": "https://www.youtube.com/watch?v=zPx-YRZ4-wM",
-    "author": "Chase-H-AI",
-    "published": "2026-07-08T22:57:58+00:00",
+    "title": "GPT-5.6 SOL,TERRA,LUNA (Fully Tested): I GOT EARLY ACCESS & Here's my thoughts.",
+    "url": "https://www.youtube.com/watch?v=xDXX2M5DrO0",
+    "author": "AICodeKing",
+    "published": "2026-07-09T09:15:23+00:00",
     "tags": [
       "YouTube"
     ],
     "summary": "Selected AI/dev YouTube signal from the curated favorite-creator list.",
     "why_it_matters": "Useful for spotting practical tools, coding workflow shifts, and adjacent AI opportunities from your favorite yters without scanning YouTube manually.",
-    "thumbnail": "https://i.ytimg.com/vi/zPx-YRZ4-wM/hqdefault.jpg",
+    "thumbnail": "https://i.ytimg.com/vi/xDXX2M5DrO0/hqdefault.jpg",
     "score": 64,
-    "updated_at": "2026-07-09T17:00:11.070Z"
+    "updated_at": "2026-07-10T07:00:44.578Z"
   },
   {
     "id": "github-koala73-worldmonitor",
@@ -241,28 +279,28 @@
     "why_it_matters": "Strong fit for operator leverage, agent workflows, and business automation ideas.",
     "score": 99,
     "metrics": {
-      "stars": 61628,
-      "forks": 9598,
+      "stars": 61663,
+      "forks": 9606,
       "language": "TypeScript"
     },
-    "updated_at": "2026-07-09T17:00:11.068Z"
+    "updated_at": "2026-07-10T07:00:44.577Z"
   },
   {
-    "id": "youtube-r0qf17bvl9w",
+    "id": "youtube-zpx-yrz4-wm",
     "type": "youtube",
     "source": "YouTube",
-    "title": "Fable 5 Just Built Me a Business With One Prompt",
-    "url": "https://www.youtube.com/watch?v=R0qF17BVl9w",
-    "author": "nateherk",
-    "published": "2026-07-08T22:05:01+00:00",
+    "title": "This Skill Combines GPT 5.6 + Fable 5",
+    "url": "https://www.youtube.com/watch?v=zPx-YRZ4-wM",
+    "author": "Chase-H-AI",
+    "published": "2026-07-08T22:57:58+00:00",
     "tags": [
       "YouTube"
     ],
     "summary": "Selected AI/dev YouTube signal from the curated favorite-creator list.",
     "why_it_matters": "Useful for spotting practical tools, coding workflow shifts, and adjacent AI opportunities from your favorite yters without scanning YouTube manually.",
-    "thumbnail": "https://i.ytimg.com/vi/R0qF17BVl9w/hqdefault.jpg",
+    "thumbnail": "https://i.ytimg.com/vi/zPx-YRZ4-wM/hqdefault.jpg",
     "score": 64,
-    "updated_at": "2026-07-09T17:00:11.070Z"
+    "updated_at": "2026-07-10T07:00:44.578Z"
   },
   {
     "id": "github-headroomlabs-ai-headroom",
@@ -283,28 +321,28 @@
     "why_it_matters": "Strong fit for operator leverage, agent workflows, and business automation ideas.",
     "score": 99,
     "metrics": {
-      "stars": 58120,
-      "forks": 4293,
+      "stars": 58237,
+      "forks": 4301,
       "language": "Python"
     },
-    "updated_at": "2026-07-09T17:00:11.068Z"
+    "updated_at": "2026-07-10T07:00:44.577Z"
   },
   {
-    "id": "youtube-xunrq9vlxxo",
+    "id": "youtube-b1sykowvhr0",
     "type": "youtube",
     "source": "YouTube",
-    "title": "What do we build now? — Theo Browne, @t3dotgg",
-    "url": "https://www.youtube.com/watch?v=xUnRQ9vLXxo",
-    "author": "AI Engineer",
-    "published": "2026-07-08T19:59:33+00:00",
+    "title": "You Only Have 1 Day Left With Fable 5. Maximize It.",
+    "url": "https://www.youtube.com/watch?v=B1sYKOWVHR0",
+    "author": "RAmjad",
+    "published": "2026-07-05T14:30:12+00:00",
     "tags": [
       "YouTube"
     ],
     "summary": "Selected AI/dev YouTube signal from the curated favorite-creator list.",
     "why_it_matters": "Useful for spotting practical tools, coding workflow shifts, and adjacent AI opportunities from your favorite yters without scanning YouTube manually.",
-    "thumbnail": "https://i.ytimg.com/vi/xUnRQ9vLXxo/hqdefault.jpg",
+    "thumbnail": "https://i.ytimg.com/vi/B1sYKOWVHR0/hqdefault.jpg",
     "score": 64,
-    "updated_at": "2026-07-09T17:00:11.070Z"
+    "updated_at": "2026-07-10T07:00:44.578Z"
   },
   {
     "id": "github-openclaw-openclaw",
@@ -325,49 +363,11 @@
     "why_it_matters": "Relevant to Jarvis, AI workflows, and product ideas worth monitoring closely.",
     "score": 99,
     "metrics": {
-      "stars": 382324,
-      "forks": 80224,
+      "stars": 382406,
+      "forks": 80246,
       "language": "TypeScript"
     },
-    "updated_at": "2026-07-09T17:00:11.067Z"
-  },
-  {
-    "id": "youtube-b1sykowvhr0",
-    "type": "youtube",
-    "source": "YouTube",
-    "title": "You Only Have 1 Day Left With Fable 5. Maximize It.",
-    "url": "https://www.youtube.com/watch?v=B1sYKOWVHR0",
-    "author": "RAmjad",
-    "published": "2026-07-05T14:30:12+00:00",
-    "tags": [
-      "YouTube"
-    ],
-    "summary": "Selected AI/dev YouTube signal from the curated favorite-creator list.",
-    "why_it_matters": "Useful for spotting practical tools, coding workflow shifts, and adjacent AI opportunities from your favorite yters without scanning YouTube manually.",
-    "thumbnail": "https://i.ytimg.com/vi/B1sYKOWVHR0/hqdefault.jpg",
-    "score": 64,
-    "updated_at": "2026-07-09T17:00:11.070Z"
-  },
-  {
-    "id": "github-msitarzewski-agency-agents",
-    "type": "github",
-    "source": "GitHub",
-    "title": "msitarzewski/agency-agents",
-    "url": "https://github.com/msitarzewski/agency-agents",
-    "author": "msitarzewski",
-    "published": "2025-10-13T12:12:29Z",
-    "tags": [
-      "GitHub"
-    ],
-    "summary": "A complete AI agency at your fingertips - From frontend wizards to Reddit community ninjas, from whimsy injectors to reality checkers. Each agent is a specialized expert with personality, processes, and proven deliverables.",
-    "why_it_matters": "Potentially useful signal for the morning AI digest and fast-moving product patterns.",
-    "score": 99,
-    "metrics": {
-      "stars": 129686,
-      "forks": 21090,
-      "language": "Shell"
-    },
-    "updated_at": "2026-07-09T17:00:11.069Z"
+    "updated_at": "2026-07-10T07:00:44.577Z"
   },
   {
     "id": "youtube-mdw-ig10rqo",
@@ -384,7 +384,28 @@
     "why_it_matters": "Useful for spotting practical tools, coding workflow shifts, and adjacent AI opportunities from your favorite yters without scanning YouTube manually.",
     "thumbnail": "https://i.ytimg.com/vi/Mdw-IG10RQo/hqdefault.jpg",
     "score": 64,
-    "updated_at": "2026-07-09T17:00:11.070Z"
+    "updated_at": "2026-07-10T07:00:44.578Z"
+  },
+  {
+    "id": "github-msitarzewski-agency-agents",
+    "type": "github",
+    "source": "GitHub",
+    "title": "msitarzewski/agency-agents",
+    "url": "https://github.com/msitarzewski/agency-agents",
+    "author": "msitarzewski",
+    "published": "2025-10-13T12:12:29Z",
+    "tags": [
+      "GitHub"
+    ],
+    "summary": "A complete AI agency at your fingertips - From frontend wizards to Reddit community ninjas, from whimsy injectors to reality checkers. Each agent is a specialized expert with personality, processes, and proven deliverables.",
+    "why_it_matters": "Potentially useful signal for the morning AI digest and fast-moving product patterns.",
+    "score": 99,
+    "metrics": {
+      "stars": 129862,
+      "forks": 21152,
+      "language": "Shell"
+    },
+    "updated_at": "2026-07-10T07:00:44.578Z"
   },
   {
     "id": "github-obra-superpowers",
@@ -405,11 +426,11 @@
     "why_it_matters": "Relevant to Jarvis, AI workflows, and product ideas worth monitoring closely.",
     "score": 99,
     "metrics": {
-      "stars": 250670,
-      "forks": 22239,
+      "stars": 251129,
+      "forks": 22317,
       "language": "Shell"
     },
-    "updated_at": "2026-07-09T17:00:11.068Z"
+    "updated_at": "2026-07-10T07:00:44.577Z"
   },
   {
     "id": "github-farion1231-cc-switch",
@@ -430,11 +451,11 @@
     "why_it_matters": "Potentially useful signal for the morning AI digest and fast-moving product patterns.",
     "score": 99,
     "metrics": {
-      "stars": 115239,
-      "forks": 7701,
+      "stars": 115433,
+      "forks": 7711,
       "language": "Rust"
     },
-    "updated_at": "2026-07-09T17:00:11.068Z"
+    "updated_at": "2026-07-10T07:00:44.578Z"
   },
   {
     "id": "github-nousresearch-hermes-agent",
@@ -455,11 +476,11 @@
     "why_it_matters": "Relevant to Jarvis, AI workflows, and product ideas worth monitoring closely.",
     "score": 99,
     "metrics": {
-      "stars": 212074,
-      "forks": 39057,
+      "stars": 212382,
+      "forks": 39144,
       "language": "Python"
     },
-    "updated_at": "2026-07-09T17:00:11.068Z"
+    "updated_at": "2026-07-10T07:00:44.577Z"
   },
   {
     "id": "github-bytedance-deer-flow",
@@ -480,34 +501,10 @@
     "why_it_matters": "Strong fit for operator leverage, agent workflows, and business automation ideas.",
     "score": 99,
     "metrics": {
-      "stars": 76620,
-      "forks": 10402,
+      "stars": 76679,
+      "forks": 10412,
       "language": "Python"
     },
-    "updated_at": "2026-07-09T17:00:11.068Z"
-  },
-  {
-    "id": "github-x1xhlol-system-prompts-and-models-of-ai-tools",
-    "type": "github",
-    "source": "GitHub",
-    "title": "x1xhlol/system-prompts-and-models-of-ai-tools",
-    "url": "https://github.com/x1xhlol/system-prompts-and-models-of-ai-tools",
-    "author": "x1xhlol",
-    "published": "2025-03-05T16:38:29Z",
-    "tags": [
-      "ai",
-      "bolt",
-      "cluely",
-      "copilot",
-      "GitHub"
-    ],
-    "summary": "FULL Augment Code, Claude Code, Cluely, CodeBuddy, Comet, Cursor, Devin AI, Junie, Kiro, Leap.new, Lovable, Manus, NotionAI, Orchids.app, Perplexity, Poke, Qoder, Replit, Same.dev, Trae, Traycer AI, VSCode Agent, Warp.dev, Windsurf, Xcode, Z.ai Code, Dia & v0. (And other Open Sourced) System Prompts, Internal Tools & AI Models",
-    "why_it_matters": "Relevant to Jarvis, AI workflows, and product ideas worth monitoring closely.",
-    "score": 99,
-    "metrics": {
-      "stars": 141744,
-      "forks": 34802
-    },
-    "updated_at": "2026-07-09T17:00:11.068Z"
+    "updated_at": "2026-07-10T07:00:44.577Z"
   }
 ]
