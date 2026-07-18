@@ -1,20 +1,20 @@
 [
   {
-    "id": "youtube-xla-stsj-wc",
+    "id": "youtube-cwm-zfu1hcm",
     "type": "youtube",
     "source": "YouTube",
-    "title": "How Claude Code's Creator Just Shared ACTUALLY Uses Claude Code",
-    "url": "https://www.youtube.com/watch?v=XLA-sTSJ-Wc",
-    "author": "RAmjad",
-    "published": "2026-07-17T14:24:59+00:00",
+    "title": "Kimi Code vs Claude Code: Is Kimi K3 Really Fable 5 Level? (Tested)",
+    "url": "https://www.youtube.com/watch?v=cwM_zFU1HCM",
+    "author": "Incomestreamsurfers",
+    "published": "2026-07-17T01:35:45+00:00",
     "tags": [
       "YouTube"
     ],
     "summary": "Selected AI/dev YouTube signal from the curated favorite-creator list.",
     "why_it_matters": "Useful for spotting practical tools, coding workflow shifts, and adjacent AI opportunities from your favorite yters without scanning YouTube manually.",
-    "thumbnail": "https://i.ytimg.com/vi/XLA-sTSJ-Wc/hqdefault.jpg",
+    "thumbnail": "https://i.ytimg.com/vi/cwM_zFU1HCM/hqdefault.jpg",
     "score": 74,
-    "updated_at": "2026-07-17T17:00:14.423Z"
+    "updated_at": "2026-07-18T07:00:09.844Z"
   },
   {
     "id": "github-santifer-career-ops",
@@ -35,28 +35,28 @@
     "why_it_matters": "Strong fit for operator leverage, agent workflows, and business automation ideas.",
     "score": 99,
     "metrics": {
-      "stars": 60364,
-      "forks": 11882,
+      "stars": 60433,
+      "forks": 11891,
       "language": "JavaScript"
     },
-    "updated_at": "2026-07-17T17:00:14.421Z"
+    "updated_at": "2026-07-18T07:00:09.843Z"
   },
   {
-    "id": "youtube-cwm-zfu1hcm",
+    "id": "youtube-c35yomdni78",
     "type": "youtube",
     "source": "YouTube",
-    "title": "Kimi Code vs Claude Code: Is Kimi K3 Really Fable 5 Level? (Tested)",
-    "url": "https://www.youtube.com/watch?v=cwM_zFU1HCM",
-    "author": "Incomestreamsurfers",
-    "published": "2026-07-17T01:35:45+00:00",
+    "title": "The Great Loops Debate — Dex Horthy, Geoff Huntley, Ian Livingstone, Greg Pstrucha, @insecure-agents",
+    "url": "https://www.youtube.com/watch?v=c35YoMdnI78",
+    "author": "AI Engineer",
+    "published": "2026-07-17T21:00:06+00:00",
     "tags": [
       "YouTube"
     ],
     "summary": "Selected AI/dev YouTube signal from the curated favorite-creator list.",
     "why_it_matters": "Useful for spotting practical tools, coding workflow shifts, and adjacent AI opportunities from your favorite yters without scanning YouTube manually.",
-    "thumbnail": "https://i.ytimg.com/vi/cwM_zFU1HCM/hqdefault.jpg",
-    "score": 74,
-    "updated_at": "2026-07-17T17:00:14.423Z"
+    "thumbnail": "https://i.ytimg.com/vi/c35YoMdnI78/hqdefault.jpg",
+    "score": 70,
+    "updated_at": "2026-07-18T07:00:09.844Z"
   },
   {
     "id": "github-garrytan-gstack",
@@ -73,28 +73,28 @@
     "why_it_matters": "Potentially useful signal for the morning AI digest and fast-moving product patterns.",
     "score": 99,
     "metrics": {
-      "stars": 122434,
-      "forks": 18299,
+      "stars": 122501,
+      "forks": 18315,
       "language": "TypeScript"
     },
-    "updated_at": "2026-07-17T17:00:14.422Z"
+    "updated_at": "2026-07-18T07:00:09.843Z"
   },
   {
-    "id": "youtube-rgsfuqzqere",
+    "id": "youtube-xla-stsj-wc",
     "type": "youtube",
     "source": "YouTube",
-    "title": "On AI and Knowledge — Pablo Castro, Distinguished Engineer & CVP for AI Knowledge, Microsoft",
-    "url": "https://www.youtube.com/watch?v=RGSFUqzqErE",
-    "author": "AI Engineer",
-    "published": "2026-07-17T16:30:06+00:00",
+    "title": "The 4 Levels of Agentic Coding: How to SHIP Like Boris Cherny",
+    "url": "https://www.youtube.com/watch?v=XLA-sTSJ-Wc",
+    "author": "RAmjad",
+    "published": "2026-07-17T14:24:59+00:00",
     "tags": [
       "YouTube"
     ],
     "summary": "Selected AI/dev YouTube signal from the curated favorite-creator list.",
     "why_it_matters": "Useful for spotting practical tools, coding workflow shifts, and adjacent AI opportunities from your favorite yters without scanning YouTube manually.",
-    "thumbnail": "https://i.ytimg.com/vi/RGSFUqzqErE/hqdefault.jpg",
-    "score": 64,
-    "updated_at": "2026-07-17T17:00:14.423Z"
+    "thumbnail": "https://i.ytimg.com/vi/XLA-sTSJ-Wc/hqdefault.jpg",
+    "score": 70,
+    "updated_at": "2026-07-18T07:00:09.844Z"
   },
   {
     "id": "github-panniantong-agent-reach",
@@ -115,28 +115,28 @@
     "why_it_matters": "Strong fit for operator leverage, agent workflows, and business automation ideas.",
     "score": 99,
     "metrics": {
-      "stars": 57444,
-      "forks": 4598,
+      "stars": 57569,
+      "forks": 4611,
       "language": "Python"
     },
-    "updated_at": "2026-07-17T17:00:14.421Z"
+    "updated_at": "2026-07-18T07:00:09.843Z"
   },
   {
-    "id": "youtube-aohc53nd9yi",
+    "id": "youtube-eeizevfq80q",
     "type": "youtube",
     "source": "YouTube",
-    "title": "Kimi K3 ties Claude for 80% less",
-    "url": "https://www.youtube.com/watch?v=aOHC53nd9yI",
-    "author": "Itssssss_Jack",
-    "published": "2026-07-17T16:14:54+00:00",
+    "title": "Onboarding Advice: If Your App Isn't Clear, Copy What's Already Working",
+    "url": "https://www.youtube.com/watch?v=EeiZeVFq80Q",
+    "author": "SuperwallHQ",
+    "published": "2026-07-18T02:07:28+00:00",
     "tags": [
       "YouTube"
     ],
     "summary": "Selected AI/dev YouTube signal from the curated favorite-creator list.",
     "why_it_matters": "Useful for spotting practical tools, coding workflow shifts, and adjacent AI opportunities from your favorite yters without scanning YouTube manually.",
-    "thumbnail": "https://i.ytimg.com/vi/aOHC53nd9yI/hqdefault.jpg",
+    "thumbnail": "https://i.ytimg.com/vi/EeiZeVFq80Q/hqdefault.jpg",
     "score": 64,
-    "updated_at": "2026-07-17T17:00:14.423Z"
+    "updated_at": "2026-07-18T07:00:09.844Z"
   },
   {
     "id": "github-leonxlnx-taste-skill",
@@ -157,28 +157,28 @@
     "why_it_matters": "Strong fit for operator leverage, agent workflows, and business automation ideas.",
     "score": 99,
     "metrics": {
-      "stars": 64549,
-      "forks": 4435,
+      "stars": 64682,
+      "forks": 4453,
       "language": "JavaScript"
     },
-    "updated_at": "2026-07-17T17:00:14.421Z"
+    "updated_at": "2026-07-18T07:00:09.842Z"
   },
   {
-    "id": "youtube-gj8oqkphrsc",
+    "id": "youtube-q2m913dzzxk",
     "type": "youtube",
     "source": "YouTube",
-    "title": "Scaling Meta Ads to $10K/Day: Overcoming Permanent Bans #shorts",
-    "url": "https://www.youtube.com/watch?v=gj8OqkPHRsc",
-    "author": "SuperwallHQ",
-    "published": "2026-07-17T15:56:07+00:00",
+    "title": "kimi k3 vs fable 5 vs gpt 5.6 (frontend design)",
+    "url": "https://www.youtube.com/watch?v=q2m913dzzxk",
+    "author": "Chase-H-AI",
+    "published": "2026-07-17T23:45:28+00:00",
     "tags": [
       "YouTube"
     ],
     "summary": "Selected AI/dev YouTube signal from the curated favorite-creator list.",
     "why_it_matters": "Useful for spotting practical tools, coding workflow shifts, and adjacent AI opportunities from your favorite yters without scanning YouTube manually.",
-    "thumbnail": "https://i.ytimg.com/vi/gj8OqkPHRsc/hqdefault.jpg",
+    "thumbnail": "https://i.ytimg.com/vi/q2m913dzzxk/hqdefault.jpg",
     "score": 64,
-    "updated_at": "2026-07-17T17:00:14.423Z"
+    "updated_at": "2026-07-18T07:00:09.844Z"
   },
   {
     "id": "github-mattpocock-skills",
@@ -195,28 +195,28 @@
     "why_it_matters": "Potentially useful signal for the morning AI digest and fast-moving product patterns.",
     "score": 99,
     "metrics": {
-      "stars": 175446,
-      "forks": 15035,
+      "stars": 175882,
+      "forks": 15066,
       "language": "Shell"
     },
-    "updated_at": "2026-07-17T17:00:14.421Z"
+    "updated_at": "2026-07-18T07:00:09.843Z"
   },
   {
-    "id": "youtube-trsuj76gjcm",
+    "id": "youtube-2fljye4p3q",
     "type": "youtube",
     "source": "YouTube",
-    "title": "Kimi K3: The Largest Open AI Model Ever Released Actually Beats Fable 5",
-    "url": "https://www.youtube.com/watch?v=tRsuj76GjcM",
-    "author": "AIStackStudio-f2x",
-    "published": "2026-07-17T10:14:59+00:00",
+    "title": "Claude Fable 5 + New Design Skill = Beautiful $10,000 Websites",
+    "url": "https://www.youtube.com/watch?v=_2FlJYE4p3Q",
+    "author": "Itssssss_Jack",
+    "published": "2026-07-17T18:51:09+00:00",
     "tags": [
       "YouTube"
     ],
     "summary": "Selected AI/dev YouTube signal from the curated favorite-creator list.",
     "why_it_matters": "Useful for spotting practical tools, coding workflow shifts, and adjacent AI opportunities from your favorite yters without scanning YouTube manually.",
-    "thumbnail": "https://i.ytimg.com/vi/tRsuj76GjcM/hqdefault.jpg",
+    "thumbnail": "https://i.ytimg.com/vi/_2FlJYE4p3Q/hqdefault.jpg",
     "score": 64,
-    "updated_at": "2026-07-17T17:00:14.423Z"
+    "updated_at": "2026-07-18T07:00:09.844Z"
   },
   {
     "id": "github-affaan-m-ecc",
@@ -237,28 +237,28 @@
     "why_it_matters": "Relevant to Jarvis, AI workflows, and product ideas worth monitoring closely.",
     "score": 99,
     "metrics": {
-      "stars": 230605,
-      "forks": 35191,
+      "stars": 230731,
+      "forks": 35207,
       "language": "JavaScript"
     },
-    "updated_at": "2026-07-17T17:00:14.421Z"
+    "updated_at": "2026-07-18T07:00:09.843Z"
   },
   {
-    "id": "youtube-hh9awytmnyq",
+    "id": "youtube-trsuj76gjcm",
     "type": "youtube",
     "source": "YouTube",
-    "title": "How to USE Kimi K3 to it's EXTREME: I RAN IT CONTINUOSLY FOR 48HRS!",
-    "url": "https://www.youtube.com/watch?v=Hh9aWyTmnyQ",
-    "author": "AICodeKing",
-    "published": "2026-07-17T09:15:24+00:00",
+    "title": "Kimi K3: The Largest Open AI Model Ever Released Actually Beats Fable 5",
+    "url": "https://www.youtube.com/watch?v=tRsuj76GjcM",
+    "author": "AIStackStudio-f2x",
+    "published": "2026-07-17T10:14:59+00:00",
     "tags": [
       "YouTube"
     ],
     "summary": "Selected AI/dev YouTube signal from the curated favorite-creator list.",
     "why_it_matters": "Useful for spotting practical tools, coding workflow shifts, and adjacent AI opportunities from your favorite yters without scanning YouTube manually.",
-    "thumbnail": "https://i.ytimg.com/vi/Hh9aWyTmnyQ/hqdefault.jpg",
+    "thumbnail": "https://i.ytimg.com/vi/tRsuj76GjcM/hqdefault.jpg",
     "score": 64,
-    "updated_at": "2026-07-17T17:00:14.423Z"
+    "updated_at": "2026-07-18T07:00:09.844Z"
   },
   {
     "id": "github-koala73-worldmonitor",
@@ -279,28 +279,28 @@
     "why_it_matters": "Strong fit for operator leverage, agent workflows, and business automation ideas.",
     "score": 99,
     "metrics": {
-      "stars": 61960,
-      "forks": 9645,
+      "stars": 61982,
+      "forks": 9644,
       "language": "TypeScript"
     },
-    "updated_at": "2026-07-17T17:00:14.421Z"
+    "updated_at": "2026-07-18T07:00:09.842Z"
   },
   {
-    "id": "youtube-rcwni9w1wkc",
+    "id": "youtube-hh9awytmnyq",
     "type": "youtube",
     "source": "YouTube",
-    "title": "ChatGPT 5.6 Is a Frontend Design Cheat Code",
-    "url": "https://www.youtube.com/watch?v=RcWnI9w1wKc",
-    "author": "Chase-H-AI",
-    "published": "2026-07-16T22:29:28+00:00",
+    "title": "How to USE Kimi K3 to it's EXTREME: I RAN IT CONTINUOSLY FOR 48HRS!",
+    "url": "https://www.youtube.com/watch?v=Hh9aWyTmnyQ",
+    "author": "AICodeKing",
+    "published": "2026-07-17T09:15:24+00:00",
     "tags": [
       "YouTube"
     ],
     "summary": "Selected AI/dev YouTube signal from the curated favorite-creator list.",
     "why_it_matters": "Useful for spotting practical tools, coding workflow shifts, and adjacent AI opportunities from your favorite yters without scanning YouTube manually.",
-    "thumbnail": "https://i.ytimg.com/vi/RcWnI9w1wKc/hqdefault.jpg",
+    "thumbnail": "https://i.ytimg.com/vi/Hh9aWyTmnyQ/hqdefault.jpg",
     "score": 64,
-    "updated_at": "2026-07-17T17:00:14.423Z"
+    "updated_at": "2026-07-18T07:00:09.844Z"
   },
   {
     "id": "github-headroomlabs-ai-headroom",
@@ -321,11 +321,11 @@
     "why_it_matters": "Strong fit for operator leverage, agent workflows, and business automation ideas.",
     "score": 99,
     "metrics": {
-      "stars": 59642,
-      "forks": 4433,
+      "stars": 59732,
+      "forks": 4440,
       "language": "Python"
     },
-    "updated_at": "2026-07-17T17:00:14.421Z"
+    "updated_at": "2026-07-18T07:00:09.843Z"
   },
   {
     "id": "youtube-efotqpbgcy8",
@@ -342,7 +342,7 @@
     "why_it_matters": "Useful for spotting practical tools, coding workflow shifts, and adjacent AI opportunities from your favorite yters without scanning YouTube manually.",
     "thumbnail": "https://i.ytimg.com/vi/eFOTQpbGcy8/hqdefault.jpg",
     "score": 64,
-    "updated_at": "2026-07-17T17:00:14.423Z"
+    "updated_at": "2026-07-18T07:00:09.844Z"
   },
   {
     "id": "github-openclaw-openclaw",
@@ -363,11 +363,11 @@
     "why_it_matters": "Relevant to Jarvis, AI workflows, and product ideas worth monitoring closely.",
     "score": 99,
     "metrics": {
-      "stars": 383261,
-      "forks": 80509,
+      "stars": 383323,
+      "forks": 80528,
       "language": "TypeScript"
     },
-    "updated_at": "2026-07-17T17:00:14.421Z"
+    "updated_at": "2026-07-18T07:00:09.842Z"
   },
   {
     "id": "youtube-mdw-ig10rqo",
@@ -384,7 +384,7 @@
     "why_it_matters": "Useful for spotting practical tools, coding workflow shifts, and adjacent AI opportunities from your favorite yters without scanning YouTube manually.",
     "thumbnail": "https://i.ytimg.com/vi/Mdw-IG10RQo/hqdefault.jpg",
     "score": 64,
-    "updated_at": "2026-07-17T17:00:14.423Z"
+    "updated_at": "2026-07-18T07:00:09.844Z"
   },
   {
     "id": "github-msitarzewski-agency-agents",
@@ -401,11 +401,11 @@
     "why_it_matters": "Potentially useful signal for the morning AI digest and fast-moving product patterns.",
     "score": 99,
     "metrics": {
-      "stars": 132252,
-      "forks": 21655,
+      "stars": 132474,
+      "forks": 21693,
       "language": "Shell"
     },
-    "updated_at": "2026-07-17T17:00:14.422Z"
+    "updated_at": "2026-07-18T07:00:09.843Z"
   },
   {
     "id": "github-obra-superpowers",
@@ -426,11 +426,11 @@
     "why_it_matters": "Relevant to Jarvis, AI workflows, and product ideas worth monitoring closely.",
     "score": 99,
     "metrics": {
-      "stars": 256522,
-      "forks": 22840,
+      "stars": 256778,
+      "forks": 22866,
       "language": "Shell"
     },
-    "updated_at": "2026-07-17T17:00:14.421Z"
+    "updated_at": "2026-07-18T07:00:09.842Z"
   },
   {
     "id": "github-anthropics-skills",
@@ -448,11 +448,11 @@
     "why_it_matters": "Potentially useful signal for the morning AI digest and fast-moving product patterns.",
     "score": 99,
     "metrics": {
-      "stars": 162063,
-      "forks": 19197,
+      "stars": 162197,
+      "forks": 19218,
       "language": "Python"
     },
-    "updated_at": "2026-07-17T17:00:14.421Z"
+    "updated_at": "2026-07-18T07:00:09.843Z"
   },
   {
     "id": "github-github-spec-kit",
@@ -473,11 +473,11 @@
     "why_it_matters": "Relevant to Jarvis, AI workflows, and product ideas worth monitoring closely.",
     "score": 99,
     "metrics": {
-      "stars": 121958,
-      "forks": 10862,
+      "stars": 122033,
+      "forks": 10871,
       "language": "Python"
     },
-    "updated_at": "2026-07-17T17:00:14.421Z"
+    "updated_at": "2026-07-18T07:00:09.842Z"
   },
   {
     "id": "github-farion1231-cc-switch",
@@ -498,10 +498,10 @@
     "why_it_matters": "Potentially useful signal for the morning AI digest and fast-moving product patterns.",
     "score": 99,
     "metrics": {
-      "stars": 118310,
-      "forks": 7924,
+      "stars": 118434,
+      "forks": 7934,
       "language": "Rust"
     },
-    "updated_at": "2026-07-17T17:00:14.421Z"
+    "updated_at": "2026-07-18T07:00:09.843Z"
   }
 ]
