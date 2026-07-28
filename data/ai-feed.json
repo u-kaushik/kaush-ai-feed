@@ -1,20 +1,20 @@
 [
   {
-    "id": "youtube-vbfk20jqcse",
+    "id": "youtube-cgswxruy5eo",
     "type": "youtube",
     "source": "YouTube",
-    "title": "T3 Code V2 + Claude,Codex: YOU'RE MISSING OUT ON ONE OF THE BEST Agentic GUI Experiences RIGHT NOW!",
-    "url": "https://www.youtube.com/watch?v=vBfK20JqCSE",
-    "author": "AICodeKing",
-    "published": "2026-07-27T09:15:28+00:00",
+    "title": "AI Agents for Performance: Ship Faster, Pay Less — Rajat Shah, Netflix",
+    "url": "https://www.youtube.com/watch?v=CgsWxRUY5Eo",
+    "author": "AI Engineer",
+    "published": "2026-07-28T00:59:04+00:00",
     "tags": [
       "YouTube"
     ],
     "summary": "Selected AI/dev YouTube signal from the curated favorite-creator list.",
     "why_it_matters": "Useful for spotting practical tools, coding workflow shifts, and adjacent AI opportunities from your favorite yters without scanning YouTube manually.",
-    "thumbnail": "https://i.ytimg.com/vi/vBfK20JqCSE/hqdefault.jpg",
+    "thumbnail": "https://i.ytimg.com/vi/CgsWxRUY5Eo/hqdefault.jpg",
     "score": 70,
-    "updated_at": "2026-07-27T17:00:13.552Z"
+    "updated_at": "2026-07-28T07:00:13.220Z"
   },
   {
     "id": "github-santifer-career-ops",
@@ -35,28 +35,28 @@
     "why_it_matters": "Strong fit for operator leverage, agent workflows, and business automation ideas.",
     "score": 99,
     "metrics": {
-      "stars": 61824,
-      "forks": 12170,
+      "stars": 61907,
+      "forks": 12184,
       "language": "JavaScript"
     },
-    "updated_at": "2026-07-27T17:00:13.541Z"
+    "updated_at": "2026-07-28T07:00:13.218Z"
   },
   {
-    "id": "youtube-4sampcsovew",
+    "id": "youtube-vbfk20jqcse",
     "type": "youtube",
     "source": "YouTube",
-    "title": "Hermes Agent - Ultimate Crash Course for Beginners (AI Agent)",
-    "url": "https://www.youtube.com/watch?v=4sAmpcSOVEw",
-    "author": "AdrianTwarog",
-    "published": "2026-07-21T08:20:41+00:00",
+    "title": "T3 Code V2 + Claude,Codex: YOU'RE MISSING OUT ON ONE OF THE BEST Agentic GUI Experiences RIGHT NOW!",
+    "url": "https://www.youtube.com/watch?v=vBfK20JqCSE",
+    "author": "AICodeKing",
+    "published": "2026-07-27T09:15:28+00:00",
     "tags": [
       "YouTube"
     ],
     "summary": "Selected AI/dev YouTube signal from the curated favorite-creator list.",
     "why_it_matters": "Useful for spotting practical tools, coding workflow shifts, and adjacent AI opportunities from your favorite yters without scanning YouTube manually.",
-    "thumbnail": "https://i.ytimg.com/vi/4sAmpcSOVEw/hqdefault.jpg",
+    "thumbnail": "https://i.ytimg.com/vi/vBfK20JqCSE/hqdefault.jpg",
     "score": 70,
-    "updated_at": "2026-07-27T17:00:13.551Z"
+    "updated_at": "2026-07-28T07:00:13.220Z"
   },
   {
     "id": "github-graphify-labs-graphify",
@@ -77,28 +77,28 @@
     "why_it_matters": "Relevant to Jarvis, AI workflows, and product ideas worth monitoring closely.",
     "score": 99,
     "metrics": {
-      "stars": 96986,
-      "forks": 9388,
+      "stars": 97314,
+      "forks": 9428,
       "language": "Python"
     },
-    "updated_at": "2026-07-27T17:00:13.541Z"
+    "updated_at": "2026-07-28T07:00:13.219Z"
   },
   {
-    "id": "youtube-xla-stsj-wc",
+    "id": "youtube-4sampcsovew",
     "type": "youtube",
     "source": "YouTube",
-    "title": "The 4 Levels of Agentic Coding: How to SHIP Like Boris Cherny",
-    "url": "https://www.youtube.com/watch?v=XLA-sTSJ-Wc",
-    "author": "RAmjad",
-    "published": "2026-07-17T14:24:59+00:00",
+    "title": "Hermes Agent - Ultimate Crash Course for Beginners (AI Agent)",
+    "url": "https://www.youtube.com/watch?v=4sAmpcSOVEw",
+    "author": "AdrianTwarog",
+    "published": "2026-07-21T08:20:41+00:00",
     "tags": [
       "YouTube"
     ],
     "summary": "Selected AI/dev YouTube signal from the curated favorite-creator list.",
     "why_it_matters": "Useful for spotting practical tools, coding workflow shifts, and adjacent AI opportunities from your favorite yters without scanning YouTube manually.",
-    "thumbnail": "https://i.ytimg.com/vi/XLA-sTSJ-Wc/hqdefault.jpg",
+    "thumbnail": "https://i.ytimg.com/vi/4sAmpcSOVEw/hqdefault.jpg",
     "score": 70,
-    "updated_at": "2026-07-27T17:00:13.553Z"
+    "updated_at": "2026-07-28T07:00:13.220Z"
   },
   {
     "id": "github-calesthio-openmontage",
@@ -119,28 +119,28 @@
     "why_it_matters": "Strong fit for operator leverage, agent workflows, and business automation ideas.",
     "score": 99,
     "metrics": {
-      "stars": 42659,
-      "forks": 5137,
+      "stars": 42863,
+      "forks": 5168,
       "language": "Python"
     },
-    "updated_at": "2026-07-27T17:00:13.540Z"
+    "updated_at": "2026-07-28T07:00:13.218Z"
   },
   {
-    "id": "youtube-qrc3-r3jkmq",
+    "id": "youtube-xla-stsj-wc",
     "type": "youtube",
     "source": "YouTube",
-    "title": "This free GitHub repo replaced my SEO agency",
-    "url": "https://www.youtube.com/watch?v=qRC3-R3jkMQ",
-    "author": "Itssssss_Jack",
-    "published": "2026-07-27T16:12:26+00:00",
+    "title": "The 4 Levels of Agentic Coding: How to SHIP Like Boris Cherny",
+    "url": "https://www.youtube.com/watch?v=XLA-sTSJ-Wc",
+    "author": "RAmjad",
+    "published": "2026-07-17T14:24:59+00:00",
     "tags": [
       "YouTube"
     ],
     "summary": "Selected AI/dev YouTube signal from the curated favorite-creator list.",
     "why_it_matters": "Useful for spotting practical tools, coding workflow shifts, and adjacent AI opportunities from your favorite yters without scanning YouTube manually.",
-    "thumbnail": "https://i.ytimg.com/vi/qRC3-R3jkMQ/hqdefault.jpg",
-    "score": 67,
-    "updated_at": "2026-07-27T17:00:13.551Z"
+    "thumbnail": "https://i.ytimg.com/vi/XLA-sTSJ-Wc/hqdefault.jpg",
+    "score": 70,
+    "updated_at": "2026-07-28T07:00:13.220Z"
   },
   {
     "id": "github-panniantong-agent-reach",
@@ -161,28 +161,28 @@
     "why_it_matters": "Strong fit for operator leverage, agent workflows, and business automation ideas.",
     "score": 99,
     "metrics": {
-      "stars": 61223,
-      "forks": 4969,
+      "stars": 61329,
+      "forks": 4967,
       "language": "Python"
     },
-    "updated_at": "2026-07-27T17:00:13.541Z"
+    "updated_at": "2026-07-28T07:00:13.218Z"
   },
   {
-    "id": "youtube-1ypqcjx0ep0",
+    "id": "youtube-3ri5fqdzgf8",
     "type": "youtube",
     "source": "YouTube",
-    "title": "I Built a Full App for $0 — It Took Two Free AI Accounts",
-    "url": "https://www.youtube.com/watch?v=1YpQcJx0EP0",
+    "title": "I Tried Building A Full App On Claude's FREE Plan — It Worked (€216 → €0)",
+    "url": "https://www.youtube.com/watch?v=3ri5fqDZgf8",
     "author": "Incomestreamsurfers",
-    "published": "2026-07-27T16:25:56+00:00",
+    "published": "2026-07-27T22:01:51+00:00",
     "tags": [
       "YouTube"
     ],
     "summary": "Selected AI/dev YouTube signal from the curated favorite-creator list.",
     "why_it_matters": "Useful for spotting practical tools, coding workflow shifts, and adjacent AI opportunities from your favorite yters without scanning YouTube manually.",
-    "thumbnail": "https://i.ytimg.com/vi/1YpQcJx0EP0/hqdefault.jpg",
+    "thumbnail": "https://i.ytimg.com/vi/3ri5fqDZgf8/hqdefault.jpg",
     "score": 64,
-    "updated_at": "2026-07-27T17:00:13.552Z"
+    "updated_at": "2026-07-28T07:00:13.220Z"
   },
   {
     "id": "github-leonxlnx-taste-skill",
@@ -203,28 +203,28 @@
     "why_it_matters": "Strong fit for operator leverage, agent workflows, and business automation ideas.",
     "score": 99,
     "metrics": {
-      "stars": 68206,
-      "forks": 4716,
+      "stars": 68380,
+      "forks": 4724,
       "language": "JavaScript"
     },
-    "updated_at": "2026-07-27T17:00:13.540Z"
+    "updated_at": "2026-07-28T07:00:13.218Z"
   },
   {
-    "id": "youtube-v7kzzvhuwqy",
+    "id": "youtube-weov4dm-x1a",
     "type": "youtube",
     "source": "YouTube",
-    "title": "App Founder Advice: Ditch the Hype, Build What Matters #shorts",
-    "url": "https://www.youtube.com/watch?v=v7kZZVHuWQY",
-    "author": "SuperwallHQ",
-    "published": "2026-07-27T16:03:40+00:00",
+    "title": "Kimi K3 Builds Beautiful $20,000 Websites in 19 Mins",
+    "url": "https://www.youtube.com/watch?v=weoV4dm-X1A",
+    "author": "Itssssss_Jack",
+    "published": "2026-07-27T19:02:09+00:00",
     "tags": [
       "YouTube"
     ],
     "summary": "Selected AI/dev YouTube signal from the curated favorite-creator list.",
     "why_it_matters": "Useful for spotting practical tools, coding workflow shifts, and adjacent AI opportunities from your favorite yters without scanning YouTube manually.",
-    "thumbnail": "https://i.ytimg.com/vi/v7kZZVHuWQY/hqdefault.jpg",
+    "thumbnail": "https://i.ytimg.com/vi/weoV4dm-X1A/hqdefault.jpg",
     "score": 64,
-    "updated_at": "2026-07-27T17:00:13.551Z"
+    "updated_at": "2026-07-28T07:00:13.220Z"
   },
   {
     "id": "github-mattpocock-skills",
@@ -241,28 +241,28 @@
     "why_it_matters": "Potentially useful signal for the morning AI digest and fast-moving product patterns.",
     "score": 99,
     "metrics": {
-      "stars": 191086,
-      "forks": 16417,
+      "stars": 191874,
+      "forks": 16494,
       "language": "Shell"
     },
-    "updated_at": "2026-07-27T17:00:13.542Z"
+    "updated_at": "2026-07-28T07:00:13.219Z"
   },
   {
-    "id": "youtube-vnj8mq6991c",
+    "id": "youtube-v7kzzvhuwqy",
     "type": "youtube",
     "source": "YouTube",
-    "title": "OmniRoute + Antigravity IDE: 100% Free AI Coding with 290 Providers, Free AI Gateway",
-    "url": "https://www.youtube.com/watch?v=vNj8MQ6991c",
-    "author": "AIStackStudio-f2x",
-    "published": "2026-07-27T13:31:54+00:00",
+    "title": "App Founder Advice: Ditch the Hype, Build What Matters #shorts",
+    "url": "https://www.youtube.com/watch?v=v7kZZVHuWQY",
+    "author": "SuperwallHQ",
+    "published": "2026-07-27T16:03:40+00:00",
     "tags": [
       "YouTube"
     ],
     "summary": "Selected AI/dev YouTube signal from the curated favorite-creator list.",
     "why_it_matters": "Useful for spotting practical tools, coding workflow shifts, and adjacent AI opportunities from your favorite yters without scanning YouTube manually.",
-    "thumbnail": "https://i.ytimg.com/vi/vNj8MQ6991c/hqdefault.jpg",
+    "thumbnail": "https://i.ytimg.com/vi/v7kZZVHuWQY/hqdefault.jpg",
     "score": 64,
-    "updated_at": "2026-07-27T17:00:13.552Z"
+    "updated_at": "2026-07-28T07:00:13.220Z"
   },
   {
     "id": "github-affaan-m-ecc",
@@ -283,28 +283,28 @@
     "why_it_matters": "Relevant to Jarvis, AI workflows, and product ideas worth monitoring closely.",
     "score": 99,
     "metrics": {
-      "stars": 233981,
-      "forks": 35664,
+      "stars": 234318,
+      "forks": 35710,
       "language": "JavaScript"
     },
-    "updated_at": "2026-07-27T17:00:13.541Z"
+    "updated_at": "2026-07-28T07:00:13.218Z"
   },
   {
-    "id": "youtube-yk87oupvaxu",
+    "id": "youtube-vnj8mq6991c",
     "type": "youtube",
     "source": "YouTube",
-    "title": "DeepSWE: A Contamination-Resistant Coding Benchmark — James Shi, Datacurve",
-    "url": "https://www.youtube.com/watch?v=Yk87oUPVaxU",
-    "author": "AI Engineer",
-    "published": "2026-07-26T18:10:56+00:00",
+    "title": "OmniRoute + Antigravity IDE: 100% Free AI Coding with 290 Providers, Free AI Gateway",
+    "url": "https://www.youtube.com/watch?v=vNj8MQ6991c",
+    "author": "AIStackStudio-f2x",
+    "published": "2026-07-27T13:31:54+00:00",
     "tags": [
       "YouTube"
     ],
     "summary": "Selected AI/dev YouTube signal from the curated favorite-creator list.",
     "why_it_matters": "Useful for spotting practical tools, coding workflow shifts, and adjacent AI opportunities from your favorite yters without scanning YouTube manually.",
-    "thumbnail": "https://i.ytimg.com/vi/Yk87oUPVaxU/hqdefault.jpg",
+    "thumbnail": "https://i.ytimg.com/vi/vNj8MQ6991c/hqdefault.jpg",
     "score": 64,
-    "updated_at": "2026-07-27T17:00:13.551Z"
+    "updated_at": "2026-07-28T07:00:13.220Z"
   },
   {
     "id": "github-koala73-worldmonitor",
@@ -325,11 +325,11 @@
     "why_it_matters": "Strong fit for operator leverage, agent workflows, and business automation ideas.",
     "score": 99,
     "metrics": {
-      "stars": 75239,
-      "forks": 11297,
+      "stars": 75522,
+      "forks": 11315,
       "language": "TypeScript"
     },
-    "updated_at": "2026-07-27T17:00:13.540Z"
+    "updated_at": "2026-07-28T07:00:13.218Z"
   },
   {
     "id": "youtube-ums8suyag1a",
@@ -346,7 +346,7 @@
     "why_it_matters": "Useful for spotting practical tools, coding workflow shifts, and adjacent AI opportunities from your favorite yters without scanning YouTube manually.",
     "thumbnail": "https://i.ytimg.com/vi/Ums8suyAG1A/hqdefault.jpg",
     "score": 64,
-    "updated_at": "2026-07-27T17:00:13.552Z"
+    "updated_at": "2026-07-28T07:00:13.220Z"
   },
   {
     "id": "github-headroomlabs-ai-headroom",
@@ -367,11 +367,11 @@
     "why_it_matters": "Strong fit for operator leverage, agent workflows, and business automation ideas.",
     "score": 99,
     "metrics": {
-      "stars": 62754,
-      "forks": 4749,
+      "stars": 62834,
+      "forks": 4761,
       "language": "Python"
     },
-    "updated_at": "2026-07-27T17:00:13.540Z"
+    "updated_at": "2026-07-28T07:00:13.218Z"
   },
   {
     "id": "youtube-oofwirp7cok",
@@ -388,7 +388,7 @@
     "why_it_matters": "Useful for spotting practical tools, coding workflow shifts, and adjacent AI opportunities from your favorite yters without scanning YouTube manually.",
     "thumbnail": "https://i.ytimg.com/vi/oofWirP7COk/hqdefault.jpg",
     "score": 64,
-    "updated_at": "2026-07-27T17:00:13.551Z"
+    "updated_at": "2026-07-28T07:00:13.220Z"
   },
   {
     "id": "github-openclaw-openclaw",
@@ -409,11 +409,11 @@
     "why_it_matters": "Relevant to Jarvis, AI workflows, and product ideas worth monitoring closely.",
     "score": 99,
     "metrics": {
-      "stars": 384318,
-      "forks": 80741,
+      "stars": 384381,
+      "forks": 80754,
       "language": "TypeScript"
     },
-    "updated_at": "2026-07-27T17:00:13.540Z"
+    "updated_at": "2026-07-28T07:00:13.218Z"
   },
   {
     "id": "github-composiohq-awesome-claude-skills",
@@ -434,11 +434,11 @@
     "why_it_matters": "Strong fit for operator leverage, agent workflows, and business automation ideas.",
     "score": 99,
     "metrics": {
-      "stars": 71047,
-      "forks": 7971,
+      "stars": 71115,
+      "forks": 7985,
       "language": "Python"
     },
-    "updated_at": "2026-07-27T17:00:13.541Z"
+    "updated_at": "2026-07-28T07:00:13.218Z"
   },
   {
     "id": "github-msitarzewski-agency-agents",
@@ -455,11 +455,11 @@
     "why_it_matters": "Potentially useful signal for the morning AI digest and fast-moving product patterns.",
     "score": 99,
     "metrics": {
-      "stars": 137063,
-      "forks": 22353,
+      "stars": 137153,
+      "forks": 22363,
       "language": "Shell"
     },
-    "updated_at": "2026-07-27T17:00:13.542Z"
+    "updated_at": "2026-07-28T07:00:13.219Z"
   },
   {
     "id": "github-obra-superpowers",
@@ -480,11 +480,11 @@
     "why_it_matters": "Relevant to Jarvis, AI workflows, and product ideas worth monitoring closely.",
     "score": 99,
     "metrics": {
-      "stars": 262014,
-      "forks": 23395,
+      "stars": 262292,
+      "forks": 23419,
       "language": "Shell"
     },
-    "updated_at": "2026-07-27T17:00:13.540Z"
+    "updated_at": "2026-07-28T07:00:13.218Z"
   },
   {
     "id": "github-anthropics-skills",
@@ -502,10 +502,10 @@
     "why_it_matters": "Potentially useful signal for the morning AI digest and fast-moving product patterns.",
     "score": 99,
     "metrics": {
-      "stars": 164547,
-      "forks": 19553,
+      "stars": 164663,
+      "forks": 19561,
       "language": "Python"
     },
-    "updated_at": "2026-07-27T17:00:13.542Z"
+    "updated_at": "2026-07-28T07:00:13.219Z"
   }
 ]
